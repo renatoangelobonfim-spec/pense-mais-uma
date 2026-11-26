@@ -111,3 +111,39 @@
   .pmu-nav { gap: 7px; }
   .pmu-logo img { width: 80px; }
 }
+
+/* Apresentação editorial na entrada do mural. */
+.portal-note { margin-block: 16px 0; }
+.portal-note-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-block: 0 12px;
+  border-bottom: 1px solid #ad9b85;
+}
+.portal-note-art { flex: none; width: 65px; height: 58px; position: relative; }
+.portal-note-art img {
+  position: absolute;
+  width: 41px;
+  height: 49px;
+  object-fit: cover;
+  object-position: center 78%;
+  background: #c5d8d2;
+  box-shadow: 1px 1px 1px #46342145;
+}
+.portal-note-art img:first-child { left: 2px; top: 2px; transform: rotate(-10deg); }
+.portal-note-art img:last-child { left: 19px; top: 6px; transform: rotate(8deg); }
+.portal-note-copy { max-width: 72ch; }
+.portal-note-copy a { color: #292019; font: italic 600 20px/1.15 Georgia, serif; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.portal-note-copy a span { font-family: system-ui,sans-serif; font-size: .78em; }
+.portal-note-copy p { margin: 4px 0 0; font: 450 15px/1.38 system-ui,sans-serif; }
+@media (max-width: 530px) {
+  .portal-note { margin-top: 11px; }
+  .portal-note-inner { gap: 10px; padding-bottom: 10px; }
+  .portal-note-art { width: 49px; height: 52px; }
+  .portal-note-art img { width: 32px; height: 42px; }
+  .portal-note-art img:last-child { left: 14px; }
+  .portal-note-copy a { font-size: 18px; }
+  .portal-note-copy p { font-size: 14px; }
+  .portal-note + .mainhead { margin-top: 12px; }
+}
