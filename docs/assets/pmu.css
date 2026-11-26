@@ -197,3 +197,6 @@ footer a{font-weight:800}
 .play .cv-tz .go{color:#14121A}
 .cv-lg{background:#0C1524;border-right:1.5px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;padding:8px;gap:4px}.cv-lg .lt{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;max-width:110px}.cv-lg .lt i,.cv-lg .lt b{font:900 10px/16px Nunito,sans-serif;font-style:normal;text-align:center;border-radius:3px;background:#172739;color:#9FE3D3;border:1px solid #2D4A5E}.cv-lg .lt b{background:#FF9C7A;color:#0C1524;border-color:#FF9C7A}.cv-lg .t{font:900 14px/1.05 Nunito,sans-serif;color:#FDE7C8}.cv-lg .go{font:700 11px Nunito,sans-serif;color:#9FE3D3}
 .play .cv-lg{justify-content:flex-start;gap:12px}.play .cv-lg .t{font-size:26px}.play .cv-lg .lt{max-width:230px}.play .cv-lg .lt i,.play .cv-lg .lt b{font-size:15px;line-height:30px}.play .cv-lg .go{color:#0C1524}
+
+/* Leitura das apresentações dos cursos */
+.page .short,.prose p{line-height:1.65}.page summary{min-height:48px}.page .hint{line-height:1.55}.page a:focus-visible,.page button:focus-visible,.page summary:focus-visible{outline:3px solid #52715a;outline-offset:3px}.page .sec h2{line-height:1.24}.page:has(.faq){padding-bottom:20px}

@@ -45,7 +45,7 @@ function initVote(){
   var f=el('vote');if(!f)return;
   var prev=ls('pmu.voto');
   var btn=f.querySelector('button');
-  if(prev){f.querySelector('.msg').innerHTML='<div class="ok-msg">✓ Voto registrado: '+esc(prev)+'</div>';btn.disabled=true;
+  if(prev){f.querySelector('.msg').innerHTML='<div class="ok-msg">✓ Voto salvo neste navegador: '+esc(prev)+'</div>';btn.disabled=true;
     Array.prototype.forEach.call(f.querySelectorAll('input'),function(i){i.disabled=true;if(i.value===prev)i.checked=true;});return;}
   f.onsubmit=function(ev){ev.preventDefault();var c=f.querySelector('input:checked');if(!c)return;ls('pmu.voto',c.value);send('votos_tema',{tema:c.value});initVote();};
 }
@@ -54,21 +54,16 @@ function initVote(){
 function initFB(){
   var f=el('fb');if(!f)return;
   var curso=f.getAttribute('data-curso'),st={nota:0,lado:''};
-  if(ls('pmu.fb.'+curso)){f.innerHTML='<div class="ok-msg">✓ Obrigado! Sua avaliação deste curso já foi enviada.</div>';return;}
+  if(ls('pmu.fb.'+curso)){f.innerHTML='<div class="ok-msg">✓ Obrigado! Sua avaliação deste curso já foi salva neste navegador.</div>';return;}
   Array.prototype.forEach.call(f.querySelectorAll('.stars button'),function(b,i){b.onclick=function(){st.nota=i+1;Array.prototype.forEach.call(f.querySelectorAll('.stars button'),function(x,j){x.classList.toggle('on',j<=i);});chk();};});
   Array.prototype.forEach.call(f.querySelectorAll('.seg button'),function(b){b.onclick=function(){st.lado=b.getAttribute('data-v');Array.prototype.forEach.call(f.querySelectorAll('.seg button'),function(x){x.classList.toggle('on',x===b);});el('ladoqual').style.display=st.lado==='sim'?'block':'none';chk();};});
   var sb=f.querySelector('button[type=submit]');function chk(){sb.disabled=!(st.nota&&st.lado);}chk();
   f.onsubmit=function(ev){ev.preventDefault();if(sb.disabled)return;
     var row={curso:curso,nota:st.nota,aprendeu:f.aprendeu.value.slice(0,600),favoreceu:st.lado,qual_lado:(f.qual?f.qual.value:'').slice(0,200),comentario:f.comentario.value.slice(0,1000),tema_sugerido:f.tema.value.slice(0,200)};
     send('feedback_curso',row);ls('pmu.fb.'+curso,1);
-    f.innerHTML='<div class="ok-msg">✓ Obrigado! Sua avaliação foi registrada.</div><p class="hint">Ela ajuda a corrigir o curso e a escolher o próximo tema.</p>';};
+    f.innerHTML='<div class="ok-msg">✓ Obrigado! Sua avaliação foi salva neste navegador.</div><p class="hint">Você pode voltar ao catálogo para escolher outra pergunta.</p>';};
 }
 function openHash(){var h=decodeURIComponent(location.hash.slice(1));if(!h)return;var d=document.getElementById(h);if(d&&d.tagName==='DETAILS'){d.open=true;setTimeout(function(){d.scrollIntoView({block:'start'});},50);}}
 window.addEventListener('hashchange',openHash);
 renderDQ();initVote();initFB();openHash();
 })();
-(function(){var q=document.getElementById('busca');if(!q)return;var res=document.getElementById('res'),pr=document.getElementById('prat'),rn=res.querySelector('.rn'),cs=res.querySelectorAll('.card');
-function norm(t){return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
-var tx=Array.prototype.map.call(cs,function(c){return norm(c.textContent+' '+c.getAttribute('href')+' '+(c.getAttribute('data-k')||''));});
-q.addEventListener('input',function(){var v=norm(q.value.trim());if(!v){res.hidden=true;pr.hidden=false;return;}var k=0;cs.forEach(function(c,i){var ok=v.split(/\s+/).every(function(w){return tx[i].indexOf(w)>=0;});c.hidden=!ok;if(ok)k++;});rn.textContent=k?(k+(k>1?' cursos encontrados':' curso encontrado')):'Nenhum curso com esse tema ainda. Sugira no fim de qualquer curso.';res.hidden=false;pr.hidden=true;});
-var nb=document.querySelector('.nb');if(nb)nb.addEventListener('click',function(e){e.preventDefault();q.scrollIntoView({block:'center'});q.focus();});})();
