@@ -14,3 +14,23 @@
 @media(max-width:740px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.mast{min-height:67px}.brand{width:104px}.track>*{flex-basis:42vw}.mainhead p{font-size:15px}}
 @media(max-width:530px){.mast{min-height:66px}.brand{width:98px}nav{gap:13px}nav a{font-size:.85rem}.mainhead{margin-top:17px;align-items:center}.mainhead h1{font-size:60px}.mainhead p{font-size:14px}.controls{gap:5px}.controls button{width:38px;height:38px}.track{padding-top:17px;gap:15px}.track>*{flex-basis:min(70vw,305px)}.cathead{display:block;margin-top:25px;padding-top:17px}.search{margin-top:12px}.search input{width:100%}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 13px}.filters button{font-size:13px;padding:7px 10px}.caption{margin-top:7px}.tail{font-size:13px}.footerline{align-items:start}.grid .caption{font-size:.79rem}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+.rodada {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: clamp(24px, 5vw, 64px);
+  padding-block: 12px 48px;
+}
+.rodada section { border-top: 2px solid var(--ink); padding-top: 16px; }
+.rodada h2 { font: italic 32px/1.1 var(--title); margin: .35em 0; }
+.rodada .ops, .rodada form, .rodada .cta { display: grid; gap: 10px; }
+.rodada .ops button, .rodada .btn {
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  padding: 10px 14px;
+  text-align: left;
+  cursor: pointer;
+}
+.rodada .btn, .rodada .ops .ok { color: var(--paper); background: var(--ink); }
+.rodada .sec, .rodada .dqh { margin-bottom: 14px; }
+.rodada .vr { display: flex; gap: 8px; align-items: baseline; }
