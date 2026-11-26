@@ -1,5 +1,13 @@
 # Revisão editorial do Pense Mais Uma
 
+## Voz dos cursos e imagens por fase
+
+Prioridade para a revisão dos 22 cursos, registrada em 26 de novembro de 2026. Ler em voz alta os textos que o leitor encontra durante o jogo, inclusive as explicações depois de cada escolha. Usar o português de uma boa conversa entre adultos. Dizer quem fez o quê e explicar na mesma frase o termo técnico de que o leitor vai precisar. Manter o link da fonte junto da afirmação, a atribuição de opiniões e as ressalvas que mudam a conclusão.
+
+Exemplo de edição em *Tarifa zero*. A frase “Para isolar a escolha, a simulação mantém a procura fixa e supõe lugares disponíveis e partidas pontuais” pode virar “Vamos imaginar as duas manhãs com o mesmo número de passageiros. Em ambas, há lugar para embarcar e os ônibus saem no horário.” Na leitura em voz alta, conferir se a nova frase soa natural e se as três condições do exemplo continuam claras.
+
+Na revisão visual, prever uma imagem para cada fase de todos os cursos. Escolher algo específico daquele trecho que o leitor possa observar, como os horários de duas viagens ou a escala de quem vai abrir uma loja. Manter o texto legível no celular e descrever o que a imagem ajuda a entender para quem usa leitor de tela.
+
 Leitura das 22 apresentações do pacote recebido, com inspeção de suas perguntas, interpretações e referências. As propostas abaixo são pautas para a próxima edição. Cada número novo e cada mudança de regra pedem conferência na fonte antes de entrar na aula. Esta revisão de estrutura não substitui uma checagem factual integral dos 22 jogos.
 
 | Curso | Ponto de partida no material recebido | Complemento para o leitor |
