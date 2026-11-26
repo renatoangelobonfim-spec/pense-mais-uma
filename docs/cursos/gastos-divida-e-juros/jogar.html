@@ -6,7 +6,7 @@
 <meta property="og:locale" content="pt_BR">
 <meta property="og:url" content="https://pensemaisuma.com.br/cursos/gastos-divida-e-juros/jogar.html">
 <meta property="og:title" content="Gastos, dívida e juros: por que o governo não pode só gastar mais, nem só cortar?">
-<meta property="og:description" content="Curso-jogo de 8 minutos: você decide as contas de um país e vê quem sente cada escolha. Dívida pública, juros, Selic e o que os economistas discutem, com fontes e os dois lados.">
+<meta property="og:description" content="Curso-jogo de cerca de 15 minutos: você decide as contas de um país e vê quem sente cada escolha. Dívida pública, juros, Selic e o que os economistas discutem, com fontes e os dois lados.">
 <meta property="og:image" content="https://pensemaisuma.com.br/assets/compartilhar/gastos-divida-e-juros.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
@@ -17,7 +17,7 @@
 <meta name="twitter:image:alt" content="Cartaz do curso Gastos, dívida e juros: por que o governo não pode só gastar mais, nem só cortar?">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Gastos, dívida e juros: por que o governo não pode só gastar mais, nem só cortar?</title>
-<meta name="description" content="Curso-jogo de 8 minutos: você decide as contas do país e vê quem sente cada escolha. Com fontes e os dois lados. Pense Mais Uma.">
+<meta name="description" content="Curso-jogo de cerca de 15 minutos: você decide as contas do país e vê quem sente cada escolha. Com fontes e os dois lados. Pense Mais Uma.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -129,18 +129,18 @@ const CH={
  antonio:{n:"Antônio",r:"aposentado",q:"Quer: a complementação do fundo de pensão e o posto de saúde funcionando.",f:"Teme: inflação comendo a aposentadoria.",c:"#B7DCC5",e:"🧓",bld:"posto"}
 };
 /* ================= TELAS ================= */
-const T=[
+const stages=[
+ {type:"opening",id:"d1",k:"Decisão 1 de 3",h:"O dinheiro do governo não cobre as contas deste mês. O que você faz primeiro?",
+  o:[{t:"Cortar gastos",i:"✂️",eff:{carla:-1,rafael:1,antonio:-1,dalia:0},first:"carla",headline:"A escola de Carla recebe menos verba",txt:"Neste cenário, o corte atinge também o posto de saúde que Antônio frequenta. Rafael, que administra um fundo, vê menos risco de o governo atrasar os pagamentos.",later:"Se o ajuste reduzir os juros, Dália poderá conseguir crédito mais barato. Se o corte atingir investimentos, o crescimento pode perder força. Você vai conhecer as duas interpretações."},
+     {t:"Aumentar impostos",i:"🧾",eff:{dalia:-1,carla:0,antonio:0,rafael:0},first:"dalia",headline:"Dália adia a segunda loja",txt:"Neste cenário, o imposto sobe para o restaurante de Dália. Ela deixa o plano de expansão para depois. Carla mantém a verba da escola, e o posto de saúde de Antônio segue funcionando.",later:"Mais tarde: imposto maior pode frear investimentos e empregos. Quem paga depende de qual imposto sobe."},
+     {t:"Pegar mais emprestado",i:"🏦",eff:{carla:0,dalia:0,antonio:0,rafael:0},first:"ninguem",headline:"O posto mantém o atendimento de Antônio",txt:"O empréstimo também mantém a verba da escola de Carla. O governo terá de pagar essa dívida com juros. Quem defende ajuste mais forte diz que os juros podem subir já.",later:"A conta chega na próxima decisão."}],
+  pq:"Antes de ver: quem você acha que sente essa escolha?",common:"Nenhuma opção é de graça. A pergunta é quem paga, e quando."},
  {type:"poll",id:"palpite",k:"Seu palpite",h:"Se o governo gastasse menos, a sua vida ficaria melhor ou pior?",o:["Melhor","Pior","Depende de onde cortar"],fb:"Guardamos o seu palpite. No fim, você volta a ele."},
  {type:"info",k:"O problema",h:"Falta dinheiro",b:"<p>No exemplo deste curso, o governo gasta mais do que arrecada, como tem acontecido no Brasil. [[ifi]] A diferença vira <b>dívida</b>, e dívida cobra juros.</p><p class='small'>Ao longo do curso, a cidade lá em cima mostra quem sente cada escolha.</p>"},
  {type:"guess",id:"g1",k:"Chute",h:"Em 12 meses, quanto o setor público teve de despesa com juros, comparado a tudo que o país produz (o PIB)?",o:["Cerca de 3%","Cerca de 9%","Cerca de 20%"],a:1,rev:"<b>Cerca de 9%.</b> Foram R$ 1,18 trilhão de despesa com juros em 12 meses até agosto de 2026: quase 9 de cada 100 reais de tudo que o país produz. [[camara]]"},
  {type:"info",k:"Palavra nova",h:"O que é dívida pública?",b:"<p><b>Dívida pública</b> é o dinheiro que o governo pega emprestado vendendo <b>títulos</b>: uma espécie de vale com data e taxa de juros. Quem compra recebe os juros. [[tesouro]]</p>"},
  {type:"order",id:"o1",k:"Teste rápido",h:"Quem tem os títulos da dívida interna do governo federal? Ordene estes cinco grupos do maior para o menor.",it:[["Bancos e outras instituições financeiras",31.2],["Fundos de previdência",22.6],["Fundos de investimento",22.5],["Estrangeiros",9.9],["Pessoas, pelo Tesouro Direto",3.0]],rev:"Dados de agosto de 2026; há outros grupos menores, como seguradoras. [[camara]] Pode parecer que são só os muito ricos. O aposentado com fundo de pensão também está nessa fila, e o dinheiro dos bancos e fundos é, em parte, a poupança de outras pessoas."},
  {type:"chars",k:"Quem mora aqui",h:"Conheça quem vai sentir as suas escolhas",b:"Toque em cada carta. Os nomes e as histórias são <b>exemplos</b> inventados."},
- {type:"decision",id:"d1",k:"Decisão 1 de 3",h:"Você cuida das contas do país. Falta dinheiro. O que você faz primeiro?",
-  o:[{t:"Cortar gastos",i:"✂️",eff:{carla:-1,rafael:1,antonio:-1,dalia:0},first:"carla",txt:"Carla perde verba para a escola. Antônio sente no posto de saúde. Para quem defende ajuste, isso sinaliza que o governo quer pagar o que deve, e Rafael fica mais tranquilo. Dália pode ganhar mais tarde: se isso trouxer confiança e os juros caírem, ela consegue crédito mais barato, como defende a visão A que você vai ver adiante.",later:"Mais tarde: se o corte cair sobre obras, o país pode crescer menos. Economistas discordam sobre qual efeito pesa mais."},
-     {t:"Aumentar impostos",i:"🧾",eff:{dalia:-1,carla:0,antonio:0,rafael:0},first:"dalia",txt:"Dália paga mais e adia a segunda loja. Carla mantém a verba da escola, e o posto de saúde de Antônio segue funcionando.",later:"Mais tarde: imposto maior pode frear investimentos e empregos. Quem paga depende de qual imposto sobe."},
-     {t:"Pegar mais emprestado",i:"🏦",eff:{carla:0,dalia:0,antonio:0,rafael:0},first:"ninguem",txt:"No exemplo, ninguém sente de imediato. A dívida cresce, e os juros dela ficam para depois. Quem defende ajuste mais forte diz que os juros podem subir já.",later:"A conta chega na próxima decisão."}],
-  pq:"Antes de ver: quem você acha que sente essa escolha?",common:"Nenhuma opção é de graça. A pergunta é quem paga, e quando."},
  {type:"snow",k:"Uma imagem para guardar",h:"A bola de neve na ladeira",b:"<p>A dívida é uma bola de neve descendo a ladeira.</p><ul class='list'><li><b>Os juros</b> fazem a bola crescer.</li><li><b>O crescimento do país</b> aumenta a ladeira, e a bola fica menor em comparação.</li><li>Quando o governo <b>arrecada mais do que gasta</b> (sem contar os juros), ele tira neve da bola.</li></ul><p class='small'>É assim que relatórios oficiais explicam a dívida: juros, crescimento e resultado das contas. [[ifi]]</p>"},
  {type:"sim",k:"Teste você mesmo",h:"Mexa nos controles e veja a dívida em 5 anos"},
  {type:"info",k:"Palavra nova",h:"Selic: quem decide os juros?",b:"<p><b>Selic</b> é a taxa básica de juros do país. Quem decide é o <b>Banco Central</b>, não o presidente nem os credores. O Banco Central tem autonomia desde 2021.</p><p>Em 4 de novembro de 2026, a Selic estava em <b>13,75% ao ano</b>. [[copom]]</p>"},
@@ -172,17 +172,28 @@ const T=[
    {q:"Juros altos ajudam a reduzir:",o:["A inflação","A dívida pública","O custo do crédito"],a:0,e:"Freiam a inflação, mas encarecem a dívida e o crédito."},
    {q:"Em que os economistas mais discordam?",o:["No tamanho dos efeitos e em quem paga","Em se juro alto encarece a dívida","Em quem decide a Selic"],a:0,e:"Os fatos básicos são consenso; os pesos e as escolhas, não."}]},
  {type:"recap",k:"Resultado das suas escolhas",h:"O seu país ficou assim"},
- {type:"compare",k:"De volta ao começo",h:"E agora?"},
+ {type:"compare",id:"compare",k:"De volta ao começo",h:"E agora?"},
  {type:"end",k:"Fim do curso",h:"Você pensou mais uma"}
 ];
 /* ================= ESTADO ================= */
 const KEY="pmu-economia-v1";
 let S;try{S=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){S=null}
-if(!S)S={i:0,pts:0,max:0,ans:{},eff:{carla:0,rafael:0,dalia:0,antonio:0},mute:false,fb:{}};
+function freshState(mute=false) {
+ return {route:2,i:0,pts:0,ans:{},eff:{carla:0,rafael:0,dalia:0,antonio:0},mute,fb:{}};
+}
+if(!S) S=freshState();
+let T=stages;
+// A antiga decisão de abertura ficava na sétima tela. Quem já avançou
+// continua no mesmo ponto, com as escolhas e a pontuação que já tinha.
+if(!S.route && (S.i>0 || S.ans.palpite)) {
+ T=[...stages.slice(1,7),stages[0],...stages.slice(7)];
+} else {
+ S.route=2;
+}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 const app=document.getElementById("app");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const MAXPTS=10+10+30+40+10+30;
+
 function src(h){return String(h).replace(/\[\[([a-z0-9_]+)\]\]/g,(m,k)=>FONTES[k]?`<button type="button" class="fn" data-f="${k}" aria-label="Ver fonte: ${esc(FONTES[k].s)}">🔎 ${esc(FONTES[k].s)}</button>`:"")}
 /* som */
 let AC=null;function snd(t){if(S.mute)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);const f={ok:[660,990],no:[300,200],tap:[520,520],win:[523,1046]}[t]||[440,440];o.frequency.setValueAtTime(f[0],AC.currentTime);o.frequency.linearRampToValueAtTime(f[1],AC.currentTime+.15);g.gain.setValueAtTime(.08,AC.currentTime);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+.25);o.start();o.stop(AC.currentTime+.26)}catch(e){}}
@@ -211,8 +222,35 @@ function nav(ready,label){return `<button class="btn" id="nx" ${ready?"":"disabl
 function bindNext(){const b=document.getElementById("nx");if(b)b.onclick=next}
 /* ================= RENDER ================= */
 function render(){const t=T[S.i];const A=S.ans[t.id]||{};let h=`<p class="kicker">${t.k}</p>`;
- if(S.i===0&&!S.started){frame(`<div class="box"><span class="tag">curso-jogo · 8 minutos · grátis</span><h1>Gastos, dívida e juros: por que o governo não pode só gastar mais, nem só cortar?</h1><p>Você vai cuidar das contas de um país, ver quem sente cada escolha e entender onde os economistas concordam e onde brigam.</p><div class="fb how"><b>Como funciona</b>São 21 telas curtas, com 3 decisões e alguns testes rápidos. Não existe escolha "certa" nas decisões: o objetivo é ver quem paga. Os testes valem pontos. Toque em 🔎 para ver a fonte de cada dado.</div><p class="small">Dados atualizados em novembro de 2026.</p></div><button class="btn" id="go">Começar</button>`);document.getElementById("go").onclick=()=>{S.started=true;save();render()};return}
  switch(t.type){
+ case "opening": {
+  if (!A.seen) {
+   h+=`<h1>${t.h}</h1><p>Na cidade fictícia deste curso, a escola de Carla e o posto que atende Antônio dependem desse orçamento.</p>`;
+   h+=t.o.map((option,index)=>`<button class="opt" data-choice="${index}"><span aria-hidden="true">${option.i}</span> ${option.t}</button>`).join("");
+   h+='<p class="small">Cerca de 15 minutos · Dados de novembro de 2026</p>';
+   frame(h);
+   for(const button of app.querySelectorAll("[data-choice]")) {
+    button.onclick=()=>{
+     const v=Number(button.dataset.choice);
+     S.ans.d1={v,seen:true};
+     applyEff(t.o[v].eff);
+     save();
+     snd("tap");
+     render();
+     document.getElementById("impacto").focus({preventScroll:true});
+    };
+   }
+  } else {
+   const choice=t.o[A.v];
+   h+=`<p class="small">Você escolheu: <b>${choice.t}</b></p><h1 tabindex="-1" id="impacto">${choice.headline}</h1><div class="box">${src(choice.txt)}<p class="small">${choice.later}</p></div>`;
+   h+=nav(true);
+   const alternatives=t.o.filter(option=>option!==choice);
+   h+=`<details class="box"><summary>E se eu tivesse escolhido outro caminho?</summary><ul class="list">${alternatives.map(o=>`<li><b>${o.t}</b> — ${src(o.txt)}</li>`).join("")}</ul></details>`;
+   frame(h);
+   bindNext();
+  }
+  break;
+ }
  case "poll":{h+=`<h2>${t.h}</h2>`+t.o.map((o,k)=>`<button class="opt ${A.v===k?'on':''}" data-k="${k}">${o}</button>`).join("");if(A.v!=null)h+=`<div class="fb">${t.fb}</div>`;h+=nav(A.v!=null);frame(h);
   app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{S.ans[t.id]={v:+b.dataset.k};save();snd("tap");render()});bindNext();break}
  case "info":{h+=`<h2>${t.h}</h2><div class="box">${src(t.b)}</div>`+nav(true);frame(h);bindNext();break}
@@ -266,12 +304,14 @@ function render(){const t=T[S.i];const A=S.ans[t.id]||{};let h=`<p class="kicker
  case "recap":{const D=["d1","d2","d3"].map(id=>{const tt=T.find(x=>x.id===id);const a=S.ans[id];return a&&a.v!=null?tt.o[a.v].t:"(sem escolha)"});
   const lab=k=>{const v=S.eff[k];return v>0?`<span class="st up">▲ saiu ganhando</span>`:v<0?`<span class="st dn">▼ saiu perdendo</span>`:`<span class="st">= ficou igual</span>`};
   h+=`<h2>${t.h}</h2><p class="small">No exemplo simplificado deste curso:</p><div class="box"><b>Suas escolhas</b><ol class="list"><li>${D[0]}</li><li>${D[1]}</li><li>${D[2]}</li></ol></div><div class="chars">${Object.keys(CH).map(k=>`<div class="ch"><span class="av" style="background:${CH[k].c}">${CH[k].e}</span><span><b>${CH[k].n}</b>${lab(k)}<small>${CH[k].r}</small></span></div>`).join("")}</div><div class="fb"><b>💡 Outro caminho, outros ganhadores</b>Com escolhas diferentes, outras pessoas da cidade sairiam ganhando ou perdendo. Não existe escolha sem custo: existe escolher quem paga, e quando.</div>`+nav(true);frame(h);bindNext();break}
- case "compare":{const p0=S.ans.palpite?S.ans.palpite.v:null;const P=T[0].o;h+=`<h2>${t.h}</h2><div class="box">No começo, você disse: <b>${p0!=null?P[p0]:"(sem palpite)"}</b>.<br>Se o governo gastasse menos, a sua vida ficaria melhor ou pior?</div>`+P.map((o,k)=>`<button class="opt ${A.v===k?'on':''}" data-k="${k}">${o}</button>`).join("");
+ case "compare":{const p0=S.ans.palpite?S.ans.palpite.v:null;const P=stages.find(stage=>stage.id==="palpite").o;h+=`<h2>${t.h}</h2><div class="box">No começo, você disse: <b>${p0!=null?P[p0]:"(sem palpite)"}</b>.<br>Se o governo gastasse menos, a sua vida ficaria melhor ou pior?</div>`+P.map((o,k)=>`<button class="opt ${A.v===k?'on':''}" data-k="${k}">${o}</button>`).join("");
   h+=`<div class="box"><b>O que mudaria a sua opinião?</b> <span class="small">(opcional)</span><textarea id="why" rows="3" placeholder="Escreva aqui...">${esc(A.why||"")}</textarea></div>`;
   if(A.v!=null)h+=`<div class="fb">${A.v===p0?"Você manteve o palpite, agora sabendo quem paga cada escolha.":"Você mudou de ideia. Mudar com informação nova é pensar mais uma."}</div>`;h+=nav(A.v!=null);frame(h);
   app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{A.v=+b.dataset.k;A.why=document.getElementById("why").value;S.ans.compare=A;save();snd("tap");render()});
   document.getElementById("why").oninput=e=>{A.why=e.target.value;S.ans.compare=A;save()};bindNext();break}
- case "end":{const pct=S.pts/MAXPTS;const st=pct>=.9?3:pct>=.6?2:1;if(!S.won){S.won=true;save();snd("win")}
+ case "end":{
+  const MAXPTS=10+10+20+40+10+30+(S.ans.d1?.p!=null?10:0);
+  const pct=S.pts/MAXPTS;const st=pct>=.9?3:pct>=.6?2:1;if(!S.won){S.won=true;save();snd("win")}
   const pd=S.ans.pdia||{},vt=S.ans.voto||{},F=S.fb||{};
   h+=`<h2>${t.h}</h2><div class="box" style="text-align:center"><div class="stars">${"⭐".repeat(st)}${"☆".repeat(3-st)}</div><p><b>${S.pts} de ${MAXPTS} pontos</b></p><p class="small">Os pontos vêm das previsões e dos testes. Nas decisões, não existe escolha certa.</p></div>
   <div class="box"><p class="kicker">Pergunta do dia</p><b>Quem aprova o orçamento do governo federal todo ano?</b>${["O Congresso Nacional","O Banco Central","O Tesouro Nacional"].map((o,k)=>{let c="";if(pd.v!=null)c=k===0?"ok":k===pd.v?"no":"";return `<button class="opt ${c}" data-pd="${k}" ${pd.v!=null?"disabled":""}>${o}</button>`}).join("")}${pd.v!=null?`<p class="small">O Congresso Nacional. O governo envia a proposta, e deputados e senadores votam e podem mudar o texto. ${src("[[cf]]")}</p>`:""}</div>
@@ -291,7 +331,7 @@ function render(){const t=T[S.i];const A=S.ans[t.id]||{};let h=`<p class="kicker
   document.getElementById("aprendi").oninput=e=>{S.fb.aprendi=e.target.value;save()};
   document.getElementById("tema").oninput=e=>{S.fb.tema=e.target.value;save()};
   document.getElementById("env").onclick=()=>{S.fb.sent=true;try{const q=JSON.parse(localStorage.getItem("pmu-fila")||"[]");q.push({curso:"economia",quando:new Date().toISOString(),...S.fb,voto:S.ans.voto});localStorage.setItem("pmu-fila",JSON.stringify(q))}catch(e){}save();render()};
-  document.getElementById("again").onclick=()=>{S={i:0,pts:0,ans:{},eff:{carla:0,rafael:0,dalia:0,antonio:0},mute:S.mute,fb:{},started:true};save();render()};break}
+  document.getElementById("again").onclick=()=>{S=freshState(S.mute);T=stages;save();render()};break}
  }}
 function hits(o){const k=Object.keys(o.eff).filter(x=>o.eff[x]!==0);return k.length?k:['ninguem']}
 function sumEff(a,b){const o={...a};for(const k in b)o[k]=(o[k]||0)+b[k];return o}
