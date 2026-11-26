@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fato ou mito: a urna eletrônica é confiável? | Pense Mais Uma</title>
+<meta name="description" content="Curso-jogo: arraste 19 frases que circulam sobre a urna eletrônica para Fato, Mito ou Depende e veja a explicação com fonte. Inclui o debate sobre o voto impresso.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#121022;--bg2:#2A2350;--card:#F7F5FF;--ink:#1A1730;--mut:#A9A3D0;--line:#2C2752;--fato:#3DDBC0;--mito:#F07A4B;--dep:#8C7CFF;--txt:#F2F0FA}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;font-family:Inter,system-ui,sans-serif;color:var(--txt);background:radial-gradient(120% 70% at 50% 0,var(--bg2),var(--bg) 70%) fixed;overscroll-behavior:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+#app{max-width:480px;margin:0 auto;min-height:100vh;padding:18px 18px 28px;display:flex;flex-direction:column}
+h1,h2,h3{font-family:"Space Grotesk",sans-serif;margin:0}
+.top{display:flex;justify-content:space-between;align-items:center;font:700 14px "Space Grotesk";color:var(--mut)}
+.top .r{display:flex;gap:8px;align-items:center}
+.ib{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:14px}
+.bar{height:6px;border-radius:9px;background:var(--line);margin:10px 0 18px}.bar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--fato),var(--dep));transition:width .4s}
+.stack{position:relative;height:380px;margin-top:8px;touch-action:none}
+.c{position:absolute;inset:0;border-radius:28px;padding:24px 22px;background:var(--card);color:var(--ink);display:flex;flex-direction:column}
+.c.b3{transform:translateY(-22px) scale(.88);background:#3A3368}.c.b2{transform:translateY(-11px) scale(.94);background:#5A4FA0}
+.c.top1{box-shadow:0 20px 40px rgba(0,0,0,.4);transition:transform .25s ease-out;cursor:grab;user-select:none}
+.c.top1.drag{transition:none}
+.chip{align-self:flex-start;background:#ECE8FF;color:#5A4FA0;font:700 12px "Space Grotesk";border-radius:99px;padding:5px 11px}
+.claim{font:700 clamp(22px,6.6vw,27px)/1.18 "Space Grotesk";margin:18px 0 0}
+.hint{margin-top:auto;font-size:13px;color:#6C6790}
+.stamp{position:absolute;top:22px;right:18px;font:700 20px "Space Grotesk";border:3px solid;border-radius:12px;padding:2px 10px;opacity:0;transform:rotate(14deg);pointer-events:none}
+.stamp.f{color:var(--fato);border-color:var(--fato);top:62px}.stamp.m{color:var(--mito);border-color:var(--mito);right:auto;left:18px;top:62px;transform:rotate(-14deg)}.stamp.d{color:var(--dep);border-color:var(--dep);right:50%;transform:translateX(50%)}
+.acts{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+.acts button{flex:1;height:60px;border-radius:20px;font:700 15px "Space Grotesk"}
+.acts .m{background:rgba(240,122,75,.15);color:#F59A74;border:2px solid var(--mito)}
+.acts .d{background:rgba(140,124,255,.15);color:#B3A8FF;border:2px solid var(--dep)}
+.acts .f{background:rgba(61,219,192,.15);color:#6EE8D3;border:2px solid var(--fato)}
+.sw{text-align:center;color:#8E88B8;font-size:13px;margin-top:12px}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;animation:up .3s ease-out}
+@keyframes up{from{transform:translateY(100%)}to{transform:none}}
+.sheet>div{width:100%;max-width:480px;background:#1C1838;border-top:1px solid var(--line);border-radius:26px 26px 0 0;padding:18px 20px 22px;max-height:78vh;overflow:auto;box-shadow:0 -14px 40px rgba(0,0,0,.45)}
+.verd{display:flex;align-items:center;gap:10px;font:700 15px "Space Grotesk"}
+.pill{border-radius:10px;padding:4px 10px;font:700 14px "Space Grotesk";color:#121022}
+.pill.f{background:var(--fato)}.pill.m{background:var(--mito)}.pill.d{background:var(--dep)}
+.ok{color:var(--fato)}.no{color:#F59A74}
+.sheet p{color:#DCD8F2;line-height:1.55;font-size:15.5px;margin:10px 0}
+.go{width:100%;height:54px;border-radius:18px;background:var(--txt);color:var(--bg);font:700 16px "Space Grotesk";margin-top:8px}
+.go.alt{background:transparent;color:var(--txt);border:1px solid var(--line)}
+.fn{display:inline-block;font:600 11.5px Inter;color:#C9C2FF;background:rgba(140,124,255,.16);border:1px solid rgba(140,124,255,.45);border-radius:99px;padding:0 7px;margin:0 2px;vertical-align:1px;text-align:left}
+.panel{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:22px;padding:18px;margin-top:12px}
+.panel p{color:#DCD8F2;line-height:1.55;margin:.5em 0}
+.k{font:700 12px "Space Grotesk";letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.big{font:700 clamp(28px,8vw,36px)/1.08 "Space Grotesk";margin:10px 0 12px}
+.two{display:grid;gap:10px;margin-top:10px}
+.two>div{border-radius:18px;padding:14px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+.two b{font:700 14px "Space Grotesk";display:block;margin-bottom:4px}
+.two p{font-size:14.5px;margin:0}
+.chaps{display:grid;gap:8px;margin-top:14px}
+.chaps>div{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:16px;padding:12px 14px;font-weight:600}
+.chaps span{color:var(--mut);font-size:13px}
+.stars{color:#FFD66B;letter-spacing:2px}.stars span{letter-spacing:0;white-space:nowrap}
+#fnpop{position:fixed;left:14px;right:14px;bottom:14px;max-width:452px;margin:0 auto;background:#0B0A16;border:1px solid var(--dep);border-radius:16px;padding:14px 16px;z-index:60;display:none;font-size:.9rem;line-height:1.5}
+#fnpop a{color:#C9C2FF}#fnpop .x{position:absolute;right:10px;top:6px;font-size:20px;color:var(--txt)}
+.rate{display:flex;gap:6px}.rate button{flex:1;border:1px solid var(--line);border-radius:12px;padding:10px 0;font-weight:700}.rate button.on{background:var(--dep);color:#121022}
+textarea,select{width:100%;font:inherit;border:1px solid var(--line);border-radius:12px;padding:10px;background:#15122B;color:var(--txt)}
+.fontes li{font-size:.8rem;margin:.45em 0;color:#CFCAEB}.fontes a{color:#C9C2FF}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:70}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style><link rel="canonical" href="https://pensemaisuma.com.br/cursos/fato-ou-mito-urna-eletronica/">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+</head><body>
+<div id="pmu-bar" style="font-family:Nunito,system-ui,sans-serif;background:#FAF7F0;color:#17150F;border-bottom:1.5px solid #17150F;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:14px;font-weight:800;position:relative;z-index:50">
+<a href="index.html" style="color:inherit;text-decoration:none">← Sobre o curso</a>
+<a href="../../index.html" style="display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none"><img src="../../assets/logo.svg" alt="" width="26" height="26"><span style="font-family:Fraunces,Georgia,serif">Pense Mais Uma</span></a>
+<a href="index.html#avaliar" style="color:inherit">Avaliar</a></div>
+<div id="app"></div>
+<div id="fnpop" role="dialog" aria-live="polite"><button class="x" aria-label="Fechar">×</button><div id="fnbody"></div></div>
+<script>
+const FONTES={
+ senado26:{s:"Agência Senado, 2026",t:"Agência Senado (16/set/2026): a urna funciona isolada, sem internet, Wi-Fi ou Bluetooth; segundo o TSE, não há registro comprovado de fraude na coleta, apuração e totalização desde a implantação da urna",u:"https://www12.senado.leg.br/noticias/materias/2026/09/16/urna-eletronica-veja-como-funciona-e-como-o-voto-e-protegido"},
+ tse6:{s:"TSE, 2024",t:"TSE, \"6 motivos para você confiar na urna\" (2024): a urna não se conecta à internet; o código-fonte é aberto para inspeção por entidades fiscalizadoras",u:"https://www.tse.jus.br/comunicacao/noticias/2024/Junho/eleicoes-2024-6-motivos-para-voce-confiar-na-urna-eletronica"},
+ tsebu:{s:"TSE",t:"TSE, \"Boletim de Urna\": a zerésima atesta que a urna tinha zero voto antes da votação; depois das 17h a urna imprime o boletim com o resultado da seção; com o app Boletim na Mão, qualquer pessoa confere se ele é autêntico",u:"https://www.tse.jus.br/comunicacao/noticias/2022/Outubro/voce-ja-ouviu-falar-do-boletim-de-urna-mas-sabe-o-que-ele-e-tire-suas-duvidas"},
+ tresp:{s:"TRE-SP, 2024",t:"TRE-SP (out/2024): antes de cada eleição o código-fonte é aberto para inspeção; fica disponível cerca de um ano antes e pode ser inspecionado até a lacração dos sistemas",u:"https://www.tre-sp.jus.br/comunicacao/noticias/2024/Outubro/saiba-mais-sobre-a-seguranca-da-urna-eletronica"},
+ tsefa:{s:"TSE, 2026",t:"TSE, série Fato ou Boato (ago/2026): é falso que as Forças Armadas não inspecionaram o código-fonte; os militares tiveram acesso aos sistemas e acompanharam a inspeção em 2022",u:"https://www.tse.jus.br/comunicacao/noticias/2026/Agosto/viralizou-e-falso-que-forcas-armadas-nao-inspecionaram-o-codigo-fonte-das-urnas"},
+ aosfatos25:{s:"Aos Fatos, 2026",t:"Aos Fatos: peças nas redes distorcem o Teste Público de Segurança de 2025; foram executados 29 ataques, e nenhum alterou votos ou resultados",u:"https://www.aosfatos.org/noticias/hackers-urnas-eletronicas-teste-seguranca/"},
+ tse25:{s:"TSE, dez/2025",t:"TSE (dez/2025): os relatórios das Comissões Avaliadora e Reguladora do Teste da Urna 2025 concluem que os achados não comprometem a integridade, o sigilo do voto nem o resultado das eleições",u:"https://www.tse.jus.br/comunicacao/noticias/2025/Dezembro/teste-da-urna-2025-confirma-seguranca-dos-sistemas-eleitorais"},
+ camara18:{s:"Peritos na Câmara, 2018",t:"Apresentação do presidente da Associação Nacional dos Peritos Criminais Federais na Câmara (jul/2018): no teste de 2012, a equipe de Diego Aranha recuperou a ordem dos votos, e o TSE corrigiu; em 2016, um investigador gerou um boletim falso, e o TSE mudou o cálculo do código verificador",u:"https://www2.camara.leg.br/atividade-legislativa/comissoes/comissoes-permanentes/cctci/apresentacoes-em-eventos/2018/2018-07-12-ap-voto-impresso/marcos-camargo"},
+ tseint:{s:"TSE, out/2026",t:"TSE (out/2026): o Teste de Integridade compara votos registrados em cédulas de papel com os registrados na urna; no 1º e no 2º turno de 2026 não houve divergência",u:"https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/teste-de-integridade-do-2o-turno-no-tse-confirma-correspondencia-entre-cedulas-e-votos-nas-urnas"},
+ tcu26:{s:"TSE, out/2026",t:"TSE (out/2026): os Testes de Integridade de 2026 foram acompanhados pelo Tribunal de Contas da União nas 27 unidades da federação; o teste é feito desde 2002",u:"https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/eleicoes-de-2026-terao-acompanhamento-do-tcu-nos-testes-de-integridade-das-urnas-eletronicas"},
+ tsedef:{s:"TSE, nov/2022",t:"Nota oficial do TSE (nov/2022): o relatório final do Ministério da Defesa não apontou a existência de nenhuma fraude ou inconsistência no processo eleitoral de 2022",u:"https://www.tse.jus.br/comunicacao/noticias/2022/Novembro/nota-oficial"},
+ opovo22:{s:"O Povo, nov/2022",t:"O Povo (10/nov/2022): o Ministério da Defesa disse que, embora o relatório não tenha constatado indícios de fraude, também não excluiu essa possibilidade, e pediu ao TSE uma análise dos códigos executados nas urnas",u:"https://www.opovo.com.br/noticias/politica/2022/11/10/amp/ministerio-da-defesa-diz-que-relatorio-nao-descarta-possibilidade-de-fraude-nas-urnas.html"},
+ tse18:{s:"TSE, 2018",t:"TSE (out/2018): é falso o vídeo em que a urna supostamente completava sozinha o voto para presidente; avaliação de peritos em edição comprova a montagem",u:"https://www.tse.jus.br/hotsites/esclarecimentos-informacoes-falsas-eleicoes-2018/urna-autocompleta-voto.html"},
+ comprova22:{s:"Comprova, nov/2022",t:"Projeto Comprova (nov/2022): é falso que um relatório de autoria desconhecida, divulgado numa live argentina, prove fraude; o argumento de que só o modelo mais novo de urna seria confiável foi derrubado por especialistas e pelo TSE",u:"https://www.correiobraziliense.com.br/holofote/2022/11/5050835-relatorio-compartilhado-no-twitter-e-em-live-argentina-usa-desinformacao-para-atacar-processo-eleitoral.html"},
+ tsemulta:{s:"TSE, dez/2022",t:"TSE (15/dez/2022): o plenário confirmou, por unanimidade, multa de R$ 22,9 milhões ao PL por litigância de má-fé; a verificação extraordinária das urnas foi negada por falta de indícios",u:"https://www.tse.jus.br/comunicacao/noticias/2022/Dezembro/tse-confirma-multa-de-r-22-9-milhoes-ao-pl-por-litigancia-de-ma-fe"},
+ tsechips:{s:"TSE, ago/2026",t:"TSE, série Fato ou Boato (ago/2026): os ministros não mandaram fabricar chips em Taiwan; a urna usa componentes de mercado, e a lista de componentes é disponibilizada aos participantes do teste público",u:"https://www.tse.jus.br/comunicacao/noticias/2026/Agosto/viralizou-e-falso-que-ministros-mandaram-comprar-chips-em-taiwan-para-fraudar-as-urnas"},
+ novas26:{s:"Aos Fatos, 2026",t:"Aos Fatos (jul/2026): é falso que o TSE anunciou novas urnas para 2026; foram usados modelos de anos anteriores, como a UE2022",u:"https://www.aosfatos.org/noticias/tse-novas-urnas-eletronicas-eleicoes/"},
+ tse2002:{s:"TSE, 2021",t:"TSE, Fato ou Boato (ago/2021): o voto impresso foi testado em 2002; segundo o relatório daquela eleição, aumentou as filas; a lei de 2002 foi revogada em 2003",u:"https://www.tse.jus.br/imprensa/noticias-tse/2021/Agosto/fato-ou-boato-e-falsa-a-informacao-de-que-o-voto-impresso-e-lei"},
+ tse2002b:{s:"TSE, 2017",t:"TSE (fev/2017): em 2002, para destravar papel na impressora foi preciso intervenção humana, o que contribuiu para a quebra do sigilo do voto em algumas seções",u:"https://www.tse.jus.br/comunicacao/noticias/2017/Fevereiro/serie-voto-impresso-primeira-experiencia-com-impressao-do-voto-foi-nas-eleicoes-de-2002"},
+ pct2002:{s:"O Imparcial, 2021",t:"O Imparcial (ago/2021): em 2002 o voto impresso foi adotado em caráter experimental em 150 municípios, atingindo 6,18% do eleitorado",u:"https://oimparcial.com.br/noticias/2021/08/voto-impresso-ja-foi-testado-em-2002-mas-acabou-reprovado-veja-relatorio-de-erros/"},
+ stf20:{s:"STF, 2020",t:"STF (set/2020): por unanimidade, o plenário declarou inconstitucional o artigo da minirreforma eleitoral de 2015 que obrigava a impressão do registro de cada voto, por colocar em risco o sigilo e a liberdade do voto (ADI 5889)",u:"https://portal.stf.jus.br/noticias/verNoticiaDetalhe.asp?idConteudo=451785"},
+ conjur20:{s:"Conjur, 2020",t:"Conjur (16/set/2020): para o relator, ministro Gilmar Mendes, a regra do voto impresso não era absolutamente inconstitucional; precisaria de tempo e recursos, que a lei não previu",u:"https://www.conjur.com.br/2020-set-16/supremo-confirma-liminar-impede-volta-voto-impresso//?print=1"},
+ camara21:{s:"Câmara, 2021",t:"Agência Câmara (10/ago/2021): a PEC do voto impresso teve 229 votos a favor, 218 contra e 1 abstenção; precisava de 308 votos e foi arquivada",u:"https://www.camara.leg.br/noticias/792343-camara-rejeita-proposta-que-tornava-obrigatorio-o-voto-impresso/"},
+ bverfg:{s:"Tribunal Constitucional alemão",t:"Tribunal Constitucional Federal da Alemanha (3/mar/2009): o uso das máquinas de votar na eleição de 2005 foi inconstitucional; para usar urna eletrônica, o cidadão precisa conseguir examinar as etapas essenciais da votação e da apuração de forma confiável, sem conhecimento técnico",u:"https://www.bundesverfassungsgericht.de/SharedDocs/Pressemitteilungen/EN/2009/bvg09-019.html"},
+ aranha18:{s:"Diego Aranha, 2018",t:"Entrevista do pesquisador Diego Aranha (WeLiveSecurity, 2018): falhas importantes já foram encontradas nos testes; para ele, o sistema continua especialmente vulnerável a um fraudador interno com acesso privilegiado, e o voto impresso conferido pelo eleitor e depositado em urna permitiria verificar a integridade da contagem",u:"https://www.welivesecurity.com/br/2018/10/17/diego-aranha-os-testes-de-seguranca-nas-urnas-eletronicas/"},
+ aosfatos22:{s:"Aos Fatos, 2022",t:"Aos Fatos (jul/2022): o STF derrubou o voto impresso duas vezes, em 2013 (lei de 2009) e em 2020 (lei de 2015); houve leis de voto impresso em 2002, 2009 e 2015, em governos de partidos diferentes",u:"https://www.aosfatos.org/noticias/stf-derrubou-lei-lula-voto-impresso/"},
+ bwahl:{s:"Órgão eleitoral alemão",t:"Bundeswahlleiterin (órgão eleitoral federal da Alemanha), verbete \"Wahlgeräte\": a decisão de 2009 não é uma proibição de princípio; as máquinas foram usadas pela última vez na eleição federal de 2005",u:"https://bundeswahlleiterin.de/en/service/glossar/w/wahlgeraete.html"},
+ bbc26:{s:"BBC News Brasil, 2026",t:"BBC News Brasil, via Estado de Minas (set/2026): o Brasil está entre os países que usam urna eletrônica sem comprovante em papel; em muitos lugares dos EUA, vota-se em papel e uma máquina faz a leitura",u:"https://www.em.com.br/politica/2026/09/7511194-que-paises-usam-voto-eletronico-alem-do-brasil.html"},
+ agbr22:{s:"Agência Brasil, 2022",t:"Agência Brasil (dez/2022): o PL pediu para invalidar votos do 2º turno de urnas fabricadas de 2009 a 2015; o plenário do TSE confirmou a multa de R$ 22,9 milhões",u:"https://agenciabrasil.ebc.com.br/justica/noticia/2022-12/plenario-do-tse-confirma-multa-de-r-229-milhoes-ao-pl"},
+ tcuport:{s:"TCU, 2026",t:"TCU (2026): o tribunal acompanhou os testes de integridade das urnas eletrônicas nas eleições de 2026",u:"https://portal.tcu.gov.br/imprensa/noticias/eleicoes-2026-tcu-acompanha-testes-de-integridade-das-urnas-eletronicas"},
+ lei2002:{s:"Lei 10.408/2002",t:"Lei 10.408/2002 (Planalto): já previa que os programas-fonte fossem apresentados aos partidos para análise antes da eleição",u:"https://www.planalto.gov.br/ccivil_03/LEIS//2002/L10408.htm"},
+ agbr23:{s:"Agência Brasil, 2023",t:"Agência Brasil (set/2023): o TSE excluiu as Forças Armadas do grupo de entidades fiscalizadoras das eleições",u:"https://agenciabrasil.ebc.com.br/justica/noticia/2023-09/tse-exclui-forcas-armadas-do-grupo-de-fiscalizacao-das-eleicoes"},
+ tseint1:{s:"TSE, out/2026",t:"TSE (out/2026): o Teste de Integridade do 1º turno, na sede do TSE, confirmou a correspondência entre cédulas e votos registrados nas urnas",u:"https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/teste-de-integridade-no-tse-confirma-correspondencia-entre-cedulas-e-votos-registrados-nas-urnas"},
+ aoschips:{s:"Aos Fatos, 2026",t:"Aos Fatos (2026): é falso que Barroso e Moraes encomendaram chips em Taiwan para fraudar urnas; a urna usa componentes de mercado, inspecionados no teste público",u:"https://www.aosfatos.org/noticias/barroso-moraes-chips-taiwan-urnas/"},
+ fisc26:{s:"Senado Verifica, 2026",t:"Senado Verifica (2026), \"Quem fiscaliza as eleições no Brasil?\": pela Resolução TSE 23.673/2021, partidos, OAB, Polícia Federal e Ministério Público estão entre as entidades fiscalizadoras",u:"https://www12.senado.leg.br/verifica/materias-especiais/2026/quem-fiscaliza-as-eleicoes-no-brasil"},
+ cnn26:{s:"CNN Brasil, out/2026",t:"CNN Brasil (26/out/2026): no domingo, Flávio Bolsonaro disse que não reconheceria o resultado e pediria a anulação, citando a prorrogação da votação decidida pelo ministro Cristiano Zanin; na segunda, a campanha desistiu da anulação e passou a buscar a cassação da chapa de Lula por supostos abusos de poder",u:"https://www.cnnbrasil.com.br/eleicoes/flavio-desiste-de-questionar-vitoria-de-lula-nas-urnas/"},
+ correio24:{s:"Correio (BA), out/2026",t:"Correio, da Bahia (out/2026): Flávio também afirmou que fiscais do PL teriam sido retirados da sala-cofre do TSE após a decisão de prorrogar a votação; o tribunal classificou a acusação como falsa",u:"https://www.correio24horas.com.br/eleicoes/flavio-quer-anular-eleicao-saiba-o-que-pode-levar-a-justica-a-invalidar-resultado-das-urnas-1026"},
+ cdm26:{s:"Correio da Manhã, out/2026",t:"Correio da Manhã (out/2026): a decisão de Zanin foi divulgada às 17h03, quando diversas urnas já estavam fechadas; Flávio acusou o STF de quebra de isonomia (tratamento desigual)",u:"https://www.correiodamanha.com.br/politica/2026/10/329920-flavio-prepara-pedido-de-anulacao-da-eleicao-e-acusa-stf-de-quebra-de-isonomia.html"},
+ aosfatos26:{s:"Aos Fatos, out/2026",t:"Aos Fatos (25/out/2026): a campanha de Lula pediu prorrogação por falta de transporte público; a de Flávio, em 17 municípios do Sul e do Sudeste, por causa das chuvas; segundo Zanin, nas urnas já fechadas os votos seriam computados e totalizados",u:"https://www.aosfatos.org/noticias/relatos-supressao-voto-prorrogacao-segundo-turno/"},
+ bdf26:{s:"Brasil de Fato, out/2026",t:"Brasil de Fato (25/out/2026): às 17h49, o TSE assinou ofício aos presidentes dos tribunais regionais orientando manter abertas até as 19h só as seções que ainda não tinham encerrado a votação; segundo Zanin, os votos das urnas fechadas seriam computados e totalizados",u:"https://www.brasildefato.com.br/2026/10/25/nunes-marques-segue-zanin-e-orienta-tres-a-manter-abertas-ate-19h-secoes-que-ainda-nao-tinham-encerrado-a-votacao/"},
+ obs26:{s:"TSE, nov/2026",t:"TSE (5/nov/2026): observadores nacionais apontaram normalidade no 2º turno; segundo a missão de observadores, 1.551 de 499.248 urnas foram substituídas (0,31%), sem perda de votos",u:"https://www.tse.jus.br/comunicacao/noticias/2026/Novembro/observadores-nacionais-confirmam-normalidade-no-2o-turno-das-eleicoes-2026"},
+ tsesmart:{s:"Money Times, jul/2026",t:"Money Times (22/jul/2026): o TSE reforçou que a Smartmatic nunca vendeu urnas para as eleições brasileiras nem trabalhou na programação delas; a empresa atuou apenas no treinamento de profissionais de suporte técnico e operacional",u:"https://www.moneytimes.com.br/tse-reforca-que-empresa-citada-por-flavio-nunca-produziu-urnas-para-eleicao-brasileira-gaep/"},
+ dpsmart:{s:"Diario de Pernambuco, jul/2026",t:"Diario de Pernambuco (22/jul/2026): depois das declarações de Flávio Bolsonaro a diplomatas estrangeiros, o TSE divulgou de novo um comunicado antigo afirmando que a Smartmatic não fornece urnas nem programas usados no Brasil",u:"https://www.diariodepernambuco.com.br/politica/2026/07/11719324-tse-rebate-fala-de-flavio-sobre-veracidade-das-urnas-informacoes-sao-falsas.html"},
+ aosmart:{s:"Aos Fatos, jul/2026",t:"Aos Fatos (24/jul/2026): a Smartmatic nunca desenvolveu nem forneceu urnas brasileiras; os modelos mais recentes, UE2020 e UE2022, são da Positivo; a empresa foi fundada nos EUA em 2000 por engenheiros venezuelanos, tem sede no Reino Unido e forneceu sistemas eleitorais à Venezuela de 2004 a 2017",u:"https://www.aosfatos.org/noticias/smartmatic-urnas-eletronicas-brasileiras/"},
+ gazsmart:{s:"Gazeta do Povo, jul/2026",t:"Gazeta do Povo (jul/2026): no evento com diplomatas, Flávio associou as urnas à Smartmatic; após a repercussão, disse que não colocou o sistema eleitoral em dúvida, e o TSE afirmou que a empresa não forneceu urnas nem programas, só serviços de conexão de dados e voz",u:"https://www.gazetadopovo.com.br/republica/em-evento-com-diplomatas-flavio-questiona-seguranca-das-urnas-e-muda-o-tom-apos-repercussao/"},
+ tsefob:{s:"TSE, 2026",t:"TSE (ago/2026): a página Fato ou Boato reúne checagens de dez parceiras, como AFP, Lupa, Aos Fatos, Comprova, Estadão Verifica, Fato ou Fake e UOL Confere; a urna é o tema central da desinformação eleitoral",u:"https://www.tse.jus.br/comunicacao/noticias/2026/Agosto/fato-ou-boato-pagina-e-reformulada-para-as-eleicoes-2026-e-amplia-ferramentas-de-combate-a-desinformacao"}
+};
+const V={f:"Fato",m:"Mito",d:"Depende"};
+const CH=[
+ {t:"Como a urna funciona",i:"🗳️",cards:[
+  {c:"A urna eletrônica fica ligada à internet durante a votação.",a:"m",e:"A urna funciona isolada: não tem internet, Wi-Fi nem Bluetooth, e tem bateria própria se faltar luz. [[senado26]] [[tse6]]"},
+  {c:"Antes de abrir a votação, a urna imprime um papel mostrando que começa com zero votos.",a:"f",e:"É a zerésima, um relatório impresso na seção que mostra que não havia nenhum voto na urna antes de começar. [[tsebu]]"},
+  {c:"Depois das 17h, cada urna imprime o resultado da seção, e qualquer pessoa pode conferir.",a:"f",e:"É o boletim de urna, afixado na seção. Com o QR Code impresso nele e o aplicativo Boletim na Mão, qualquer pessoa confere se o boletim é autêntico e se bate com o resultado publicado. [[tsebu]]"},
+  {c:"O programa da urna é secreto: ninguém de fora pode ver.",a:"m",e:"O código-fonte é aberto para inspeção há mais de 20 anos por entidades fiscalizadoras, como partidos, OAB, Polícia Federal e Ministério Público. [[lei2002]] [[fisc26]] Fica disponível cerca de um ano antes da eleição. [[tresp]] As Forças Armadas também inspecionaram em 2022 e deixaram a lista de fiscalizadoras em 2023. [[tsefa]] [[agbr23]]"}
+ ]},
+ {t:"Quem confere",i:"🔍",cards:[
+  {c:"Investigadores inscritos no teste do TSE invadiram a urna em todos os ataques de 2025.",a:"m",e:"Foram executados 29 ataques, e nenhum alterou votos ou resultados. Os relatórios concluíram que os achados não comprometem a integridade, o sigilo do voto nem o resultado. [[aosfatos25]] [[tse25]]"},
+  {c:"Nesses testes, pesquisadores já encontraram falhas de verdade na urna.",a:"f",e:"Sim, e esse é o objetivo do teste. Em 2012, uma equipe conseguiu recuperar a ordem dos votos. Em 2016, um investigador gerou um boletim falso. Segundo apresentação de peritos na Câmara, o TSE corrigiu os dois casos. [[camara18]] Em 2017, a equipe do pesquisador Diego Aranha conseguiu rodar programas adulterados numa eleição simulada. [[aranha18]]"},
+  {c:"No dia da eleição, urnas sorteadas votam em paralelo com cédulas de papel, para comparar o resultado.",a:"f",e:"É o Teste de Integridade, feito desde 2002 e acompanhado pelo TCU nas 27 unidades da federação em 2026. [[tcu26]] [[tcuport]] No teste feito na sede do TSE, nos dois turnos de 2026, não houve divergência entre a urna e o papel. [[tseint1]] [[tseint]] Além disso, urnas com defeito são trocadas: segundo uma missão de observadores, 0,31% das urnas foram trocadas no 2º turno, sem perda de votos. [[obs26]]"},
+  {c:"As Forças Armadas fiscalizaram a eleição de 2022 e encontraram fraude.",a:"m",e:"Segundo o TSE, o relatório da Defesa não apontou fraude nem inconsistência. [[tsedef]] Depois, o ministério listou três pontos que pediam esclarecimento, disse que o relatório também não excluía essa possibilidade e pediu ao TSE uma análise dos códigos das urnas. [[opovo22]]"}
+ ]},
+ {t:"Boatos que viralizaram",i:"📲",cards:[
+  {c:"Em 2018, uma urna completava sozinha o número de um candidato ao apertar uma tecla.",a:"m",e:"O vídeo era uma montagem: peritos em edição comprovaram que ele foi editado. [[tse18]]"},
+  {c:"Em 2022, só o modelo mais novo de urna era confiável; os antigos não podiam ser auditados.",a:"m",e:"A tese circulou num relatório de autoria desconhecida, divulgado numa live argentina, e foi derrubada por especialistas e pelo TSE. [[comprova22]] O PL pediu para invalidar os votos do 2º turno das urnas de 2009 a 2015, e o TSE negou [[agbr22]] e multou o partido em R$ 22,9 milhões por litigância de má-fé. [[tsemulta]]"},
+  {c:"Ministros do TSE mandaram comprar chips em Taiwan para fraudar as urnas de 2026.",a:"m",e:"Não existe registro disso. A urna usa componentes de mercado, inspecionados no teste público. [[tsechips]] [[aoschips]]"},
+  {c:"O TSE anunciou urnas novas para a eleição de 2026.",a:"m",e:"Em 2026 foram usados modelos de anos anteriores, como a UE2022. [[novas26]]"},
+  {c:"Em 2026, o candidato derrotado pediu a anulação da eleição alegando fraude na urna.",a:"m",e:"Na noite do 2º turno, Flávio Bolsonaro (PL) disse que pediria a anulação, mas o motivo era a prorrogação do horário de votação decidida pelo ministro Cristiano Zanin, do STF, e não a urna. [[cnn26]] Ele também disse que fiscais do PL foram retirados da sala-cofre do TSE, e o tribunal classificou a acusação como falsa. [[correio24]] No dia seguinte, a campanha desistiu da anulação e passou a pedir a cassação da chapa de Lula por suposto abuso de poder. [[cnn26]]"},
+  {c:"No 2º turno de 2026, a prorrogação do horário de votação quebrou a igualdade entre os eleitores.",a:"d",e:"O que é fato: a decisão de Zanin saiu às 17h03; às 17h49, o TSE orientou os tribunais regionais, e a prorrogação valeu só para as seções ainda abertas. [[aosfatos26]] [[bdf26]] Quem critica, como a campanha de Flávio, diz que a regra mudou com parte das urnas já fechada, então só parte dos eleitores ganhou mais tempo. [[cdm26]] Quem defende diz que as duas campanhas pediram mais tempo, por falta de transporte e por chuvas, e que os votos das urnas fechadas seriam computados. [[aosfatos26]]"},
+  {c:"As urnas brasileiras são fabricadas pela Smartmatic.",a:"m",e:"Segundo o TSE, a Smartmatic nunca forneceu nem programou as urnas do Brasil; só prestou serviços de apoio, como treinar o pessoal de suporte técnico. [[tsesmart]] [[aosmart]] As urnas mais novas, modelos 2020 e 2022, são da Positivo. A Smartmatic foi criada nos EUA por engenheiros venezuelanos e forneceu sistemas eleitorais à Venezuela de 2004 a 2017. [[aosmart]] Em julho de 2026, Flávio Bolsonaro disse a diplomatas que muitas urnas brasileiras “têm a mesma origem” dessa empresa; o TSE divulgou de novo o desmentido, e Flávio disse depois que não questionava o sistema de votação. [[dpsmart]] [[gazsmart]]"}
+ ]},
+ {t:"Voto impresso: o debate de verdade",i:"🧾",cards:[
+  {c:"O Brasil já testou o voto impresso numa eleição.",a:"f",e:"Foi em 2002, para cerca de 6% do eleitorado. [[pct2002]] Segundo o relatório do TSE, houve filas maiores, e travamentos de papel exigiram intervenção humana, o que quebrou o sigilo do voto em algumas seções. A lei foi revogada em 2003. [[tse2002]] [[tse2002b]] Leis de voto impresso foram aprovadas em governos de partidos diferentes: em 2002, 2009 e 2015. [[aosfatos22]]"},
+  {c:"Em 2021, a maioria dos deputados que votou foi a favor do voto impresso.",a:"f",e:"Foram 229 votos a favor e 218 contra. Mas uma mudança na Constituição precisa de 308 votos, então a proposta foi arquivada. [[camara21]]"},
+  {c:"O STF proibiu qualquer forma de voto impresso para sempre.",a:"m",e:"O STF derrubou duas regras específicas, em 2013 e em 2020, por risco ao sigilo do voto. [[stf20]] [[aosfatos22]] O relator de 2020 disse que a ideia não era absolutamente inconstitucional: a implantação precisaria de tempo e recursos. [[conjur20]] Uma lei nova poderia ser questionada de novo no STF."},
+  {c:"A Alemanha proibiu as urnas eletrônicas.",a:"d",e:"Em 2009, o tribunal constitucional alemão decidiu que as máquinas usadas em 2005 eram inconstitucionais porque o cidadão não conseguia conferir a votação sem conhecimento técnico. A decisão exige essa conferência, mas não proíbe toda forma eletrônica. [[bverfg]] Na prática, o país não usa essas máquinas nas eleições federais desde 2005. [[bwahl]]"}
+ ],debate:true}
+];
+const ALL=CH.flatMap((ch,ci)=>ch.cards.map((c,k)=>({...c,ci,k,id:ci+"-"+k})));
+const KEY="pmu-fom-urna-v1";let S;try{S=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){S=null}
+if(!S)S={scr:"intro",ci:0,k:0,ans:{},pts:0,streak:0,mute:true,fb:{},rel:null};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const src=h=>String(h).replace(/\[\[([a-z0-9_]+)\]\]/g,(m,k)=>FONTES[k]?`<button type="button" class="fn" data-f="${k}" aria-label="Ver fonte: ${esc(FONTES[k].s)}">🔎 ${esc(FONTES[k].s)}</button>`:"");
+let AC=null;function snd(t){if(S.mute)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);const f={ok:[600,900],no:[300,210],sw:[420,520],win:[520,1040]}[t];o.type="triangle";o.frequency.setValueAtTime(f[0],AC.currentTime);o.frequency.linearRampToValueAtTime(f[1],AC.currentTime+.14);g.gain.setValueAtTime(.06,AC.currentTime);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+.25);o.start();o.stop(AC.currentTime+.26)}catch(e){}}
+const app=document.getElementById("app");
+const right=()=>ALL.filter(c=>S.ans[c.id]&&S.ans[c.id].ok).length;
+function stars(ci){const cs=CH[ci].cards.map((c,k)=>S.ans[ci+"-"+k]);if(cs.some(a=>!a))return"";const r=cs.filter(a=>a.ok).length/cs.length;return r>=.9?"★★★":r>=.6?"★★☆":"★☆☆"}
+function head(label,prog){return `<div class="top"><span>${label}</span><span class="r"><span>${S.pts} pts${S.streak>=3?" · 🔥 "+S.streak:""}</span><button class="ib" id="mute" aria-label="${S.mute?"Ligar som":"Desligar som"}">${S.mute?"🔇":"🔊"}</button></span></div><div class="bar"><i style="width:${prog}%"></i></div>`}
+function bindHead(){const b=document.getElementById("mute");if(b)b.onclick=()=>{S.mute=!S.mute;save();render()}}
+function render(){window.scrollTo(0,0);const f={intro,chap,card,recap,debate,rel,end}[S.scr];f();bindHead()}
+function intro(){app.innerHTML=`<div class="top"><span>Pense Mais Uma · Fato ou mito?</span><span>1 de 4</span></div>
+ <div style="margin-top:28px"><div class="k">Fato ou mito?</div><h1 class="big">A urna eletrônica é confiável?</h1>
+ <p style="color:#DCD8F2;line-height:1.55">19 frases que circulam por aí sobre a urna. Arraste cada uma para <b style="color:var(--fato)">Fato</b>, <b style="color:#F59A74">Mito</b> ou <b style="color:#B3A8FF">Depende</b> e veja a explicação, sempre com fonte.</p></div>
+ <div class="panel"><b>Como funciona</b><p style="font-size:14.5px">4 capítulos, uns 14 minutos. Acerto vale 10 pontos; com 3 acertos seguidos, 15. Toque em 🔎 para ver a fonte de cada dado. No capítulo 4 está o debate de verdade, sobre o voto impresso, com os dois lados.</p></div>
+ <div class="chaps">${CH.map((c,i)=>`<div>${c.i} ${c.t}<span class="stars">${stars(i)||"<span>"+c.cards.length+" frases</span>"}</span></div>`).join("")}</div>
+ <button class="go" id="start" style="margin-top:18px">${Object.keys(S.ans).length?"Continuar":"Começar"}</button>
+ <p style="text-align:center;color:var(--mut);font-size:12.5px">Dados atualizados em novembro de 2026.</p>`;
+ document.getElementById("start").onclick=()=>{if(!Object.keys(S.ans).length){S.scr="chap";S.ci=0;S.k=0}else resume();save();render()}}
+function resume(){for(let ci=0;ci<CH.length;ci++)for(let k=0;k<CH[ci].cards.length;k++)if(!S.ans[ci+"-"+k]){S.ci=ci;S.k=k;S.scr=k===0?"chap":"card";return}S.scr=S.rel&&S.rel.done?"end":"rel"}
+function chap(){const ch=CH[S.ci];app.innerHTML=head("Capítulo "+(S.ci+1)+" de "+CH.length,S.ci/CH.length*100)+`<div style="margin-top:40px"><div class="k">Capítulo ${S.ci+1}</div><h2 class="big">${ch.i} ${ch.t}</h2><p style="color:#DCD8F2">${ch.cards.length} frases. Arraste ou toque nos botões.</p></div><button class="go" id="go" style="margin-top:auto">Ver a primeira frase</button>`;document.getElementById("go").onclick=()=>{S.scr="card";S.k=0;save();render()}}
+function card(){const ch=CH[S.ci],c=ch.cards[S.k],n=ALL.findIndex(x=>x.id===S.ci+"-"+S.k);
+ app.innerHTML=head(ch.i+" "+ch.t,n/ALL.length*100)+`<div class="stack" id="stk"><div class="c b3"></div><div class="c b2"></div>
+ <div class="c top1" id="cd" role="group" aria-label="Frase ${S.k+1} de ${ch.cards.length}"><span class="chip">${ch.i} Frase ${S.k+1} de ${ch.cards.length}</span><p class="claim">"${esc(c.c)}"</p><div class="hint">Arraste: ← mito · ↑ depende · fato →</div>
+ <div class="stamp m" id="sm">MITO</div><div class="stamp d" id="sd">DEPENDE</div><div class="stamp f" id="sf">FATO</div></div></div>
+ <div class="acts"><button class="m" data-v="m">← Mito</button><button class="d" data-v="d">↑ Depende</button><button class="f" data-v="f">Fato →</button></div><div class="sw">ou toque nos botões</div>`;
+ app.querySelectorAll(".acts button").forEach(b=>b.onclick=()=>fly(b.dataset.v));
+ drag(document.getElementById("cd"))}
+function drag(el){let x0,y0,dx=0,dy=0,on=false;const sf=document.getElementById("sf"),sm=document.getElementById("sm"),sd=document.getElementById("sd");
+ el.addEventListener("pointerdown",e=>{on=true;x0=e.clientX;y0=e.clientY;el.classList.add("drag");el.setPointerCapture(e.pointerId)});
+ el.addEventListener("pointermove",e=>{if(!on)return;dx=e.clientX-x0;dy=e.clientY-y0;el.style.transform=`translate(${dx}px,${dy}px) rotate(${dx/18}deg)`;sf.style.opacity=Math.max(0,Math.min(1,dx/90));sm.style.opacity=Math.max(0,Math.min(1,-dx/90));sd.style.opacity=Math.abs(dx)<60?Math.max(0,Math.min(1,-dy/90)):0});
+ const up=()=>{if(!on)return;on=false;el.classList.remove("drag");if(dx>100)fly("f");else if(dx<-100)fly("m");else if(dy<-100&&Math.abs(dx)<80)fly("d");else{el.style.transform="";sf.style.opacity=sm.style.opacity=sd.style.opacity=0}dx=dy=0};
+ el.addEventListener("pointerup",up);el.addEventListener("pointercancel",up)}
+let flying=false;
+function fly(v){if(flying)return;flying=true;const el=document.getElementById("cd");if(el){el.classList.remove("drag");const t={f:"translate(140%,0) rotate(18deg)",m:"translate(-140%,0) rotate(-18deg)",d:"translate(0,-130%)"}[v];el.style.transform=t;const s=document.getElementById("s"+v);if(s)s.style.opacity=1}snd("sw");setTimeout(()=>{flying=false;answer(v)},230)}
+function answer(v){const c=CH[S.ci].cards[S.k],id=S.ci+"-"+S.k,ok=v===c.a;
+ if(!S.ans[id]){S.ans[id]={v,ok};if(ok){S.streak++;S.pts+=S.streak>=3?15:10}else S.streak=0;save()}
+ snd(ok?"ok":"no");
+ const sh=document.createElement("div");sh.className="sheet";sh.innerHTML=`<div role="dialog" aria-label="Resposta"><div class="verd"><span class="pill ${c.a}">${V[c.a].toUpperCase()}</span><span class="${ok?"ok":"no"}">${ok?"Você acertou"+(S.streak>=3?" · 3 seguidos, +15":" · +10"):"Você disse "+V[v].toLowerCase()}</span></div><p>${src(c.e)}</p><button class="go" id="nx">${S.k<CH[S.ci].cards.length-1?"Próxima frase":"Fechar capítulo"}</button></div>`;
+ document.body.appendChild(sh);const st=document.getElementById("stk");if(st)st.style.visibility="hidden";
+ document.getElementById("nx").onclick=()=>{sh.remove();if(S.k<CH[S.ci].cards.length-1){S.k++}else S.scr="recap";save();render()}}
+function recap(){const ch=CH[S.ci],cs=ch.cards.map((c,k)=>({c,a:S.ans[S.ci+"-"+k]})),n=cs.filter(x=>x.a&&x.a.ok).length;if(n===cs.length)confetti();
+ app.innerHTML=head("Fim do capítulo "+(S.ci+1),(S.ci+1)/CH.length*100)+`<div style="margin-top:18px"><div class="k">Capítulo ${S.ci+1}</div><h2 class="big">${n} de ${cs.length} <span class="stars">${stars(S.ci)}</span></h2></div>
+ <div class="panel">${cs.map(x=>`<p><span class="pill ${x.c.a}" style="font-size:11px;padding:2px 7px">${V[x.c.a]}</span> ${esc(x.c.c)} ${x.a&&x.a.ok?"✅":"❌"}</p>`).join("")}</div>
+ <button class="go" id="go">${ch.debate?"Ver o debate de verdade":S.ci<CH.length-1?"Próximo capítulo":"Rodada relâmpago"}</button>`;
+ document.getElementById("go").onclick=()=>{if(ch.debate)S.scr="debate";else next();save();render()}}
+function next(){if(S.ci<CH.length-1){S.ci++;S.k=0;S.scr="chap"}else S.scr="rel"}
+function debate(){app.innerHTML=head("O debate de verdade",100)+`<div style="margin-top:14px"><div class="k">Opinião, com os dois lados</div><h2 class="big">O Brasil deveria ter voto impresso?</h2>
+ <p style="color:#DCD8F2;line-height:1.55">O que é fato: até hoje não há registro comprovado de fraude na urna desde 1996, segundo o TSE. [[senado26]]</p>
+ <p style="color:#DCD8F2;line-height:1.55">O que é opinião: se o sistema atual basta para o eleitor confiar. Aqui as duas posições têm argumentos sérios.</p></div>
+ <div class="two"><div><b style="color:#6EE8D3">Quem defende o voto impresso</b><p>Um papel conferido pelo eleitor e guardado numa urna permitiria recontar os votos sem depender do programa. O pesquisador Diego Aranha, que encontrou falhas nos testes, defende isso: para ele, os testes conferem o programa antes da eleição, não o que a urna faz durante a votação, e o sistema seria especialmente vulnerável a alguém de dentro. [[aranha18]] O tribunal alemão também exigiu que o cidadão consiga conferir a votação sem saber informática. [[bverfg]] E o Brasil está entre os países que usam urna eletrônica sem comprovante em papel; em muitos lugares dos EUA, vota-se em papel e uma máquina faz a leitura. [[bbc26]]</p></div>
+ <div><b style="color:#F59A74">Quem é contra</b><p>O STF viu risco ao sigilo e à liberdade do voto. [[stf20]] O teste de 2002 trouxe filas, falhas de impressora e quebra de sigilo em algumas seções. [[tse2002]] [[tse2002b]] O relator no STF estimou em quase R$ 2 bilhões o custo das impressoras. [[stf20]] E a urna já tem boletim impresso e testes de integridade em papel. [[tseint]]</p></div></div>
+ <p style="color:var(--mut);font-size:13.5px;margin-top:12px">O curso não toma partido nessa discussão: você decide qual argumento pesa mais.</p>
+ <button class="go" id="go">Rodada relâmpago</button>`;
+ app.querySelectorAll("p").forEach(p=>p.innerHTML=src(p.innerHTML));
+ document.getElementById("go").onclick=()=>{next();save();render()}}
+function rel(){if(!S.rel){const pool=[...ALL].sort(()=>Math.random()-.5).slice(0,5).map(c=>c.id);S.rel={ids:pool,i:0,ok:0,done:false};save()}
+ const R=S.rel;if(R.i>=R.ids.length){R.done=true;S.scr="end";save();return render()}
+ const c=ALL.find(x=>x.id===R.ids[R.i]);
+ app.innerHTML=head("Rodada relâmpago · "+(R.i+1)+" de 5",R.i/5*100)+`<div class="k" style="margin-top:6px">Revisão: frases sorteadas dos 4 capítulos</div>
+ <div class="panel" style="margin-top:14px"><p class="claim" style="color:var(--txt);margin:0">"${esc(c.c)}"</p></div>
+ <div class="acts"><button class="m" data-v="m">Mito</button><button class="d" data-v="d">Depende</button><button class="f" data-v="f">Fato</button></div><div id="fbk"></div>`;
+ app.querySelectorAll(".acts button").forEach(b=>b.onclick=()=>{const ok=b.dataset.v===c.a;if(ok){R.ok++;S.pts+=10}snd(ok?"ok":"no");app.querySelectorAll(".acts button").forEach(x=>x.disabled=true);
+  document.getElementById("fbk").innerHTML=`<div class="panel"><div class="verd"><span class="pill ${c.a}">${V[c.a].toUpperCase()}</span><span class="${ok?"ok":"no"}">${ok?"+10":"Era "+V[c.a].toLowerCase()}</span></div></div><button class="go" id="nx">${R.i<4?"Próxima":"Ver resultado"}</button>`;
+  R.i++;save();bar0();document.getElementById("nx").onclick=()=>render()})}
+function bar0(){const t=app.querySelector(".top .r span");if(t)t.textContent=S.pts+" pts"}
+function end(){const F=S.fb,n=right(),R=S.rel||{ok:0};if(n>=13)confetti();
+ app.innerHTML=head("Resultado",100)+`<div style="margin-top:10px"><div class="k">Fato ou mito? · Urna eletrônica</div><h2 class="big">${n} de ${ALL.length} frases certas</h2><p style="color:#DCD8F2">${S.pts} pontos, com ${R.ok} de 5 na rodada relâmpago.</p></div>
+ <div class="chaps">${CH.map((c,i)=>`<div>${c.i} ${c.t}<span class="stars">${stars(i)}</span></div>`).join("")}</div>
+ <div class="panel"><b>Antes de compartilhar um boato</b><p style="font-size:14.5px">Procure a frase em agências de checagem. A página Fato ou Boato, do TSE, reúne checagens de dez parceiros. [[tsefob]]</p></div>
+ <div class="panel"><b>Avalie o curso</b><p style="font-size:14px">Que nota você dá?</p><div class="rate">${[1,2,3,4,5].map(x=>`<button data-n="${x}" class="${F.nota===x?"on":""}">${x}</button>`).join("")}</div>
+ <p style="font-size:14px">O que você aprendeu que não sabia?</p><textarea id="apr" rows="2">${esc(F.apr||"")}</textarea>
+ <p style="font-size:14px">Sentiu que o curso favoreceu algum lado?</p><select id="lado"><option value="">Escolha</option>${["Não","Sim, a favor da urna","Sim, contra a urna","Não sei"].map(o=>`<option ${F.lado===o?"selected":""}>${o}</option>`).join("")}</select>
+ <p style="font-size:14px">Comentário</p><textarea id="com" rows="2">${esc(F.com||"")}</textarea>
+ <p style="font-size:14px">Que tema você quer que vire o próximo Fato ou mito?</p><textarea id="tema" rows="2">${esc(F.tema||"")}</textarea>
+ <button class="go" id="env">${F.sent?"Avaliação enviada ✓":"Enviar avaliação"}</button></div>
+ <div class="panel"><b>Próximos da série Fato ou mito?</b><p style="font-size:14.5px">Regulação das redes · Drogas na lei · Aborto na lei</p></div>
+ <div class="panel"><b>Para ir além</b><p style="font-size:14px"><a style="color:#C9C2FF" href="https://www.youtube.com/results?search_query=teste+p%C3%BAblico+de+seguran%C3%A7a+urna+eletr%C3%B4nica" target="_blank" rel="noopener">Vídeos sobre o Teste Público de Segurança (busca no YouTube)</a></p></div>
+ <div class="panel"><b>Fontes</b><ul class="fontes">${Object.values(FONTES).map(f=>`<li>${esc(f.t)}${f.u?` · <a href="${f.u}" target="_blank" rel="noopener">abrir</a>`:""}</li>`).join("")}</ul></div>
+ <button class="go alt" id="again">Jogar de novo</button>`;
+ app.querySelectorAll(".panel p").forEach(p=>p.innerHTML=src(p.innerHTML));
+ app.querySelectorAll("[data-n]").forEach(b=>b.onclick=()=>{S.fb.nota=+b.dataset.n;save();app.querySelectorAll("[data-n]").forEach(x=>x.classList.toggle("on",x===b))});
+ [["apr","apr"],["com","com"],["tema","tema"]].forEach(([i,k])=>document.getElementById(i).oninput=e=>{S.fb[k]=e.target.value;save()});
+ document.getElementById("lado").onchange=e=>{S.fb.lado=e.target.value;save()};
+ document.getElementById("env").onclick=e=>{S.fb.sent=true;try{const q=JSON.parse(localStorage.getItem("pmu-fila")||"[]");q.push({curso:"fato-ou-mito-urna",quando:new Date().toISOString(),...S.fb});localStorage.setItem("pmu-fila",JSON.stringify(q))}catch(x){}save();e.target.textContent="Avaliação enviada ✓"};
+ document.getElementById("again").onclick=()=>{S={scr:"intro",ci:0,k:0,ans:{},pts:0,streak:0,mute:S.mute,fb:{},rel:null};save();render()}}
+function confetti(){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;const cv=document.createElement("canvas");cv.className="confetti";cv.width=innerWidth;cv.height=innerHeight;document.body.appendChild(cv);const x=cv.getContext("2d");const P=Array.from({length:90},()=>({x:Math.random()*cv.width,y:-20-Math.random()*200,v:2+Math.random()*3,r:Math.random()*6.28,c:["#3DDBC0","#8C7CFF","#F07A4B","#FFD66B"][Math.random()*4|0]}));let t=0;(function f(){x.clearRect(0,0,cv.width,cv.height);P.forEach(p=>{p.y+=p.v;p.r+=.1;x.fillStyle=p.c;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillRect(-4,-2,8,4);x.restore()});if(++t<140)requestAnimationFrame(f);else cv.remove()})();snd("win")}
+const pop=document.getElementById("fnpop");
+document.addEventListener("click",e=>{const b=e.target.closest(".fn");if(b){e.preventDefault();e.stopPropagation();const f=FONTES[b.dataset.f];if(!f)return;document.getElementById("fnbody").innerHTML=`<b>Fonte</b><br>${esc(f.t)}${f.u?`<br><a href="${f.u}" target="_blank" rel="noopener">Abrir a fonte ↗</a>`:""}`;pop.style.display="block";return}
+ if(e.target.closest("#fnpop .x")||!e.target.closest("#fnpop"))pop.style.display="none"},true);
+if(S.scr==="card"&&S.ans[S.ci+"-"+S.k]){if(S.k<CH[S.ci].cards.length-1)S.k++;else S.scr="recap"}
+render();
+</script>
+</body></html>

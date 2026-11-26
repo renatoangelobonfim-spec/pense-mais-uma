@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Gastos, dívida e juros: por que o governo não pode só gastar mais, nem só cortar?</title>
+<meta name="description" content="Curso-jogo de 8 minutos: você decide as contas do país e vê quem sente cada escolha. Com fontes e os dois lados. Pense Mais Uma.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#163238;--mut:#5C7A80;--teal:#2E6B66;--yl:#F2C14E;--peach:#F7D2C4;--sky:#DCE9FF;--mint:#B7DCC5;--cream:#FFF4D6;--card:#fff;--line:#CFE3E7;--good:#2E8B57;--bad:#C2553B}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;font-family:"Space Grotesk",system-ui,sans-serif;color:var(--ink);font-size:17px;line-height:1.5}
+body{background:linear-gradient(#DDF0F4 0,#F3FAFB 420px,#F3FAFB)}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+#app{max-width:520px;margin:0 auto;padding:0 16px 40px}
+.top{position:sticky;top:0;z-index:10;background:rgba(221,240,244,.94);backdrop-filter:blur(6px);margin:0 -16px;padding:10px 16px 8px}
+.toprow{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.8rem;color:#3C6A73}
+.toprow .t{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prog{height:6px;background:#fff;border-radius:99px;margin-top:8px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--teal);border-radius:99px;transition:width .4s}
+.iconbtn{width:34px;height:34px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(22,50,56,.12);display:grid;place-items:center;font-size:15px}
+.city{display:block;width:100%;height:auto;margin:6px 0 4px}
+.city .b{transition:opacity .4s}
+.city .dim{opacity:.38}
+.city .badge{font:700 13px "Space Grotesk";transition:opacity .3s}
+h1{font-size:1.45rem;line-height:1.2;margin:.3em 0 .4em}
+h2{font-size:1.3rem;line-height:1.22;margin:.2em 0 .5em}
+p{margin:.4em 0 .7em}
+.kicker{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.box{background:var(--card);border-radius:18px;padding:16px;box-shadow:0 2px 12px rgba(22,50,56,.08);margin:8px 0}
+.tag{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--cream);color:#7A5B12;vertical-align:middle}
+.opt{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;background:#fff;border-radius:16px;padding:13px 14px;margin:8px 0;font-weight:700;box-shadow:0 2px 10px rgba(22,50,56,.1);border:2px solid transparent}
+.opt:disabled{cursor:default}
+.opt.on{background:var(--ink);color:#fff}
+.opt.ok{border-color:var(--good);background:#E8F5EE;color:var(--ink)}
+.opt.no{border-color:var(--bad);background:#FBEAE5;color:var(--ink)}
+.opt .ic{font-size:1.2rem}
+.btn{display:block;width:100%;background:var(--teal);color:#fff;font-weight:700;border-radius:16px;padding:14px;margin:14px 0 4px;font-size:1rem}
+.btn:disabled{opacity:.4}
+.btn.ghost{background:#fff;color:var(--ink);box-shadow:0 2px 10px rgba(22,50,56,.1)}
+.fb{background:var(--cream);border-radius:16px;padding:12px 14px;margin:10px 0;font-size:.95rem}
+.fb>b:first-child{display:block;margin-bottom:2px}
+.chars{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.ch{background:#fff;border-radius:14px;padding:10px;box-shadow:0 2px 8px rgba(22,50,56,.1);display:flex;gap:8px;align-items:flex-start;text-align:left;width:100%}
+.ch .av{width:30px;height:30px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:15px}
+.ch b{display:block;font-size:.92rem}
+.ch small{display:block;font-size:.78rem;color:var(--mut);line-height:1.35}
+.ch .st{font-weight:700}
+.up{color:var(--good)} .dn{color:var(--bad)}
+.flip .back{display:none}.flip.open .back{display:block}.flip.open .front{display:none}
+.split{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+.split>div{background:#fff;border-radius:14px;padding:12px;box-shadow:0 2px 8px rgba(22,50,56,.08);font-size:.9rem}
+.list{padding-left:1.1em;margin:.3em 0}
+.list li{margin:.35em 0}
+.checks li{list-style:none;margin:.45em 0}
+.checks{padding:0}
+.order{display:flex;flex-direction:column;gap:8px;margin:10px 0}
+.order .it{display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;padding:10px 12px;box-shadow:0 2px 8px rgba(22,50,56,.1);font-weight:700}
+.order .it .n{width:26px;height:26px;border-radius:50%;background:var(--sky);display:grid;place-items:center;font-size:.85rem}
+.order .it>span:nth-child(2){flex:1;min-width:0}
+.order .it .mv{margin-left:auto;display:flex;gap:4px}
+.order .it .mv button{width:32px;height:32px;border-radius:10px;background:#F0F6F7;font-size:.9rem}
+.bar{height:10px;background:#EEF4F5;border-radius:99px;overflow:hidden;margin-top:4px}
+.bar i{display:block;height:100%;background:var(--teal)}
+.slider{margin:12px 0}
+.slider label{display:flex;justify-content:space-between;font-weight:700;font-size:.92rem}
+.slider input{width:100%;accent-color:var(--teal);height:28px}
+.slider small{color:var(--mut);font-size:.78rem}
+.big{font-size:2rem;font-weight:700}
+.fn{display:inline-block;max-width:100%;white-space:normal;text-align:left;font-size:.72rem;font-weight:700;color:var(--teal);background:#E6F2F1;border-radius:99px;padding:1px 8px;margin:0 2px;vertical-align:1px;}
+.fl{font-size:.78rem;color:var(--mut);margin-top:10px}
+#fnpop{position:fixed;left:16px;right:16px;bottom:16px;max-width:488px;margin:0 auto;background:var(--ink);color:#fff;border-radius:16px;padding:14px 16px;z-index:50;display:none;font-size:.9rem;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+#fnpop a{color:var(--yl)}
+#fnpop .x{position:absolute;right:10px;top:8px;color:#fff;font-size:18px}
+.stars{font-size:2rem;letter-spacing:4px}
+.fontes li{font-size:.82rem;margin:.4em 0}
+.fontes a{color:var(--teal)}
+textarea,select{width:100%;font:inherit;border:2px solid var(--line);border-radius:12px;padding:10px;background:#fff;color:var(--ink)}
+.rate{display:flex;gap:6px}.rate button{flex:1;background:#fff;border-radius:12px;padding:10px 0;box-shadow:0 2px 8px rgba(22,50,56,.1);font-weight:700}.rate button.on{background:var(--ink);color:#fff}
+.how{font-size:.88rem}
+.snow{display:block;width:100%;height:auto}
+@keyframes roll{from{transform:translateX(0) rotate(0)}to{transform:translateX(180px) rotate(360deg)}}
+.small{font-size:.85rem;color:var(--mut)}
+.pick{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.pick button{background:#fff;border-radius:99px;padding:7px 12px;font-weight:700;font-size:.9rem;box-shadow:0 2px 8px rgba(22,50,56,.1);border:2px solid transparent}
+.pick button.ok{border-color:var(--good)}.pick button.no{border-color:var(--bad)}.pick button.on{background:var(--ink);color:#fff}
+</style><link rel="canonical" href="https://pensemaisuma.com.br/cursos/gastos-divida-e-juros/">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+</head><body>
+<div id="pmu-bar" style="font-family:Nunito,system-ui,sans-serif;background:#FAF7F0;color:#17150F;border-bottom:1.5px solid #17150F;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:14px;font-weight:800;position:relative;z-index:50">
+<a href="index.html" style="color:inherit;text-decoration:none">← Sobre o curso</a>
+<a href="../../index.html" style="display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none"><img src="../../assets/logo.svg" alt="" width="26" height="26"><span style="font-family:Fraunces,Georgia,serif">Pense Mais Uma</span></a>
+<a href="index.html#avaliar" style="color:inherit">Avaliar</a></div>
+<div id="app"></div>
+<div id="fnpop" role="dialog" aria-live="polite"><button class="x" aria-label="Fechar">×</button><div id="fnbody"></div></div>
+<script>
+/* ================= FONTES ================= */
+const FONTES={
+ camara:{s:"Câmara/Banco Central, ago/2026",t:"Câmara dos Deputados (Consultoria de Orçamento), Raio X da Dívida, agosto de 2026, com dados do Banco Central e do Tesouro Nacional: juros nominais em 12 meses de R$ 1.182,2 bilhões (8,9% do PIB); dívida bruta de 82,9% do PIB; quem tem a dívida federal interna",u:"https://www2.camara.leg.br/orcamento-da-uniao/raio-x-do-orcamento/2026/raio-x-da-divida-agosto-de-2026/view"},
+ copom:{s:"Copom, 4/nov/2026",t:"Banco Central do Brasil, comunicado do Copom de 4/11/2026 (Selic em 13,75% ao ano); Lei Complementar 179/2021 (autonomia do Banco Central)",u:"https://www.bcb.gov.br/content/copom/atascopom/Copom282-not20261104282.pdf"},
+ tesouro:{s:"Tesouro Nacional",t:"Tesouro Nacional: o que são os títulos públicos e como funciona a dívida pública federal",u:null},
+ ifi:{s:"IFI/Senado, dez/2025",t:"Instituição Fiscal Independente (Senado), Relatório de Acompanhamento Fiscal de dezembro de 2025: déficits primários e juros reais altos mantêm a dívida bruta em alta",u:"https://www2.senado.leg.br/bdsf/bitstream/handle/id/816727/RAF107_DEZ2025_Cenarios_divida.pdf"},
+ alesina:{s:"Alesina e Ardagna, 2010",t:"Alberto Alesina e Silvia Ardagna, \"Large changes in fiscal policy: taxes versus spending\" (2010): defendem que ajustes pelo lado do gasto podem prejudicar pouco o crescimento",u:null},
+ fmi:{s:"Blanchard e Leigh (FMI), 2013",t:"Olivier Blanchard e Daniel Leigh, \"Growth Forecast Errors and Fiscal Multipliers\", FMI (2013): ajustes maiores trouxeram crescimento menor do que o previsto",u:"https://www.imf.org/en/publications/wp/issues/2016/12/31/growth-forecast-errors-and-fiscal-multipliers-40200"},
+ easterly:{s:"Easterly e Fischer, 2001",t:"William Easterly e Stanley Fischer, \"Inflation and the Poor\" (2001): os mais pobres tendem a ver a inflação como um problema maior e a se proteger menos dela",u:null},
+ bcmp:{s:"Banco Central",t:"Banco Central do Brasil: como a política monetária (a Selic) age sobre o crédito, a atividade e a inflação",u:null},
+ cf:{s:"Constituição",t:"Constituição Federal de 1988, arts. 165 e 166 (o governo envia o orçamento; o Congresso vota, pode emendar e aprova)",u:null},
+ calote:{s:"Câmara/Tesouro, ago/2026",t:"Câmara dos Deputados, Raio X da Dívida (ago/2026), com dados do Tesouro: quem tem os títulos da dívida interna (instituições financeiras, fundos de previdência, fundos de investimento, estrangeiros, Tesouro Direto)",u:"https://www2.camara.leg.br/orcamento-da-uniao/raio-x-do-orcamento/2026/raio-x-da-divida-agosto-de-2026/view"}
+};
+/* ================= PERSONAGENS ================= */
+const CH={
+ carla:{n:"Carla",r:"professora da rede pública",q:"Quer: escola com verba e salário em dia.",f:"Teme: cortes na educação.",c:"#F2C14E",e:"🍎",bld:"escola"},
+ rafael:{n:"Rafael",r:"gestor de um fundo de investimento",q:"Quer: que o governo pague os títulos que o fundo comprou.",f:"Teme: calote e inflação.",c:"#9EC9D3",e:"📈",bld:"fundo"},
+ dalia:{n:"Dália",r:"dona de um restaurante",q:"Quer: crédito barato para abrir a segunda loja.",f:"Teme: juros altos e mais impostos.",c:"#F7D2C4",e:"🍲",bld:"rest"},
+ antonio:{n:"Antônio",r:"aposentado",q:"Quer: a complementação do fundo de pensão e o posto de saúde funcionando.",f:"Teme: inflação comendo a aposentadoria.",c:"#B7DCC5",e:"🧓",bld:"posto"}
+};
+/* ================= TELAS ================= */
+const T=[
+ {type:"poll",id:"palpite",k:"Seu palpite",h:"Se o governo gastasse menos, a sua vida ficaria melhor ou pior?",o:["Melhor","Pior","Depende de onde cortar"],fb:"Guardamos o seu palpite. No fim, você volta a ele."},
+ {type:"info",k:"O problema",h:"Falta dinheiro",b:"<p>No exemplo deste curso, o governo gasta mais do que arrecada, como tem acontecido no Brasil. [[ifi]] A diferença vira <b>dívida</b>, e dívida cobra juros.</p><p class='small'>Ao longo do curso, a cidade lá em cima mostra quem sente cada escolha.</p>"},
+ {type:"guess",id:"g1",k:"Chute",h:"Em 12 meses, quanto o setor público teve de despesa com juros, comparado a tudo que o país produz (o PIB)?",o:["Cerca de 3%","Cerca de 9%","Cerca de 20%"],a:1,rev:"<b>Cerca de 9%.</b> Foram R$ 1,18 trilhão de despesa com juros em 12 meses até agosto de 2026: quase 9 de cada 100 reais de tudo que o país produz. [[camara]]"},
+ {type:"info",k:"Palavra nova",h:"O que é dívida pública?",b:"<p><b>Dívida pública</b> é o dinheiro que o governo pega emprestado vendendo <b>títulos</b>: uma espécie de vale com data e taxa de juros. Quem compra recebe os juros. [[tesouro]]</p>"},
+ {type:"order",id:"o1",k:"Teste rápido",h:"Quem tem os títulos da dívida interna do governo federal? Ordene estes cinco grupos do maior para o menor.",it:[["Bancos e outras instituições financeiras",31.2],["Fundos de previdência",22.6],["Fundos de investimento",22.5],["Estrangeiros",9.9],["Pessoas, pelo Tesouro Direto",3.0]],rev:"Dados de agosto de 2026; há outros grupos menores, como seguradoras. [[camara]] Pode parecer que são só os muito ricos. O aposentado com fundo de pensão também está nessa fila, e o dinheiro dos bancos e fundos é, em parte, a poupança de outras pessoas."},
+ {type:"chars",k:"Quem mora aqui",h:"Conheça quem vai sentir as suas escolhas",b:"Toque em cada carta. Os nomes e as histórias são <b>exemplos</b> inventados."},
+ {type:"decision",id:"d1",k:"Decisão 1 de 3",h:"Você cuida das contas do país. Falta dinheiro. O que você faz primeiro?",
+  o:[{t:"Cortar gastos",i:"✂️",eff:{carla:-1,rafael:1,antonio:-1,dalia:0},first:"carla",txt:"Carla perde verba para a escola. Antônio sente no posto de saúde. Para quem defende ajuste, isso sinaliza que o governo quer pagar o que deve, e Rafael fica mais tranquilo. Dália pode ganhar mais tarde: se isso trouxer confiança e os juros caírem, ela consegue crédito mais barato, como defende a visão A que você vai ver adiante.",later:"Mais tarde: se o corte cair sobre obras, o país pode crescer menos. Economistas discordam sobre qual efeito pesa mais."},
+     {t:"Aumentar impostos",i:"🧾",eff:{dalia:-1,carla:0,antonio:0,rafael:0},first:"dalia",txt:"Dália paga mais e adia a segunda loja. Carla mantém a verba da escola, e o posto de saúde de Antônio segue funcionando.",later:"Mais tarde: imposto maior pode frear investimentos e empregos. Quem paga depende de qual imposto sobe."},
+     {t:"Pegar mais emprestado",i:"🏦",eff:{carla:0,dalia:0,antonio:0,rafael:0},first:"ninguem",txt:"No exemplo, ninguém sente de imediato. A dívida cresce, e os juros dela ficam para depois. Quem defende ajuste mais forte diz que os juros podem subir já.",later:"A conta chega na próxima decisão."}],
+  pq:"Antes de ver: quem você acha que sente essa escolha?",common:"Nenhuma opção é de graça. A pergunta é quem paga, e quando."},
+ {type:"snow",k:"Uma imagem para guardar",h:"A bola de neve na ladeira",b:"<p>A dívida é uma bola de neve descendo a ladeira.</p><ul class='list'><li><b>Os juros</b> fazem a bola crescer.</li><li><b>O crescimento do país</b> aumenta a ladeira, e a bola fica menor em comparação.</li><li>Quando o governo <b>arrecada mais do que gasta</b> (sem contar os juros), ele tira neve da bola.</li></ul><p class='small'>É assim que relatórios oficiais explicam a dívida: juros, crescimento e resultado das contas. [[ifi]]</p>"},
+ {type:"sim",k:"Teste você mesmo",h:"Mexa nos controles e veja a dívida em 5 anos"},
+ {type:"info",k:"Palavra nova",h:"Selic: quem decide os juros?",b:"<p><b>Selic</b> é a taxa básica de juros do país. Quem decide é o <b>Banco Central</b>, não o presidente nem os credores. O Banco Central tem autonomia desde 2021.</p><p>Em 4 de novembro de 2026, a Selic estava em <b>13,75% ao ano</b>. [[copom]]</p>"},
+ {type:"decision",id:"d2",k:"Decisão 2 de 3 · agora você é o Banco Central",h:"Os preços estão subindo rápido. Você sobe os juros?",
+  o:[{t:"Subir os juros",i:"📈",eff:{dalia:-1,rafael:1,antonio:1,carla:0},first:"dalia",txt:"Dália desiste do empréstimo. A conta de juros do governo cresce. Rafael e o fundo de pensão de Antônio recebem mais.",later:"Mais tarde: a inflação tende a cair, e isso protege o salário de Carla e a aposentadoria de Antônio."},
+     {t:"Manter os juros",i:"⏸️",eff:{dalia:1,carla:-1,antonio:-1,rafael:-1},first:"antonio",txt:"O crédito segue mais barato para Dália. A inflação pode continuar subindo e corroer o salário de Carla, a aposentadoria de Antônio e o rendimento do fundo de Rafael.",later:"Mais tarde: se a inflação não ceder, os juros podem ter de subir ainda mais."}],
+  pq:"Antes de ver: quem você acha que sente essa escolha?",common:"Juro alto protege o poder de compra, mas trava investimentos e aumenta a dívida. É o dilema central desta história. [[bcmp]]"},
+ {type:"decision",id:"d3",k:"Decisão 3 de 3",h:"Você precisa cortar R$ 10 de cada R$ 100 dos gastos que o governo pode mexer. De onde?",note:"Exemplo inventado. Boa parte do orçamento é obrigatória por lei e não entra nessa conta.",
+  o:[{t:"Obras e investimentos",i:"🏗️",eff:{dalia:-1,carla:0,antonio:0,rafael:0},first:"dalia",txt:"Dália sente primeiro: com menos obras, a cidade pode crescer menos e ela perder clientes. Os outros três não sentem hoje."},
+     {t:"Programas e serviços",i:"🏥",eff:{carla:-1,antonio:-1,dalia:0,rafael:0},first:"antonio",txt:"Carla e Antônio sentem já: menos verba na escola e no posto de saúde."},
+     {t:"Emendas de parlamentares e benefícios fiscais a empresas",i:"🏛️",eff:{carla:0,antonio:0,dalia:-1,rafael:-1},first:"dalia",txt:"Depende de o Congresso aprovar. [[cf]] Benefício fiscal é imposto que o governo deixa de cobrar: cortá-lo também diminui o buraco. Se o benefício era do setor de Dália, ela paga mais. As empresas que perdem o benefício lucram menos, e o fundo de Rafael, que tem ações delas, também sente."}],
+  pq:"Antes de ver: quem você acha que sente essa escolha?",common:"Onde cortar importa tanto quanto quanto cortar."},
+ {type:"info",k:"Onde os economistas concordam",h:"Primeiro, o consenso",b:"<ul class='checks'><li>✅ Inflação alta pesa mais para os mais pobres. [[easterly]]</li><li>✅ Juro alto encarece a dívida. [[ifi]]</li><li>✅ Crescer ajuda a controlar a dívida. [[ifi]]</li><li>✅ Juro alto encarece o crédito para empresas e famílias. [[bcmp]]</li></ul>"},
+ {type:"views",k:"Onde eles discordam",h:"Duas visões sobre o ajuste",
+  a:{t:"Visão A · ajuste mais forte",b:"Para quem pensa assim, dívida subindo assusta quem empresta, e isso empurra os juros para cima. Mostrar controle das contas ajudaria os juros a cair, e ajustes pelo lado do gasto prejudicariam pouco o crescimento. [[alesina]]"},
+  bb:{t:"Visão B · ajuste mais lento",b:"Para quem pensa assim, cortar quando a economia está fraca derruba o crescimento mais do que se espera [[fmi]], e a dívida pode até subir em comparação ao PIB. O peso maior seriam os juros, e quem tem mais poderia pagar mais impostos."},
+  foot:"A briga não é sobre os fatos da tela anterior. É sobre o <b>tamanho</b> dos efeitos e sobre <b>quem deve pagar</b>."},
+ {type:"flash",id:"f1",k:"Rodada relâmpago",h:"Fato ou debate?",ch:["✅ Fato","💬 Debate"],it:[
+   {t:"Juro alto encarece a dívida do governo.",a:0,e:"É conta: mais juros, mais a pagar."},
+   {t:"Cortar gastos faz os juros caírem.",a:1,e:"Depende do momento e da confiança. Economistas discordam do tamanho desse efeito."},
+   {t:"A Selic é definida pelo Banco Central.",a:0,e:"Pelo Copom, o comitê do Banco Central."},
+   {t:"O ajuste das contas serve só para agradar os credores.",a:1,e:"É uma interpretação. Quem defende o ajuste fala em evitar inflação e juros maiores."}]},
+ {type:"steel",id:"s1",k:"Advogado do outro lado",h:"Alguém diz: \"O governo deveria simplesmente parar de pagar os juros.\" Qual é a resposta mais forte de quem discorda?",
+  o:["Parte dos credores são fundos de aposentadoria e bancos onde está a poupança das pessoas. Um calote atinge também esses poupadores.","Você só diz isso porque não entende nada de economia.","Então você quer quebrar o país de vez?"],
+  e:"A resposta forte usa um fato (quem tem a dívida) e uma consequência. As outras atacam a pessoa ou exageram o argumento. [[calote]]"},
+ {type:"info",k:"Toda imagem tem limite",h:"Onde a bola de neve falha",b:"<ul class='list'><li>Um país não é uma ladeira fixa: o crescimento depende das escolhas.</li><li>A confiança de quem empresta muda rápido, e isso a bola não mostra.</li><li>Gastar bem, como em obras que fazem o país crescer, pode aumentar a ladeira.</li></ul>"},
+ {type:"quiz",id:"q1",k:"Teste final",h:"Em 3 frases",b:"<ol class='list'><li>Dívida tem custo: os juros.</li><li>Toda escolha tem quem paga, e quando.</li><li>Economistas concordam nos fatos e discordam nos pesos.</li></ol>",qs:[
+   {q:"Quem define a Selic?",o:["O Banco Central","O presidente da República","O Congresso"],a:0,e:"O Copom, comitê do Banco Central, que tem autonomia desde 2021."},
+   {q:"Juros altos ajudam a reduzir:",o:["A inflação","A dívida pública","O custo do crédito"],a:0,e:"Freiam a inflação, mas encarecem a dívida e o crédito."},
+   {q:"Em que os economistas mais discordam?",o:["No tamanho dos efeitos e em quem paga","Em se juro alto encarece a dívida","Em quem decide a Selic"],a:0,e:"Os fatos básicos são consenso; os pesos e as escolhas, não."}]},
+ {type:"recap",k:"Resultado das suas escolhas",h:"O seu país ficou assim"},
+ {type:"compare",k:"De volta ao começo",h:"E agora?"},
+ {type:"end",k:"Fim do curso",h:"Você pensou mais uma"}
+];
+/* ================= ESTADO ================= */
+const KEY="pmu-economia-v1";
+let S;try{S=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){S=null}
+if(!S)S={i:0,pts:0,max:0,ans:{},eff:{carla:0,rafael:0,dalia:0,antonio:0},mute:false,fb:{}};
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+const app=document.getElementById("app");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MAXPTS=10+10+30+40+10+30;
+function src(h){return String(h).replace(/\[\[([a-z0-9_]+)\]\]/g,(m,k)=>FONTES[k]?`<button type="button" class="fn" data-f="${k}" aria-label="Ver fonte: ${esc(FONTES[k].s)}">🔎 ${esc(FONTES[k].s)}</button>`:"")}
+/* som */
+let AC=null;function snd(t){if(S.mute)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);const f={ok:[660,990],no:[300,200],tap:[520,520],win:[523,1046]}[t]||[440,440];o.frequency.setValueAtTime(f[0],AC.currentTime);o.frequency.linearRampToValueAtTime(f[1],AC.currentTime+.15);g.gain.setValueAtTime(.08,AC.currentTime);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+.25);o.start();o.stop(AC.currentTime+.26)}catch(e){}}
+function addPts(n){S.pts+=n;save()}
+/* cidade */
+function city(){const e=S.eff;const st=k=>e[k]>0?"▲":e[k]<0?"▼":"";const col=k=>e[k]>0?"#2E8B57":"#C2553B";const dim=k=>e[k]<0?"b dim":"b";
+ return `<svg class="city" viewBox="0 0 350 112" role="img" aria-label="A cidade: escola, fundo, restaurante e posto de saúde">
+ <rect x="0" y="96" width="350" height="16" rx="4" fill="#B7DCC5"/>
+ <g class="${dim('carla')}"><rect x="14" y="48" width="64" height="48" fill="#F2C14E"/><polygon points="10,48 46,24 82,48" fill="#2E6B66"/><rect x="38" y="72" width="16" height="24" fill="#163238"/><text x="46" y="64" font-size="10" text-anchor="middle" fill="#163238" font-weight="700">ESCOLA</text></g>
+ <g class="${dim('rafael')}"><rect x="96" y="30" width="64" height="66" fill="#fff" stroke="#163238" stroke-width="2"/><path d="M106 80l12-12 10 8 20-22" stroke="#2E6B66" stroke-width="3" fill="none"/><text x="128" y="46" font-size="10" text-anchor="middle" fill="#163238" font-weight="700">FUNDO</text></g>
+ <g class="${dim('dalia')}"><rect x="178" y="56" width="70" height="40" fill="#F7D2C4"/><rect x="174" y="46" width="78" height="12" rx="3" fill="#163238"/><rect x="190" y="70" width="18" height="26" fill="#fff"/><text x="213" y="54.5" font-size="8.5" text-anchor="middle" fill="#fff" font-weight="700">RESTAURANTE</text></g>
+ <g class="${dim('antonio')}"><rect x="266" y="40" width="70" height="56" fill="#DCE9FF" stroke="#163238" stroke-width="2"/><rect x="294" y="50" width="14" height="4" fill="#C2553B"/><rect x="299" y="45" width="4" height="14" fill="#C2553B"/><text x="301" y="74" font-size="9.5" text-anchor="middle" fill="#163238" font-weight="700">POSTO</text><text x="301" y="86" font-size="9.5" text-anchor="middle" fill="#163238" font-weight="700">DE SAÚDE</text></g>
+ <text class="badge" x="46" y="16" text-anchor="middle" fill="${col('carla')}">${st('carla')}</text>
+ <text class="badge" x="128" y="22" text-anchor="middle" fill="${col('rafael')}">${st('rafael')}</text>
+ <text class="badge" x="213" y="40" text-anchor="middle" fill="${col('dalia')}">${st('dalia')}</text>
+ <text class="badge" x="301" y="34" text-anchor="middle" fill="${col('antonio')}">${st('antonio')}</text></svg>`}
+function charCards(eff,flip){return `<div class="chars">${Object.keys(CH).map(k=>{const c=CH[k];const v=eff?eff[k]:null;const s=v==null?"":v>0?`<span class="st up">▲ ganha</span>`:v<0?`<span class="st dn">▼ perde</span>`:`<span class="st">= igual</span>`;
+ return flip?`<button class="ch flip" data-flip="${k}"><span class="av" style="background:${c.c}">${c.e}</span><span><b>${c.n}</b><span class="front"><small>${c.r}</small><small class="small">toque para ver</small></span><span class="back"><small>${c.r}</small><small>${c.q}</small><small>${c.f}</small></span></span></button>`
+ :`<div class="ch"><span class="av" style="background:${c.c}">${c.e}</span><span><b>${c.n} ${s}</b><small>${c.r}</small></span></div>`}).join("")}</div>`}
+/* layout */
+function frame(inner){const n=T.length;const pct=Math.round(S.i/(n-1)*100);
+ app.innerHTML=`<div class="top"><div class="toprow"><span class="t">Gastos, dívida e juros</span><span>⭐ ${S.pts} pontos</span><button class="iconbtn" id="mute" aria-label="${S.mute?'Ligar som':'Desligar som'}">${S.mute?'🔇':'🔊'}</button></div><div class="prog"><i style="width:${pct}%"></i></div></div>${city()}<main>${inner}</main>`;
+ document.getElementById("mute").onclick=()=>{S.mute=!S.mute;save();render()};window.scrollTo(0,0)}
+function next(){S.i=Math.min(S.i+1,T.length-1);save();snd("tap");render()}
+function nav(ready,label){return `<button class="btn" id="nx" ${ready?"":"disabled"}>${label||"Continuar →"}</button>`}
+function bindNext(){const b=document.getElementById("nx");if(b)b.onclick=next}
+/* ================= RENDER ================= */
+function render(){const t=T[S.i];const A=S.ans[t.id]||{};let h=`<p class="kicker">${t.k}</p>`;
+ if(S.i===0&&!S.started){frame(`<div class="box"><span class="tag">curso-jogo · 8 minutos · grátis</span><h1>Gastos, dívida e juros: por que o governo não pode só gastar mais, nem só cortar?</h1><p>Você vai cuidar das contas de um país, ver quem sente cada escolha e entender onde os economistas concordam e onde brigam.</p><div class="fb how"><b>Como funciona</b>São 21 telas curtas, com 3 decisões e alguns testes rápidos. Não existe escolha "certa" nas decisões: o objetivo é ver quem paga. Os testes valem pontos. Toque em 🔎 para ver a fonte de cada dado.</div><p class="small">Dados atualizados em novembro de 2026.</p></div><button class="btn" id="go">Começar</button>`);document.getElementById("go").onclick=()=>{S.started=true;save();render()};return}
+ switch(t.type){
+ case "poll":{h+=`<h2>${t.h}</h2>`+t.o.map((o,k)=>`<button class="opt ${A.v===k?'on':''}" data-k="${k}">${o}</button>`).join("");if(A.v!=null)h+=`<div class="fb">${t.fb}</div>`;h+=nav(A.v!=null);frame(h);
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{S.ans[t.id]={v:+b.dataset.k};save();snd("tap");render()});bindNext();break}
+ case "info":{h+=`<h2>${t.h}</h2><div class="box">${src(t.b)}</div>`+nav(true);frame(h);bindNext();break}
+ case "guess":{h+=`<h2>${t.h}</h2>`+t.o.map((o,k)=>{let c="";if(A.v!=null)c=k===t.a?"ok":k===A.v?"no":"";return `<button class="opt ${c}" data-k="${k}" ${A.v!=null?"disabled":""}>${o}</button>`}).join("");
+  if(A.v!=null)h+=`<div class="fb"><b>${A.v===t.a?"✅ Acertou! +10":"Quase."}</b>${src(t.rev)}</div>`;h+=nav(A.v!=null);frame(h);
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{const v=+b.dataset.k;S.ans[t.id]={v};if(v===t.a){addPts(10);snd("ok")}else snd("no");save();render()});bindNext();break}
+ case "order":{if(!A.cur){A.cur=[2,4,0,3,1];S.ans[t.id]=A}
+  h+=`<h2>${t.h}</h2><div class="order">${A.cur.map((ix,p)=>{const it=t.it[ix];return `<div class="it"><span class="n">${p+1}</span><span>${it[0]}${A.done?`<div class="bar"><i style="width:${it[1]*3}%"></i></div><small class="small">${it[1].toFixed(1).replace(".",",")}%</small>`:""}</span>${A.done?"":`<span class="mv"><button data-u="${p}" aria-label="Subir">▲</button><button data-d="${p}" aria-label="Descer">▼</button></span>`}</div>`}).join("")}</div>`;
+  if(A.done){h+=`<div class="fb"><b>${A.ok?"✅ Ordem certa! +10":"A ordem real é a das barras acima."}</b>${src(t.rev)}</div>`}
+  h+=A.done?nav(true):`<button class="btn" id="chk">Conferir</button>`;frame(h);
+  app.querySelectorAll("[data-u]").forEach(b=>b.onclick=()=>{const p=+b.dataset.u;if(p>0){[A.cur[p-1],A.cur[p]]=[A.cur[p],A.cur[p-1]];save();render()}});
+  app.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{const p=+b.dataset.d;if(p<A.cur.length-1){[A.cur[p+1],A.cur[p]]=[A.cur[p],A.cur[p+1]];save();render()}});
+  const c=document.getElementById("chk");if(c)c.onclick=()=>{const ok=A.cur.every((ix,p)=>ix===p);A.ok=ok;A.done=true;A.cur=[0,1,2,3,4];if(ok){addPts(10);snd("ok")}else snd("no");save();render()};bindNext();break}
+ case "chars":{h+=`<h2>${t.h}</h2><p>${t.b}</p>`+charCards(null,true)+`<div class="box small">${src("E o <b>Banco Central</b>: o órgão do Estado que define a taxa básica de juros. Ele tem autonomia: o presidente não decide os juros. [[copom]]")}</div>`+nav(true);frame(h);
+  app.querySelectorAll("[data-flip]").forEach(b=>b.onclick=()=>{b.classList.toggle("open");snd("tap")});bindNext();break}
+ case "decision":{const ch=A.v;h+=`<h2>${t.h}</h2>`+(t.note?`<p class="small">${t.note}</p>`:"");
+  h+=t.o.map((o,k)=>`<button class="opt ${ch===k?'on':''}" data-k="${k}" ${A.seen?"disabled":""}><span><span class="ic">${o.i}</span> ${o.t}</span>${ch===k?"<span>✓</span>":""}</button>`).join("");
+  if(ch!=null&&!A.seen){const o=t.o[ch];if(o.first){h+=`<div class="box"><b>${t.pq}</b><div class="pick">${Object.keys(CH).map(k=>`<button data-p="${k}">${CH[k].n}</button>`).join("")}<button data-p="ninguem">Ninguém, por enquanto</button></div></div>`}else{h+=`<button class="btn" id="see">Ver o que acontece</button>`}}
+  if(A.seen){const o=t.o[ch];{const ok=hits(o);const right=ok.includes(A.p);h+=`<div class="fb"><b>${right?"✅ Boa previsão! +10":(ok[0]==="ninguem"?"No exemplo, ninguém sente de imediato: a conta fica para depois.":"Quem sente essa escolha: "+ok.map(k=>CH[k].n).join(", ")+".")}</b></div>`}
+   const debt=t.id==="d2"&&S.ans.d1&&S.ans.d1.v===2;
+   h+=`<div class="box">${src(o.txt)}${o.later?`<p class="small" style="margin-bottom:0">⏳ ${o.later}</p>`:""}</div>`+(debt?`<div class="fb"><b>🏦 A conta do empréstimo chegou</b>Como você pegou mais emprestado na decisão 1, a dívida está maior. Com os juros pagos sobre ela, sobra menos dinheiro para a escola de Carla e o posto de Antônio.</div>`:"")+charCards(debt?sumEff(o.eff,{carla:-1,antonio:-1}):o.eff,false)+`<div class="fb"><b>💡 ${src(t.common)}</b></div>`;
+   const others=t.o.map((x,k)=>k===ch?"":`<li><b>${x.t}:</b> ${src(x.txt)}</li>`).join("");h+=`<details class="box"><summary><b>E se tivesse escolhido outra?</b></summary><ul class="list">${others}</ul></details>`}
+  h+=nav(!!A.seen);frame(h);
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{S.ans[t.id]={v:+b.dataset.k};save();snd("tap");render()});
+  app.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>{const o=t.o[ch];A.p=b.dataset.p;A.seen=true;if(hits(o).includes(A.p)){addPts(10);snd("ok")}else snd("no");applyEff(o.eff);if(t.id==="d2"&&S.ans.d1&&S.ans.d1.v===2)applyEff({carla:-1,antonio:-1});save();render()});
+  bindNext();break}
+ case "snow":{h+=`<h2>${t.h}</h2><div class="box"><svg class="snow" viewBox="0 0 320 130" role="img" aria-label="Bola de neve descendo uma ladeira"><polygon points="0,30 320,120 0,120" fill="#DCE9FF"/><line x1="0" y1="30" x2="320" y2="120" stroke="#163238" stroke-width="2"/><g style="animation:roll 3s ease-in infinite alternate;transform-origin:40px 30px"><circle cx="40" cy="22" r="16" fill="#fff" stroke="#163238" stroke-width="2"/></g><text x="200" y="40" font-size="12" fill="#163238" font-weight="700">juros: a bola cresce</text><text x="160" y="110" font-size="12" fill="#163238" font-weight="700">crescimento: a ladeira aumenta</text></svg>${t.b}</div>`+nav(true);frame(h);bindNext();break}
+ case "sim":{const PRE=[{n:"Juros altos, crescimento baixo",r:7,g:1,s:-0.5},{n:"Juros menores, crescimento maior",r:3,g:3,s:0.5}];const v=S.sim||{...PRE[0]};S.sim=v;
+  const run=()=>{let d=82.9;const pts=[d];for(let y=0;y<5;y++){d=d*(1+v.r/100)/(1+v.g/100)-v.s;pts.push(d)}return pts};
+  const pts=run();const last=pts[5];const mx=Math.max(120,...pts),mn=Math.min(40,...pts);const X=i=>20+i*56,Y=d=>110-(d-mn)/(mx-mn)*95;
+  const fmt=x=>x.toFixed(1).replace(".",",");
+  h+=`<h2>${t.h}</h2><div class="box"><p class="small" style="margin-top:0">Comece por um cenário de exemplo e depois mexa à vontade:</p><div class="pick">${PRE.map((p,k)=>`<button data-pre="${k}" class="${v.r===p.r&&v.g===p.g&&v.s===p.s?'on':''}">${p.n}</button>`).join("")}</div><div class="slider"><label>Juros acima da inflação <span>${fmt(v.r)}% ao ano</span></label><input type="range" min="0" max="10" step="0.5" value="${v.r}" data-s="r"></div>
+  <div class="slider"><label>Crescimento do país <span>${fmt(v.g)}% ao ano</span></label><input type="range" min="-2" max="5" step="0.5" value="${v.g}" data-s="g"></div>
+  <div class="slider"><label>Sobra (+) ou falta (−) antes dos juros <span>${fmt(v.s)}% do PIB</span></label><input type="range" min="-3" max="3" step="0.5" value="${v.s}" data-s="s"><small>Arrecadação menos gastos, sem contar os juros.</small></div>
+  <svg viewBox="0 0 320 125" style="width:100%;height:auto" role="img" aria-label="Dívida em 5 anos"><line x1="20" y1="${Y(82.9)}" x2="300" y2="${Y(82.9)}" stroke="#CFE3E7" stroke-dasharray="4 4"/><polyline fill="none" stroke="${last>82.9?'#C2553B':'#2E8B57'}" stroke-width="3" points="${pts.map((d,i)=>X(i)+","+Y(d)).join(" ")}"/>${pts.map((d,i)=>`<circle cx="${X(i)}" cy="${Y(d)}" r="3.5" fill="#163238"/>`).join("")}<text x="20" y="122" font-size="11" fill="#5C7A80">hoje</text><text x="300" y="122" font-size="11" text-anchor="end" fill="#5C7A80">5 anos</text></svg>
+  <p>Dívida em 5 anos: <span class="big ${last>82.9?'dn':'up'}">${fmt(last)}%</span> do PIB <span class="small">(hoje: 82,9%)</span></p>
+  <p class="small">Simulação simplificada, para entender o mecanismo. Os cenários são exemplos, não previsões. O juro aqui é o custo médio da dívida acima da inflação, não a Selic, e a conta deixa de fora o câmbio e as operações do Banco Central. Ponto de partida: dívida bruta de agosto de 2026. ${src("[[camara]]")}</p></div>
+  <div class="fb"><b>💡 O que a bola de neve mostra</b>Juro alto e crescimento baixo fazem a dívida crescer, mesmo sem nenhum gasto novo.</div>`+nav(true);frame(h);
+  app.querySelectorAll("[data-pre]").forEach(b=>b.onclick=()=>{const p=PRE[+b.dataset.pre];S.sim={r:p.r,g:p.g,s:p.s};save();snd("tap");const y=window.scrollY;render();window.scrollTo(0,y)});app.querySelectorAll("[data-s]").forEach(inp=>{inp.oninput=()=>{const lab=inp.previousElementSibling.querySelector("span");const x=+inp.value;lab.textContent=fmt(x)+(inp.dataset.s==="s"?"% do PIB":"% ao ano")};inp.onchange=()=>{v[inp.dataset.s]=+inp.value;S.sim=v;save();const y=window.scrollY;render();window.scrollTo(0,y)}});bindNext();break}
+ case "views":{h+=`<h2>${t.h}</h2><div class="split"><div><b>${t.a.t}</b><p>${src(t.a.b)}</p></div><div><b>${t.bb.t}</b><p>${src(t.bb.b)}</p></div></div><div class="fb"><p style="margin:0">${t.foot}</p></div>`+nav(true);frame(h);bindNext();break}
+ case "flash":{A.r=A.r||[];h+=`<h2>${t.h}</h2>`+t.it.map((it,k)=>{const r=A.r[k];return `<div class="box"><b>${it.t}</b><div class="pick">${t.ch.map((c,j)=>{let cl="";if(r!=null)cl=j===it.a?"ok":j===r?"no":"";return `<button class="${cl}" data-it="${k}" data-c="${j}" ${r!=null?"disabled":""}>${c}</button>`}).join("")}</div>${r!=null?`<p class="small">${r===it.a?"✅ +10. ":""}${it.e}</p>`:""}</div>`}).join("");
+  const done=t.it.every((_,k)=>A.r[k]!=null);h+=nav(done);frame(h);
+  app.querySelectorAll("[data-it]").forEach(b=>b.onclick=()=>{const k=+b.dataset.it,c=+b.dataset.c;A.r[k]=c;S.ans[t.id]=A;if(c===t.it[k].a){addPts(10);snd("ok")}else snd("no");save();const y=window.scrollY;render();window.scrollTo(0,y)});bindNext();break}
+ case "steel":{if(!A.ord){A.ord=[0,1,2].sort(()=>Math.random()-.5);S.ans[t.id]=A;save()}
+  h+=`<h2>${t.h}</h2>`+A.ord.map(ix=>{let c="";if(A.v!=null)c=ix===0?"ok":ix===A.v?"no":"";return `<button class="opt ${c}" data-k="${ix}" ${A.v!=null?"disabled":""}>${t.o[ix]}</button>`}).join("");
+  if(A.v!=null)h+=`<div class="fb"><b>${A.v===0?"✅ Essa é a mais forte! +10":"A mais forte é a que usa fatos."}</b>${src(t.e)}</div>`;h+=nav(A.v!=null);frame(h);
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{A.v=+b.dataset.k;if(A.v===0){addPts(10);snd("ok")}else snd("no");save();render()});bindNext();break}
+ case "quiz":{A.r=A.r||[];h+=`<h2>${t.h}</h2><div class="box">${t.b}</div>`+t.qs.map((q,k)=>{const r=A.r[k];return `<div class="box"><b>${k+1}. ${q.q}</b>${q.o.map((o,j)=>{let c="";if(r!=null)c=j===q.a?"ok":j===r?"no":"";return `<button class="opt ${c}" data-q="${k}" data-j="${j}" ${r!=null?"disabled":""}>${o}</button>`}).join("")}${r!=null?`<p class="small">${r===q.a?"✅ +10. ":""}${q.e}</p>`:""}</div>`}).join("");
+  const done=t.qs.every((_,k)=>A.r[k]!=null);h+=nav(done,"Ver meu resultado");frame(h);
+  app.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{const k=+b.dataset.q,j=+b.dataset.j;A.r[k]=j;S.ans[t.id]=A;if(j===t.qs[k].a){addPts(10);snd("ok")}else snd("no");save();const y=window.scrollY;render();window.scrollTo(0,y)});bindNext();break}
+ case "recap":{const D=["d1","d2","d3"].map(id=>{const tt=T.find(x=>x.id===id);const a=S.ans[id];return a&&a.v!=null?tt.o[a.v].t:"(sem escolha)"});
+  const lab=k=>{const v=S.eff[k];return v>0?`<span class="st up">▲ saiu ganhando</span>`:v<0?`<span class="st dn">▼ saiu perdendo</span>`:`<span class="st">= ficou igual</span>`};
+  h+=`<h2>${t.h}</h2><p class="small">No exemplo simplificado deste curso:</p><div class="box"><b>Suas escolhas</b><ol class="list"><li>${D[0]}</li><li>${D[1]}</li><li>${D[2]}</li></ol></div><div class="chars">${Object.keys(CH).map(k=>`<div class="ch"><span class="av" style="background:${CH[k].c}">${CH[k].e}</span><span><b>${CH[k].n}</b>${lab(k)}<small>${CH[k].r}</small></span></div>`).join("")}</div><div class="fb"><b>💡 Outro caminho, outros ganhadores</b>Com escolhas diferentes, outras pessoas da cidade sairiam ganhando ou perdendo. Não existe escolha sem custo: existe escolher quem paga, e quando.</div>`+nav(true);frame(h);bindNext();break}
+ case "compare":{const p0=S.ans.palpite?S.ans.palpite.v:null;const P=T[0].o;h+=`<h2>${t.h}</h2><div class="box">No começo, você disse: <b>${p0!=null?P[p0]:"(sem palpite)"}</b>.<br>Se o governo gastasse menos, a sua vida ficaria melhor ou pior?</div>`+P.map((o,k)=>`<button class="opt ${A.v===k?'on':''}" data-k="${k}">${o}</button>`).join("");
+  h+=`<div class="box"><b>O que mudaria a sua opinião?</b> <span class="small">(opcional)</span><textarea id="why" rows="3" placeholder="Escreva aqui...">${esc(A.why||"")}</textarea></div>`;
+  if(A.v!=null)h+=`<div class="fb">${A.v===p0?"Você manteve o palpite, agora sabendo quem paga cada escolha.":"Você mudou de ideia. Mudar com informação nova é pensar mais uma."}</div>`;h+=nav(A.v!=null);frame(h);
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{A.v=+b.dataset.k;A.why=document.getElementById("why").value;S.ans.compare=A;save();snd("tap");render()});
+  document.getElementById("why").oninput=e=>{A.why=e.target.value;S.ans.compare=A;save()};bindNext();break}
+ case "end":{const pct=S.pts/MAXPTS;const st=pct>=.9?3:pct>=.6?2:1;if(!S.won){S.won=true;save();snd("win")}
+  const pd=S.ans.pdia||{},vt=S.ans.voto||{},F=S.fb||{};
+  h+=`<h2>${t.h}</h2><div class="box" style="text-align:center"><div class="stars">${"⭐".repeat(st)}${"☆".repeat(3-st)}</div><p><b>${S.pts} de ${MAXPTS} pontos</b></p><p class="small">Os pontos vêm das previsões e dos testes. Nas decisões, não existe escolha certa.</p></div>
+  <div class="box"><p class="kicker">Pergunta do dia</p><b>Quem aprova o orçamento do governo federal todo ano?</b>${["O Congresso Nacional","O Banco Central","O Tesouro Nacional"].map((o,k)=>{let c="";if(pd.v!=null)c=k===0?"ok":k===pd.v?"no":"";return `<button class="opt ${c}" data-pd="${k}" ${pd.v!=null?"disabled":""}>${o}</button>`}).join("")}${pd.v!=null?`<p class="small">O Congresso Nacional. O governo envia a proposta, e deputados e senadores votam e podem mudar o texto. ${src("[[cf]]")}</p>`:""}</div>
+  <div class="box"><p class="kicker">Vote no próximo tema</p>${["Inflação: por que os preços sobem?","Reforma tributária: quem vai pagar mais?","Previdência: a conta fecha?"].map((o,k)=>`<button class="opt ${vt.v===k?'on':''}" data-vt="${k}">${o}</button>`).join("")}${vt.v!=null?`<p class="small">Voto registrado. Obrigado!</p>`:""}</div>
+  <div class="box"><p class="kicker">Avalie o curso</p><b>Que nota você dá?</b><div class="rate">${[1,2,3,4,5].map(n=>`<button class="${F.nota===n?'on':''}" data-n="${n}">${n}</button>`).join("")}</div>
+  <p><b>Sentiu que o curso favoreceu algum lado?</b></p><select id="lado"><option value="">Escolha</option>${["Não","Sim, a esquerda","Sim, a direita","Não sei"].map(o=>`<option ${F.lado===o?"selected":""}>${o}</option>`).join("")}</select>
+  <p><b>O que você aprendeu que não sabia?</b></p><textarea id="aprendi" rows="2">${esc(F.aprendi||"")}</textarea>
+  <p><b>Que tema você quer que vire curso?</b></p><textarea id="tema" rows="2">${esc(F.tema||"")}</textarea>
+  <button class="btn" id="env">${F.sent?"Avaliação enviada ✓":"Enviar avaliação"}</button></div>
+  <div class="box"><p class="kicker">Fontes deste curso</p><ul class="fontes">${Object.values(FONTES).map(f=>`<li>${esc(f.t)}${f.u?` · <a href="${f.u}" target="_blank" rel="noopener">abrir</a>`:""}</li>`).join("")}</ul></div>
+  <div class="box small"><b>Quer se aprofundar?</b><br>📘 "Economia: modo de usar", de Ha-Joon Chang: uma visão crítica do livre mercado.<br>📗 "Economia básica", de Thomas Sowell: uma visão a favor do livre mercado.<br>▶️ <a href="https://www.youtube.com/results?search_query=d%C3%ADvida+p%C3%BAblica+juros+explicado" target="_blank" rel="noopener">Buscar vídeos sobre dívida pública no YouTube</a></div>
+  <button class="btn ghost" id="again">Jogar de novo</button>`;frame(h);
+  app.querySelectorAll("[data-pd]").forEach(b=>b.onclick=()=>{S.ans.pdia={v:+b.dataset.pd};snd(+b.dataset.pd===0?"ok":"no");save();render()});
+  app.querySelectorAll("[data-vt]").forEach(b=>b.onclick=()=>{S.ans.voto={v:+b.dataset.vt};save();snd("tap");render()});
+  app.querySelectorAll("[data-n]").forEach(b=>b.onclick=()=>{S.fb.nota=+b.dataset.n;save();render()});
+  document.getElementById("lado").onchange=e=>{S.fb.lado=e.target.value;save()};
+  document.getElementById("aprendi").oninput=e=>{S.fb.aprendi=e.target.value;save()};
+  document.getElementById("tema").oninput=e=>{S.fb.tema=e.target.value;save()};
+  document.getElementById("env").onclick=()=>{S.fb.sent=true;try{const q=JSON.parse(localStorage.getItem("pmu-fila")||"[]");q.push({curso:"economia",quando:new Date().toISOString(),...S.fb,voto:S.ans.voto});localStorage.setItem("pmu-fila",JSON.stringify(q))}catch(e){}save();render()};
+  document.getElementById("again").onclick=()=>{S={i:0,pts:0,ans:{},eff:{carla:0,rafael:0,dalia:0,antonio:0},mute:S.mute,fb:{},started:true};save();render()};break}
+ }}
+function hits(o){const k=Object.keys(o.eff).filter(x=>o.eff[x]!==0);return k.length?k:['ninguem']}
+function sumEff(a,b){const o={...a};for(const k in b)o[k]=(o[k]||0)+b[k];return o}
+function applyEff(e){for(const k in e)S.eff[k]=Math.max(-2,Math.min(2,(S.eff[k]||0)+e[k]))}
+/* popover de fontes */
+const pop=document.getElementById("fnpop");
+document.addEventListener("click",e=>{const b=e.target.closest(".fn");if(b){e.preventDefault();e.stopPropagation();const f=FONTES[b.dataset.f];if(!f)return;document.getElementById("fnbody").innerHTML=`<b>Fonte</b><br>${esc(f.t)}${f.u?`<br><a href="${f.u}" target="_blank" rel="noopener">Abrir a fonte ↗</a>`:""}`;pop.style.display="block";return}
+ if(e.target.closest("#fnpop .x")||!e.target.closest("#fnpop"))pop.style.display="none"},true);
+render();
+</script>
+</body></html>

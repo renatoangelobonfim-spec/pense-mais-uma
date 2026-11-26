@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Imigrantes: tiram empregos ou fazem o país crescer? · Pense Mais Uma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFE3CC;--ink:#1C1310;--vi:#5B2EE0;--or:#E0562B;--mut:#6B4E3F;--card:#FFF4EA;--line:#E9C3A6}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:var(--vi)}
+#stage{position:fixed;inset:0;max-width:520px;margin:0 auto;display:flex;flex-direction:column;overflow:hidden}
+#segs{display:flex;gap:4px;padding:calc(10px + env(safe-area-inset-top)) 16px 0}
+#segs i{flex:1;height:4px;border-radius:4px;background:rgba(28,19,16,.15);overflow:hidden;position:relative}
+#segs i.on::after{content:"";position:absolute;inset:0;background:var(--ink);border-radius:4px}
+#top{display:flex;justify-content:space-between;align-items:center;padding:8px 16px 0;font:600 13px Inter;color:var(--mut)}
+#top button{min-height:44px;min-width:44px;font-size:13px;font-weight:600;color:var(--mut)}
+.scr{flex:1;display:none;flex-direction:column;padding:12px 22px 0;overflow-y:auto;animation:fade .35s ease}
+.scr.cur{display:flex}
+.scr.scroll{overflow-y:auto;padding-bottom:40px}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.kk{font:italic 700 15px 'Bricolage Grotesque';color:var(--or);margin-bottom:6px}
+.q{font:800 27px/1.15 'Bricolage Grotesque';letter-spacing:-.01em;margin-bottom:10px}
+.big{font:400 92px/0.95 Anton,Impact,sans-serif;letter-spacing:.005em;color:var(--or);margin:4px 0 10px}
+.big small{font-size:34px;margin-left:6px}
+.p{font-size:16px;margin-bottom:12px}
+.p.m{color:var(--mut);font-size:15px}
+.tapn{margin-top:auto;padding:14px 0 calc(16px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;align-items:center;font:600 14px Inter;color:var(--mut)}
+.tapn button{min-height:44px;padding:0 6px;font-weight:600;color:var(--mut)}
+.tapn .nx{color:var(--ink)}
+/* chute */
+.guess{margin:14px 0 6px;font:400 64px/1 Anton,Impact,sans-serif;color:var(--ink)}
+.guess small{font-size:24px;margin-left:6px}
+.trk{position:relative;height:96px;margin:6px 4px 0}
+.trk .ln{position:absolute;left:0;right:0;top:56px;height:10px;border-radius:10px;background:#F6C9A6}
+.trk .band{position:absolute;top:56px;height:10px;border-radius:10px;background:var(--or);opacity:0;transition:opacity .5s .2s}
+.mk{position:absolute;top:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;font:700 11px Inter;letter-spacing:.04em;white-space:nowrap;transition:left .7s cubic-bezier(.2,.8,.2,1),opacity .4s}
+.mk b{padding:3px 7px;border-radius:6px;color:#fff;font-weight:700}
+.mk::after{content:"";width:3px;height:34px;margin-top:4px;border-radius:2px;background:currentColor}
+.mk.you{color:var(--ink)}.mk.you b{background:var(--ink)}
+.mk.avg{color:var(--vi);opacity:0}.mk.avg b{background:var(--vi)}
+.mk.real{color:var(--or);opacity:0}.mk.real b{background:var(--or)}
+.mk.dn{top:56px;flex-direction:column-reverse}.mk.dn::after{margin:0 0 4px;height:24px}
+.rev .mk.avg,.rev .mk.real,.rev .band{opacity:1}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;position:absolute;left:0;top:40px;margin:0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:var(--ink);border:4px solid var(--bg);box-shadow:0 0 0 2px var(--ink)}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--ink);border:4px solid var(--bg)}
+input[type=range]:focus-visible{outline:3px solid var(--vi);outline-offset:2px;border-radius:8px}
+.rev input[type=range]{pointer-events:none;opacity:0}
+.scale{display:flex;justify-content:space-between;font:600 12px Inter;color:var(--mut);margin:0 4px}
+.leg{display:flex;gap:14px;flex-wrap:wrap;font:600 12px Inter;color:var(--mut);margin-top:12px}
+.leg span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.lock{margin-top:18px;width:100%;min-height:54px;border-radius:999px;background:var(--ink);color:var(--bg);font:800 18px 'Bricolage Grotesque'}
+.res{display:none}.rev .res{display:block;animation:fade .45s ease}
+.rev .lock{display:none}
+.res .real{font:400 46px/1 Anton,Impact,sans-serif;color:var(--or);margin:16px 0 8px}
+.res .real small{font:700 13px Inter;color:var(--mut);display:block;margin-bottom:4px;letter-spacing:.02em}
+.verd{display:inline-block;font:700 14px 'Bricolage Grotesque';padding:5px 12px;border-radius:999px;background:var(--card);margin-bottom:10px}
+/* vozes */
+.voz{background:var(--card);border-radius:18px;padding:14px 16px;margin-bottom:10px;border-left:6px solid var(--c,var(--vi))}
+.voz h4{font:800 17px 'Bricolage Grotesque';margin-bottom:4px}
+.voz p{font-size:15px}
+.nt{font:italic 500 15px 'Bricolage Grotesque';color:var(--mut);margin-top:4px}
+/* fonte */
+sup{line-height:0}
+.fn{font:700 11px Inter;min-width:22px;min-height:22px;padding:0 4px;margin-left:2px;border-radius:6px;background:rgba(91,46,224,.12);color:var(--vi);vertical-align:2px;position:relative}
+.fn::before{content:"";position:absolute;inset:-11px -6px}
+#fnpop{position:fixed;left:14px;right:14px;bottom:14px;max-width:500px;margin:0 auto;background:var(--ink);color:var(--bg);border-radius:18px;padding:16px 18px;z-index:60;display:none;font:500 14px/1.5 Inter;box-shadow:0 14px 40px rgba(28,19,16,.35)}
+#fnpop a{color:#FFB48F;font-weight:700}#fnpop .x{position:absolute;right:6px;top:2px;font-size:24px;min-width:44px;min-height:44px;color:var(--bg)}
+/* capa */
+.cov h1{font:400 58px/0.98 Anton,Impact,sans-serif;text-transform:none;margin:10px 0 14px}
+.cov h1 em{font-style:normal;color:var(--or)}
+.go{display:block;width:100%;min-height:56px;border-radius:999px;background:var(--ink);color:var(--bg);font:800 18px 'Bricolage Grotesque';text-align:center;margin-top:16px}
+.go.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px}
+.chips span{background:var(--card);border-radius:999px;padding:6px 12px;font:600 13px Inter}
+/* mapa */
+.row{margin:0 0 14px}
+.row h5{font:700 14px 'Bricolage Grotesque';display:flex;justify-content:space-between;gap:10px}
+.row h5 span{font:600 12px Inter;color:var(--mut);white-space:nowrap}
+.mini{position:relative;height:14px;margin-top:6px;border-radius:8px;background:#F6C9A6}
+.mini i{position:absolute;top:-3px;width:6px;height:20px;border-radius:3px;transform:translateX(-50%)}
+.mini i.y{background:var(--ink)}.mini i.r{background:var(--or)}
+.mini u{position:absolute;top:0;height:14px;border-radius:8px;background:rgba(224,86,43,.55)}
+.worst{background:var(--ink);color:var(--bg);border-radius:20px;padding:16px 18px;margin:6px 0 18px}
+.worst b{font:400 30px/1.05 Anton,Impact,sans-serif;display:block;margin:2px 0 6px;color:#FFB48F}
+.worst .fn{background:rgba(255,227,204,.15);color:#FFB48F}
+/* voto */
+.vt{display:block;width:100%;text-align:left;background:var(--card);border-radius:20px;padding:14px 16px;margin-bottom:10px;border:2px solid transparent;min-height:56px}
+.vt b{font:800 18px 'Bricolage Grotesque';display:block}
+.vt small{color:var(--mut);font-size:14px}
+.vt.on{border-color:var(--vi);background:#fff}
+.cd{border-radius:20px;background:#fff;padding:14px 16px;margin-top:4px}
+.cd i{display:block;font:italic 700 14px 'Bricolage Grotesque';color:var(--vi);margin:6px 0 2px}
+.cd i.c{color:var(--or)}
+/* fim */
+.box{background:var(--card);border-radius:22px;padding:16px 18px;margin-bottom:14px}
+.box h3{font:800 21px 'Bricolage Grotesque';margin-bottom:8px}
+.rate{display:flex;gap:8px}.rate button{flex:1;min-height:48px;border-radius:14px;background:#fff;font:800 18px 'Bricolage Grotesque'}
+.rate button.on{background:var(--ink);color:var(--bg)}
+textarea,select{width:100%;margin-top:6px;border:2px solid var(--line);border-radius:12px;padding:10px;font:400 15px Inter;background:#fff;color:var(--ink)}
+.box p+p{margin-top:10px}
+ol.fontes{padding-left:22px;font-size:13px;color:var(--mut)}ol.fontes li{margin-bottom:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style><link rel="canonical" href="https://pensemaisuma.com.br/cursos/imigracao/">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+</head><body>
+<div id="pmu-bar" style="font-family:Nunito,system-ui,sans-serif;background:#FAF7F0;color:#17150F;border-bottom:1.5px solid #17150F;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:14px;font-weight:800;position:relative;z-index:50">
+<a href="index.html" style="color:inherit;text-decoration:none">← Sobre o curso</a>
+<a href="../../index.html" style="display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none"><img src="../../assets/logo.svg" alt="" width="26" height="26"><span style="font-family:Fraunces,Georgia,serif">Pense Mais Uma</span></a>
+<a href="index.html#avaliar" style="color:inherit">Avaliar</a></div>
+<div id="stage" aria-live="polite">
+ <div id="segs" aria-hidden="true"></div>
+ <div id="top"><span id="lbl">Pense Mais Uma</span><button id="mute" hidden></button></div>
+ <main id="app"></main>
+</div>
+<div id="fnpop" role="dialog" aria-live="polite"><button class="x" aria-label="Fechar">×</button><div id="fnbody"></div></div>
+<script>
+const FONTES={
+ jb_1pct:{s:"OBMigra, via Jornal de Brasília, 2026",t:"Jornal de Brasília (mai/2026), sobre o 12º relatório do OBMigra: o Brasil tem pouco mais de 2 milhões de migrantes e refugiados (residentes, temporários, refugiados e solicitantes de refúgio), cerca de 415 mil deles com emprego formal; o número corresponde a pouco menos de 1% da população",u:"https://jornaldebrasilia.com.br/noticias/brasil/brasil-tem-mais-de-2-milhoes-de-migrantes-e-refugiados-415-mil-deles-com-emprego-formal-mostra-relatorio/"},
+ abr_obm:{s:"OBMigra, via Agência Brasil, 2026",t:"Agência Brasil (30/abr/2026), sobre o 12º relatório anual do OBMigra: estima-se a residência de 680 mil venezuelanos no Brasil no início de 2026; o número de trabalhadores imigrantes com carteira assinada superou 414,96 mil vínculos em 2025, 43% deles na produção industrial, especialmente no abate de animais na região Sul",u:"https://agenciabrasil.ebc.com.br/direitos-humanos/noticia/2026-04/brasil-abriga-mais-de-2-milhoes-de-imigrantes-refugiados"},
+ acritica:{s:"OBMigra, via A Crítica, 2026",t:"A Crítica (2026), sobre o relatório do OBMigra: o número de imigrantes com carteira assinada cresceu 54% entre 2023 e 2025; os venezuelanos lideram no mercado formal, com mais de 201 mil trabalhadores em 2025",u:"https://acritica.net/nacional/brasil-abriga-mais-de-2-milhoes-de-imigrantes-e-refugiados/"},
+ ipsos18:{s:"Ipsos, 2018",t:"Ipsos, Perigos da Percepção 2018 (pesquisa on-line; a amostra brasileira representa um público mais urbano, não o país todo): no Brasil, o chute médio para a proporção de imigrantes foi 30%; a realidade era 0,4%",u:"https://www.ipsos.com/sites/default/files/ct/publication/documents/2019-01/perigos_da_percepcao_2018.pdf"},
+ ipsos15:{s:"Ipsos, 2015",t:"Ipsos, Perigos da Percepção 2015: o chute médio em 32 países foi de 23% de imigrantes, contra 10% reais; os maiores exageros aparecem em países com pouca imigração, como Argentina, Brasil, África do Sul, Índia, México e Peru, que superestimam a proporção em mais de 20 pontos percentuais",u:"https://www.ipsos.com/sites/default/files/news_and_polls/2015-12/7073.pdf"},
+ ams_vox:{s:"Alesina, Miano e Stantcheva (VoxEU), 2018",t:"Alberto Alesina, Armando Miano e Stefanie Stantcheva, economistas de Harvard (VoxEU, jul/2018): em pesquisa com mais de 22 mil pessoas em seis países ricos, em cinco deles o morador médio achava que havia de duas a três vezes mais imigrantes do que de fato havia",u:"https://stantcheva.scholars.harvard.edu/resource/voxeu"},
+ ams_nber:{s:"Alesina, Miano e Stantcheva (NBER), 2018",t:"Alesina, Miano e Stantcheva, Immigration and Redistribution (NBER, 2018): em todos os países estudados, os entrevistados superestimam muito o número de imigrantes; os resultados sugerem que as narrativas moldam a opinião sobre imigração mais do que os fatos",u:"https://www.nber.org/papers/w24733.pdf"},
+ acnur8:{s:"ACNUR, 2026",t:"ACNUR, agência da ONU para refugiados (2026), nos oito anos da Operação Acolhida: desde o início da estratégia, mais de 157 mil pessoas venezuelanas foram levadas voluntariamente de Roraima para outras cidades brasileiras",u:"https://www.acnur.org/br/node/4336"},
+ folhabv_saude:{s:"Folha de Boa Vista, 2019",t:"Folha de Boa Vista (2019), com relatório da Secretaria de Saúde de Roraima: os atendimentos ambulatoriais a venezuelanos na capital passaram de 3.445 em 2016 para 48.454 em 2018",u:"https://www.folhabv.com.br/?p=54280"},
+ folhabv_sec:{s:"Folha de Boa Vista, 2016",t:"Folha de Boa Vista (2016): o secretário de Saúde de Roraima afirmou que a superlotação nas unidades, agravada pelo atendimento a estrangeiros, causava insuficiência financeira para cobrir os atendimentos da população",u:"https://www.folhabv.com.br/?p=20981"},
+ migalhas:{s:"Migalhas, 2018",t:"Migalhas (7/ago/2018): a ação de Roraima contra a União sobre o fluxo de venezuelanos já tramitava no STF em agosto de 2018",u:"https://www.migalhas.com.br/quentes/285139/stf-rosa-weber-nega-pedido-de-fechamento-da-fronteira-com-a-venezuela"},
+ rr_comp:{s:"Folha de Boa Vista, 2019",t:"Folha de Boa Vista (20/jun/2019): a ação de cerca de R$ 180 milhões que Roraima levou ao STF em 2018, no governo Suely Campos, para cobrir custos com serviços públicos prestados a venezuelanos, foi suspensa em 2019 a pedido do novo governo, em acordo com a União",u:"https://www.folhabv.com.br/?p=54598"},
+ ipea_rr:{s:"Ipea",t:"Ipea, Instituto de Pesquisa Econômica Aplicada: em Roraima, conclui-se que houve redução de quase 10% no salário formal depois da entrada dos imigrantes venezuelanos, com impacto máximo em 2017",u:"https://repositorio.ipea.gov.br/server/api/core/bitstreams/2913d18d-674b-4bf8-ae31-a2eb08e21ab8/content"},
+ santanna:{s:"Sant'Anna e Shrestha (Univ. da Geórgia), texto de trabalho",t:"Hugo Sant'Anna e Samyam Shrestha, Universidade da Geórgia, texto de trabalho no arXiv (versão de 2024, ainda não publicado em revista), Labor Market Effects of the Venezuelan Refugee Crisis in Brazil: com dados de todos os trabalhadores formais, os salários mensais dos brasileiros em Roraima subiram cerca de 2%, sobretudo em setores e ocupações sem refugiados, e a perda de empregos de brasileiros foi desprezível; parte dos brasileiros mudou para ocupações sem imigrantes",u:"https://arxiv.org/abs/2302.04201v3"},
+ ryu:{s:"Ryu e Paudel (Population and Development Review), 2022",t:"Hanbyul Ryu e Jayash Paudel, Population and Development Review 48(1), 2022: a crise venezuelana reduziu a participação no mercado de trabalho e a taxa de emprego em Roraima, sem efeito significativo sobre o salário por hora",u:"https://scholarworks.boisestate.edu/econ_facpubs/87"},
+ fgv_rr:{s:"FGV DAPP, OBMigra e UFRR, via ACNUR",t:"Resumo do estudo A economia de Roraima e o fluxo venezuelano (FGV DAPP, OBMigra e UFRR, 2020), publicado pelo ACNUR: o estado teve indicadores positivos de atividade econômica no período, mas o desemprego e a pobreza aumentaram com o fluxo venezuelano; de 2016 a 2017, o PIB de Roraima cresceu 2,3%, contra média de 1,4% nos demais estados",u:"https://data.unhcr.org/en/documents/download/74547"},
+ folhabv_fgv:{s:"Folha de Boa Vista, 2020",t:"Folha de Boa Vista (2020), sobre o estudo da FGV DAPP: entre 2017 e 2018, Roraima teve o maior aumento de área plantada do Brasil (28,9%) e a diversificação da economia cresceu 8%",u:"https://www.folhabv.com.br/?p=62237"},
+ ipsos25:{s:"Ipsos, 2025",t:"Ipsos, Populism Report 2025 (coleta de 21/fev a 7/mar/2025, 1.000 entrevistas online no Brasil, população mais urbana): 32% dos brasileiros concordam que imigrantes tiram empregos dos nativos; 24% acham que a imigração deveria ser paralisada, contra média de 44% em 31 países",u:"https://www.ipsos.com/pt-br/cai-resistencia-a-imigrantes-no-mundo"},
+ ext25:{s:"Itamaraty, via Italianismo, 2025",t:"Italianismo, com relatório do Itamaraty: cerca de 5,3 milhões de brasileiros viviam fora do país em 2025, recorde; os Estados Unidos concentram 2.067.225 (cerca de 39%, cálculo do Pense Mais Uma)",u:"https://italianismo.com.br/?p=47863"},
+ dep_pf:{s:"PF e MDHC, via A Tarde, 2026",t:"A Tarde (2026), com dados da Polícia Federal e do Ministério dos Direitos Humanos: ao menos 3.294 brasileiros foram deportados dos EUA em 37 voos em 2025, alta de 99,8% sobre 2024 e o maior número da série, que começa em 2020",u:"https://atarde.com.br/mundo/dobra-o-numero-de-brasileiros-deportados-dos-eua-em-2025-1374477"},
+ dep_mre:{s:"Itamaraty, via Metrópoles, 2026",t:"Metrópoles (13/jan/2026): em resposta à Câmara, enviada no começo de dezembro de 2025, o Itamaraty informou que 2.785 brasileiros foram deportados dos EUA em 32 voos em 2025 e estimou em 2,6 mil os brasileiros presos lá por questões migratórias",u:"https://www.metropoles.com/colunas/igor-gadelha/itamaraty-diz-que-26-mil-brasileiros-estao-presos-no-eua"},
+ nij:{s:"Light, He e Robey (PNAS), 2020",t:"Michael Light, Jingying He e Jason Robey, PNAS (2020), estudo financiado em parte pelo Departamento de Justiça dos EUA, com dados de prisões no Texas de 2012 a 2018: nativos foram presos mais de 2 vezes mais que imigrantes sem documentos por crimes violentos, 2,5 vezes mais por drogas e mais de 4 vezes mais por crimes contra o patrimônio",u:"https://pmc.ncbi.nlm.nih.gov/articles/PMC7768760/"},
+ bra21:{s:"Brå (Suécia), 2021",t:"Conselho Nacional de Prevenção do Crime da Suécia (Brå), relatório 2021:9: pessoas nascidas no exterior têm 2,5 vezes mais chance de ser registradas como suspeitas de crime do que pessoas nascidas na Suécia de pais suecos; descontando idade, sexo e condições socioeconômicas, o risco relativo cai para 1,8",u:"https://bra.se/english/publications/archive/2021-08-25-registered-offending-among-persons-of-native-and-non-native-background"},
+ bra26:{s:"Brå (Suécia), 2026",t:"Conselho Nacional de Prevenção do Crime da Suécia (Brå), Migration and crime (jun/2026): a tendência geral do crime depende de muitos fatores, e o efeito da migração é pequeno perto do efeito combinado desses outros fatores",u:"https://bra.se/english/publications/archive/2026-06-29-migration-and-crime"},
+ nas16:{s:"Academias Nacionais dos EUA, 2016",t:"Academias Nacionais de Ciências dos EUA (set/2016): medido em 10 anos ou mais, o impacto da imigração sobre os salários dos trabalhadores nativos em geral é muito pequeno; os efeitos negativos, quando existem, aparecem mais entre imigrantes anteriores e nativos que não terminaram o ensino médio; a chegada de imigrantes qualificados também pode trazer ganhos de salário para alguns grupos de nativos e outros benefícios à economia",u:"https://www.nationalacademies.org/news/2016/09/new-report-assesses-the-economic-and-fiscal-consequences-of-immigration"},
+ borjas:{s:"George Borjas (Harvard), 2016",t:"George Borjas, economista de Harvard, no guia que escreveu sobre o relatório das Academias Nacionais (set/2016): destaca que a imigração tem efeito prejudicial sobre os ganhos dos trabalhadores pouco qualificados",u:"https://gborjas.scholars.harvard.edu/resource/nas2016pdf"},
+ casa_ven:{s:"Brasil 61, 2026",t:"Brasil 61 (2026): a entrada de venezuelanos por Pacaraima caiu pela metade nos primeiros 13 dias de 2026 (1.014 contra 2.121 no mesmo período de 2025); Tomás Guzmán, da Casa Venezuela, diz que os venezuelanos saíram porque já não tinham outra opção",u:"https://brasil61.com/n/entrada-de-migrantes-pela-fronteira-brasil-venezuela-cai-pela-metade-bras2615596"}
+};
+
+/* tipos: c = chute; f = fato; v = vozes (dois lados) */
+const STORIES=[
+{tp:"c",id:"pct",cur:"% de imigrantes",q:"De cada 100 pessoas que vivem no Brasil, quantas são imigrantes ou refugiadas?",min:0,max:40,step:1,un:"",real:1,realTxt:"menos de 1",avg:30,avgTxt:"30",avgNote:"chute médio dos brasileiros numa pesquisa on-line da Ipsos de 2018, com público mais urbano",
+ depois:"São pouco mais de 2 milhões de pessoas, pouco menos de 1% da população. [[jb_1pct]] Em 2018, os brasileiros chutaram 30%, quando o real era 0,4%. [[ipsos18]]"},
+{tp:"f",k:"Não é só aqui",big:"2 a 3×",t:"Em cinco de seis países ricos pesquisados por economistas de Harvard, as pessoas achavam que havia de duas a três vezes mais imigrantes do que havia. [[ams_vox]]",p:"Os autores concluem que as histórias que circulam pesam mais na opinião sobre imigração do que os números. [[ams_nber]] Países com pouca imigração, como o Brasil, estão entre os que mais exageram. [[ipsos15]]"},
+{tp:"c",id:"ven",cur:"Venezuelanos no Brasil",q:"Quantos venezuelanos vivem hoje no Brasil?",min:0,max:3000,step:10,un:"mil",real:680,realTxt:"680 mil",
+ depois:"Estimativa do OBMigra para o início de 2026. Venezuelanos, haitianos, cubanos e angolanos são os grupos em destaque no relatório. [[abr_obm]] Nos primeiros 13 dias de 2026, a entrada por Pacaraima caiu pela metade em relação ao mesmo período de 2025. [[casa_ven]]"},
+{tp:"f",k:"Boa Vista, 2016 → 2018",big:"14×",t:"Os atendimentos ambulatoriais a venezuelanos na capital de Roraima passaram de 3.445 em 2016 para 48.454 em 2018. [[folhabv_saude]]",p:"Em 2016, o secretário de Saúde disse que a superlotação, agravada pelo atendimento a estrangeiros, deixava o estado sem dinheiro para cobrir os atendimentos. [[folhabv_sec]] Em 2018, Roraima pediu no STF cerca de R$ 180 milhões à União para cobrir esses custos; em 2019, o processo foi suspenso. [[rr_comp]] [[migalhas]]"},
+{tp:"c",id:"acolhida",cur:"Levados de Roraima",q:"Quantos venezuelanos o governo levou de Roraima para outras cidades do país?",min:0,max:500,step:5,un:"mil",real:157,realTxt:"mais de 157 mil",
+ depois:"É a interiorização da Operação Acolhida, que leva, de forma voluntária, quem chega a Roraima para outros estados. [[acnur8]]"},
+{tp:"v",k:"E os empregos em Roraima?",t:"Quatro estudos, respostas diferentes",itens:[
+ ["Ipea","Encontrou queda de quase 10% no salário formal em Roraima depois da chegada dos venezuelanos. [[ipea_rr]]"],
+ ["Universidade da Geórgia","Encontrou alta de cerca de 2% nos salários dos brasileiros em Roraima e quase nenhum emprego perdido; parte deles mudou de ocupação. [[santanna]]"],
+ ["Ryu e Paudel","Encontraram queda na taxa de emprego e na participação no mercado de trabalho, sem efeito no salário por hora. [[ryu]]"],
+ ["FGV, OBMigra e UFRR","Encontraram economia mais diversificada e o maior aumento de área plantada do país, mas também mais desemprego e pobreza. [[folhabv_fgv]] [[fgv_rr]]"]],
+ nota:"Os estudos olham o mesmo estado e chegam a conclusões diferentes: o efeito depende do que se mede."},
+{tp:"c",id:"formal",cur:"Imigrantes com carteira",q:"Quantos imigrantes trabalham com carteira assinada no Brasil?",min:0,max:2000,step:10,un:"mil",real:415,realTxt:"415 mil",
+ depois:"Em 2025, foram 414,96 mil vínculos formais, 54% a mais que em 2023. [[abr_obm]] [[acritica]] Mais de 4 em cada 10 estão na indústria, sobretudo em frigoríficos do Sul. [[abr_obm]]"},
+{tp:"c",id:"opiniao",cur:"Acham que tiram empregos",q:"De cada 100 brasileiros, quantos acham que imigrantes tiram empregos dos nativos?",min:0,max:100,step:1,un:"",real:32,realTxt:"32",
+ depois:"Pesquisa Ipsos de 2025, com público mais urbano. 24% acham que a imigração deveria ser paralisada para deixar o país mais forte, contra 44% na média de 31 países. [[ipsos25]]"},
+{tp:"c",id:"ext",cur:"Brasileiros no exterior",q:"E na direção contrária: quantos brasileiros vivem fora do Brasil?",min:0,max:20,step:0.1,un:"milhões",real:5.3,realTxt:"5,3 milhões",
+ depois:"Recorde, segundo o Itamaraty; cerca de 4 em cada 10 vivem nos Estados Unidos. [[ext25]] É mais que o dobro dos imigrantes que vivem aqui. [[jb_1pct]]"},
+{tp:"f",k:"O caminho de volta",big:"3.294",t:"Em 2025, os EUA deportaram ao menos 3.294 brasileiros, segundo a PF e o Ministério dos Direitos Humanos, o maior número da série, que começa em 2020. [[dep_pf]] O Itamaraty, em resposta à Câmara, contou 2.785. [[dep_mre]]",p:"No fim de 2025, o Itamaraty estimava 2,6 mil brasileiros presos lá por questões migratórias. [[dep_mre]]"},
+{tp:"c",id:"crime",cur:"Prisões no Texas",q:"Imagine dois grupos do mesmo tamanho no Texas: nativos e imigrantes sem documentos. Para cada 100 nativos presos por crime violento, quantos imigrantes sem documentos são presos?",min:0,max:300,step:5,un:"",real:50,lt:true,lo:35,realTxt:"menos de 50",
+ depois:"Estudo financiado em parte pelo Departamento de Justiça dos EUA: imigrantes sem documentos são presos a menos da metade da taxa dos nativos por crimes violentos (dados de 2012 a 2018; são prisões, não condenações). [[nij]]"},
+{tp:"v",k:"Mas depende do país",t:"Crime e salário lá fora",itens:[
+ ["Suécia","Nascidos no exterior têm 2,5 vezes mais chance de ser registrados como suspeitos de crime; descontando idade, sexo e condições de vida, a diferença cai para 1,8 vez. [[bra21]] O mesmo órgão diz que, na tendência geral do crime, a migração pesa pouco perto de outros fatores. [[bra26]]"],
+ ["EUA, salários","As Academias Nacionais concluíram que, em 10 anos ou mais, o efeito nos salários dos nativos em geral é muito pequeno, e que perdem mais os menos escolarizados. [[nas16]] O economista George Borjas, de Harvard, enfatiza o prejuízo para os trabalhadores pouco qualificados. [[borjas]]"]],
+ nota:"Um número de um país não se transfere automaticamente para outro."}
+];
+
+const VOTO=[
+ {t:"Acolher e espalhar pelo país",s:"ampliar a interiorização, como a Operação Acolhida",pro:"Quem defende cita os mais de 157 mil venezuelanos levados para outras cidades, a alta de cerca de 2% nos salários dos brasileiros em Roraima e o PIB do estado crescendo mais que a média dos outros estados em 2016–2017. [[acnur8]] [[santanna]] [[fgv_rr]]",con:"Quem critica cita o estudo do Ipea, com queda de quase 10% no salário formal em Roraima, e o aumento do desemprego e da pobreza no estado. [[ipea_rr]] [[fgv_rr]]"},
+ {t:"Mais controle na fronteira",s:"limitar a entrada até os estados darem conta",pro:"Quem defende lembra que os atendimentos a venezuelanos em Boa Vista se multiplicaram por 14 e que, em 2018, Roraima pediu compensação à União no STF. [[folhabv_saude]] [[rr_comp]]",con:"Quem critica cita o estudo da Universidade da Geórgia, que achou perda desprezível de empregos para brasileiros em Roraima, e Tomás Guzmán, da Casa Venezuela, para quem quem deixou a Venezuela saiu por falta de opção. [[santanna]] [[casa_ven]]"},
+ {t:"Escolher por qualificação",s:"atrair quem o mercado de trabalho precisa",pro:"Quem defende cita as Academias Nacionais dos EUA: imigrantes qualificados podem trazer ganhos, e quem perde mais são os trabalhadores pouco qualificados. [[nas16]] [[borjas]]",con:"Quem critica lembra que boa parte de quem chega ao Brasil foge de crise e não escolhe a vaga: segundo Tomás Guzmán, da Casa Venezuela, quem deixou a Venezuela saiu por falta de opção. [[casa_ven]]"}
+];
+
+const KEY="pmu-imigracao";let S={i:0,g:{},vote:null,fb:{}};try{const o=JSON.parse(localStorage.getItem(KEY)||"null");if(o)S={...S,...o,fb:{...(o.fb||{})},g:{...(o.g||{})}}}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const N={},ORD=[];const num=k=>{if(FONTES[k]&&!(k in N)){ORD.push(k);N[k]=ORD.length}};
+const scan=o=>JSON.stringify(o).replace(/\[\[([a-z0-9_]+)\]\]/g,(m,k)=>num(k));
+STORIES.forEach(scan);scan(["[[ams_vox]]"]);scan(VOTO);
+const sup=k=>FONTES[k]?`<sup><button type="button" class="fn" data-f="${k}" aria-label="Fonte ${N[k]}: ${esc(FONTES[k].s)}">${N[k]}</button></sup>`:"";
+const tx=h=>esc(h).replace(/\s*\[\[([a-z0-9_]+)\]\]/g,(m,k)=>sup(k));
+const fmt=(v,st)=>st<1?String(v.toFixed(1)).replace(".",","):Math.round(v).toLocaleString("pt-BR");
+const CH=STORIES.filter(s=>s.tp==="c");
+const pos=(s,v)=>Math.max(0,Math.min(100,(v-s.min)/(s.max-s.min)*100));
+const err=s=>{const g=S.g[s.id];if(g==null)return null;const d=s.lt?(g>s.real?g-s.real:(s.lo!=null&&g<s.lo?s.lo-g:0)):Math.abs(g-s.real);return d/(s.max-s.min)};
+const verdict=s=>{const g=S.g[s.id],e=err(s);if(s.lt?e===0:e<=.05)return"Na mosca.";if(g>s.real)return"Você chutou acima.";return"Você chutou abaixo."};
+
+/* telas */
+const SCR=[];
+SCR.push({t:"cov",h:()=>`<div class="kk">Pense Mais Uma · adivinhe antes de ver</div>
+ <h1>Imigrantes: tiram empregos ou <em>fazem o país crescer?</em></h1>
+ <p class="p">Antes de cada número, você chuta. Depois vê o real e, quando houver, o chute médio dos brasileiros.</p>
+ <div class="chips"><span>${CH.length} chutes</span><span>cerca de 10 minutos</span><span>sem nota</span></div>
+ <p class="p m">Toque no lado direito da tela para avançar e no esquerdo para voltar. O número pequeno ao lado de um dado abre a fonte. Dados atualizados em novembro de 2026.</p>
+ <button class="go" data-go="1">Começar</button>${S.i>1?`<button class="go ghost" data-go="${S.i}">Continuar de onde parei</button>`:""}<div class="tapn"></div>`});
+STORIES.forEach((s,i)=>SCR.push({t:s.tp,s,h:()=>s.tp==="c"?chute(s):s.tp==="f"?fato(s):vozes(s)}));
+SCR.push({t:"map",h:mapa,scroll:true});
+SCR.push({t:"voto",h:voto,scroll:true});
+SCR.push({t:"fim",h:fim,scroll:true});
+const nav=(last)=>`<div class="tapn"><button class="pv" data-nav="-1">‹ voltar</button>${last?"":`<button class="nx" data-nav="1">toque para continuar ›</button>`}</div>`;
+
+function chute(s){const g=S.g[s.id],done=g!=null,v=done?g:Math.round((s.min+(s.max-s.min)*.25)/s.step)*s.step;
+ return `<div class="cw ${done?"rev":""}" id="cw-${s.id}"><div class="kk">Chute ${CH.indexOf(s)+1} de ${CH.length}</div><h2 class="q">${esc(s.q)}</h2>
+ <div class="guess"><span id="gv-${s.id}">${fmt(v,s.step)}</span>${s.un?`<small>${esc(s.un)}</small>`:""}</div>
+ <div class="trk"><div class="ln"></div>${s.lt?`<div class="band" style="left:0;width:${pos(s,s.real)}%"></div>`:""}
+  <div class="mk you" id="mk-${s.id}" style="left:${pos(s,v)}%"><b>VOCÊ</b></div>
+  ${s.avg!=null?`<div class="mk avg dn" style="left:${pos(s,s.avg)}%"><b>MÉDIA</b></div>`:""}
+  <div class="mk real ${s.avg!=null?"":"dn"}" style="left:${pos(s,s.real)}%"><b>REAL</b></div>
+  <input type="range" id="rg-${s.id}" min="${s.min}" max="${s.max}" step="${s.step}" value="${v}" aria-label="Seu chute: ${esc(s.q)}">
+ </div>
+ <div class="scale"><span>${fmt(s.min,s.step)}</span><span>${fmt(s.max,s.step)}${s.un?" "+esc(s.un):""}</span></div>
+ <button class="lock" data-lock="${s.id}">Cravar meu chute</button>
+ <div class="res" aria-live="polite"><div class="real"><small>REAL</small>${esc(s.realTxt)}${s.un&&!/mil|milh/.test(s.realTxt)?" "+esc(s.un):""}</div>
+  ${done?`<div class="verd">${verdict(s)}</div>`:""}
+  ${s.avg!=null?`<p class="p m">Chute médio: ${esc(s.avgTxt)} (${esc(s.avgNote)}).</p>`:""}
+  <p class="p">${tx(s.depois)}</p>
+  <div class="leg"><span style="--c:var(--ink)">Seu chute</span>${s.avg!=null?`<span style="--c:var(--vi)">Chute médio</span>`:""}<span style="--c:var(--or)">Real</span></div></div>
+ </div>${nav()}`}
+function fato(s){return `<div class="kk">${esc(s.k)}</div><div class="big">${esc(s.big)}</div><p class="q" style="font-size:22px">${tx(s.t)}</p><p class="p m">${tx(s.p)}</p>${nav()}`}
+function vozes(s){const C=["var(--vi)","var(--or)","var(--ink)"];return `<div class="kk">${esc(s.k)}</div><h2 class="q">${esc(s.t)}</h2>
+ ${s.itens.map((x,j)=>`<div class="voz" style="--c:${C[j%3]}"><h4>${esc(x[0])}</h4><p>${tx(x[1])}</p></div>`).join("")}<p class="nt">${esc(s.nota)}</p>${nav()}`}
+function mapa(){const rows=CH.map(s=>({s,e:err(s)})),ok=rows.filter(r=>r.e!=null);
+ const w=ok.slice().sort((a,b)=>b.e-a.e)[0];const over=ok.filter(r=>S.g[r.s.id]>r.s.real).length;
+ return `<div class="kk">Fim dos chutes</div><h2 class="q">Seu mapa de impressões</h2>
+ ${w?`<div class="worst">Onde você mais errou<b>${esc(w.s.cur)}</b>Você chutou ${fmt(S.g[w.s.id],w.s.step)}${w.s.un?" "+esc(w.s.un):""}; o real é ${esc(w.s.realTxt)}${w.s.un&&!/mil|milh/.test(w.s.realTxt)?" "+esc(w.s.un):""}.${over>ok.length/2?` Você exagerou em ${over} de ${ok.length} chutes. Não é só você: em cinco de seis países ricos pesquisados, as pessoas achavam que havia de duas a três vezes mais imigrantes do que havia. ${sup("ams_vox")}`:""}</div>`:`<p class="p m">Você pulou os chutes. Volte e arraste a bolinha para ver seu mapa.</p>`}
+ ${rows.map(({s,e})=>{const g=S.g[s.id];return `<div class="row"><h5>${esc(s.cur)}<span>${g==null?"sem chute":`você ${fmt(g,s.step)} · real ${esc(s.realTxt)}`}</span></h5>
+  <div class="mini">${s.lt?`<u style="left:0;width:${pos(s,s.real)}%"></u>`:`<i class="r" style="left:${pos(s,s.real)}%"></i>`}${g!=null?`<i class="y" style="left:${pos(s,g)}%"></i>`:""}</div></div>`}).join("")}
+ <div class="leg"><span style="--c:var(--ink)">Seu chute</span><span style="--c:var(--or)">Real</span></div>${nav()}`}
+function voto(){return `<div class="kk">E você?</div><h2 class="q">Se a política de imigração fosse sua, por onde começaria?</h2>
+ <p class="p m">Não existe resposta certa e não vale nota. Escolha para ver o que dizem os dois lados.</p>
+ ${VOTO.map((o,k)=>`<button class="vt ${S.vote===k?"on":""}" data-k="${k}" aria-pressed="${S.vote===k}"><b>${esc(o.t)}</b><small>${esc(o.s)}</small></button>`).join("")}
+ <div id="vcd">${S.vote!=null?vcard(S.vote):""}</div>${nav()}`}
+const vcard=v=>{const o=VOTO[v];return `<div class="cd"><i>A favor</i>${tx(o.pro)}<i class="c">Contra</i>${tx(o.con)}</div>`};
+function fim(){return `<div class="kk">Antes de ir</div><h2 class="q">Quer se aprofundar?</h2>
+ <section class="box"><p><b>A Estranha Morte da Europa</b>, de Douglas Murray (edição portuguesa): argumenta que a imigração em massa ameaça a identidade e a cultura europeias.</p>
+ <p><b>Como Funciona Realmente a Migração</b>, de Hein de Haas (edição portuguesa): argumenta que muitos medos sobre imigração não batem com os dados.</p>
+ <p><a href="https://www.youtube.com/results?search_query=imigra%C3%A7%C3%A3o+venezuelanos+Roraima+document%C3%A1rio" target="_blank" rel="noopener">Venezuelanos em Roraima (busca no YouTube)</a><br><a href="https://www.youtube.com/results?search_query=imigra%C3%A7%C3%A3o+empregos+sal%C3%A1rios+debate" target="_blank" rel="noopener">Imigração, empregos e salários: debates (busca no YouTube)</a></p></section>
+ <section class="box" id="avaliar"><h3>Avalie o curso</h3><p>Que nota você dá?</p><div class="rate">${[1,2,3,4,5].map(x=>`<button data-n="${x}" class="${S.fb.nota===x?"on":""}" aria-label="Nota ${x}">${x}</button>`).join("")}</div>
+ <p>O que você aprendeu que não sabia?</p><textarea id="apr" rows="2">${esc(S.fb.apr||"")}</textarea>
+ <p>Sentiu que o curso favoreceu algum lado?</p><select id="lado"><option value="">Escolha</option>${["Não","Sim, a favor de mais imigração","Sim, a favor de menos imigração","Não sei"].map(o=>`<option ${S.fb.lado===o?"selected":""}>${o}</option>`).join("")}</select>
+ <p>Comentário</p><textarea id="com" rows="2">${esc(S.fb.com||"")}</textarea>
+ <p>Que tema você quer que vire curso?</p><textarea id="tema" rows="2">${esc(S.fb.tema||"")}</textarea>
+ <button class="go" id="env">${S.fb.sent?"Avaliação enviada ✓":"Enviar avaliação"}</button></section>
+ <section class="box"><h3>Fontes</h3><ol class="fontes">${ORD.map(k=>{const f=FONTES[k];return `<li>${esc(f.t)}${f.u?` · <a href="${f.u}" target="_blank" rel="noopener">abrir</a>`:""}</li>`}).join("")}</ol>
+ <button class="go ghost" data-go="0">Voltar ao início</button></section>${nav(true)}`}
+
+const app=document.getElementById("app");
+function render(){const n=SCR.length;S.i=Math.max(0,Math.min(n-1,S.i));save();const sc=SCR[S.i];
+ app.innerHTML=`<section class="scr cur ${sc.scroll?"scroll":""} ${sc.t==="cov"?"cov":""}" data-t="${sc.t}">${sc.h()}</section>`;
+ document.getElementById("segs").innerHTML=SCR.slice(1).map((_,j)=>`<i class="${j<S.i?"on":""}"></i>`).join("");
+ document.getElementById("lbl").textContent=S.i===0?"Pense Mais Uma":`${S.i} de ${n-1}`;
+ wire()}
+function go(d){const sc=SCR[S.i];if(d>0&&sc.t==="c"&&S.g[sc.s.id]==null){const b=app.querySelector(".lock");b&&b.focus();return}S.i+=d;render()}
+function wire(){const sc=SCR[S.i];
+ if(sc.t==="c"){const s=sc.s,rg=document.getElementById("rg-"+s.id);rg.oninput=()=>{const v=+rg.value;document.getElementById("gv-"+s.id).textContent=fmt(v,s.step);document.getElementById("mk-"+s.id).style.left=pos(s,v)+"%"}}
+ app.querySelectorAll(".vt").forEach(b=>b.onclick=()=>{S.vote=+b.dataset.k;save();app.querySelectorAll(".vt").forEach(x=>{x.classList.toggle("on",x===b);x.setAttribute("aria-pressed",x===b)});document.getElementById("vcd").innerHTML=vcard(S.vote)});
+ app.querySelectorAll("[data-n]").forEach(b=>b.onclick=()=>{S.fb.nota=+b.dataset.n;save();app.querySelectorAll("[data-n]").forEach(x=>x.classList.toggle("on",x===b))});
+ ["apr","com","tema"].forEach(k=>{const e=document.getElementById(k);if(e)e.oninput=()=>{S.fb[k]=e.value;save()}});
+ const l=document.getElementById("lado");if(l)l.onchange=()=>{S.fb.lado=l.value;save()};
+ const en=document.getElementById("env");if(en)en.onclick=()=>{S.fb.sent=true;try{const q=JSON.parse(localStorage.getItem("pmu-fila")||"[]");q.push({curso:"imigracao",quando:new Date().toISOString(),voto:S.vote,chutes:S.g,...S.fb});localStorage.setItem("pmu-fila",JSON.stringify(q))}catch(x){}save();en.textContent="Avaliação enviada ✓"}}
+const pop=document.getElementById("fnpop");
+document.addEventListener("click",e=>{const b=e.target.closest(".fn");
+ if(b){e.preventDefault();e.stopPropagation();const f=FONTES[b.dataset.f];if(!f)return;document.getElementById("fnbody").innerHTML=`<b>Fonte ${N[b.dataset.f]}</b><br>${esc(f.t)}${f.u?`<br><a href="${f.u}" target="_blank" rel="noopener">Abrir a fonte ↗</a>`:""}`;pop.style.display="block";return}
+ if(pop.style.display==="block"){if(e.target.closest("#fnpop .x")||!e.target.closest("#fnpop")){pop.style.display="none";e.stopPropagation();return}if(e.target.closest("#fnpop"))return}
+ const lk=e.target.closest("[data-lock]");if(lk){const s=STORIES.find(x=>x.id===lk.dataset.lock);S.g[s.id]=+document.getElementById("rg-"+s.id).value;save();render();const cw=app.querySelector(".cw");if(cw){cw.classList.remove("rev");void cw.offsetWidth;requestAnimationFrame(()=>requestAnimationFrame(()=>cw.classList.add("rev")))}return}
+ const gt=e.target.closest("[data-go]");if(gt){S.i=+gt.dataset.go;render();return}
+ const nv=e.target.closest("[data-nav]");if(nv){go(+nv.dataset.nav);return}
+ if(e.target.closest("button,a,input,textarea,select,label"))return;
+ const sc=SCR[S.i];if(sc.scroll||sc.t==="cov")return;
+ if(!e.target.closest("#stage"))return;
+ const x=e.clientX/innerWidth;go(x<.3?-1:1)},true);
+document.addEventListener("keydown",e=>{if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;if(e.key==="ArrowRight")go(1);if(e.key==="ArrowLeft")go(-1);if(e.key==="Escape")pop.style.display="none"});
+const bar=document.getElementById("pmu-bar");if(bar){const fit=()=>{document.getElementById("stage").style.top=bar.offsetHeight+"px"};fit();addEventListener("resize",fit)}
+render();
+</script>
+</body></html>

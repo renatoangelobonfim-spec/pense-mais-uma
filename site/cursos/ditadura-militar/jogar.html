@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#16130f">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ditadura militar, com documentos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F1EBDC; --ink:#16130f; --muted:#5b5446; --card:#FBF8F0; --line:#d8cfba;
+  --is:#3F5873; --isbg:#E3E9EF; --isd:#2E445B;   /* quem defende/apoiou o regime: azul-ardósia */
+  --pa:#A8742A; --pabg:#F3E7D3; --pad:#7E5517;   /* quem critica/se opôs: ocre */
+  --hl:#E8B931;
+  --ok:#2E7D4F; --okbg:#E4F2E9; --bad:#B8432C; --badbg:#FBE7E2;
+  --head:"Oswald",Impact,sans-serif; --news:"Anton",Impact,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background-color:var(--bg);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;font-size:17px;line-height:1.58}
+body{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .3 0 0 0 0 .25 0 0 0 0 .15 0 0 0 .12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+h1,h2,h3{font-family:var(--head);font-weight:700;line-height:1.12;margin:0 0 .5em}
+button{font:inherit;cursor:pointer;border:0;color:inherit}
+#app{max-width:560px;margin:0 auto;padding:0 16px 48px}
+/* barra do topo */
+.top{position:sticky;top:0;z-index:20;background:rgba(241,235,220,.95);backdrop-filter:blur(6px);margin:0 -16px;padding:10px 16px;border-bottom:2px solid var(--ink)}
+.toprow{display:flex;align-items:center;gap:10px}
+.lvl{font-family:var(--head);font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;background:var(--ink);color:var(--bg);border-radius:2px;padding:4px 10px;white-space:nowrap}
+.xpbar{flex:1;height:10px;background:var(--ink);border-radius:1px;overflow:hidden}
+.xpbar i{display:block;height:100%;background:var(--hl);transition:width .6s}
+.mute{background:var(--card);border:1.5px solid var(--ink);border-radius:2px;width:34px;height:30px;font-size:.9rem;padding:0}
+.xptxt{font-family:var(--head);font-size:.74rem;letter-spacing:.03em;color:var(--muted);margin-top:5px;display:flex;justify-content:space-between;gap:8px;font-weight:500}
+/* capa de jornal */
+.mast{margin:14px -16px 0;background:var(--ink);color:var(--bg);padding:10px 16px 8px;display:flex;justify-content:space-between;align-items:flex-end;gap:8px}
+.mast .np{font-family:var(--news);font-size:1.75rem;line-height:1;letter-spacing:.02em}
+.mast .x{background:var(--hl);color:var(--ink);font-family:var(--news);font-size:.85rem;line-height:1;padding:5px 8px;transform:rotate(-3deg);letter-spacing:.06em;white-space:nowrap}
+.meta{display:flex;justify-content:space-between;gap:6px;font-family:var(--head);font-weight:500;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 0;border-bottom:2px solid var(--ink)}
+.manch{font-family:var(--news);font-weight:400;font-size:3.05rem;line-height:1.02;text-transform:uppercase;margin:12px 0 4px;letter-spacing:.005em}
+.manch em{font-style:normal;background:linear-gradient(transparent 12%,var(--hl) 12%,var(--hl) 92%,transparent 92%);padding:0 4px}
+.deck{font-family:var(--head);font-weight:500;font-size:.95rem;text-transform:uppercase;letter-spacing:.03em;line-height:1.3}
+.capa{margin-top:14px;border-top:4px solid var(--ink);padding-top:8px}
+.capa .lab{font-family:var(--head);font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+.capa p{margin:.35em 0 0;font-size:1.02rem;line-height:1.65}
+.tj{background:var(--ink);color:transparent;border-radius:1px;box-shadow:0 0 0 1px var(--ink);user-select:none}
+.lit{background:var(--hl);border-radius:1px;padding:0 2px}
+.prog{display:flex;gap:4px;margin-top:10px}.prog span{flex:1;height:10px;background:var(--ink)}.prog span.on{background:var(--hl);outline:1.5px solid var(--ink)}
+.capa small{display:block;font-family:var(--head);font-size:.74rem;letter-spacing:.04em;color:var(--muted);margin-top:5px}
+.how{margin-top:14px;font-size:.88rem;background:var(--card);border:1.5px solid var(--ink);padding:10px 12px}
+.how b{font-family:var(--head);letter-spacing:.04em}
+.legend{display:inline-block;width:10px;height:10px;margin:0 3px -1px 2px}
+.upd{display:inline-block;margin-top:10px;font-family:var(--head);font-weight:500;font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:var(--hl);padding:3px 9px}
+.sec{font-family:var(--head);font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:.14em;color:var(--ink);margin:26px 0 10px;border-bottom:2px solid var(--ink);padding-bottom:4px}
+/* fases */
+.tl{position:relative}
+.tile{position:relative;display:flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid var(--ink);border-radius:2px;padding:11px 12px;margin-bottom:10px;text-align:left;width:100%;transition:transform .1s}
+.tile:active{transform:scale(.985)}
+.tile .n{width:40px;height:40px;flex:none;display:grid;place-items:center;font-family:var(--news);font-size:1.25rem;color:var(--bg);background:var(--ink)}
+.tile .tt{flex:1;min-width:0}
+.tile .tt .era{display:block;font-family:var(--head);font-weight:500;font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.tile .tt b{display:block;font-family:var(--head);font-weight:700;font-size:1.05rem;line-height:1.2}
+.tile .tt small{color:var(--muted);font-size:.84rem}
+.tile .st{font-size:.85rem;white-space:nowrap;color:var(--pad)}
+.tile.locked{opacity:.45}
+.tile.next{box-shadow:4px 4px 0 var(--ink)}
+.tile.next .n{background:var(--hl);color:var(--ink)}
+.tile.done .n{background:var(--card);color:var(--ink);border:2px solid var(--ink)}
+.tile.special .n{background:var(--ink);font-family:inherit;font-size:1.1rem}
+.badges{display:flex;flex-wrap:wrap;gap:8px}
+.bdg{background:var(--card);border:1.5px solid var(--ink);border-radius:2px;padding:5px 10px;font-family:var(--head);font-size:.82rem;font-weight:500}
+.bdg.off{opacity:.35;filter:grayscale(1)}
+/* lição */
+.head{display:flex;align-items:center;gap:10px;padding:16px 0 6px}
+.back{background:var(--card);border:1.5px solid var(--ink);border-radius:2px;width:40px;height:40px;font-size:1.1rem}
+.head .ht{flex:1;font-family:var(--head);font-weight:700;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase}
+.chip{font-family:var(--head);font-weight:700;font-size:.85rem;white-space:nowrap}
+.dots{display:flex;gap:4px;margin:6px 0 14px}
+.dots i{flex:1;height:7px;background:#d8cfba}
+.dots i.on{background:var(--ink)}
+.card{background:var(--card);border:1.5px solid var(--ink);border-top:5px solid var(--ink);padding:20px 18px;animation:pop .25s ease}
+.card h2{font-size:1.5rem;letter-spacing:.005em}
+.card p{margin:.6em 0}
+.card ul,.card ol{padding-left:1.1em;margin:.5em 0}
+.card li{margin:.35em 0}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.fact{margin:12px 0;padding:10px 12px;border:1.5px solid var(--ink);background:#fff;font-size:.95rem}
+.fact>b:first-child{display:block;font-family:var(--head);font-weight:700;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+.split{display:flex;margin:14px 0;gap:8px}
+.split>div{flex:1;padding:10px 11px;font-size:.92rem;line-height:1.45}
+.split .l{background:var(--isbg);border-left:4px solid var(--is)} .split .r{background:var(--pabg);border-left:4px solid var(--pa)}
+.split b{display:block;font-family:var(--head);font-weight:700;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.split .l b{color:var(--isd)} .split .r b{color:var(--pad)}
+.split::before{content:"COMO CADA LADO VÊ";position:absolute;transform:translateY(-1.45em);font-family:var(--head);font-weight:700;font-size:.66rem;letter-spacing:.14em;color:var(--muted)}
+.split{position:relative;margin-top:26px}
+.deb{margin:12px 0;padding:11px 13px;font-size:.93rem;background:#fff;border-left:4px solid var(--ink)}
+.deb b{display:block;font-family:var(--head);font-size:.86rem;margin-bottom:2px}
+.tip,.warn{padding:11px 13px;margin:12px 0;font-size:.93rem}
+.tip{background:#FFF3C4;border-left:4px solid var(--hl)}.tip b{display:block;font-family:var(--head);font-weight:700;letter-spacing:.03em}
+.warn{background:#EEF0F2;font-size:.86rem}
+.mid{text-align:center;font-family:var(--head);font-weight:500;font-size:.95rem;margin:4px 0 0}
+.nav{display:flex;gap:10px;margin-top:16px}
+.btn{flex:1;background:var(--ink);color:var(--bg);font-family:var(--head);font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:2px;padding:15px;box-shadow:4px 4px 0 var(--hl);font-size:1rem}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--hl)}
+.btn.ghost{background:var(--card);color:var(--ink);border:1.5px solid var(--ink);box-shadow:none;flex:.5}
+.btn.ok{background:var(--ok)}
+/* perguntas */
+.qtag{font-family:var(--head);font-size:.76rem;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.qq{font-family:var(--head);font-weight:700;font-size:1.3rem;margin:6px 0 14px;line-height:1.25}
+.argbox{background:#fff;border:1.5px solid var(--ink);padding:12px 13px;margin:10px 0 4px;font-style:italic}
+.argbox .who{font-style:normal;font-family:var(--head);font-weight:700;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.argbox.is{background:var(--isbg);border-color:var(--is)} .argbox.is .who{color:var(--isd)}
+.argbox.pa{background:var(--pabg);border-color:var(--pa)} .argbox.pa .who{color:var(--pad)}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{text-align:left;background:var(--card);border:1.5px solid var(--ink);border-radius:2px;padding:13px 14px;font-weight:500;box-shadow:3px 3px 0 var(--line)}
+.opt.right{border-color:var(--ok);background:var(--okbg);box-shadow:3px 3px 0 var(--ok)}
+.opt.wrong{border-color:var(--bad);background:var(--badbg);box-shadow:3px 3px 0 var(--bad);animation:shake .3s}
+.opt.dim{opacity:.45}
+.opts.grid2{display:grid;grid-template-columns:1fr 1fr}
+.opts.grid3{display:grid;grid-template-columns:1fr 1fr 1fr}
+.opts.grid3 .opt,.opts.grid2 .opt{text-align:center;font-family:var(--head);font-weight:700}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.fb{padding:12px 14px;margin-top:14px;font-size:.94rem;animation:pop .2s;border:1.5px solid var(--ink)}
+.fb.good{background:var(--okbg)} .fb.badf{background:var(--badbg)}
+.fb b{display:block;font-family:var(--head);letter-spacing:.03em}
+/* resultado */
+.res{text-align:center}
+.big{font-size:3.2rem;margin:4px 0}
+.stars{font-size:2rem;letter-spacing:6px;color:var(--ink)}
+.reward{display:inline-block;background:var(--hl);font-family:var(--head);font-weight:700;padding:6px 14px;margin:6px 4px}
+.deep{background:var(--card);border:1.5px solid var(--ink);padding:16px;margin-top:14px}
+.deep .bk{margin:10px 0}.deep .bk b{display:block;font-family:var(--head)}.deep .bk span{color:var(--muted);font-size:.86rem}
+.deep .yt{display:block;margin-top:10px;color:var(--isd);font-weight:700;font-size:.9rem}
+/* aviso, toast e confete */
+.toast{position:fixed;left:50%;top:78px;transform:translateX(-50%);background:var(--ink);color:var(--bg);font-family:var(--head);font-weight:700;letter-spacing:.04em;padding:8px 16px;z-index:50;animation:toast 1.4s forwards;pointer-events:none;white-space:nowrap}
+@keyframes toast{0%{opacity:0;transform:translate(-50%,10px)}15%{opacity:1;transform:translate(-50%,0)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-14px)}}
+.cf{position:fixed;top:-12px;width:9px;height:14px;z-index:60;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg)}}
+.cert{background:var(--card);border:3px double var(--ink);padding:26px 18px;text-align:center}
+.cert .np{font-family:var(--news);font-size:1.4rem;letter-spacing:.03em}
+.cert .nm{font-family:var(--head);font-size:1.6rem;font-weight:700;margin:8px 0;border-bottom:2px solid var(--ink);padding-bottom:6px}
+input.txt,textarea.txt{width:100%;font:inherit;padding:13px;border:1.5px solid var(--ink);border-radius:2px;background:var(--card);margin:10px 0}
+.foot{color:var(--muted);font-size:.8rem;text-align:center;margin-top:30px}
+.reset{background:none;color:var(--muted);text-decoration:underline;font-size:.8rem;margin-top:6px}
+@media (max-width:370px){.manch{font-size:2.6rem}.split{flex-direction:column}}
+
+/* fontes: selo + toque */
+.fn{display:inline-flex;align-items:center;gap:3px;font-family:var(--head);font-weight:500;font-size:.72rem;letter-spacing:.03em;line-height:1.3;background:var(--hl);color:var(--ink);padding:1px 7px;margin:0 2px;vertical-align:1px;cursor:pointer;border:0;white-space:nowrap}
+.fl{margin:10px 0 0;font-family:var(--head);font-size:.74rem;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+.fl .fn{text-transform:none}
+#fnpop{position:fixed;left:12px;right:12px;bottom:14px;max-width:536px;margin:0 auto;background:var(--ink);color:var(--bg);padding:14px 16px 12px;z-index:70;box-shadow:0 -8px 30px rgba(0,0,0,.3);font-size:.92rem;line-height:1.45;animation:pop .2s}
+#fnpop b{display:block;font-family:var(--head);letter-spacing:.12em;color:var(--hl);font-size:.78rem;margin-bottom:4px}
+#fnpop a{color:var(--hl);font-weight:700}
+#fnpop .x{position:absolute;top:8px;right:10px;background:none;color:var(--bg);font-size:1.1rem}
+.fonteslist{background:var(--card);border:1.5px solid var(--ink);padding:14px 16px;margin-top:14px;text-align:left}
+.fonteslist ol{margin:6px 0 0;padding-left:1.2em;font-size:.86rem}
+.fonteslist li{margin:5px 0}
+.fonteslist a{color:var(--isd);font-weight:700}
+.av-q{font-weight:700;margin:16px 0 6px}.av-row{display:flex;gap:8px;flex-wrap:wrap}.av-row label{flex:1;min-width:52px;text-align:center;border:2px solid currentColor;opacity:.75;border-radius:8px;padding:10px 6px;cursor:pointer}.av-row input{position:absolute;opacity:0;pointer-events:none}.av-row label:has(input:checked){opacity:1;outline:3px solid currentColor;outline-offset:1px;font-weight:700}.av-row input:focus-visible+span{text-decoration:underline}textarea.txt{min-height:74px;resize:vertical}
+.vo{display:block;width:100%;text-align:left;margin:10px 0;padding:14px;border:2px solid currentColor;border-radius:10px;background:transparent;color:inherit;font:inherit;opacity:.85;cursor:pointer}.vo b{display:block;font-size:1.05em}.vo small{opacity:.8}.vo.on{opacity:1;outline:3px solid currentColor;outline-offset:2px}.vside{margin:10px 0 0;padding-top:10px;border-top:1px dashed currentColor}.vside b{display:block;margin-bottom:2px}
+</style>
+<link rel="canonical" href="https://pensemaisuma.com.br/cursos/ditadura-militar/">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+<div id="pmu-bar" style="font-family:Nunito,system-ui,sans-serif;background:#FAF7F0;color:#17150F;border-bottom:1.5px solid #17150F;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:14px;font-weight:800;position:relative;z-index:50">
+<a href="index.html" style="color:inherit;text-decoration:none">← Sobre o curso</a>
+<a href="../../index.html" style="display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none"><img src="../../assets/logo.svg" alt="" width="26" height="26"><span style="font-family:Fraunces,Georgia,serif">Pense Mais Uma</span></a>
+<a href="index.html#avaliar" style="color:inherit">Avaliar</a></div>
+<div id="app"></div>
+<script>
+/* =========================================================
+   CONTEÚDO
+   Regra de neutralidade: fato documentado aparece como fato (com fonte);
+   os dois lados aparecem na interpretação. Azul-ardósia = quem apoiou/defende o regime;
+   ocre = quem se opôs/critica. Nunca pôr um fato ao lado da negação dele.
+   ========================================================= */
+const MODULES = [
+{
+  id:'antes', era:'1961–1964', title:'O Brasil de 1961 a 1964', sub:'Jango, Guerra Fria e um país dividido', badge:'📻 Repórter de 1964',
+  cards:[
+    {t:'Um presidente que renunciou', h:`<p>Jânio Quadros foi eleito presidente em 1960 e <b>renunciou em agosto de 1961</b>, com sete meses de governo.</p>
+      <p>Naquela época, presidente e vice eram votados separadamente. O vice era <b>João Goulart, o Jango</b>, do PTB, herdeiro político de Getúlio Vargas.</p>
+      <p>Os ministros militares tentaram impedir a posse de Jango. A crise só terminou com um acordo: ele assumiria, mas com <b>parlamentarismo</b>, que reduzia os poderes do presidente.</p>
+      <div class="fact"><b>✔ Fato documentado</b>Em janeiro de 1963, um plebiscito devolveu o presidencialismo, com ampla maioria. Jango recuperou os plenos poderes. <button type="button" class="fn" data-f="cpdoc" aria-label="Ver fonte: FGV CPDOC">🔎 FGV CPDOC</button></div>`},
+    {t:'A Guerra Fria chega ao Brasil', h:`<p>O mundo estava dividido entre <b>Estados Unidos</b> (capitalismo) e <b>União Soviética</b> (comunismo).</p>
+      <p>Em 1959 aconteceu a Revolução Cubana, e em 1961 Cuba se declarou socialista. O medo do comunismo cresceu em toda a América Latina, e os EUA passaram a apoiar governos e grupos anticomunistas na região. <button type="button" class="fn" data-f="motta" aria-label="Ver fonte: Patto Sá Motta">🔎 Patto Sá Motta</button></p>
+      <div class="tip"><b>💡 Guarde isso</b>Sem a Guerra Fria, fica difícil entender por que tanta gente, no Brasil e fora dele, via as reformas como um passo rumo ao comunismo.</div>`},
+    {t:'As reformas de base', h:`<p>Jango propunha as <b>reformas de base</b>: reforma agrária, reforma urbana, mudanças na educação, voto para os analfabetos e limites para as empresas estrangeiras mandarem lucros para fora.</p>
+      <div class="fact"><b>✔ Fato documentado</b>Em 13 de março de 1964, num grande comício na Central do Brasil, no Rio, Jango anunciou decretos de desapropriação de terras às margens de rodovias e ferrovias e de estatização de refinarias de petróleo privadas. <button type="button" class="fn" data-f="cpdoc" aria-label="Ver fonte: FGV CPDOC">🔎 FGV CPDOC</button></div>`},
+    {t:'Crise e rua dividida', h:`<ul><li>A inflação chegou perto de <b>80% ao ano em 1963</b>, e a economia desacelerou. <button type="button" class="fn" data-f="ibge" aria-label="Ver fonte: IBGE">🔎 IBGE</button></li>
+      <li>Houve muitas greves, e sindicatos e estudantes pressionavam pelas reformas.</li>
+      <li>Em 19 de março de 1964, a <b>Marcha da Família com Deus pela Liberdade</b> levou uma multidão às ruas de São Paulo contra o governo. <button type="button" class="fn" data-f="ferreira" aria-label="Ver fonte: Ferreira e Gomes, 2014">🔎 Ferreira e Gomes, 2014</button></li>
+      <li>No fim de março, uma revolta de marinheiros no Rio foi vista pelos militares como quebra da hierarquia.</li></ul>`},
+    {t:'Como cada lado via Jango', h:`<div class="split"><div class="l"><b>Quem queria a saída de Jango</b>Ele levava o país ao caos: inflação, greves e reformas que ameaçavam a propriedade e abriam caminho para o comunismo.</div><div class="r"><b>Quem apoiava Jango</b>Era um presidente legítimo, propondo reformas para um país muito desigual. O "perigo comunista" era exagerado para justificar uma derrubada.</div></div>
+      <p class="mid">O país estava dividido ao meio. Esse é o pano de fundo de 1964.</p><p class="fl">Fontes: <button type="button" class="fn" data-f="ferreira" aria-label="Ver fonte: Ferreira e Gomes, 2014">🔎 Ferreira e Gomes, 2014</button> <button type="button" class="fn" data-f="motta" aria-label="Ver fonte: Patto Sá Motta">🔎 Patto Sá Motta</button></p>`}
+  ],
+  quiz:[
+    {q:'Por que João Goulart era presidente em 1964?', o:['Era o vice e assumiu depois da renúncia de Jânio Quadros, em 1961','Venceu a eleição presidencial de 1960','Foi escolhido pelo Congresso em 1962','Foi nomeado pelos militares'], a:0, e:'Naquela época, o vice era eleito separadamente. Jango assumiu quando Jânio renunciou.'},
+    {q:'O que eram as "reformas de base"?', o:['Mudanças propostas por Jango, como reforma agrária e voto para os analfabetos','Um plano dos militares para modernizar o Exército','Um programa de privatizações','A nova Constituição de 1967'], a:0, e:'Eram a principal bandeira do governo Jango e o centro da polarização.'},
+    {q:'O que foi a Marcha da Família com Deus pela Liberdade?', o:['Uma grande manifestação em São Paulo, em março de 1964, contra o governo Jango','Uma manifestação a favor das reformas de base','Um protesto contra a ditadura, em 1968','Uma procissão religiosa sem relação com a política'], a:0, e:'Mostrou que uma parte importante da sociedade era contra o governo.'},
+    {q:'Que sistema foi adotado em 1961 para reduzir os poderes de Jango?', o:['O parlamentarismo','A monarquia','O Estado Novo','O voto indireto para prefeitos'], a:0, e:'O parlamentarismo durou até o plebiscito de janeiro de 1963.'}
+  ]
+},
+{
+  id:'golpe', era:'1964', title:'1964: o golpe', sub:'Como Jango caiu, e quem apoiou', badge:'📰 Testemunha de 1964',
+  cards:[
+    {t:'Do quartel ao Palácio', h:`<div class="fact"><b>✔ Fato documentado</b>Em 31 de março de 1964, tropas comandadas pelo general Olímpio Mourão Filho saíram de Juiz de Fora (MG) em direção ao Rio. Em 1º de abril, sem resistência armada, Jango deixou o Rio. Na madrugada de 2 de abril, o presidente do Congresso declarou vaga a Presidência, com Jango ainda no Brasil. <button type="button" class="fn" data-f="ferreira" aria-label="Ver fonte: Ferreira e Gomes, 2014">🔎 Ferreira e Gomes, 2014</button></div>
+      <p>Dias depois, Jango partiu para o exílio no Uruguai, de onde nunca voltou ao poder.</p>`},
+    {t:'Golpe ou revolução?', h:`<p>Os militares e seus apoiadores chamaram o movimento de <b>"Revolução de 1964"</b>.</p>
+      <div class="fact"><b>✔ O que dizem os historiadores</b>A grande maioria chama de <b>golpe</b>: um presidente foi derrubado pela força, fora das regras da Constituição de 1946. Muitos usam "golpe civil-militar", por causa do apoio de civis. <button type="button" class="fn" data-f="ferreira" aria-label="Ver fonte: Ferreira e Gomes, 2014">🔎 Ferreira e Gomes, 2014</button></div>
+      <div class="split"><div class="l"><b>Quem apoiou</b>Foi uma reação para impedir o comunismo e restaurar a ordem, com amplo apoio da população.</div><div class="r"><b>Quem se opôs</b>Foi a derrubada de um governo constitucional, que interrompeu a democracia por 21 anos.</div></div>`},
+    {t:'Quem apoiou', h:`<div class="fact"><b>✔ Fato documentado</b>Apoiaram o golpe grandes jornais, empresários, setores da Igreja Católica, parte da classe média e governadores como Carlos Lacerda (Guanabara), Magalhães Pinto (Minas) e Adhemar de Barros (São Paulo). <button type="button" class="fn" data-f="ferreira" aria-label="Ver fonte: Ferreira e Gomes, 2014">🔎 Ferreira e Gomes, 2014</button></div>
+      <div class="fact"><b>✔ Fato documentado</b>Documentos americanos que vieram a público a partir de meados dos anos 1970 mostram que os Estados Unidos prepararam apoio militar aos golpistas, a Operação Brother Sam, que acabou não sendo necessária. O novo governo foi reconhecido rapidamente por Washington. <button type="button" class="fn" data-f="brothersam" aria-label="Ver fonte: National Security Archive">🔎 National Security Archive</button> <button type="button" class="fn" data-f="ferreira" aria-label="Ver fonte: Ferreira e Gomes, 2014">🔎 Ferreira e Gomes, 2014</button></div>`},
+    {t:'Era para ser rápido', h:`<p>Muitos civis que apoiaram o golpe esperavam uma intervenção curta, com eleição presidencial em 1965. Carlos Lacerda, por exemplo, queria ser candidato. <button type="button" class="fn" data-f="ferreira" aria-label="Ver fonte: Ferreira e Gomes, 2014">🔎 Ferreira e Gomes, 2014</button></p>
+      <p>Mas em 9 de abril saiu o <b>primeiro Ato Institucional</b>, e em 11 de abril o Congresso, já sem os parlamentares cassados, elegeu o general <b>Castelo Branco</b>. Os militares ficariam 21 anos no poder. <button type="button" class="fn" data-f="atos" aria-label="Ver fonte: Atos Institucionais">🔎 Atos Institucionais</button></p>
+      <div class="split"><div class="l"><b>Como vê quem apoiou</b>A intervenção evitou que o Brasil virasse uma nova Cuba.</div><div class="r"><b>Como vê quem se opôs</b>Não havia ameaça real que justificasse derrubar a democracia, e a "intervenção rápida" virou ditadura.</div></div>`}
+  ],
+  quiz:[
+    {q:'Quem declarou vaga a Presidência em 2 de abril de 1964, com Jango ainda no Brasil?', o:['O presidente do Congresso, Auro de Moura Andrade','O Supremo Tribunal Federal','O próprio Jango, ao renunciar','O general Castelo Branco'], a:0, e:'Jango não renunciou nem passou por impeachment. A vacância foi declarada com ele no país.'},
+    {q:'Como os apoiadores chamavam o movimento de 1964?', o:['Revolução','Intentona','Abertura','Estado Novo'], a:0, e:'O termo "Revolução de 1964" foi usado oficialmente pelo regime. Hoje os historiadores, em sua grande maioria, falam em golpe.'},
+    {q:'Que país preparou apoio militar ao golpe, que acabou não sendo usado?', o:['Estados Unidos','União Soviética','França','Argentina'], a:0, e:'A Operação Brother Sam veio a público a partir de meados dos anos 1970, com documentos americanos.'},
+    {q:'Quem foi o primeiro presidente do regime militar?', o:['Castelo Branco','Costa e Silva','Médici','Figueiredo'], a:0, e:'Castelo Branco foi eleito pelo Congresso em 11 de abril de 1964.'}
+  ],
+  flash:{title:'Fato ou interpretação?', ch:['✅ Fato','💬 Interpretação'], items:[
+    {t:'A Presidência foi declarada vaga com Jango ainda no Brasil.', a:0, e:'Está registrado nos anais do Congresso.'},
+    {t:'O golpe salvou o Brasil do comunismo.', a:1, e:'É a leitura de quem apoiou 1964. Historiadores discutem se havia risco real de uma tomada comunista.'},
+    {t:'Os EUA prepararam apoio militar aos golpistas.', a:0, e:'Documentos americanos que vieram a público a partir de meados dos anos 1970 mostram a Operação Brother Sam.'},
+    {t:'Jango queria implantar uma ditadura de esquerda.', a:1, e:'Era o que diziam seus adversários. Seus defensores negam, e os historiadores debatem.'},
+    {t:'Grandes jornais apoiaram a derrubada de Jango.', a:0, e:'Os editoriais da época mostram isso. Alguns jornais reconheceram, décadas depois, que o apoio foi um erro.'}
+  ]}
+},
+{
+  id:'atos', era:'1964–1968', title:'Os generais e os Atos Institucionais', sub:'Como o regime se organizou', badge:'📜 Leitor de Decretos',
+  cards:[
+    {t:'Cinco generais-presidentes', h:`<ul><li><b>Castelo Branco</b> (1964–1967)</li><li><b>Costa e Silva</b> (1967–1969)</li><li><b>Médici</b> (1969–1974)</li><li><b>Geisel</b> (1974–1979)</li><li><b>Figueiredo</b> (1979–1985)</li></ul>
+      <p>Todos foram escolhidos de forma <b>indireta</b>, por um Congresso ou Colégio Eleitoral controlado pelo regime. Na prática, a escolha era feita dentro das Forças Armadas. <button type="button" class="fn" data-f="gaspari1" aria-label="Ver fonte: Gaspari, 2002">🔎 Gaspari, 2002</button></p>`},
+    {t:'O que é um Ato Institucional?', h:`<p>Eram decretos que ficavam <b>acima da Constituição</b>. Os presidentes militares os usavam para mudar as regras do jogo. <button type="button" class="fn" data-f="atos" aria-label="Ver fonte: Atos Institucionais">🔎 Atos Institucionais</button></p>
+      <ul><li><b>AI-1 (1964):</b> permitiu cassar mandatos e suspender direitos políticos.</li><li><b>AI-2 (1965):</b> acabou com os partidos existentes e tornou indireta a eleição para presidente.</li><li><b>AI-3 (1966):</b> tornou indireta a eleição para governador.</li></ul>`},
+    {t:'Só dois partidos', h:`<p>Depois do AI-2, só eram permitidos dois partidos: a <b>ARENA</b>, que apoiava o governo, e o <b>MDB</b>, a oposição consentida.</p>
+      <p>Continuou havendo eleições para deputados e senadores, mas com regras definidas pelo regime e com cassações de quem incomodasse. Em 1966, o Congresso foi fechado por cerca de um mês. <button type="button" class="fn" data-f="gaspari1" aria-label="Ver fonte: Gaspari, 2002">🔎 Gaspari, 2002</button></p>`},
+    {t:'1968 e o AI-5', h:`<p>Em 1968 cresceram os protestos estudantis. A morte do estudante <b>Edson Luís</b>, baleado pela polícia no Rio, levou multidões às ruas, e houve a Passeata dos Cem Mil. <button type="button" class="fn" data-f="gaspari1" aria-label="Ver fonte: Gaspari, 2002">🔎 Gaspari, 2002</button></p>
+      <div class="fact"><b>✔ Fato documentado</b>Em 13 de dezembro de 1968, o governo baixou o <b>AI-5</b>: fechou o Congresso, permitiu cassar mandatos sem processo, suspendeu o habeas corpus para crimes políticos e ampliou a censura. <button type="button" class="fn" data-f="atos" aria-label="Ver fonte: Atos Institucionais">🔎 Atos Institucionais</button></div>
+      <div class="split"><div class="l"><b>Quem defendia o regime</b>Foi uma resposta necessária à escalada de protestos e ao começo da luta armada.</div><div class="r"><b>Quem criticava</b>Foi "o golpe dentro do golpe", que acabou com o que restava de liberdade e abriu caminho para a repressão sem limites.</div></div>`}
+  ],
+  quiz:[
+    {q:'O que foi o AI-5?', o:['Um decreto de 1968 que fechou o Congresso e suspendeu o habeas corpus para crimes políticos','A lei que acabou com a ditadura','A quinta Constituição do Brasil','Um acordo entre o governo e a oposição'], a:0, e:'O AI-5 valeu até o fim de 1978 e marcou o período mais duro do regime.'},
+    {q:'Quais eram os dois partidos permitidos depois de 1965?', o:['ARENA e MDB','UDN e PSD','PT e PSDB','PCB e PTB'], a:0, e:'UDN e PSD existiam antes e foram extintos pelo AI-2.'},
+    {q:'Quem foi o último presidente militar?', o:['João Figueiredo','Ernesto Geisel','Emílio Médici','Castelo Branco'], a:0, e:'Figueiredo governou de 1979 a 1985.'},
+    {q:'Como o presidente era escolhido durante o regime?', o:['De forma indireta, por um colégio controlado pelo regime','Pelo voto direto da população','Por sorteio entre os generais','Por plebiscito a cada quatro anos'], a:0, e:'O voto direto para presidente só voltou em 1989.'}
+  ]
+},
+{
+  id:'chumbo', era:'1968–1974', title:'Anos de chumbo', sub:'Censura, tortura e luta armada', badge:'🕯️ Memória Viva',
+  cards:[
+    {t:'A censura', h:`<p>Jornais, músicas, peças de teatro, filmes e livros passavam por censores. Muita coisa foi proibida.</p>
+      <div class="fact"><b>✔ Fato documentado</b>Quando um texto era cortado, alguns jornais publicavam no lugar <b>receitas culinárias e versos de poemas</b>, como forma de mostrar ao leitor que ali havia censura. <button type="button" class="fn" data-f="censura" aria-label="Ver fonte: Acervo Estadão">🔎 Acervo Estadão</button></div>
+      <p>É por isso que este curso tem tarjas pretas na capa.</p>`},
+    {t:'A luta armada', h:`<div class="fact"><b>✔ Fato documentado</b>Alguns grupos de esquerda, como a ALN e o MR-8, escolheram a luta armada: assaltos a bancos, atentados e sequestros de diplomatas. Em 1969, o embaixador americano Charles Elbrick foi sequestrado e trocado por 15 presos políticos. <button type="button" class="fn" data-f="gaspari2" aria-label="Ver fonte: Gaspari, 2002">🔎 Gaspari, 2002</button></div>
+      <p>No sul do Pará, o PCdoB organizou a <b>Guerrilha do Araguaia</b>, derrotada pelo Exército nos anos 1970.</p>
+      <p>Essas ações também deixaram mortos, entre militares, policiais e civis.</p>`},
+    {t:'Tortura, mortes e desaparecimentos', h:`<div class="fact"><b>✔ Fato documentado</b>Presos políticos foram torturados em órgãos como o DOI-Codi. A Comissão Nacional da Verdade (2014) confirmou <b>434 mortos e desaparecidos</b> pela ação de agentes do Estado, dos quais <b>210 continuam desaparecidos</b>, e apontou 377 agentes como responsáveis. <button type="button" class="fn" data-f="cnv" aria-label="Ver fonte: CNV, 2014">🔎 CNV, 2014</button></div>
+      <p>A comissão afirma que o número real pode ser maior. Ela também estimou que pelo menos 8.350 indígenas morreram em consequência de ações e omissões do Estado, número que não entra nos 434. <button type="button" class="fn" data-f="indigenas" aria-label="Ver fonte: Agência Pública, 2025">🔎 Agência Pública, 2025</button></p>
+      <div class="tip"><b>💡 Fato não tem dois lados</b>Que houve tortura está registrado em processos da própria Justiça Militar, em depoimentos e no relatório oficial. O debate é sobre o contexto e as responsabilidades, não sobre se aconteceu. <button type="button" class="fn" data-f="bnm" aria-label="Ver fonte: Brasil: Nunca Mais">🔎 Brasil: Nunca Mais</button></div>`},
+    {t:'Como cada lado vê os anos de chumbo', h:`<div class="split"><div class="l"><b>Quem defende o regime</b>O país enfrentava grupos armados que queriam implantar o comunismo, e as Forças Armadas agiram para vencê-los.</div><div class="r"><b>Quem critica o regime</b>A repressão atingiu muito além dos guerrilheiros: estudantes, jornalistas, artistas, padres e camponeses. E a tortura foi uma política de Estado, como concluiu a Comissão da Verdade. <button type="button" class="fn" data-f="cnv" aria-label="Ver fonte: CNV, 2014">🔎 CNV, 2014</button></div></div>
+      <p class="mid">Os dois lados lembram mortos. Entender isso ajuda a conversar.</p><p class="fl">Fontes: <button type="button" class="fn" data-f="gaspari2" aria-label="Ver fonte: Gaspari, 2002">🔎 Gaspari, 2002</button> <button type="button" class="fn" data-f="cnv" aria-label="Ver fonte: CNV, 2014">🔎 CNV, 2014</button></p>`}
+  ],
+  quiz:[
+    {q:'Quantos mortos e desaparecidos a Comissão Nacional da Verdade confirmou?', o:['434','43','4.340','43.400'], a:0, e:'Do total, 210 continuam desaparecidos. A comissão diz que o número real pode ser maior.'},
+    {q:'O que os sequestradores do embaixador americano pediram em troca, em 1969?', o:['A libertação de 15 presos políticos','Um resgate em dinheiro','O fim do AI-5','Eleições diretas'], a:0, e:'Os presos foram libertados e levados para o México.'},
+    {q:'O que alguns jornais publicavam no lugar dos textos cortados pela censura?', o:['Receitas culinárias e versos de poemas','Anúncios do governo','Fotos de futebol','Notícias de outros países'], a:0, e:'Era um jeito de avisar o leitor de que ali havia censura.'},
+    {q:'O que foi a Guerrilha do Araguaia?', o:['Uma guerrilha do PCdoB no sul do Pará, derrotada pelo Exército nos anos 1970','A revolta dos marinheiros de 1964','Um protesto estudantil no Rio em 1968','A campanha das Diretas Já'], a:0, e:'Muitos guerrilheiros mortos no Araguaia continuam desaparecidos.'}
+  ],
+  flash:{title:'Fato ou interpretação?', ch:['✅ Fato','💬 Interpretação'], items:[
+    {t:'Houve tortura de presos políticos durante a ditadura.', a:0, e:'Está documentado em processos, depoimentos e no relatório da Comissão da Verdade.'},
+    {t:'Grupos de esquerda sequestraram diplomatas estrangeiros.', a:0, e:'Foram quatro sequestros de diplomatas entre 1969 e 1970.'},
+    {t:'A repressão foi necessária para salvar o país.', a:1, e:'É a leitura de quem defende o regime, e é contestada por quem o critica.'},
+    {t:'A luta armada só existiu porque o regime fechou os caminhos legais.', a:1, e:'É uma leitura comum à esquerda. Outros lembram que parte desses grupos defendia a revolução antes de 1964.'},
+    {t:'Músicas e peças de teatro foram proibidas pela censura.', a:0, e:'Há registros oficiais dos vetos da Censura Federal.'}
+  ]}
+},
+{
+  id:'milagre', era:'1968–1985', title:'O milagre e a conta', sub:'Crescimento, desigualdade e dívida', badge:'📈 Economista de Banca',
+  cards:[
+    {t:'O "milagre econômico"', h:`<div class="fact"><b>✔ Fato documentado</b>Entre 1968 e 1973, a economia brasileira cresceu em média <b>mais de 10% ao ano</b> (cerca de 11%). <button type="button" class="fn" data-f="milagre" aria-label="Ver fonte: Veloso, Valor, 2007">🔎 Veloso, Valor, 2007</button></div>
+      <p>Foi a época de grandes obras, como a Ponte Rio-Niterói e a Transamazônica, e do acordo para construir Itaipu. Muita gente da classe média comprou o primeiro carro e a primeira TV.</p>
+      <p>O governo aproveitou o clima, com a Copa de 1970 e slogans como "Brasil, ame-o ou deixe-o".</p>`},
+    {t:'Quem ganhou mais', h:`<div class="fact"><b>✔ Fato documentado</b>A desigualdade de renda <b>aumentou</b> no período. Os mais ricos ficaram com uma fatia maior da renda, e o salário mínimo perdeu poder de compra. <button type="button" class="fn" data-f="ibge" aria-label="Ver fonte: IBGE">🔎 IBGE</button></div>
+      <p>O ministro Delfim Netto ficou associado à ideia de "fazer o bolo crescer para depois dividir".</p>`},
+    {t:'A conta chegou', h:`<ul><li>As crises do petróleo de 1973 e 1979 encareceram tudo.</li>
+      <li>O crescimento tinha sido financiado com empréstimos, e a <b>dívida externa</b> passou de 100 bilhões de dólares nos anos 1980. <button type="button" class="fn" data-f="ibge" aria-label="Ver fonte: IBGE">🔎 IBGE</button></li>
+      <li>A inflação passou de <b>200% ao ano</b> em meados dos anos 1980. <button type="button" class="fn" data-f="ibge" aria-label="Ver fonte: IBGE">🔎 IBGE</button></li></ul>
+      <p>Os anos 1980 ficaram conhecidos como a <b>"década perdida"</b>.</p>`},
+    {t:'Como cada lado vê a economia', h:`<div class="split"><div class="l"><b>Quem defende o regime</b>Ele modernizou o país, construiu infraestrutura e transformou o Brasil numa economia industrial.</div><div class="r"><b>Quem critica o regime</b>O crescimento concentrou renda, achatou salários e deixou uma dívida que custou uma década inteira.</div></div>
+      <div class="tip"><b>💡 Para pensar</b>Os dois lados citam números verdadeiros. A discussão é sobre qual deles pesa mais.</div><p class="fl">Fontes: <button type="button" class="fn" data-f="milagre" aria-label="Ver fonte: Veloso, Valor, 2007">🔎 Veloso, Valor, 2007</button> <button type="button" class="fn" data-f="ibge" aria-label="Ver fonte: IBGE">🔎 IBGE</button></p>`}
+  ],
+  quiz:[
+    {q:'Quanto a economia cresceu, em média por ano, no "milagre" (1968–1973)?', o:['Mais de 10%','Cerca de 2%','Cerca de 5%','Mais de 25%'], a:0, e:'Foi um dos crescimentos mais rápidos do mundo na época.'},
+    {q:'O que aconteceu com a desigualdade de renda durante o regime?', o:['Aumentou','Caiu muito','Ficou igual','Acabou'], a:0, e:'A concentração de renda é um dos pontos mais citados pelos críticos.'},
+    {q:'Qual destas obras é do período militar?', o:['A Ponte Rio-Niterói','Brasília','O Cristo Redentor','O Maracanã'], a:0, e:'Brasília foi inaugurada em 1960, por Juscelino Kubitschek. A ponte é de 1974.'},
+    {q:'Por que os anos 1980 ficaram conhecidos como "década perdida"?', o:['Pela crise da dívida, pela inflação altíssima e pela economia parada','Por causa de uma guerra','Porque o Brasil perdeu duas Copas','Por causa de uma pandemia'], a:0, e:'A conta do crescimento com dívida chegou junto com o fim do regime.'}
+  ]
+},
+{
+  id:'abertura', era:'1974–1979', title:'Abertura e Anistia', sub:'"Lenta, gradual e segura"', badge:'🔓 Abridor de Portas',
+  cards:[
+    {t:'Geisel e a abertura', h:`<p>O general Ernesto Geisel assumiu em 1974 prometendo uma abertura <b>"lenta, gradual e segura"</b>.</p>
+      <p>Na eleição de 1974, o MDB ganhou 16 das 22 vagas em disputa no Senado, um recado das urnas. <button type="button" class="fn" data-f="senado77" aria-label="Ver fonte: Agência Senado, 2017">🔎 Agência Senado, 2017</button></p>
+      <p>Mas houve recuos: em 1977, o <b>Pacote de Abril</b> fechou o Congresso por duas semanas e criou os "senadores biônicos", escolhidos de forma indireta. <button type="button" class="fn" data-f="senado77" aria-label="Ver fonte: Agência Senado, 2017">🔎 Agência Senado, 2017</button></p>`},
+    {t:'O caso Herzog', h:`<div class="fact"><b>✔ Fato documentado</b>Em 1975, o jornalista <b>Vladimir Herzog</b> morreu nas dependências do DOI-Codi de São Paulo. O regime afirmou que foi suicídio. Em 2012, a Justiça mandou corrigir a certidão de óbito para registrar morte por lesões e maus-tratos. <button type="button" class="fn" data-f="tjsp2012" aria-label="Ver fonte: TJ-SP, 2012">🔎 TJ-SP, 2012</button> Em 2018, a Corte Interamericana de Direitos Humanos condenou o Brasil pelo caso. <button type="button" class="fn" data-f="herzog" aria-label="Ver fonte: Corte IDH, 2018">🔎 Corte IDH, 2018</button></div>
+      <p>Um culto ecumênico na Catedral da Sé reuniu milhares de pessoas e virou um marco da resistência. Depois de uma nova morte no mesmo local, em 1976, Geisel afastou o comandante do Exército em São Paulo. <button type="button" class="fn" data-f="gaspari4" aria-label="Ver fonte: Gaspari, 2004">🔎 Gaspari, 2004</button></p>`},
+    {t:'A Lei da Anistia (1979)', h:`<div class="fact"><b>✔ Fato documentado</b>Em agosto de 1979, o presidente Figueiredo sancionou a Lei da Anistia. Ela perdoou crimes políticos e "conexos" de 1961 a 1979 e permitiu a volta de exilados. Ficaram de fora os já condenados por terrorismo, assalto, sequestro e atentado pessoal. A lei passou a ser interpretada como valendo também para agentes do Estado acusados de tortura. <button type="button" class="fn" data-f="anistia" aria-label="Ver fonte: Lei 6.683/1979">🔎 Lei 6.683/1979</button></div>
+      <p>No mesmo ano, acabou o bipartidarismo, e surgiram novos partidos.</p>`},
+    {t:'Anistia: acordo ou impunidade?', h:`<div class="split"><div class="l"><b>Quem defende a lei como está</b>Foi um acordo que permitiu uma transição sem violência e valeu para os dois lados. Reabrir agora reacende feridas.</div><div class="r"><b>Quem critica</b>Quase nenhum torturador foi julgado: a primeira condenação criminal de um agente, em primeira instância, só veio em 2021. Crimes contra a humanidade não podem ser anistiados, como já decidiu a Corte Interamericana. <button type="button" class="fn" data-f="hrw2021" aria-label="Ver fonte: HRW, 2021">🔎 HRW, 2021</button> <button type="button" class="fn" data-f="herzog" aria-label="Ver fonte: Corte IDH, 2018">🔎 Corte IDH, 2018</button></div></div>
+      <div class="fact"><b>✔ Fato documentado</b>Em 2010, o STF decidiu que a lei continua valendo, inclusive para agentes do Estado. A fase 8 mostra o que mudou desde então. <button type="button" class="fn" data-f="adpf" aria-label="Ver fonte: STF, 2010">🔎 STF, 2010</button></div>`}
+  ],
+  quiz:[
+    {q:'Como Geisel descreveu a abertura política?', o:['Lenta, gradual e segura','Ampla, geral e irrestrita','Rápida e total','Imediata e popular'], a:0, e:'"Ampla, geral e irrestrita" era o lema do movimento pela anistia, e não a promessa do governo.'},
+    {q:'Quem foi Vladimir Herzog?', o:['Um jornalista morto sob custódia do DOI-Codi em 1975','Um general da linha dura','Um guerrilheiro do Araguaia','O presidente do MDB'], a:0, e:'A versão oficial de suicídio foi derrubada décadas depois.'},
+    {q:'O que a Lei da Anistia de 1979 permitiu?', o:['O perdão a crimes políticos e a volta dos exilados, e ela foi aplicada também a agentes do Estado','Apenas a prisão de torturadores','O fim imediato do regime militar','A volta da eleição direta para presidente'], a:0, e:'Por ter valido para os dois lados, até hoje é alvo de debate.'},
+    {q:'O que o STF decidiu sobre a Lei da Anistia em 2010?', o:['Que ela continua valendo, inclusive para agentes do Estado','Que ela era inconstitucional','Que os torturadores deviam ser presos','Que ela só valia para militares'], a:0, e:'A decisão foi no julgamento conhecido como ADPF 153.'}
+  ]
+},
+{
+  id:'diretas', era:'1980–1988', title:'Diretas Já e o fim', sub:'Da rua à Constituição', badge:'🗳️ Eleitor das Diretas',
+  cards:[
+    {t:'Governadores eleitos de novo', h:`<p>Em 1982, os brasileiros voltaram a eleger governadores pelo voto direto. A oposição venceu em estados importantes, como São Paulo, Rio de Janeiro e Minas Gerais. <button type="button" class="fn" data-f="cpdoc" aria-label="Ver fonte: FGV CPDOC">🔎 FGV CPDOC</button></p>`},
+    {t:'Diretas Já', h:`<p>Em 1984, uma campanha pediu a aprovação da <b>emenda Dante de Oliveira</b>, que restabelecia a eleição direta para presidente. Comícios gigantes reuniram multidões no Rio e em São Paulo.</p>
+      <div class="fact"><b>✔ Fato documentado</b>Em 25 de abril de 1984, a emenda teve 298 votos a favor e 65 contra na Câmara, mas precisava de dois terços dos deputados. Faltaram 22 votos, e ela foi derrotada. <button type="button" class="fn" data-f="diretas" aria-label="Ver fonte: Agência Brasil, 2024">🔎 Agência Brasil, 2024</button></div>`},
+    {t:'Tancredo, Sarney e 1985', h:`<p>Em 15 de janeiro de 1985, o Colégio Eleitoral escolheu <b>Tancredo Neves</b> (PMDB), que venceu Paulo Maluf (PDS).</p>
+      <p>Tancredo adoeceu na véspera da posse e morreu em 21 de abril. Quem assumiu foi o vice, <b>José Sarney</b>, em 15 de março de 1985: o primeiro presidente civil desde 1964. <button type="button" class="fn" data-f="cpdoc" aria-label="Ver fonte: FGV CPDOC">🔎 FGV CPDOC</button></p>`},
+    {t:'A Constituição de 1988', h:`<div class="fact"><b>✔ Fato documentado</b>Em 5 de outubro de 1988, foi promulgada a Constituição atual, apelidada de "Constituição Cidadã" por Ulysses Guimarães. Ela garantiu eleições diretas, o voto facultativo aos 16 anos e tornou a tortura crime inafiançável. <button type="button" class="fn" data-f="cf88" aria-label="Ver fonte: Constituição de 1988">🔎 Constituição de 1988</button></div>
+      <p>Em 1989, o Brasil voltou a escolher o presidente pelo voto direto.</p>`},
+    {t:'Como cada lado vê o fim', h:`<div class="split"><div class="l"><b>Quem defende o regime</b>Os militares devolveram o poder de forma pacífica e planejada, como tinham prometido.</div><div class="r"><b>Quem critica o regime</b>O regime saiu por desgaste, crise econômica e pressão das ruas, e negociou garantias para si, como a anistia.</div></div><p class="fl">Fontes: <button type="button" class="fn" data-f="gaspari5" aria-label="Ver fonte: Gaspari, 2016">🔎 Gaspari, 2016</button></p>`}
+  ],
+  quiz:[
+    {q:'O que pedia a campanha Diretas Já?', o:['Eleição direta para presidente','O fim da Lei da Anistia','A volta da monarquia','A convocação de uma Copa no Brasil'], a:0, e:'A campanha apoiava a emenda Dante de Oliveira.'},
+    {q:'Por que a emenda das Diretas foi derrotada em 1984?', o:['Teve maioria na Câmara, mas não alcançou os dois terços necessários','O Senado vetou a emenda','Os militares fecharam o Congresso','O STF anulou a votação'], a:0, e:'Foram 298 votos a favor; faltaram 22.'},
+    {q:'Quem assumiu a Presidência em 15 de março de 1985?', o:['José Sarney, vice de Tancredo','Tancredo Neves','Ulysses Guimarães','Paulo Maluf'], a:0, e:'Tancredo adoeceu na véspera da posse e morreu em abril.'},
+    {q:'Quando foi promulgada a Constituição atual?', o:['1988','1985','1989','1946'], a:0, e:'Em 5 de outubro de 1988.'}
+  ]
+},
+{
+  id:'memoria', era:'HOJE', title:'A memória hoje', sub:'Comissão da Verdade, Anistia e o 31 de março', badge:'🧭 Guardião da Memória',
+  cards:[
+    {t:'A Comissão Nacional da Verdade', h:`<div class="fact"><b>✔ Fato documentado</b>Criada por lei em 2011, a comissão trabalhou de 2012 a 2014. O relatório final confirmou 434 mortos e desaparecidos, 210 deles ainda desaparecidos, e listou 377 agentes do Estado como responsáveis por violações. <button type="button" class="fn" data-f="cnv" aria-label="Ver fonte: CNV, 2014">🔎 CNV, 2014</button></div>
+      <div class="split"><div class="l"><b>Quem critica a comissão</b>Ela investigou só os crimes de agentes do Estado e deixou de fora as vítimas da luta armada.</div><div class="r"><b>Quem defende a comissão</b>O papel dela era investigar o Estado, que deveria proteger os cidadãos. Os guerrilheiros já tinham sido presos, processados ou mortos na época.</div></div><p class="fl">Fontes: <button type="button" class="fn" data-f="cnv" aria-label="Ver fonte: CNV, 2014">🔎 CNV, 2014</button></p>`},
+    {t:'Certidões corrigidas', h:`<div class="fact"><b>✔ Fato documentado</b>Em dezembro de 2024, uma resolução do Conselho Nacional de Justiça mandou corrigir as certidões de óbito das vítimas reconhecidas pela Comissão da Verdade, para registrar que a morte foi causada pelo Estado. Desde 2025, famílias recebem as certidões corrigidas em cerimônias pelo país. <button type="button" class="fn" data-f="cnj" aria-label="Ver fonte: CNJ, Res. 601/2024">🔎 CNJ, Res. 601/2024</button> <button type="button" class="fn" data-f="certidoes" aria-label="Ver fonte: Agência Gov, 2025">🔎 Agência Gov, 2025</button></div>`},
+    {t:'A Lei da Anistia volta ao STF', h:`<p>Em 2010, o STF manteve a Lei da Anistia. Mas uma dúvida ficou aberta: ela vale para crimes que <b>continuam acontecendo</b>, como a ocultação de um corpo que nunca foi entregue à família?</p>
+      <div class="fact"><b>✔ Fato documentado</b>Em fevereiro de 2026, o STF começou a julgar a questão no plenário virtual. O relator, Flávio Dino, votou para que a anistia não alcance crimes como sequestro e ocultação de cadáver. Alexandre de Moraes pediu vista e, em março, levou o caso, junto com outros três, para o plenário presencial. Até nov/2026, não havia decisão final. <button type="button" class="fn" data-f="stf2026" aria-label="Ver fonte: STF, 2026">🔎 STF, 2026</button></div>
+      <p>O tema ganhou força com o filme <b>"Ainda Estou Aqui"</b>, sobre a família do ex-deputado Rubens Paiva, que deu ao Brasil o Oscar de filme internacional em 2025. <button type="button" class="fn" data-f="oscar" aria-label="Ver fonte: Oscar 2025">🔎 Oscar 2025</button></p>`},
+    {t:'31 de março: lembrar ou celebrar?', h:`<div class="fact"><b>✔ Fato documentado</b>Numa pesquisa Datafolha de março de 2024, 63% disseram que a data do golpe deve ser desprezada, 28% que deve ser celebrada e 9% não souberam responder. Em 2019, eram 57% e 36%. <button type="button" class="fn" data-f="datafolha" aria-label="Ver fonte: Datafolha, 2024">🔎 Datafolha, 2024</button></div>
+      <div class="split"><div class="l"><b>Quem celebra</b>Vê 1964 como a reação que evitou o comunismo e quer homenagear os militares.</div><div class="r"><b>Quem rejeita</b>Vê a data como o começo de 21 anos sem democracia, com mortos, desaparecidos e censura.</div></div>
+      <div class="tip"><b>💡 Para pensar</b>O que um país deve fazer com as datas difíceis da própria história?</div>`}
+  ],
+  quiz:[
+    {q:'Quantos agentes do Estado a Comissão da Verdade apontou como responsáveis por violações?', o:['377','37','77','3.770'], a:0, e:'O relatório final foi entregue em dezembro de 2014.'},
+    {q:'O que a resolução do CNJ de dezembro de 2024 determinou?', o:['A correção das certidões de óbito das vítimas reconhecidas pela Comissão da Verdade','A prisão dos agentes citados no relatório','O fim da Lei da Anistia','Um feriado nacional em memória das vítimas'], a:0, e:'As certidões passaram a registrar que a morte foi causada pelo Estado.'},
+    {q:'O que o STF começou a julgar em 2026 sobre a Lei da Anistia?', o:['Se ela vale para crimes que continuam até hoje, como sequestro e ocultação de cadáver','Se o golpe de 1964 foi legal','Se a lei vale para Jango','Se o AI-5 ainda está em vigor'], a:0, e:'O julgamento foi levado ao plenário presencial e ainda não terminou.'},
+    {q:'Na pesquisa Datafolha de 2024, o que a maioria disse sobre o 31 de março de 1964?', o:['Que a data deve ser desprezada','Que a data deve ser celebrada','Que a data deve virar feriado','Que não sabe o que aconteceu'], a:0, e:'Foram 63% contra 28%.'}
+  ],
+  flash:{title:'Fato ou interpretação?', ch:['✅ Fato','💬 Interpretação'], items:[
+    {t:'A Comissão da Verdade confirmou 434 mortos e desaparecidos.', a:0, e:'Está no relatório final, de 2014.'},
+    {t:'A Lei da Anistia deveria ser revista.', a:1, e:'É uma posição defendida por uns e rejeitada por outros.'},
+    {t:'O 31 de março deve ser comemorado.', a:1, e:'É uma opinião. A maioria, segundo o Datafolha, pensa o contrário.'},
+    {t:'Famílias de vítimas receberam certidões de óbito corrigidas.', a:0, e:'As entregas começaram em 2025.'},
+    {t:'A Comissão da Verdade investigou só os crimes de agentes do Estado.', a:0, e:'Foi uma decisão da própria comissão, em 2012.'}
+  ]}
+}
+];
+
+/* Jogo "Advogado do outro lado": a 1ª opção é a resposta forte (embaralhada na tela). 3 argumentos de cada lado.
+   is = quem defende o regime · pa = quem critica o regime */
+const STEEL = [
+  {side:'is', who:'Argumento de quem defende o regime', arg:'O golpe de 1964 evitou que o Brasil virasse uma nova Cuba.',
+   o:['Muitos historiadores apontam que não havia, em 1964, uma força de esquerda capaz de tomar o poder, e a democracia tinha meios legais, como as eleições de 1965 e o próprio Congresso, para conter o governo.','Quem diz isso tem saudade da tortura.','Então você acha que Cuba é um bom exemplo?','Ninguém acredita mais nisso hoje.'],
+   e:'A resposta forte discute o argumento com fatos. As outras atacam a pessoa, distorcem o que foi dito ou apelam à maioria.'},
+  {side:'pa', who:'Argumento de quem critica o regime', arg:'A Lei da Anistia deveria ser anulada para punir todos os torturadores.',
+   o:['A lei fez parte de um acordo que trouxe os exilados de volta e permitiu uma transição sem violência, e o STF a manteve em 2010. Anular tudo agora também levanta dúvidas sobre segurança jurídica e sobre punir décadas depois.','Quem defende isso quer vingança, não justiça.','Então você quer abrir uma guerra civil?','Isso foi há muito tempo, ninguém liga mais.'],
+   e:'A resposta forte traz os motivos de quem defende a lei. As outras rotulam, exageram ou fogem do assunto.'},
+  {side:'is', who:'Argumento de quem defende o regime', arg:'O milagre econômico prova que o regime foi bom para o país.',
+   o:['O crescimento foi real, mas veio com concentração de renda, salários achatados e uma dívida que levou à "década perdida". E outros países cresceram muito sem ditadura.','Isso é coisa de quem odeia o Brasil.','Então você acha que democracia não funciona?','Nenhum economista concorda com isso.'],
+   e:'A resposta forte reconhece o dado e mostra o outro lado da conta. As outras atacam, distorcem ou exageram.'},
+  {side:'pa', who:'Argumento de quem critica o regime', arg:'Os civis que apoiaram o golpe, como jornais, empresários e políticos, também têm responsabilidade pelo que veio depois.',
+   o:['A responsabilidade não foi igual para todos: muitos apoiaram uma intervenção curta, com eleições em 1965, e romperam com o regime depois. Carlos Lacerda, por exemplo, teve os direitos políticos cassados em 1968. Responsabilizar todos da mesma forma ignora essas diferenças.','Quem diz isso é comunista.','Então ninguém pode ser responsabilizado por nada?','A maioria dos brasileiros apoiou, então estava certo.'],
+   e:'A resposta forte usa um fato para mostrar que a responsabilidade não foi igual para todos. As outras rotulam, distorcem ou apelam à maioria.'},
+  {side:'is', who:'Argumento de quem defende o regime', arg:'A luta armada da esquerda também matou, e isso precisa ser lembrado.',
+   o:['É verdade, houve vítimas da luta armada e elas devem ser lembradas. Mas há uma diferença: a tortura e os desaparecimentos foram praticados pelo próprio Estado, que deveria proteger os cidadãos, e quase nenhum agente foi julgado: a primeira condenação criminal, em primeira instância, só saiu em 2021, enquanto muitos guerrilheiros foram presos e processados na época.','Isso é desculpa de torturador.','Isso nunca aconteceu, é invenção.','Ninguém se importa com isso.'],
+   e:'A resposta forte aceita o ponto verdadeiro e explica a diferença. Negar um fato, como a opção "nunca aconteceu", é a pior resposta possível.'},
+  {side:'pa', who:'Argumento de quem critica o regime', arg:'Celebrar o 31 de março hoje desrespeita as vítimas e enfraquece a democracia.',
+   o:['Para quem celebra, a data marca o que considera uma reação a um risco real na Guerra Fria, e não uma homenagem à tortura. É uma posição que existe na sociedade: no Datafolha de 2024, 28% dos entrevistados disseram que a data deve ser celebrada. Ouvir os motivos dela é diferente de concordar com eles.','Isso é papo de comunista.','Então você quer proibir as pessoas de pensar?','Isso é coisa de quem não supera o passado.'],
+   e:'A resposta forte explica o ponto de vista de quem celebra. As outras atacam a pessoa ou distorcem o argumento.'}
+];
+
+const DEEP = {
+  antes:{b:[['João Goulart: uma biografia','Jorge Ferreira','a trajetória de Jango'],['Em guarda contra o perigo vermelho','Rodrigo Patto Sá Motta','a história do anticomunismo no Brasil']], yt:'governo João Goulart reformas de base explicação'},
+  golpe:{b:[['1964: o golpe que derrubou um presidente…','Jorge Ferreira e Angela de Castro Gomes','como Jango caiu'],['Ditadura à brasileira','Marco Antonio Villa','uma leitura que contesta interpretações consagradas sobre o período']], yt:'golpe de 1964 explicação'},
+  atos:{b:[['A ditadura envergonhada','Elio Gaspari','o começo do regime, com documentos'],['Ditadura militar, esquerdas e sociedade','Daniel Aarão Reis','um historiador de esquerda que revê mitos da própria esquerda']], yt:'AI-5 explicação'},
+  chumbo:{b:[['Brasil: nunca mais','Arquidiocese de São Paulo','a tortura registrada nos processos da Justiça Militar'],['O que é isso, companheiro?','Fernando Gabeira','um ex-guerrilheiro conta o sequestro do embaixador e revê suas escolhas']], yt:'anos de chumbo ditadura explicação'},
+  milagre:{b:[['A lanterna na popa','Roberto Campos','memórias de um ministro do primeiro governo militar'],['Análise do modelo brasileiro','Celso Furtado','uma crítica ao modelo econômico da época']], yt:'milagre econômico brasileiro explicação'},
+  abertura:{b:[['A ditadura derrotada','Elio Gaspari','Geisel, Golbery e a abertura'],['Meu querido Vlado','Paulo Markun','a história de Vladimir Herzog']], yt:'Lei da Anistia 1979 explicação'},
+  diretas:{b:[['A ditadura acabada','Elio Gaspari','os últimos anos do regime'],['Explode um novo Brasil','Ricardo Kotscho','o diário de um repórter na campanha das Diretas']], yt:'Diretas Já explicação'},
+  memoria:{b:[['Ainda estou aqui','Marcelo Rubens Paiva','o livro que inspirou o filme'],['Relatório final da Comissão Nacional da Verdade','CNV, 2014','o documento oficial, grátis na internet']], yt:'Comissão Nacional da Verdade relatório explicação'}
+};
+
+const LEVELS=[{xp:0,n:'Leitor'},{xp:200,n:'Assinante'},{xp:500,n:'Repórter'},{xp:850,n:'Editor'},{xp:1250,n:'Historiador'}];
+const EXTRA_BADGES=['🎭 Dois Lados','🔁 Aprendiz Persistente','🎓 Concluiu o Curso'];
+const B_STEEL=0,B_REVIEW=1,B_FINAL=2;
+const UPDATED='nov/2026';
+/* Tarjas da capa: uma por fase, na ordem. Somem quando a fase é concluída. */
+const TARJAS=['os militares derrubaram o presidente João Goulart','vieram os Atos Institucionais','o AI-5','censura, tortura e luta armada','um milagre econômico seguido de uma dívida enorme','a Lei da Anistia','as Diretas Já e uma nova Constituição','como lembrar esse período'];
+
+const FONTES={"cpdoc": {"s": "FGV CPDOC", "t": "FGV CPDOC, Dicionário Histórico-Biográfico Brasileiro (verbetes sobre Jânio Quadros, João Goulart e o governo Goulart)", "u": null}, "motta": {"s": "Patto Sá Motta", "t": "Rodrigo Patto Sá Motta, Em guarda contra o \"perigo vermelho\": o anticomunismo no Brasil (1917-1964)", "u": null}, "ferreira": {"s": "Ferreira e Gomes, 2014", "t": "Jorge Ferreira e Angela de Castro Gomes, 1964: o golpe que derrubou um presidente, pôs fim ao regime democrático e instituiu a ditadura no Brasil (2014)", "u": null}, "ibge": {"s": "IBGE", "t": "IBGE, Estatísticas do Século XX (PIB, inflação e contas externas)", "u": null}, "brothersam": {"s": "National Security Archive", "t": "National Security Archive (2014): documentos sobre o papel dos EUA no golpe de 1964, que vieram a público a partir de meados dos anos 1970 (ver também Foreign Relations of the United States, 1964–68, vol. 31)", "u": "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB465"}, "gaspari1": {"s": "Gaspari, 2002", "t": "Elio Gaspari, A ditadura envergonhada (2002)", "u": null}, "gaspari2": {"s": "Gaspari, 2002", "t": "Elio Gaspari, A ditadura escancarada (2002)", "u": null}, "atos": {"s": "Atos Institucionais", "t": "Textos oficiais dos Atos Institucionais nº 1 a 5 (legislação federal, Presidência da República)", "u": null}, "censura": {"s": "Acervo Estadão", "t": "Acervo do jornal O Estado de S. Paulo, edições censuradas de 1973 a 1975", "u": null}, "bnm": {"s": "Brasil: Nunca Mais", "t": "Arquidiocese de São Paulo, Brasil: Nunca Mais (1985), baseado em processos da Justiça Militar", "u": null}, "cnv": {"s": "CNV, 2014", "t": "Comissão Nacional da Verdade, Relatório Final, vol. 1 (dez/2014)", "u": "https://www.gov.br/memoriasreveladas/pt-br/assuntos/comissoes-da-verdade/volume_1_digital.pdf"}, "indigenas": {"s": "Agência Pública, 2025", "t": "Agência Pública (ago/2025): a CNV estimou ao menos 8.350 indígenas mortos por ações e omissões do Estado", "u": "https://apublica.org/2025/08/crimes-na-ditadura-entenda-por-que-indigenas-reivindicam-uma-nova-comissao-da-verdade/"}, "milagre": {"s": "Veloso, Valor, 2007", "t": "Fernando Veloso, Valor Econômico (4/6/2007), no acervo de notícias do Senado: o PIB cresceu 11,1% ao ano em 1968–1973", "u": "https://www2.senado.leg.br/jspui/bitstream/id/478714/1/noticia.htm"}, "senado77": {"s": "Agência Senado, 2017", "t": "Agência Senado: há 40 anos, a ditadura impunha o Pacote de Abril (inclui a eleição de 1974)", "u": "https://www12.senado.leg.br/noticias/materias/2017/03/31/ha-40-anos-ditadura-impunha-pacote-de-abril-e-adiava-abertura-politica"}, "herzog": {"s": "Corte IDH, 2018", "t": "Corte Interamericana de Direitos Humanos, caso Herzog e outros vs. Brasil (2018)", "u": "https://www.corteidh.or.cr/docs/comunicados/cp_25_18_por.pdf"}, "anistia": {"s": "Lei 6.683/1979", "t": "Lei nº 6.683/1979, a Lei da Anistia (texto oficial)", "u": "https://www2.camara.leg.br/legin/fed/lei/1970-1979/lei-6683-28-agosto-1979-366522-publicacaooriginal-1-pl.html"}, "hrw2021": {"s": "HRW, 2021", "t": "Human Rights Watch (jun/2021): primeira condenação criminal por crimes da ditadura no Brasil", "u": "https://www.hrw.org/news/2021/06/22/first-conviction-dictatorship-crimes-brazil"}, "adpf": {"s": "STF, 2010", "t": "STF, ADPF 153 (2010), que manteve a Lei da Anistia", "u": null}, "stf2026": {"s": "STF, 2026", "t": "STF: processos sobre desaparecimento forçado na ditadura serão julgados em sessão presencial (Tema 1369); ver também Conjur (mar/2026)", "u": "https://noticias.stf.jus.br/postsnoticias/processos-sobre-desaparecimento-forcado-de-pessoas-na-ditadura-militar-serao-julgados-em-sessao-presencial/"}, "diretas": {"s": "Agência Brasil, 2024", "t": "Agência Brasil: a votação da emenda das Diretas completa 40 anos", "u": "https://agenciabrasil.ebc.com.br/politica/noticia/2024-04/votacao-de-emenda-que-pedia-eleicoes-diretas-completa-40-anos"}, "cf88": {"s": "Constituição de 1988", "t": "Constituição Federal de 1988 (texto oficial)", "u": null}, "cnj": {"s": "CNJ, Res. 601/2024", "t": "Conselho Nacional de Justiça, Resolução nº 601/2024", "u": "https://atos.cnj.jus.br/atos/detalhar/5906"}, "certidoes": {"s": "Agência Gov, 2025", "t": "Agência Gov (out/2025): governo entrega certidões de óbito retificadas de mortos e desaparecidos políticos", "u": "https://agenciagov.ebc.com.br/noticias/202510/governo-federal-entrega-63-certidoes-de-obito-retificadas-de-pessoas-mortas-e-desaparecidas-politicas-durante-a-ditadura-militar"}, "oscar": {"s": "Oscar 2025", "t": "Academia de Artes e Ciências Cinematográficas: \"Ainda Estou Aqui\" venceu o Oscar de filme internacional em 2025", "u": null}, "datafolha": {"s": "Datafolha, 2024", "t": "Datafolha, março de 2024 (reportagem do Correio Braziliense)", "u": "https://www.correiobraziliense.com.br/politica/2024/03/amp/6828258-datafolha-63-acham-que-dia-do-golpe-de-1964-deve-ser-desprezado.html"}, "gaspari4": {"s": "Gaspari, 2004", "t": "Elio Gaspari, A ditadura encurralada (2004)", "u": null}, "gaspari5": {"s": "Gaspari, 2016", "t": "Elio Gaspari, A ditadura acabada (2016)", "u": null}, "tjsp2012": {"s": "TJ-SP, 2012", "t": "Tribunal de Justiça de São Paulo (24/9/2012): Justiça manda retificar a certidão de óbito de Vladimir Herzog", "u": "https://www.tjsp.jus.br/Noticias/Noticia?codigoNoticia=15751"}};
+
+/* =========================================================
+   ESTADO
+   ========================================================= */
+const KEY='ditadura-militar-v1';
+let S=load();
+function blank(){return {xp:0,done:{},badges:[],streak:0,best:0,name:'',wrong:[],mute:false}}
+function load(){try{const r=localStorage.getItem(KEY); if(r) return Object.assign(blank(),JSON.parse(r));}catch(e){} return blank();}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+let V={screen:'home'};
+const app=document.getElementById('app');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const NF=MODULES.length;
+function level(){let L=LEVELS[0],N=null;for(let i=0;i<LEVELS.length;i++){if(S.xp>=LEVELS[i].xp){L=LEVELS[i];N=LEVELS[i+1]||null}}return {L,N}}
+function giveBadge(b){if(!S.badges.includes(b)){S.badges.push(b);save();return true}return false}
+function unlocked(i){return i===0||!!S.done[MODULES[i-1].id]||!!S.done[MODULES[i].id]}
+function allDone(){return MODULES.every(m=>S.done[m.id])}
+function addWrong(k){if(!S.wrong.includes(k)){S.wrong.push(k);save();}}
+function delWrong(k){const i=S.wrong.indexOf(k);if(i>=0){S.wrong.splice(i,1);save();}}
+
+/* =========================================================
+   SOM (sintetizado, suave)
+   ========================================================= */
+let AC=null;
+const SEQ={ok:[[587,.08],[784,.12]],bad:[[220,.14],[175,.2]],combo:[[523,.07],[659,.07],[784,.07],[988,.16]],win:[[523,.11],[659,.11],[784,.11],[1047,.3]]};
+function snd(t){ if(S.mute) return; try{ AC=AC||new (window.AudioContext||window.webkitAudioContext)(); if(AC.state==='suspended') AC.resume(); let at=AC.currentTime+.01;
+  SEQ[t].forEach(([f,d])=>{const o=AC.createOscillator(),g=AC.createGain();o.type='triangle';o.frequency.setValueAtTime(f,at);g.gain.setValueAtTime(.09,at);g.gain.exponentialRampToValueAtTime(.0008,at+d);o.connect(g);g.connect(AC.destination);o.start(at);o.stop(at+d+.02);at+=d;}); }catch(e){} }
+
+/* =========================================================
+   BANCO DE PERGUNTAS
+   ========================================================= */
+function mkModuleQ(m,q){return {key:q.q,tag:'Desafio',q:q.q,o:q.o,a:q.a,e:q.e,shuffle:true,from:m.title};}
+function mkFlashQ(m,it){return {key:it.t,tag:'⚡ Rodada relâmpago · '+m.flash.title,q:it.t,o:m.flash.ch,a:it.a,e:it.e,shuffle:false,grid:m.flash.ch.length,from:m.flash.title};}
+function mkSteelQ(r){return {key:r.arg,tag:'🎭 Advogado do outro lado',side:r.side,who:r.who,sub:r.arg,q:'Qual seria a resposta MAIS FORTE de quem discorda?',o:r.o,a:0,e:r.e,shuffle:true,from:'Advogado do outro lado'};}
+const ALLQ={};
+MODULES.forEach(m=>{m.quiz.forEach(q=>ALLQ[q.q]=mkModuleQ(m,q)); if(m.flash) m.flash.items.forEach(it=>ALLQ[it.t]=mkFlashQ(m,it));});
+STEEL.forEach(r=>ALLQ[r.arg]=mkSteelQ(r));
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function inst(base,tag){const q=Object.assign({},base); if(tag) q.tag=tag; if(base.shuffle){const idx=shuffle(base.o.map((_,k)=>k)); q.o=idx.map(k=>base.o[k]); q.a=idx.indexOf(base.a);} return q;}
+
+/* =========================================================
+   AJUDANTES DE TELA
+   ========================================================= */
+function topbar(){
+  const {L,N}=level(); const pct=N?Math.round((S.xp-L.xp)/(N.xp-L.xp)*100):100;
+  return `<div class="top"><div class="toprow"><span class="lvl">${L.n}</span><div class="xpbar"><i style="width:${pct}%"></i></div><button class="mute" id="mute" aria-label="Som">${S.mute?'🔇':'🔊'}</button></div>
+   <div class="xptxt"><span>⭐ ${S.xp} pontos · 🔥 ${S.streak} seguidos · 🏅 ${S.badges.length}</span><span>${N?'Próximo nível: '+N.xp:'Nível máximo!'}</span></div></div>`;
+}
+function toast(t){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1500)}
+function confetti(){const cols=['#16130f','#E8B931','#3F5873','#A8742A','#FBF8F0'];for(let i=0;i<60;i++){const c=document.createElement('i');c.className='cf';c.style.left=Math.random()*100+'vw';c.style.background=cols[i%cols.length];c.style.animationDuration=(1.6+Math.random()*1.6)+'s';c.style.animationDelay=(Math.random()*.4)+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),3800)}}
+function go(v){V=v;render();window.scrollTo(0,0)}
+app.addEventListener('click',e=>{ if(e.target.closest('#mute')){ S.mute=!S.mute; save(); render(); if(!S.mute) snd('ok'); } });
+function fontesHTML(id){
+  const m=MODULES.find(x=>x.id===id); if(!m) return '';
+  const ks=[...new Set([...m.cards.map(c=>c.h).join('').matchAll(/data-f="(\w+)"/g)].map(x=>x[1]))];
+  if(!ks.length) return '';
+  return `<div class="fonteslist"><div class="qtag">🔎 Fontes desta fase</div><ol>`+ks.map(k=>{const f=FONTES[k];return `<li>${esc(f.t)}${f.u?` · <a href="${f.u}" target="_blank" rel="noopener">abrir ↗</a>`:''}</li>`}).join('')+`</ol></div>`;
+}
+function showFonte(k){const f=FONTES[k]; if(!f) return; let p=document.getElementById('fnpop'); if(!p){p=document.createElement('div');p.id='fnpop';p.setAttribute('role','dialog');document.body.appendChild(p);}
+  p.innerHTML=`<button class="x" aria-label="Fechar">✕</button><b>🔎 FONTE</b>${esc(f.t)}${f.u?`<br><a href="${f.u}" target="_blank" rel="noopener">Abrir a fonte original ↗</a>`:''}<div class="nt">A lista completa aparece no fim da fase.</div>`;}
+document.addEventListener('click',e=>{const b=e.target.closest('.fn'); const p=document.getElementById('fnpop');
+  if(b){e.stopPropagation();showFonte(b.dataset.f);return;}
+  if(p&&(e.target.closest('#fnpop .x')||!e.target.closest('#fnpop'))) p.remove();},true);
+function fontesHTML(id){
+  const m=MODULES.find(x=>x.id===id); if(!m) return '';
+  const ks=[...new Set([...m.cards.map(c=>c.h).join('').matchAll(/data-f="(\w+)"/g)].map(x=>x[1]))];
+  if(!ks.length) return '';
+  return `<div class="fonteslist"><div class="qtag">🔎 Fontes desta fase</div><ol>`+ks.map(k=>{const f=FONTES[k];return `<li>${esc(f.t)}${f.u?` · <a href="${f.u}" target="_blank" rel="noopener">abrir ↗</a>`:''}</li>`}).join('')+`</ol></div>`;
+}
+function showFonte(k){const f=FONTES[k]; if(!f) return; let p=document.getElementById('fnpop'); if(!p){p=document.createElement('div');p.id='fnpop';p.setAttribute('role','dialog');document.body.appendChild(p);}
+  p.innerHTML=`<button class="x" aria-label="Fechar">✕</button><b>🔎 FONTE</b>${esc(f.t)}${f.u?`<br><a href="${f.u}" target="_blank" rel="noopener">Abrir a fonte original ↗</a>`:''}<div style="opacity:.7;font-size:.8rem;margin-top:4px">A lista completa aparece no fim da fase.</div>`;}
+document.addEventListener('click',e=>{const b=e.target.closest('.fn'); const p=document.getElementById('fnpop');
+  if(b){e.stopPropagation();showFonte(b.dataset.f);return;}
+  if(p&&(e.target.closest('#fnpop .x')||!e.target.closest('#fnpop'))) p.remove();},true);
+function deepHTML(id){
+  const d=DEEP[id]; if(!d) return '';
+  return `<div class="deep"><div class="qtag">📚 Quer se aprofundar?</div>`+d.b.map(b=>`<div class="bk"><b>${esc(b[0])}</b><span>${esc(b[1])} · ${esc(b[2])}</span></div>`).join('')+
+    `<a class="yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(d.yt)}" target="_blank" rel="noopener">🎥 Buscar vídeos no YouTube: "${esc(d.yt)}"</a>
+    <p style="color:var(--muted);font-size:.8rem;margin:8px 0 0">Dica: procure vídeos de canais com visões diferentes e compare.</p></div>`;
+}
+
+/* =========================================================
+   TELAS
+   ========================================================= */
+function render(){ const s=V.screen;
+  if(s==='home') return renderHome(); if(s==='cards') return renderCards(); if(s==='quiz') return renderQuiz();
+  if(s==='result') return renderResult(); if(s==='cert') return renderCert(); if(s==='aval') return renderAval(); if(s==='voto') return renderVoto(); }
+
+function renderHome(){
+  const nextIdx=MODULES.findIndex(m=>!S.done[m.id]);
+  const nd=MODULES.filter(m=>S.done[m.id]).length;
+  const T=i=>S.done[MODULES[i].id]?`<span class="lit">${TARJAS[i]}</span>`:`<span class="tj" aria-label="trecho censurado: conclua a fase ${i+1}">${TARJAS[i]}</span>`;
+  let h=topbar()+`<div class="mast"><span class="np">GAZETA MAIS UMA</span><span class="x">EDIÇÃO ESPECIAL</span></div>
+    <div class="meta"><span>Brasil · 1964–1985</span><span>${NF} fases</span><span>Dados de ${UPDATED}</span></div>
+    <h1 class="manch">21 anos de <em>ditadura</em> em ${NF} fases</h1>
+    <div class="deck">Do golpe às Diretas Já, com documentos e os dois lados</div>
+    <div class="capa"><div class="lab">Resumo da edição</div>
+      <p>Em 1964, ${T(0)}. Logo ${T(1)} e, em 1968, ${T(2)}. Vieram anos de ${T(3)}. A economia viveu ${T(4)}. Em 1979, veio ${T(5)}; nos anos 1980, ${T(6)}. Até hoje o país discute ${T(7)}.</p>
+      <div class="prog">${MODULES.map(m=>`<span class="${S.done[m.id]?'on':''}"></span>`).join('')}</div>
+      <small>${nd===NF?'Edição completa: você tirou todas as tarjas!':'Cada fase concluída tira uma tarja desta capa · '+nd+' de '+NF}</small></div>
+    <div class="how"><b>⏱ Cerca de 25 minutos.</b> Seu progresso fica salvo neste aparelho: dá para parar e voltar depois.<br><b>COMO FUNCIONA:</b> leia os cards e responda o desafio no fim de cada fase. Cada acerto vale <b>10 pontos</b>, ou 15 se você estiver numa sequência de 3 acertos seguidos 🔥. Quadros com <b>✔ Fato documentado</b> trazem o que está comprovado. Em <b>Como cada lado vê</b>, <span class="legend" style="background:var(--is)"></span><b style="color:var(--isd)">azul</b> é quem apoiou ou defende o regime e <span class="legend" style="background:var(--pa)"></span><b style="color:var(--pad)">ocre</b> é quem se opôs ou o critica.</div>
+    <span class="upd">📅 Dados atualizados em ${UPDATED}</span>
+    <div class="sec">As fases</div><div class="tl">`;
+  MODULES.forEach((m,i)=>{ const d=S.done[m.id], lock=!unlocked(i), nx=i===nextIdx;
+    const stars=d?'★'.repeat(d.stars)+'☆'.repeat(3-d.stars):(lock?'🔒':'');
+    h+=`<button class="tile ${d?'done':''} ${lock?'locked':''} ${nx?'next':''}" data-m="${i}" ${lock?'disabled':''}><span class="n">${i+1}</span><span class="tt"><span class="era">${m.era}${nx?' · JOGAR AGORA →':''}</span><b>${m.title}</b><small>${m.sub}</small></span><span class="st">${stars}</span></button>`; });
+  const nW=S.wrong.filter(k=>ALLQ[k]).length;
+  h+=`</div><div class="sec">Bônus</div>
+    <button class="tile special" id="goSteel"><span class="n">🎭</span><span class="tt"><b>Advogado do outro lado</b><small>Escolha a melhor resposta para argumentos dos dois lados</small></span><span class="st">${S.badges.includes(EXTRA_BADGES[B_STEEL])?'✅':''}</span></button>
+    <button class="tile special ${nW?'':'locked'}" id="goReview" ${nW?'':'disabled'}><span class="n">🔁</span><span class="tt"><b>Revisão dos erros</b><small>${nW?nW+' pergunta'+(nW>1?'s':'')+' para revisar':'Nenhum erro guardado ainda'}</small></span><span class="st">${nW||''}</span></button>
+    <button class="tile special ${allDone()?'':'locked'}" id="goFinal" ${allDone()?'':'disabled'}><span class="n">🗳️</span><span class="tt"><b>E você, o que acha?</b><small>${allDone()?'Sem nota: escolha um caminho e veja os dois lados':'Complete as '+NF+' fases para liberar'}</small></span><span class="st">${S.voto!=null?'✅':(allDone()?'':'🔒')}</span></button>
+    <button class="tile special" id="goAval"><span class="n">📝</span><span class="tt"><b>Avalie o curso</b><small>${S.aval?'Obrigado! Toque para mudar sua avaliação':'1 minuto: sua nota e o tema que você quer ver virar curso'}</small></span><span class="st">${S.aval?'✅':''}</span></button>`;
+  const all=[...MODULES.map(m=>m.badge),...EXTRA_BADGES];
+  h+=`<div class="sec">Conquistas (${S.badges.filter(b=>all.includes(b)).length}/${all.length})</div><div class="badges">`+all.map(b=>`<span class="bdg ${S.badges.includes(b)?'':'off'}">${b}</span>`).join('')+`</div>
+    <div class="foot">Este curso segue uma regra: fato documentado aparece como fato, com fonte; os dois lados aparecem na interpretação. A conclusão é sua.<br>Fontes: Comissão Nacional da Verdade, STF, CNJ, Datafolha, documentos oficiais e historiadores de diferentes visões. Dados até ${UPDATED}.<br><button class="reset" id="reset">Recomeçar do zero</button></div>`;
+  app.innerHTML=h;
+  app.querySelectorAll('.tile[data-m]').forEach(b=>b.onclick=()=>go({screen:'cards',m:+b.dataset.m,i:0}));
+  document.getElementById('goSteel').onclick=startSteel;
+  if(nW) document.getElementById('goReview').onclick=startReview;
+  if(allDone()) document.getElementById('goFinal').onclick=startFinal;
+  document.getElementById('goAval').onclick=()=>go({screen:'aval'});
+  document.getElementById('reset').onclick=()=>{ if(V.confirmReset){S=blank();save();V={screen:'home'};render();} else {V.confirmReset=true;document.getElementById('reset').textContent='Toque de novo para confirmar (apaga seu progresso)';} };
+}
+
+function renderCards(){
+  const m=MODULES[V.m], c=m.cards[V.i], n=m.cards.length;
+  app.innerHTML=topbar()+`<div class="head"><button class="back" id="bk">←</button><span class="ht">Fase ${V.m+1} · ${m.era}</span></div>
+   <div class="dots">${m.cards.map((_,k)=>`<i class="${k<=V.i?'on':''}"></i>`).join('')}<i></i></div>
+   <div class="card"><h2>${c.t}</h2>${c.h}</div>
+   <div class="nav">${V.i>0?'<button class="btn ghost" id="prev">Voltar</button>':''}<button class="btn" id="next">${V.i<n-1?'Próximo →':'Hora do desafio ⚡'}</button></div>`;
+  document.getElementById('bk').onclick=()=>go({screen:'home'});
+  const p=document.getElementById('prev'); if(p) p.onclick=()=>go({screen:'cards',m:V.m,i:V.i-1});
+  document.getElementById('next').onclick=()=>{ if(V.i<n-1) go({screen:'cards',m:V.m,i:V.i+1}); else startQuiz(V.m); };
+}
+
+function startQuiz(mi){ const m=MODULES[mi]; let qs=m.quiz.map(q=>inst(mkModuleQ(m,q))); if(m.flash) qs=qs.concat(shuffle(m.flash.items).map(it=>inst(mkFlashQ(m,it)))); go({screen:'quiz',mode:'module',m:mi,qs,k:0,ok:0,picked:null,gained:0}); }
+function startFinal(){ return go({screen:'voto'}); const pool=[]; MODULES.forEach(m=>m.quiz.forEach(q=>pool.push(inst(mkModuleQ(m,q),'Prova final · '+m.title)))); go({screen:'quiz',mode:'final',qs:shuffle(pool).slice(0,10),k:0,ok:0,picked:null,gained:0}); }
+function startSteel(){ go({screen:'quiz',mode:'steel',qs:shuffle(STEEL).map(r=>inst(mkSteelQ(r))),k:0,ok:0,picked:null,gained:0}); }
+function startReview(){ const keys=shuffle(S.wrong.filter(k=>ALLQ[k])).slice(0,10); go({screen:'quiz',mode:'review',qs:keys.map(k=>inst(ALLQ[k],'🔁 Revisão · '+ALLQ[k].from)),k:0,ok:0,picked:null,gained:0}); }
+function quizTitle(){ if(V.mode==='module') return 'Desafio · Fase '+(V.m+1); return {final:'🎓 Prova final',steel:'🎭 Advogado do outro lado',review:'🔁 Revisão dos erros'}[V.mode]; }
+
+function renderQuiz(){
+  const q=V.qs[V.k], n=V.qs.length, ans=V.picked!==null;
+  let h=topbar()+`<div class="head"><button class="back" id="bk">✕</button><span class="ht">${quizTitle()}</span><span class="chip">${V.k+1}/${n}</span></div>
+   <div class="dots">${V.qs.map((_,k)=>`<i class="${k<V.k||(k===V.k&&ans)?'on':''}"></i>`).join('')}</div><div class="card"><div class="qtag">${esc(q.tag)}</div>`;
+  if(q.sub) h+=`<div class="argbox ${q.side||''}"><div class="who">💬 ${esc(q.who)}</div>"${esc(q.sub)}"</div>`;
+  const gcls=q.grid===3?'grid3':(q.grid===2?'grid2':'');
+  h+=`<div class="qq">${esc(q.q)}</div><div class="opts ${gcls}">`;
+  q.o.forEach((o,k)=>{let cl='opt'; if(ans){ if(k===q.a) cl+=' right'; else if(k===V.picked) cl+=' wrong'; else cl+=' dim'; } h+=`<button class="${cl}" data-k="${k}" ${ans?'disabled':''}>${esc(o)}</button>`;});
+  h+=`</div>`;
+  if(ans){const good=V.picked===q.a; h+=`<div class="fb ${good?'good':'badf'}"><b>${good?(S.streak>=3?'🔥 Acertou! '+S.streak+' seguidos':'✅ Acertou!'):'❌ Não foi dessa vez'}</b>${esc(q.e)}${good?'':'<br><small>Essa pergunta foi para a sua Revisão dos erros.</small>'}</div>`;}
+  h+=`</div>`;
+  if(ans) h+=`<div class="nav"><button class="btn ${V.picked===q.a?'ok':''}" id="cont">${V.k<n-1?'Continuar →':'Ver resultado'}</button></div>`;
+  app.innerHTML=h;
+  document.getElementById('bk').onclick=()=>go({screen:'home'});
+  if(!ans) app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));
+  else document.getElementById('cont').onclick=()=>{ if(V.k<n-1){V.k++;V.picked=null;render();window.scrollTo(0,0);} else finishQuiz(); };
+}
+function pick(k){
+  const q=V.qs[V.k]; V.picked=k;
+  if(k===q.a){ V.ok++; S.streak++; S.best=Math.max(S.best,S.streak); const pts=10+(S.streak>=3?5:0); V.gained+=pts; S.xp+=pts; delWrong(q.key); save();
+    toast('+'+pts+' pontos'+(S.streak>=3?' · '+S.streak+' seguidos!':'')); snd(S.streak>=3?'combo':'ok'); }
+  else { S.streak=0; addWrong(q.key); save(); snd('bad'); if(navigator.vibrate) try{navigator.vibrate(80)}catch(e){} }
+  render();
+}
+function finishQuiz(){
+  const n=V.qs.length, pct=V.ok/n;
+  if(V.mode==='final'){ const pass=V.ok>=7; let newB=false; if(pass){ newB=giveBadge(EXTRA_BADGES[B_FINAL]); if(newB){S.xp+=100;save();} snd('win'); confetti(); }
+    return go({screen:'result',mode:'final',ok:V.ok,n,pass,newB,gained:V.gained+(newB?100:0)}); }
+  if(V.mode==='steel'){ let newB=false; if(V.ok>=5){ newB=giveBadge(EXTRA_BADGES[B_STEEL]); if(newB){S.xp+=50;save();} snd('win'); confetti(); }
+    return go({screen:'result',mode:'steel',ok:V.ok,n,newB,gained:V.gained+(newB?50:0)}); }
+  if(V.mode==='review'){ let newB=false; if(V.ok===n){ newB=giveBadge(EXTRA_BADGES[B_REVIEW]); if(newB){S.xp+=40;save();} snd('win'); confetti(); }
+    return go({screen:'result',mode:'review',ok:V.ok,n,newB,gained:V.gained+(newB?40:0)}); }
+  const m=MODULES[V.m], stars=pct>=.9?3:pct>=.6?2:1, prev=S.done[m.id]; let bonus=0;
+  if(!prev) bonus=30+stars*10; else if(stars>prev.stars) bonus=(stars-prev.stars)*10;
+  S.done[m.id]={stars:Math.max(stars,prev?prev.stars:0)}; const newB=giveBadge(m.badge); S.xp+=bonus; save();
+  go({screen:'result',mode:'module',m:V.m,ok:V.ok,n,stars,newB,gained:V.gained+bonus});
+  if(stars>=2||newB){ snd('win'); confetti(); }
+}
+
+function renderResult(){
+  const nW=S.wrong.filter(k=>ALLQ[k]).length, rw=V.gained?`<span class="reward">+${V.gained} pontos</span>`:'';
+  if(V.mode==='final'){
+    app.innerHTML=topbar()+`<div class="card res" style="margin-top:18px"><div class="big">${V.pass?'🎓':'📚'}</div><h2>${V.pass?'Aprovado!':'Quase lá!'}</h2><p>Você acertou <b>${V.ok} de ${V.n}</b>.</p>${rw}${V.newB?`<span class="reward">${EXTRA_BADGES[B_FINAL]}</span>`:''}
+      <p style="color:var(--muted)">${V.pass?'Agora pegue o seu certificado.':'Use a Revisão dos erros e tente de novo: as perguntas mudam a cada vez.'}</p></div>
+      <div class="nav">${V.pass?'<button class="btn ok" id="cert">Pegar certificado</button>':'<button class="btn" id="again">Tentar de novo</button>'}<button class="btn ghost" id="home">Início</button></div>`;
+    const c=document.getElementById('cert'); if(c) c.onclick=()=>go({screen:'cert'}); const a=document.getElementById('again'); if(a) a.onclick=startFinal;
+    document.getElementById('home').onclick=()=>go({screen:'home'}); return; }
+  if(V.mode==='steel'||V.mode==='review'){ const isS=V.mode==='steel';
+    const msg=isS?(V.ok>=5?'Você sabe separar argumento de ataque, nos dois sentidos. É raro e valioso num tema como este.':'Dica: a resposta mais forte sempre reconhece algo do outro lado e traz um dado ou uma consequência.'):(nW?'Ainda restam '+nW+' para revisar.':'Revisão zerada! 🎉');
+    app.innerHTML=topbar()+`<div class="card res" style="margin-top:18px"><div class="big">${isS?'🎭':'🔁'}</div><h2>${isS?'Fim do julgamento':'Revisão feita'}</h2><p>${V.ok} de ${V.n} acertos</p>${rw}${V.newB?`<span class="reward">${EXTRA_BADGES[isS?B_STEEL:B_REVIEW]}</span>`:''}<p style="color:var(--muted)">${msg}</p></div>
+      <div class="nav">${isS||nW?'<button class="btn" id="again">'+(isS?'Jogar de novo':'Revisar o resto')+'</button>':''}<button class="btn ghost" id="home">Início</button></div>`;
+    const a=document.getElementById('again'); if(a) a.onclick=isS?startSteel:startReview; document.getElementById('home').onclick=()=>go({screen:'home'}); return; }
+  const m=MODULES[V.m], nxt=MODULES[V.m+1];
+  const msg=V.stars===3?'Excelente! 🤩':V.stars===2?'Bom trabalho! 👏':'Refaça para ganhar mais estrelas 💪';
+  app.innerHTML=topbar()+`<div class="card res" style="margin-top:18px"><div class="qtag">Fase ${V.m+1} · ${m.era}</div><h2 style="margin-top:6px">${m.title}</h2>
+    <div class="stars">${'★'.repeat(V.stars)}${'☆'.repeat(3-V.stars)}</div><p>${V.ok} de ${V.n} acertos · ${msg}</p>${rw}${V.newB?`<span class="reward">Nova conquista: ${m.badge}</span>`:''}</div>
+    ${fontesHTML(m.id)}${fontesHTML(m.id)}${deepHTML(m.id)}
+    <div class="nav">${nxt?`<button class="btn" id="nx">Próxima fase →</button>`:(allDone()?'<button class="btn ok" id="fin">E você, o que acha? 🗳️</button>':'')}<button class="btn ghost" id="redo">Refazer</button></div>
+    <div class="nav"><button class="btn ghost" style="flex:1" id="home">Voltar ao início</button></div>`;
+  const nx=document.getElementById('nx'); if(nx) nx.onclick=()=>go({screen:'cards',m:V.m+1,i:0});
+  const fi=document.getElementById('fin'); if(fi) fi.onclick=startFinal;
+  document.getElementById('redo').onclick=()=>startQuiz(V.m); document.getElementById('home').onclick=()=>go({screen:'home'});
+}
+
+function renderCert(){
+  const d=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
+  app.innerHTML=topbar()+`<div class="head"><button class="back" id="bk">←</button><span class="ht">🎓 Certificado</span></div>
+    <input class="txt" id="nm" placeholder="Seu nome no certificado" value="${esc(S.name||'')}">
+    <div class="cert"><div class="np">GAZETA MAIS UMA</div><div class="qtag">Certificado de conclusão</div><h2 style="margin-top:6px">Ditadura militar, com documentos</h2><p>Certificamos que</p><div class="nm" id="cn">${esc(S.name||'Seu nome aqui')}</div>
+      <p>concluiu as ${NF} fases do curso, de 1961 até hoje, separando fatos documentados das interpretações de cada lado.</p><p style="color:var(--muted);font-size:.85rem">${d} · ${S.xp} pontos · nível ${level().L.n}</p></div>
+    <div class="nav"><button class="btn" id="cp">Copiar conquista</button><button class="btn ghost" id="home">Início</button></div>
+    <a class="btn" href="index.html#avaliar" style="display:block;text-align:center;text-decoration:none;margin:10px 0">⭐ Avaliar o curso e sugerir um tema</a>
+    <p style="color:var(--muted);font-size:.8rem;text-align:center">Dica: tire um print da tela para guardar o certificado.</p>`;
+  const nm=document.getElementById('nm'); nm.oninput=()=>{S.name=nm.value.slice(0,40);save();document.getElementById('cn').textContent=S.name||'Seu nome aqui';};
+  document.getElementById('bk').onclick=()=>go({screen:'home'}); document.getElementById('home').onclick=()=>go({screen:'home'});
+  document.getElementById('cp').onclick=async()=>{ const t=`🎓 ${S.name||'Eu'} concluí o curso "Ditadura militar, com documentos": ${NF} fases, do golpe de 1964 às Diretas Já, com fatos e os dois lados.`; try{await navigator.clipboard.writeText(t);toast('Copiado!');}catch(e){toast('Não deu para copiar aqui');} };
+}
+
+function renderAval(){
+  const a=S.aval||{};const ck=(k,v)=>a[k]===v?'checked':'';
+  const radios=(name,opts)=>`<div class="av-row" role="radiogroup">${opts.map(o=>`<label><input type="radio" name="${name}" value="${o}" ${ck(name,o)}><span>${o}</span></label>`).join('')}</div>`;
+  app.innerHTML=topbar()+`<div class="head"><button class="back" id="bk">←</button><span class="ht">📝 Avalie o curso</span></div>
+   <form class="card" id="avf"><p>Leva 1 minuto. Por enquanto, sua avaliação fica guardada neste aparelho.</p>
+    <div class="av-q" id="lr">Que nota você dá ao curso? <small style="font-weight:400;opacity:.8">(1 = não gostei, 5 = gostei muito)</small></div>${radios('rating',['1','2','3','4','5'])}
+    <label class="av-q" for="learned" style="display:block">O que você aprendeu que não sabia?</label><textarea class="txt" id="learned" name="learned" maxlength="600">${esc(a.learned||'')}</textarea>
+    <div class="av-q">Sentiu que o curso favoreceu algum lado?</div>${radios('bias',['Não','Sim','Não sei'])}
+    <div id="bd" ${a.bias==='Sim'?'':'hidden'}><label class="av-q" for="biasDetail" style="display:block">Qual lado, e em que parte?</label><input class="txt" id="biasDetail" name="biasDetail" maxlength="300" value="${esc(a.biasDetail||'')}"></div>
+    <label class="av-q" for="comment" style="display:block">Comentário livre</label><textarea class="txt" id="comment" name="comment" maxlength="1000">${esc(a.comment||'')}</textarea>
+    <label class="av-q" for="nextTopic" style="display:block">Que tema você quer que vire curso?</label><input class="txt" id="nextTopic" name="nextTopic" maxlength="200" value="${esc(a.nextTopic||'')}">
+    <div class="nav"><button type="button" class="btn ghost" id="home">Voltar</button><button type="submit" class="btn">Salvar avaliação</button></div></form>`;
+  const f=document.getElementById('avf');
+  const sync=()=>{const sim=(new FormData(f).get('bias')==='Sim');document.getElementById('bd').hidden=!sim;};
+  f.addEventListener('change',sync);
+  document.getElementById('bk').onclick=()=>go({screen:'home'});
+  document.getElementById('home').onclick=()=>go({screen:'home'});
+  f.onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f).entries());if(d.bias!=='Sim')delete d.biasDetail;
+    if(!d.rating){toast('Escolha uma nota de 1 a 5');return;}
+    S.aval=d;save();
+    try{const q=JSON.parse(localStorage.getItem('pmu-fila')||'[]');q.push({curso:'ditadura-militar',quando:new Date().toISOString(),...d});localStorage.setItem('pmu-fila',JSON.stringify(q));}catch(x){}
+    toast('Avaliação salva neste aparelho. Obrigado!');go({screen:'home'});};
+}
+
+const VOTO={"q": "Se a decisão fosse sua: o que fazer com a Lei da Anistia, de 1979?", "o": [{"t": "Manter como está", "s": "como o STF decidiu em 2010", "pro": "Quem defende diz que a lei foi um acordo que permitiu uma transição sem violência, valeu para os dois lados, e que reabrir agora reacende feridas. [[anistia]] [[adpf]]", "con": "Quem critica lembra que quase nenhum torturador foi julgado: a primeira condenação criminal de um agente, em primeira instância, só veio em 2021. [[hrw2021]]"}, {"t": "Manter, mas sem cobrir crimes que continuam", "s": "como a ocultação de um corpo nunca entregue à família (em julgamento no STF)", "pro": "Quem defende, como o relator Flávio Dino no STF em 2026, diz que crimes como sequestro e ocultação de cadáver continuam acontecendo enquanto o corpo não aparece. [[stf2026]]", "con": "Quem critica diz que isso reabre por outro caminho o que o STF decidiu em 2010, quando manteve a lei inclusive para agentes do Estado. [[adpf]]"}, {"t": "Rever a lei e julgar crimes como tortura", "s": "como pede a Corte Interamericana de Direitos Humanos", "pro": "Quem defende diz que crimes contra a humanidade não podem ser anistiados, como decidiu a Corte Interamericana no caso Herzog, em 2018. [[herzog]]", "con": "Quem critica diz que a lei foi um acordo que valeu para os dois lados e que o STF a manteve em 2010. [[adpf]]"}]};
+function vtxt(t){return esc(t).replace(/\[\[([a-zA-Z0-9_]+)\]\]/g,(m,k)=>FONTES[k]?`<button type="button" class="fn" data-f="${k}" aria-label="Ver fonte: ${esc(FONTES[k].s)}">🔎 ${esc(FONTES[k].s)}</button>`:'');}
+function renderVoto(){
+  const k=S.voto, o=(k!=null)?VOTO.o[k]:null;
+  app.innerHTML=topbar()+`<div class="head"><button class="back" id="bk">←</button><span class="ht">🗳️ E você, o que acha?</span></div>
+   <div class="card"><h2>${esc(VOTO.q)}</h2><p>Não existe resposta certa e não vale nota. Toque numa opção para ver os dois lados.</p>
+   ${VOTO.o.map((x,i)=>`<button type="button" class="vo ${k===i?'on':''}" data-v="${i}" aria-pressed="${k===i}"><b>${esc(x.t)}</b><small>${esc(x.s)}</small></button>`).join('')}
+   ${o?`<div class="vside" aria-live="polite"><b>👍 A favor</b><p>${vtxt(o.pro)}</p><b>👎 Contra</b><p>${vtxt(o.con)}</p></div>`:''}</div>
+   <div class="nav"><button class="btn ghost" id="home">Trilha</button>${k!=null?'<button class="btn" id="ct">Pegar certificado 🎓</button>':''}</div>`;
+  app.querySelectorAll('.vo').forEach(b=>b.onclick=()=>{const first=S.voto==null;S.voto=+b.dataset.v;if(first&&giveBadge(EXTRA_BADGES[B_FINAL])){snd('win');}save();renderVoto();});
+  document.getElementById('bk').onclick=()=>go({screen:'home'});
+  document.getElementById('home').onclick=()=>go({screen:'home'});
+  const ct=document.getElementById('ct');if(ct)ct.onclick=()=>go({screen:'cert'});
+}
+
+render();
+</script>
+</body>
+</html>

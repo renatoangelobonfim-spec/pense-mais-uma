@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nazismo e Holocausto: como pessoas comuns deixaram isso acontecer?</title>
+<meta name="description" content="Curso-jogo de 10 minutos: decida como um político, um deputado, um vizinho e um governo estrangeiro entre 1932 e 1938, e veja o que aconteceu de verdade. Com fontes de museus e documentos.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#141A22;--bg2:#1B2330;--card:#1F2835;--line:#2E394A;--ink:#EDE6D8;--mut:#A8B0BC;--amb:#E8B56A;--amb2:#F2CD91;--ok:#7FC8A9;--no:#E89A8A}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:16.5px;line-height:1.6}
+body{background:radial-gradient(120% 60% at 50% 0%,#263040 0,#141A22 60%) fixed}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+#app{max-width:520px;margin:0 auto;padding:0 18px 48px;position:relative}
+.grain{position:fixed;inset:0;pointer-events:none;opacity:.10;mix-blend-mode:overlay;z-index:40}
+.top{position:sticky;top:0;z-index:10;background:rgba(20,26,34,.92);backdrop-filter:blur(6px);margin:0 -18px;padding:10px 18px 8px}
+.toprow{display:flex;align-items:center;gap:10px;font:600 10.5px Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.toprow .t{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prog{height:3px;background:#2A3342;border-radius:99px;margin-top:8px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--amb);transition:width .5s}
+.iconbtn{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:14px}
+h1,h2{font-family:"Playfair Display",Georgia,serif;font-weight:800;line-height:1.12;margin:.3em 0 .45em}
+h1{font-size:2rem} h2{font-size:1.55rem}
+p{margin:.45em 0 .8em}
+.kick{font:600 10.5px Inter;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-top:18px}
+.date{font:italic 500 1rem "Playfair Display",serif;color:var(--amb)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:10px 0}
+.opt{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;border:1px solid rgba(232,181,106,.35);background:rgba(255,255,255,.03);border-radius:14px;padding:13px 14px;margin:8px 0;font-weight:600}
+.opt.on{background:linear-gradient(90deg,rgba(232,181,106,.26),rgba(232,181,106,.06));border-color:var(--amb)}
+.opt.ok{border-color:var(--ok);background:rgba(127,200,169,.12)}
+.opt.no{border-color:var(--no);background:rgba(232,154,138,.10)}
+.opt:disabled{cursor:default}
+.btn{display:block;width:100%;background:var(--amb);color:#1A1508;font-weight:700;border-radius:14px;padding:14px;margin:16px 0 4px;font-size:1rem}
+.btn:disabled{opacity:.35}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.fb{border-left:3px solid var(--amb);background:rgba(232,181,106,.07);border-radius:0 12px 12px 0;padding:11px 14px;margin:12px 0;font-size:.95rem}
+.fb>b:first-child{display:block;margin-bottom:2px;color:var(--amb2)}
+.mute{color:var(--mut);font-size:.88rem}
+.fn{display:inline-block;max-width:100%;text-align:left;font-size:.72rem;font-weight:600;color:var(--amb2);background:rgba(232,181,106,.10);border:1px solid rgba(232,181,106,.25);border-radius:99px;padding:1px 8px;margin:0 2px;vertical-align:1px}
+#fnpop{position:fixed;left:16px;right:16px;bottom:16px;max-width:488px;margin:0 auto;background:#0B0F14;border:1px solid var(--amb);color:var(--ink);border-radius:16px;padding:14px 16px;z-index:60;display:none;font-size:.9rem}
+#fnpop a{color:var(--amb2)}
+#fnpop .x{position:absolute;right:10px;top:6px;font-size:20px}
+/* abertura */
+.open{margin:0 -18px;position:relative;min-height:calc(100vh - 54px);display:flex;flex-direction:column}
+.open .lb{height:22px;background:#07090C}
+.open .in{flex:1;display:flex;flex-direction:column;padding:12px 22px 18px}
+.open svg.ill{display:block;width:calc(100% + 44px);margin:0 -22px;height:auto}
+.open h1{font-size:2.15rem;margin-top:.15em}
+.open p{color:#CFC7B8}
+.open .btn{margin-top:auto}
+.chars{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.chars .ch:last-child:nth-child(odd){grid-column:1/-1}
+.ch{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;text-align:left}
+.ch b{display:block;font-family:"Playfair Display",serif;font-size:1.05rem}
+.ch small{display:block;color:var(--mut);font-size:.8rem;line-height:1.4;margin-top:3px}
+.ch .back{display:none}.ch.open .back{display:block}.ch.open .front{display:none}
+.stairs{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.step{display:flex;gap:12px;align-items:flex-start;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.step .y{font:700 1.05rem "Playfair Display",serif;color:var(--amb);min-width:84px}
+.step .d{font-size:.92rem}
+.step.lock{opacity:.45}
+.pick{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 2px}
+.pick button{border:1px solid var(--line);border-radius:99px;padding:6px 12px;font-weight:600;font-size:.88rem}
+.pick button.ok{border-color:var(--ok);color:var(--ok)}.pick button.no{border-color:var(--no);color:var(--no)}
+.two{display:grid;gap:8px}
+.two>div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px}
+.two b{font-family:"Playfair Display",serif;font-size:1.05rem}
+.leg{display:flex;flex-wrap:wrap;gap:10px;font-size:.78rem;color:var(--mut);margin-top:4px}
+.leg span:before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:-1px;background:var(--c);border:1.5px solid var(--b,var(--c))}
+.list{padding-left:1.1em;margin:.3em 0}.list li{margin:.4em 0}
+.warn{border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:.9rem;color:#CFC7B8;background:rgba(255,255,255,.02)}
+textarea,select{width:100%;font:inherit;border:1px solid var(--line);border-radius:12px;padding:10px;background:#111720;color:var(--ink)}
+.rate{display:flex;gap:6px}.rate button{flex:1;border:1px solid var(--line);border-radius:12px;padding:10px 0;font-weight:700}.rate button.on{background:var(--amb);color:#1A1508}
+.fontes li{font-size:.82rem;margin:.45em 0;color:#CFC7B8}.fontes a{color:var(--amb2)}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.88rem}
+.cmp div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px}
+.cmp small{display:block;color:var(--mut);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px}
+</style><link rel="canonical" href="https://pensemaisuma.com.br/cursos/nazismo-e-holocausto/">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+</head><body>
+<div id="pmu-bar" style="font-family:Nunito,system-ui,sans-serif;background:#FAF7F0;color:#17150F;border-bottom:1.5px solid #17150F;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:14px;font-weight:800;position:relative;z-index:50">
+<a href="index.html" style="color:inherit;text-decoration:none">← Sobre o curso</a>
+<a href="../../index.html" style="display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none"><img src="../../assets/logo.svg" alt="" width="26" height="26"><span style="font-family:Fraunces,Georgia,serif">Pense Mais Uma</span></a>
+<a href="index.html#avaliar" style="color:inherit">Avaliar</a></div>
+<svg class="grain" width="100%" height="100%" aria-hidden="true"><filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#gr)"/></svg>
+<div id="app"></div>
+<div id="fnpop" role="dialog" aria-live="polite"><button class="x" aria-label="Fechar">×</button><div id="fnbody"></div></div>
+<script>
+const FONTES={
+ power:{s:"USHMM",t:"Museu Memorial do Holocausto dos EUA (USHMM): como Hitler chegou ao poder (menos de 3% em 1928; 37% em julho de 1932; 33% em novembro de 1932; nomeado dentro das regras, após um acordo político)",u:"https://encyclopedia.ushmm.org/content/en/article/hitler-comes-to-power"},
+ tl:{s:"USHMM",t:"USHMM, linha do tempo: 30 de janeiro de 1933, Hitler é nomeado chanceler; não foi eleito para o cargo nem tomou o poder num golpe",u:"https://encyclopedia.ushmm.org/content/en/timeline-event/holocaust/1933-1938/hitler-appointed-chancellor"},
+ unemp:{s:"GHDI",t:"German History in Documents and Images (Instituto Histórico Alemão): cerca de 6 milhões de desempregados registrados na Alemanha em 1932",u:"https://germanhistorydocs.org/en/nazi-germany-1933-1945/ghdi:image-2025"},
+ papen:{s:"GHDI · Brecht",t:"Arnold Brecht, alto funcionário da época, em relato de 1967 sobre Hindenburg, Papen e Schleicher (GHDI): os conservadores queriam \"domar\" os nazistas; Papen acreditava que, com ministros conservadores, controlaria Hitler",u:"https://germanhistorydocs.org/en/weimar-germany-1918-1933/ghdi:document-3840"},
+ fire:{s:"USHMM",t:"USHMM, datas-chave de 1933: o incêndio do Parlamento (27/fev) e o decreto do dia seguinte, que suspendeu direitos civis e permitiu prisão sem julgamento",u:"https://encyclopedia.ushmm.org/content/en/article/1933-key-dates"},
+ anne:{s:"Casa de Anne Frank",t:"Casa de Anne Frank: a Lei de Plenos Poderes (23/mar/1933) foi aprovada por 444 a 94; só os sociais-democratas votaram contra; comunistas presos ou foragidos; 26 sociais-democratas ausentes pelo mesmo motivo; o prédio cercado pela SA e pela SS",u:"https://www.annefrank.org/en/timeline/48/the-enabling-act-even-more-power-for-hitler/"},
+ bt:{s:"Bundestag",t:"Parlamento alemão (Bundestag): só os 94 deputados presentes do SPD votaram contra; os outros 444 votaram a favor",u:"https://www.bundestag.de/dokumente/textarchiv/1933-03-23-ermaechtigungsgesetz-938540"},
+ frus:{s:"Governo dos EUA, 1933",t:"Telegrama da embaixada dos EUA em Berlim (24/mar/1933, sobre a votação da noite anterior), em Foreign Relations of the United States: a lei \"passou por 441 votos contra 94\"",u:"https://history.state.gov/historicaldocuments/frus1933v02/d154"},
+ ushmmfasc:{s:"USHMM",t:"USHMM, \"Fascism\": o fascismo é uma filosofia política de extrema-direita; o governo nazista era um governo fascista; Hitler apresentava o nacional-socialismo como o oposto completo do socialismo e do comunismo",u:"https://encyclopedia.ushmm.org/content/en/article/fascism-1"},
+ yvara:{s:"Yad Vashem",t:"Yad Vashem: Aracy de Carvalho Guimarães Rosa, reconhecida como Justa entre as Nações em 3/jun/1982",u:"https://www.yadvashem.org/righteous/stories/carvalho.html"},
+ yvdantas:{s:"Yad Vashem",t:"Yad Vashem: Luiz Martins de Souza Dantas, embaixador do Brasil na França, reconhecido como Justo entre as Nações (cerimônia em 10/dez/2003); deu vistos contra as instruções do governo",u:"https://www.yadvashem.org/righteous/stories/dantas.html"},
+ ushmmrj:{s:"USHMM",t:"USHMM, \"Righteous Among the Nations\": até 1º/jan/2024, o Yad Vashem tinha reconhecido 28.707 pessoas de 51 países",u:"https://encyclopedia.ushmm.org/content/en/article/righteous-among-the-nations"},
+ deniers:{s:"USHMM",t:"USHMM, \"Holocaust Deniers and Public Misinformation\": a negação do Holocausto contradiz a enorme quantidade de provas documentais",u:"https://encyclopedia.ushmm.org/content/en/article/holocaust-deniers-and-public-misinformation"},
+ zank:{s:"Boston University",t:"Michael Zank (Boston University), \"Goldhagen in Germany: Historians' Nightmare & Popular Hero\": o livro de Goldhagen foi um sucesso de público e recebeu críticas duras de historiadores",u:"https://www.bu.edu/mzank/Michael_Zank/gold.html"},
+ debate96:{s:"USHMM, 1996",t:"USHMM, simpósio \"The Willing Executioners / Ordinary Men Debate\" (8/abr/1996), com Goldhagen e Browning",u:"https://www.ushmm.org/m/pdfs/Publication_OP_1996-01.pdf"},
+ laws:{s:"USHMM",t:"USHMM, linha do tempo de leis e decretos: lei de 7/abr/1933 que tirou a maioria dos judeus e opositores do serviço público (com exceções iniciais, como veteranos da Primeira Guerra, que caíram em 14/nov/1935); Leis de Nuremberg (15/set/1935); lei de 12/nov/1938 que proibiu judeus de ter negócios",u:"https://www.ushmm.org/m/pdfs/USHMM-Timeline-Activity-Laws-Decrees.pdf"},
+ boycott:{s:"USHMM",t:"USHMM: o boicote de 1º/abr/1933 contra negócios de judeus; em 1933, cerca de 600 mil judeus viviam na Alemanha, menos de 1% da população",u:"https://encyclopedia.ushmm.org/content/en/article/boycott-of-jewish-businesses"},
+ nur:{s:"USHMM",t:"USHMM: as Leis de Nuremberg (15/set/1935) tiraram a cidadania dos judeus e proibiram casamentos entre judeus e não judeus",u:"https://encyclopedia.ushmm.org/content/en/article/the-nuremberg-race-laws"},
+ kn:{s:"USHMM",t:"USHMM, linha do tempo: a Noite dos Cristais (9 e 10/nov/1938) destruiu mais de 1.400 sinagogas e milhares de comércios; cerca de 26 mil homens judeus levados a campos de concentração; centenas de mortos",u:"https://encyclopedia.ushmm.org/content/en/timeline-event/holocaust/1933-1938/kristallnacht"},
+ knfoto:{s:"USHMM",t:"USHMM, \"The Night of Broken Glass\": o regime ordenou à polícia que prendesse cerca de 30 mil homens judeus; em Oberramstadt, enquanto a sinagoga queimava, os bombeiros salvaram uma casa vizinha e moradores assistiam",u:"https://encyclopedia.ushmm.org/content/en/article/the-night-of-broken-glass"},
+ righteous:{s:"Yad Vashem",t:"Yad Vashem: uma minoria corajosa arriscou a vida para salvar judeus, escondendo-os, dando documentos falsos e ajudando na fuga",u:"https://yadvashem.org/holocaust/about/rescue/righteous"},
+ evian:{s:"USHMM",t:"USHMM: na Conferência de Évian (6 a 15/jul/1938), 32 países expressaram simpatia, mas a maioria recusou receber mais refugiados; só a República Dominicana aceitou",u:"https://encyclopedia.ushmm.org/narrative/6748/en"},
+ circ:{s:"Schpun (USP)",t:"Mônica Raisa Schpun: a Circular Secreta 1.127, de 7/jun/1937, restringiu a entrada de judeus no Brasil; Aracy de Carvalho, funcionária do consulado em Hamburgo, deu vistos a judeus apesar das orientações contrárias, e foi reconhecida como Justa entre as Nações",u:"https://core.ac.uk/download/304708948.pdf"},
+ num:{s:"USHMM",t:"USHMM: como se documenta o número de vítimas: 6 milhões de judeus assassinados, calculados a partir de documentos nazistas e dados demográficos; cerca de 2,7 milhões nos cinco centros de extermínio; também prisioneiros de guerra soviéticos, poloneses, roma e pessoas com deficiência, entre outros",u:"https://encyclopedia.ushmm.org/content/en/article/documenting-numbers-of-victims-of-the-holocaust-and-nazi-persecution"},
+ zar:{s:"DW, via IHU",t:"Reportagem da DW com historiadores alemães (Jürgen Zarusky, André Postert e outros), reproduzida pelo IHU-Unisinos: o nazismo tinha raízes na extrema-direita; a palavra \"socialista\" no nome não o tornava de esquerda; \"Nenhum historiador profissional classificaria a ditadura nazista como de esquerda\" (Postert)",u:"https://ihu.unisinos.br/?id=587990"},
+ browning:{s:"Browning, 1992",t:"Christopher Browning, \"Homens comuns\" (1992; no Brasil, Vide Editorial, 2023): homens comuns participaram por pressão do grupo, obediência e carreira",u:null},
+ goldhagen:{s:"Goldhagen, 1996",t:"Daniel Goldhagen, \"Os carrascos voluntários de Hitler\" (Companhia das Letras): um antissemitismo profundo e difundido explicaria a participação",u:"https://www.skoob.com.br/book/34897"}
+};
+const CH={
+ heinrich:{n:"Heinrich",r:"político conservador",q:"Quer: um governo forte contra os comunistas.",f:"Acha que consegue controlar Hitler."},
+ ruth:{n:"Ruth",r:"médica judia em Berlim",q:"Quer: continuar atendendo seus pacientes.",f:"Teme: as leis contra judeus."},
+ otto:{n:"Otto",r:"dono de uma mercearia",q:"Quer: vender e pagar as contas.",f:"Teme: se meter em confusão."}
+};
+/* ilustrações das aberturas (SVG, sem imagens externas) */
+const ILL={
+ fila:`<svg class="ill" viewBox="0 0 400 200" aria-hidden="true"><defs><radialGradient id="l1" cx="50%" cy="20%" r="70%"><stop offset="0" stop-color="#E8B56A" stop-opacity=".45"/><stop offset="1" stop-color="#E8B56A" stop-opacity="0"/></radialGradient><linearGradient id="f1" x1="0" y1="0" x2="0" y2="1"><stop offset=".6" stop-color="#141A22" stop-opacity="0"/><stop offset="1" stop-color="#141A22"/></linearGradient></defs><rect width="400" height="200" fill="url(#l1)"/><g fill="#2A3240"><rect x="250" y="40" width="22" height="90"/><rect x="285" y="60" width="18" height="70"/><rect x="210" y="80" width="170" height="70"/></g><g fill="#E8B56A" opacity=".7"><rect x="230" y="98" width="10" height="14"/><rect x="262" y="98" width="10" height="14"/><rect x="330" y="98" width="10" height="14"/></g><g fill="#0E1218">${[0,1,2,3,4,5,6,7,8,9].map(i=>`<g transform="translate(${18+i*21} ${120+(i%2)*3})"><circle cx="8" cy="0" r="7"/><path d="M0 10 h16 v58 h-16z"/><rect x="-2" y="-8" width="20" height="4" rx="2"/></g>`).join("")}</g><rect width="400" height="200" fill="url(#f1)"/></svg>`,
+ kroll:`<svg class="ill" viewBox="0 0 400 200" aria-hidden="true"><defs><radialGradient id="l2" cx="50%" cy="25%" r="65%"><stop offset="0" stop-color="#E8B56A" stop-opacity=".5"/><stop offset="1" stop-color="#E8B56A" stop-opacity="0"/></radialGradient><linearGradient id="fa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A4352"/><stop offset="1" stop-color="#1A2029"/></linearGradient><linearGradient id="f2" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#141A22" stop-opacity="0"/><stop offset="1" stop-color="#141A22"/></linearGradient></defs><rect width="400" height="200" fill="url(#l2)"/><g fill="url(#fa)" stroke="#5A6578" stroke-width=".8"><rect x="60" y="74" width="280" height="96"/><polygon points="140,74 200,42 260,74"/><rect x="150" y="58" width="100" height="16" fill="#252C37"/></g><g fill="#E8B56A" opacity=".85"><rect x="84" y="92" width="10" height="20"/><rect x="108" y="92" width="10" height="20"/><rect x="282" y="92" width="10" height="20"/><rect x="306" y="92" width="10" height="20"/></g><g fill="#2F3744" stroke="#5A6578" stroke-width=".6"><rect x="160" y="84" width="10" height="86"/><rect x="185" y="84" width="10" height="86"/><rect x="210" y="84" width="10" height="86"/><rect x="235" y="84" width="10" height="86"/></g><rect x="196" y="136" width="12" height="34" fill="#E8B56A" opacity=".9"/><path fill="#0E1218" d="M0 200 L0 170 ${Array.from({length:22},(_,i)=>`q9 -${9+(i%3)*2} 18 0`).join(" ")} L400 200Z"/><rect width="400" height="200" fill="url(#f2)"/></svg>`,
+ escada:`<svg class="ill" viewBox="0 0 400 200" aria-hidden="true"><defs><radialGradient id="l3" cx="80%" cy="10%" r="70%"><stop offset="0" stop-color="#E8B56A" stop-opacity=".4"/><stop offset="1" stop-color="#E8B56A" stop-opacity="0"/></radialGradient></defs><rect width="400" height="200" fill="url(#l3)"/>${[0,1,2,3,4].map(i=>`<rect x="${30+i*70}" y="${160-i*28}" width="${400-30-i*70}" height="${40+i*28}" fill="${['#232B38','#28313F','#2D3747','#323D4F','#384457'][i]}" stroke="#4A5568" stroke-width=".8"/><text x="${40+i*70}" y="${180-i*28}" font-family="Playfair Display" font-style="italic" font-size="15" fill="#E8B56A">${['1933','1935','1938','1939','1941'][i]}</text>`).join("")}</svg>`,
+ lago:`<svg class="ill" viewBox="0 0 400 200" aria-hidden="true"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B3442"/><stop offset="1" stop-color="#3B4556"/></linearGradient><radialGradient id="l4" cx="70%" cy="35%" r="40%"><stop offset="0" stop-color="#E8B56A" stop-opacity=".55"/><stop offset="1" stop-color="#E8B56A" stop-opacity="0"/></radialGradient></defs><rect width="400" height="200" fill="url(#sk)"/><rect width="400" height="200" fill="url(#l4)"/><path d="M0 120 L60 70 L110 105 L170 55 L240 110 L300 75 L400 118 L400 130 L0 130Z" fill="#1E2531"/><rect y="128" width="400" height="72" fill="#18202B"/><g stroke="#E8B56A" stroke-opacity=".35">${[0,1,2,3,4,5].map(i=>`<line x1="${180+i*8}" y1="${140+i*9}" x2="${300-i*8}" y2="${140+i*9}"/>`).join("")}</g><g fill="#0E1218"><rect x="40" y="96" width="70" height="34"/><polygon points="36,96 75,80 114,96"/></g><g fill="#E8B56A" opacity=".8"><rect x="50" y="104" width="7" height="9"/><rect x="66" y="104" width="7" height="9"/><rect x="82" y="104" width="7" height="9"/><rect x="98" y="104" width="7" height="9"/></g></svg>`,
+ velas:`<svg class="ill" viewBox="0 0 400 200" aria-hidden="true"><defs><radialGradient id="cg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#F2CD91" stop-opacity=".9"/><stop offset="1" stop-color="#E8B56A" stop-opacity="0"/></radialGradient></defs>${[0,1,2,3,4,5,6].map(i=>{const x=50+i*50,h=40+(i%3)*12;return `<circle cx="${x}" cy="${150-h-10}" r="22" fill="url(#cg)" opacity=".6"/><rect x="${x-6}" y="${150-h}" width="12" height="${h}" rx="2" fill="#D9D1C1" opacity=".85"/><path d="M${x} ${150-h-16} q6 8 0 13 q-6 -5 0 -13z" fill="#F2CD91"/>`}).join("")}<rect y="150" width="400" height="50" fill="#10151C"/></svg>`,
+ livro:`<svg class="ill" viewBox="0 0 400 200" aria-hidden="true"><defs><radialGradient id="l6" cx="50%" cy="30%" r="60%"><stop offset="0" stop-color="#E8B56A" stop-opacity=".35"/><stop offset="1" stop-color="#E8B56A" stop-opacity="0"/></radialGradient></defs><rect width="400" height="200" fill="url(#l6)"/><path d="M90 150 Q200 120 200 150 Q200 120 310 150 L310 70 Q200 40 200 70 Q200 40 90 70Z" fill="#E7DFCF" opacity=".9"/><line x1="200" y1="70" x2="200" y2="150" stroke="#8A8274"/><g stroke="#8A8274" stroke-width="2" opacity=".6">${[0,1,2,3,4].map(i=>`<line x1="${110}" y1="${84+i*12}" x2="${185}" y2="${80+i*12}"/><line x1="${215}" y1="${80+i*12}" x2="${290}" y2="${84+i*12}"/>`).join("")}</g><circle cx="275" cy="120" r="26" fill="none" stroke="#E8B56A" stroke-width="5"/><line x1="294" y1="139" x2="322" y2="167" stroke="#E8B56A" stroke-width="8" stroke-linecap="round"/></svg>`
+};
+/* TELAS */
+const T=[
+ {type:"poll",id:"palpite",k:"Antes de começar",h:"Hitler chegou ao poder como?",o:["Por um golpe militar","Foi eleito presidente pelo voto direto","Foi nomeado, dentro das regras da Constituição","Não sei"],fb:"Guardamos o seu palpite. No capítulo 2, você descobre."},
+ {type:"open",ill:"fila",k:"Capítulo 1 de 6",d:"Alemanha, 1932",h:"Uma república em crise",b:"Seis milhões de desempregados. [[unemp]] Uma república frágil, com eleições seguidas e governos que não duram. [[power]]"},
+ {type:"info",k:"O contexto",h:"De partido nanico a maior do país",b:"<p>Em 1932, a Alemanha tinha cerca de <b>6 milhões de desempregados</b>. [[unemp]]</p><p>Em 1928, o partido nazista teve <b>menos de 3%</b> dos votos. Em julho de 1932, chegou a <b>37%</b> e virou o maior partido do Parlamento. Em novembro, caiu para 33%. [[power]]</p>"},
+ {type:"chars",k:"Quem você vai encontrar",h:"Três pessoas comuns",b:"Toque nas cartas. Os nomes e as histórias são <b>exemplos</b> inventados, baseados em situações documentadas."},
+ {type:"open",ill:"kroll",k:"Capítulo 2 de 6",d:"Janeiro a março de 1933",h:"A democracia que se desmontou por dentro",b:"Em poucas semanas, o país passa de uma república com eleições a uma ditadura. Tudo com aparência de legalidade (decretos de emergência, uma lei votada), mas com deputados presos e um Parlamento intimidado. [[bt]]"},
+ {type:"decision",id:"d1",k:"Decisão 1 de 4 · você é Heinrich",d:"Janeiro de 1933",h:"O presidente pede sua opinião. Hitler deve virar chanceler, o chefe do governo?",ctx:"Hitler lidera o maior partido, mas não tem maioria. Você desconfia dele, mas teme os comunistas.",
+  o:["Sim, cercado de ministros conservadores para controlá-lo","Não, e o governo segue por decretos do presidente","Não, e busco um acordo com os sociais-democratas"],
+  pq:"E na vida real, o que o presidente Hindenburg fez?",po:["Nomeou Hitler chanceler","Manteve o governo por decretos","Convocou um acordo com os sociais-democratas"],pa:0,
+  rev:"Em 30 de janeiro de 1933, o presidente Hindenburg nomeou Hitler chanceler, depois de um acordo político. [[power]] Os conservadores achavam que iam \"domar\" Hitler com ministros do lado deles. [[papen]] Não conseguiram."},
+ {type:"palpite2",k:"Seu palpite, revisto",h:"Nem golpe, nem eleição direta",b:"<p>Hitler não foi eleito para o cargo nem tomou o poder num golpe. Foi <b>nomeado pelo presidente, dentro das regras</b> da Constituição. [[tl]] [[power]]</p>"},
+ {type:"info",k:"27 e 28 de fevereiro de 1933",h:"Um incêndio e um decreto",b:"<p>O prédio do Parlamento é incendiado. O governo apresenta o incêndio, falsamente, como parte de um plano comunista para tomar o poder. No dia seguinte, um decreto <b>suspende direitos</b>: liberdade de imprensa, de reunião e de expressão. Passa a ser possível prender sem julgamento. [[fire]] [[laws]]</p>"},
+ {type:"decision",id:"d2",hemi:true,k:"Decisão 2 de 4 · você é um deputado do Partido do Centro (Zentrum), católico",d:"23 de março de 1933",h:"Como você vota a Lei de Plenos Poderes?",ctx:"A lei dá ao governo o poder de fazer leis sem passar pelo Parlamento. Lá fora, tropas do partido nazista cercam o prédio. Deputados comunistas já foram presos.",
+  o:["Sim, em troca de promessas","Não","Não compareço"],
+  pq:"E como votou o Partido do Centro de verdade?",po:["A favor","Contra","Não compareceu"],pa:0,
+  rev:"A lei passou por <b>444 a 94</b>. Só os sociais-democratas votaram contra. Os deputados comunistas estavam presos ou foragidos, e seus mandatos tinham sido anulados; 26 sociais-democratas faltaram pelo mesmo motivo. [[anne]] [[bt]] O Partido do Centro, católico, votou a favor depois de receber promessas que, em sua maioria, não foram cumpridas. [[bt]] <span class='mute'>O Parlamento alemão registra 444 votos a favor; um telegrama da embaixada dos EUA, enviado na manhã seguinte, registrou 441. [[frus]]</span>"},
+ {type:"open",ill:"escada",k:"Capítulo 3 de 6",d:"1933 a 1938",h:"Um degrau de cada vez",b:"Em cinco anos, uma lista de leis e ataques foi tirando direitos dos judeus. Toque em cada degrau para ver."},
+ {type:"stairs",id:"st",quiet:true,k:"A escada",h:"Toque em cada degrau",it:[
+   ["1º/abr/1933","Boicote: tropas nazistas na porta de lojas e consultórios de judeus. Na época, cerca de 600 mil judeus viviam na Alemanha, menos de 1% da população. [[boycott]]"],
+   ["7/abr/1933","Uma lei tira a maioria dos judeus e opositores dos empregos no serviço público; no começo, poupava alguns, como veteranos da Primeira Guerra. [[laws]]"],
+   ["15/set/1935","As Leis de Nuremberg tiram a cidadania dos judeus e proíbem casamentos entre judeus e não judeus. [[nur]]"],
+   ["9 e 10/nov/1938","A Noite dos Cristais: sinagogas, lojas e casas de judeus atacadas em todo o país. [[kn]]"],
+   ["12/nov/1938","Uma lei proíbe judeus de ter negócios. [[laws]]"]]},
+ {type:"decision",id:"d3",nopts:true,quiet:true,k:"Decisão 3 de 4 · você é Otto",d:"10 de novembro de 1938, de manhã",h:"A casa da família de Ruth, na sua rua, foi atacada. Ela pede para guardar uns documentos na sua mercearia. O que você faz?",ctx:"Ajudar judeus pode trazer problemas com a polícia e com os vizinhos.",
+  o:["Ajudo em segredo, sabendo do risco","Digo que não posso me envolver","Chamo a polícia para proteger a loja"],
+  byopt:["Ajudar era arriscado. Ainda assim, uma minoria corajosa ajudou: escondeu pessoas, conseguiu documentos, ajudou a fugir. [[righteous]]","Foi o que muita gente fez. Em Oberramstadt, enquanto a sinagoga queimava, moradores assistiam e os bombeiros protegeram só a casa vizinha. [[knfoto]]","A polícia seguia ordens do regime. Naqueles dias, ela prendeu dezenas de milhares de homens judeus. [[kn]] [[knfoto]]"],
+  rev:"A violência foi organizada por líderes nazistas, e civis comuns também participaram. Mais de 1.400 sinagogas foram destruídas, milhares de comércios depredados, cerca de 26 mil homens judeus levados a campos de concentração. Centenas morreram. [[kn]] <span class='mute'>As estimativas variam entre as fontes: outro texto do mesmo museu fala em cerca de 30 mil presos. [[knfoto]]</span>"},
+ {type:"open",ill:"lago",k:"Capítulo 4 de 6",d:"Évian, França, julho de 1938",h:"Para onde fugir?",b:"Quatro meses antes da Noite dos Cristais, muitos judeus querem sair da Alemanha. Mas para sair, é preciso que algum país aceite receber."},
+ {type:"decision",id:"d4",quiet:true,np:true,k:"Decisão 4 de 4 · você representa um país",d:"Conferência de Évian, julho de 1938",h:"32 países discutem os refugiados judeus. O que o seu país faz?",ctx:"O mundo ainda sente a crise econômica. Em muitos países, receber refugiados é impopular.",
+  o:["Abro mais vagas para refugiados","Expresso solidariedade, mas mantenho as cotas","Fecho ainda mais as portas"],
+  pq:"E na vida real: quantos dos 32 países aceitaram receber mais refugiados?",po:["Quase todos","Cerca de metade","Só um"],pa:2,
+  rev:"Os delegados expressaram solidariedade, mas a maioria recusou receber mais refugiados. Só a República Dominicana aceitou. [[evian]]"},
+ {type:"info",k:"E o Brasil?",h:"Uma ordem secreta e duas exceções",b:"<p>Em 7 de junho de 1937, o governo Vargas enviou às embaixadas a <b>Circular Secreta 1.127</b>, que restringia a entrada de judeus no Brasil. [[circ]]</p><p>Dois brasileiros agiram contra essas ordens e deram vistos a refugiados: <b>Aracy de Carvalho</b>, funcionária do consulado em Hamburgo, e <b>Luiz Martins de Souza Dantas</b>, embaixador em Paris. Os dois foram reconhecidos como <b>Justos entre as Nações</b>, título dado a não judeus que arriscaram a vida para salvar judeus. [[yvara]] [[yvdantas]] [[circ]]</p>"},
+ {type:"open",ill:"velas",quiet:true,k:"Capítulo 5 de 6",d:"1939 a 1945",h:"O Holocausto",b:"Esta parte trata do assassinato de milhões de pessoas. Ela não tem pontos nem jogo: só os fatos, com fonte."},
+ {type:"info",quiet:true,k:"O que aconteceu",h:"Seis milhões",b:"<p>Com a guerra, a perseguição virou assassinato em massa. O regime nazista, seus aliados e colaboradores mataram <b>seis milhões de judeus</b>: homens, mulheres e crianças. Esse genocídio é o Holocausto. [[num]]</p><p>Cerca de 2,7 milhões foram mortos em cinco centros de extermínio: Chełmno, Belzec, Sobibor, Treblinka e Auschwitz-Birkenau. Os outros, em fuzilamentos em massa, guetos e campos. [[num]]</p><p>Os nazistas também perseguiram e mataram em massa prisioneiros de guerra soviéticos, poloneses, roma e pessoas com deficiência, entre outros. [[num]]</p>"},
+ {type:"info",quiet:true,k:"Fato não tem outro lado",h:"Por que sabemos",b:"<p>O número de seis milhões foi calculado a partir de <b>documentos do próprio regime nazista</b> e de dados de população de antes e depois da guerra. [[num]]</p><p>Negar o Holocausto não é \"o outro lado\" de um debate. É negar fatos documentados. [[deniers]] O que os historiadores debatem é outra coisa: <b>como e por que</b> isso aconteceu.</p>"},
+ {type:"open",ill:"livro",k:"Capítulo 6 de 6",d:"Depois",h:"O que os historiadores discutem",b:"Os fatos estão documentados. As explicações, não são todas iguais."},
+ {type:"info",k:"Uma dúvida comum no Brasil",h:"O nazismo era de esquerda?",b:"<p><b>Por que a dúvida existe:</b> o nome oficial era Partido Nacional-Socialista dos Trabalhadores Alemães, com a palavra \"socialista\".</p><p><b>O que os historiadores dizem:</b> o nazismo nasceu de grupos de extrema-direita do fim da Primeira Guerra; a palavra \"socialista\" no nome não o tornava de esquerda. [[zar]] No poder, o regime prendeu comunistas e sociais-democratas logo nos primeiros meses. [[anne]] [[fire]]</p><p class='mute'>Essa é a classificação de instituições como o Museu do Holocausto dos EUA e da grande maioria dos historiadores. [[ushmmfasc]] [[zar]]</p>"},
+ {type:"debate",k:"Um debate de verdade",h:"Por que pessoas comuns participaram?",
+  a:{t:"Pressão e circunstância",b:"O historiador Christopher Browning estudou um batalhão de policiais comuns e concluiu que muitos participaram por pressão do grupo, obediência e carreira. [[browning]]"},
+  bb:{t:"Ódio enraizado",b:"O historiador Daniel Goldhagen argumentou que um antissemitismo profundo e muito difundido na sociedade alemã explicaria por que tantos participaram. [[goldhagen]]"},
+  foot:"Os dois estudaram o mesmo batalhão e debateram em público, no Museu do Holocausto dos EUA, em 1996. [[debate96]] A discussão é sobre o <b>peso</b> de cada motivo, não sobre se os crimes aconteceram. O livro de Goldhagen foi um sucesso de público, mas recebeu críticas duras de muitos historiadores. [[zank]]"},
+ {type:"flash",id:"f1",k:"Rodada final",h:"Documentado ou debate?",ch:["📄 Documentado","💬 Debate"],it:[
+   {t:"Hitler foi nomeado chanceler dentro das regras da Constituição.",a:0,e:"Documentado. [[tl]]"},
+   {t:"Só os sociais-democratas votaram contra a Lei de Plenos Poderes.",a:0,e:"Documentado. [[anne]]"},
+   {t:"O peso do ódio e o da pressão do grupo entre os que participaram.",a:1,e:"Debate entre historiadores, como Browning e Goldhagen."},
+   {t:"Os conservadores que levaram Hitler ao governo achavam que conseguiriam controlá-lo.",a:0,e:"Documentado: relatado depois (1967) por um alto funcionário da época. [[papen]]"}]},
+ {type:"recap",k:"Você e a história",h:"O que você escolheu e o que aconteceu"},
+ {type:"quiz",id:"qz",k:"Teste final",h:"Três perguntas",qs:[
+   {q:"Como Hitler chegou ao poder?",o:["Foi nomeado pelo presidente, dentro das regras","Por um golpe militar","Foi eleito presidente"],a:0,e:"Foi nomeado chanceler em 30/jan/1933."},
+   {q:"Quem votou contra a Lei de Plenos Poderes?",o:["Só os sociais-democratas","Comunistas e sociais-democratas","Ninguém"],a:0,e:"Os comunistas nem puderam votar: estavam presos ou foragidos."},
+   {q:"O que foi a Circular Secreta 1.127, de 1937?",o:["Uma ordem do governo Vargas que restringia a entrada de judeus","Um acordo do Brasil para receber refugiados","Uma lei alemã sobre vistos"],a:0,e:"Aracy de Carvalho e Souza Dantas agiram contra ela."}]},
+ {type:"compare",k:"De volta ao começo",h:"Seu palpite"},
+ {type:"end",k:"Fim",h:"Pensar mais uma, também, é lembrar"}
+];
+/* estado */
+const KEY="pmu-nazismo-v2";
+let S;try{S=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){S=null}
+if(!S)S={i:0,pts:0,ans:{},mute:true,fb:{}};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const app=document.getElementById("app");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MAX=10+10+30;
+const src=h=>String(h).replace(/\[\[([a-z0-9_]+)\]\]/g,(m,k)=>FONTES[k]?`<button type="button" class="fn" data-f="${k}" aria-label="Ver fonte: ${esc(FONTES[k].s)}">🔎 ${esc(FONTES[k].s)}</button>`:"");
+let AC=null;function snd(t){if(S.mute||T[S.i].quiet)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);const f=t==="ok"?[520,700]:[260,220];o.type="sine";o.frequency.setValueAtTime(f[0],AC.currentTime);o.frequency.linearRampToValueAtTime(f[1],AC.currentTime+.18);g.gain.setValueAtTime(.05,AC.currentTime);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+.3);o.start();o.stop(AC.currentTime+.32)}catch(e){}}
+const addPts=n=>{S.pts+=n;save()};
+function frame(inner,bare){const n=T.length;const pct=Math.round(S.i/(n-1)*100);const t=T[S.i];
+ app.innerHTML=`<div class="top"><div class="toprow"><span class="t">Nazismo e Holocausto</span>${t.quiet?"":`<span>${S.pts} pontos</span>`}<button class="iconbtn" id="mute" aria-label="${S.mute?'Ligar som':'Desligar som'}">${S.mute?'🔇':'🔊'}</button></div><div class="prog"><i style="width:${pct}%"></i></div></div>${inner}`;
+ document.getElementById("mute").onclick=()=>{S.mute=!S.mute;save();render()};window.scrollTo(0,0)}
+const next=()=>{S.i=Math.min(S.i+1,T.length-1);save();render()};
+const nav=(ok,l)=>`<button class="btn" id="nx" ${ok?"":"disabled"}>${l||"Continuar"}</button>`;
+const bind=()=>{const b=document.getElementById("nx");if(b)b.onclick=next};
+function hemi(){const cx=170,cy=168;let seats=[];for(let r=0;r<15;r++){const R=56+r*7.3;const n=Math.round(Math.PI*R/7.5);for(let i=0;i<n;i++){const a=Math.PI-(i+.5)/n*Math.PI;seats.push({x:cx+R*Math.cos(a),y:cy-R*Math.sin(a),a})}}
+ seats.sort((p,q)=>q.a-p.a);seats=seats.slice(0,647);
+ return `<svg viewBox="0 0 340 176" width="100%" role="img" aria-label="Plenário com 647 cadeiras: 444 a favor, 94 contra e 109 vazias">${seats.map((s,i)=>i<94?`<circle cx="${s.x.toFixed(1)}" cy="${s.y.toFixed(1)}" r="2.7" fill="#E8B56A"/>`:i<203?`<circle cx="${s.x.toFixed(1)}" cy="${s.y.toFixed(1)}" r="2.5" fill="none" stroke="#6B7686" stroke-width="1.1"/>`:`<circle cx="${s.x.toFixed(1)}" cy="${s.y.toFixed(1)}" r="2.7" fill="#7D8899"/>`).join("")}<text x="170" y="164" text-anchor="middle" font-family="Playfair Display" font-weight="800" font-size="19" fill="#EDE6D8">444 × 94</text></svg><div class="leg"><span style="--c:#7D8899">a favor (444)</span><span style="--c:#E8B56A">contra (94)</span><span style="--c:transparent;--b:#6B7686">vazias: presos, foragidos ou ausentes</span></div>`}
+function render(){const t=T[S.i];const A=S.ans[t.id]||{};let h=`<p class="kick">${t.k}</p>`;
+ if(S.i===0&&!S.started){frame(`<div class="open" style="min-height:auto">${ILL.kroll}<div class="in"><span class="date">Curso-jogo · 10 minutos · grátis</span><h1>Nazismo e Holocausto: como pessoas comuns deixaram isso acontecer?</h1><p>Você vai tomar decisões no lugar de um político, de um deputado, de um vizinho e de um governo estrangeiro, entre 1932 e 1938, sabendo só o que se sabia na época. Depois, vê o que aconteceu de verdade.</p><div class="warn"><b>Antes de começar:</b> este curso trata de perseguição e genocídio. Não há imagens de violência. Os pontos valem só para previsões e testes, nunca nas telas sobre as vítimas. Toque em 🔎 para ver a fonte de cada dado.</div><button class="btn" id="go">Começar</button></div></div>`);document.getElementById("go").onclick=()=>{S.started=true;save();render()};return}
+ switch(t.type){
+ case "poll":{h+=`<h2>${t.h}</h2>`+t.o.map((o,k)=>`<button class="opt ${A.v===k?'on':''}" data-k="${k}">${o}</button>`).join("");if(A.v!=null)h+=`<div class="fb">${t.fb}</div>`;h+=nav(A.v!=null);frame(h);
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{S.ans[t.id]={v:+b.dataset.k};save();render()});bind();break}
+ case "open":{frame(`<div class="open"><div class="lb"></div>${ILL[t.ill]}<div class="in"><p class="kick" style="margin-top:4px">${t.k}</p><span class="date">${t.d}</span><h1>${t.h}</h1><p>${src(t.b)}</p>${nav(true)}</div><div class="lb"></div></div>`);bind();break}
+ case "info":{h+=`<h2>${t.h}</h2><div class="card">${src(t.b)}</div>`+nav(true);frame(h);bind();break}
+ case "palpite2":{const p=S.ans.palpite?S.ans.palpite.v:null;const P=T[0].o;h+=`<h2>${t.h}</h2><div class="fb"><b>${p===2?"Você acertou.":"Você chutou: "+(p!=null?P[p]:"nada")+"."}</b>${p===2?"Muita gente acha que foi golpe ou eleição.":"É uma confusão comum."}</div><div class="card">${src(t.b)}</div>`+nav(true);frame(h);bind();break}
+ case "chars":{h+=`<h2>${t.h}</h2><p>${t.b}</p><div class="chars">${Object.keys(CH).map(k=>{const c=CH[k];return `<button class="ch" data-c="${k}"><b>${c.n}</b><span class="front"><small>${c.r}</small><small style="color:var(--amb2)">toque para ver</small></span><span class="back"><small>${c.r}</small><small>${c.q}</small><small>${c.f}</small></span></button>`}).join("")}</div>`+nav(true);frame(h);
+  app.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>b.classList.toggle("open"));bind();break}
+ case "decision":{h+=`<span class="date">${t.d}</span><h2>${t.h}</h2><p class="mute">${t.ctx}</p>`;
+  h+=t.o.map((o,k)=>`<button class="opt ${A.v===k?'on':''}" data-k="${k}" ${A.v!=null?"disabled":""}>${o}${A.v===k?"<span>✓</span>":""}</button>`).join("");
+  if(A.v!=null&&t.pq&&A.p==null){h+=`<div class="card"><b>${t.pq}</b>${t.po.map((o,k)=>`<button class="opt" data-p="${k}">${o}</button>`).join("")}</div>`}
+  const done=A.v!=null&&(t.pq?A.p!=null:true);
+  if(done){if(t.pq){h+=`<div class="card"><b>${t.pq}</b>${t.po.map((o,k)=>{const c=k===t.pa?"ok":k===A.p?"no":"";return `<button class="opt ${c}" disabled>${o}</button>`}).join("")}<div class="fb" style="margin-bottom:0"><b>${t.np?"A resposta está marcada em verde.":A.p===t.pa?"Boa previsão. +10 pontos":"A resposta certa está marcada em verde."}</b></div></div>`}
+   if(t.byopt)h+=`<div class="fb"><b>Sobre a sua escolha</b>${src(t.byopt[A.v])}</div>`;
+   h+=`<div class="card"><p class="kick" style="margin-top:0">O que aconteceu de verdade</p>${t.hemi?hemi():""}<p style="margin-bottom:0">${src(t.rev)}</p></div>`}
+  h+=nav(done);frame(h);
+  app.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{S.ans[t.id]={v:+b.dataset.k};save();render()});
+  app.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>{A.p=+b.dataset.p;S.ans[t.id]=A;if(!t.np){if(A.p===t.pa){addPts(10);snd("ok")}else snd("no")}save();render()});bind();break}
+ case "stairs":{A.n=A.n||0;h+=`<h2>${t.h}</h2><div class="stairs">${t.it.map((s,k)=>k<A.n?`<div class="step"><span class="y">${s[0]}</span><span class="d">${src(s[1])}</span></div>`:k===A.n?`<button class="step" data-s="${k}"><span class="y">${s[0]}</span><span class="d" style="color:var(--amb2)">Toque para ver o que aconteceu →</span></button>`:`<div class="step lock"><span class="y">${s[0]}</span><span class="d">…</span></div>`).join("")}</div>`;
+  if(A.n>=t.it.length)h+=`<div class="fb"><b>Cinco anos, cinco degraus</b>${src("Em 1938, os judeus alemães já tinham perdido a cidadania, os cargos no serviço público e o direito de ter negócios. [[nur]] [[laws]]")}</div>`;
+  h+=nav(A.n>=t.it.length);frame(h);
+  app.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{A.n++;S.ans[t.id]=A;save();const y=window.scrollY;render();window.scrollTo(0,y)});bind();break}
+ case "debate":{h+=`<h2>${t.h}</h2><div class="two"><div><b>${t.a.t}</b><p>${src(t.a.b)}</p></div><div><b>${t.bb.t}</b><p>${src(t.bb.b)}</p></div></div><div class="fb"><p style="margin:0">${src(t.foot)}</p></div>`+nav(true);frame(h);bind();break}
+ case "flash":{A.r=A.r||[];h+=`<h2>${t.h}</h2>`+t.it.map((it,k)=>{const r=A.r[k];return `<div class="card"><b>${it.t}</b><div class="pick">${t.ch.map((c,j)=>{let cl="";if(r!=null)cl=j===it.a?"ok":j===r?"no":"";return `<button class="${cl}" data-it="${k}" data-c="${j}" ${r!=null?"disabled":""}>${c}</button>`}).join("")}</div>${r!=null?`<p class="mute" style="margin:6px 0 0">${src(it.e)}</p>`:""}</div>`}).join("");
+  h+=nav(t.it.every((_,k)=>A.r[k]!=null));frame(h);
+  app.querySelectorAll("[data-it]").forEach(b=>b.onclick=()=>{A.r[+b.dataset.it]=+b.dataset.c;S.ans[t.id]=A;save();const y=window.scrollY;render();window.scrollTo(0,y)});bind();break}
+ case "recap":{const rows=["d1","d2","d3","d4"].map(id=>{const d=T.find(x=>x.id===id);const a=S.ans[id]||{};return `<div class="cmp"><div><small>${d.d}: você</small>${a.v!=null?d.o[a.v]:"—"}</div><div><small>O que aconteceu</small>${({d1:"Hitler foi nomeado chanceler.",d2:"A lei passou por 444 a 94.",d3:"Muitos assistiram; poucos ajudaram.",d4:"Só a República Dominicana aceitou mais refugiados."})[id]}</div></div>`}).join('<div style="height:8px"></div>');
+  h+=`<h2>${t.h}</h2>${rows}<div class="fb"><b>Pessoas comuns também ajudaram</b>Até 1º de janeiro de 2024, o Yad Vashem tinha reconhecido 28.707 pessoas de 51 países como Justos entre as Nações. Os números não mostram toda a ajuda que existiu: só os casos documentados. [[ushmmrj]]</div>`.replace(/\[\[([a-z0-9_]+)\]\]/g,m=>src(m))+nav(true);frame(h);bind();break}
+ case "quiz":{A.r=A.r||[];h+=`<h2>${t.h}</h2>`+t.qs.map((q,k)=>{const r=A.r[k];return `<div class="card"><b>${k+1}. ${q.q}</b>${q.o.map((o,j)=>{let c="";if(r!=null)c=j===q.a?"ok":j===r?"no":"";return `<button class="opt ${c}" data-q="${k}" data-j="${j}" ${r!=null?"disabled":""}>${o}</button>`}).join("")}${r!=null?`<p class="mute" style="margin:6px 0 0">${r===q.a?"Certo. +10. ":""}${q.e}</p>`:""}</div>`}).join("");
+  h+=nav(t.qs.every((_,k)=>A.r[k]!=null));frame(h);
+  app.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{const k=+b.dataset.q,j=+b.dataset.j;A.r[k]=j;S.ans[t.id]=A;if(j===t.qs[k].a){addPts(10);snd("ok")}else snd("no");save();const y=window.scrollY;render();window.scrollTo(0,y)});bind();break}
+ case "compare":{const p=S.ans.palpite?S.ans.palpite.v:null;const P=T[0].o;h+=`<h2>${t.h}</h2><div class="card">No começo, você respondeu: <b>${p!=null?P[p]:"—"}</b>.<br>A resposta: Hitler foi <b>nomeado, dentro das regras</b>. ${src("[[tl]]")}</div><div class="card"><b>A pergunta que fica:</b> em que momento da escada você acha que ainda dava para parar? <span class="mute">(opcional)</span><textarea id="why" rows="3">${esc(A.why||"")}</textarea></div>`+nav(true);frame(h);
+  document.getElementById("why").oninput=e=>{A.why=e.target.value;S.ans.compare=A;save()};bind();break}
+ case "end":{const F=S.fb||{};h+=`<h2>${t.h}</h2><div class="card" style="text-align:center"><p style="margin:0"><b>${S.pts} de ${MAX} pontos</b> em previsões e testes.</p></div>
+  <div class="card"><p class="kick" style="margin-top:0">Avalie o curso</p><b>Que nota você dá?</b><div class="rate">${[1,2,3,4,5].map(n=>`<button class="${F.nota===n?'on':''}" data-n="${n}">${n}</button>`).join("")}</div>
+  <p><b>Sentiu que o curso favoreceu algum lado?</b></p><select id="lado"><option value="">Escolha</option>${["Não","Sim, a esquerda","Sim, a direita","Não sei"].map(o=>`<option ${F.lado===o?"selected":""}>${o}</option>`).join("")}</select>
+  <p><b>O que você aprendeu que não sabia?</b></p><textarea id="aprendi" rows="2">${esc(F.aprendi||"")}</textarea>
+  <p><b>Que tema você quer que vire curso?</b></p><textarea id="tema" rows="2">${esc(F.tema||"")}</textarea>
+  <button class="btn" id="env">${F.sent?"Avaliação enviada ✓":"Enviar avaliação"}</button></div>
+  <div class="card"><p class="kick" style="margin-top:0">Para ir além</p><ul class="list"><li>"É isto um homem?", de Primo Levi: o relato de um sobrevivente de Auschwitz.</li><li>"O diário de Anne Frank".</li><li>"A chegada do Terceiro Reich", de Richard J. Evans (Planeta): como os nazistas chegaram ao poder.</li><li>"Os carrascos voluntários de Hitler", de Daniel Goldhagen (Companhia das Letras), e "Homens comuns", de Christopher Browning (Vide Editorial): os dois lados do debate.</li><li>"Quixote nas trevas", de Fábio Koifman (Record): o embaixador Souza Dantas.</li></ul><p class="mute">▶️ <a style="color:var(--amb2)" href="https://www.youtube.com/results?search_query=como+hitler+chegou+ao+poder+document%C3%A1rio" target="_blank" rel="noopener">Buscar documentários no YouTube</a></p></div>
+  <div class="card"><p class="kick" style="margin-top:0">Fontes deste curso</p><ul class="fontes">${Object.values(FONTES).map(f=>`<li>${esc(f.t)}${f.u?` · <a href="${f.u}" target="_blank" rel="noopener">abrir</a>`:""}</li>`).join("")}</ul></div>
+  <button class="btn ghost" id="again">Recomeçar</button>`;frame(h);
+  app.querySelectorAll("[data-n]").forEach(b=>b.onclick=()=>{S.fb.nota=+b.dataset.n;save();render()});
+  document.getElementById("lado").onchange=e=>{S.fb.lado=e.target.value;save()};
+  document.getElementById("aprendi").oninput=e=>{S.fb.aprendi=e.target.value;save()};
+  document.getElementById("tema").oninput=e=>{S.fb.tema=e.target.value;save()};
+  document.getElementById("env").onclick=()=>{S.fb.sent=true;try{const q=JSON.parse(localStorage.getItem("pmu-fila")||"[]");q.push({curso:"nazismo",quando:new Date().toISOString(),...S.fb});localStorage.setItem("pmu-fila",JSON.stringify(q))}catch(e){}save();render()};
+  document.getElementById("again").onclick=()=>{S={i:0,pts:0,ans:{},mute:S.mute,fb:{},started:true};save();render()};break}
+ }}
+const pop=document.getElementById("fnpop");
+document.addEventListener("click",e=>{const b=e.target.closest(".fn");if(b){e.preventDefault();e.stopPropagation();const f=FONTES[b.dataset.f];if(!f)return;document.getElementById("fnbody").innerHTML=`<b>Fonte</b><br>${esc(f.t)}${f.u?`<br><a href="${f.u}" target="_blank" rel="noopener">Abrir a fonte ↗</a>`:""}`;pop.style.display="block";return}
+ if(e.target.closest("#fnpop .x")||!e.target.closest("#fnpop"))pop.style.display="none"},true);
+render();
+</script>
+</body></html>

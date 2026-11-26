@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Aborto na lei: como o mundo decidiu e onde o Brasil está? | Pense Mais Uma</title>
+<meta name="description" content="Curso-jogo em linha do tempo: de 1940 a 2026, destrave 18 momentos e veja o mapa mudar, do Uruguai à Polônia, dos EUA ao STF. Antes e depois em números, os dois lados e fonte em cada dado.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#28304A;--bg2:#12141D;--ink:#ECE9F5;--mut:#BFC4D6;--acc:#D7B46A;--line:#3C4566;--card:rgba(255,255,255,.07);--bd:rgba(255,255,255,.14)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:radial-gradient(120% 70% at 50% 0,var(--bg1),var(--bg2)) fixed;color:var(--ink);font-family:Inter,system-ui,sans-serif}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+#app{max-width:480px;margin:0 auto;min-height:100vh;padding:14px 14px 28px;display:flex;flex-direction:column}
+.top{display:flex;justify-content:space-between;align-items:center;font:700 12px "IBM Plex Mono";color:var(--mut)}
+h1,h2{font-family:Fraunces,Georgia,serif;font-weight:600;margin:6px 0 10px;line-height:1.12}
+h1{font-size:clamp(28px,8vw,34px)}h2{font-size:clamp(21px,6vw,24px)}
+.k{font:700 11px "IBM Plex Mono";letter-spacing:.12em;color:var(--acc);text-transform:uppercase}
+p.l{font-size:15px;line-height:1.55;color:var(--ink)}
+.map{display:block;width:100%;height:auto;margin-top:6px}
+.map circle.d{transition:fill .7s ease,r .4s ease}
+.leg{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:11.5px;color:var(--mut);margin-top:2px}.leg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px;vertical-align:-1px}
+.yr{display:flex;align-items:baseline;gap:10px;margin-top:10px}.yr b{font:800 34px Fraunces;color:var(--acc)}.yr span{font:700 11px "IBM Plex Mono";color:var(--mut);letter-spacing:.1em}
+.tl{position:relative;height:64px;margin:4px 0 0}
+.tl .lane{position:absolute;left:0;font:700 9px "IBM Plex Mono";letter-spacing:.1em;color:var(--mut)}
+.tl .ln{position:absolute;left:52px;right:6px;height:2px;background:var(--line)}
+.tl .ev{position:absolute;width:22px;height:22px;margin-left:-11px;margin-top:-10px;display:grid;place-items:center}
+.tl .ev i{display:block;width:11px;height:11px;border-radius:50%;background:var(--line);transition:all .3s}
+.tl .ev.on i{background:var(--ink)}.tl .ev.cur i{background:var(--acc);box-shadow:0 0 0 5px rgba(215,180,106,.3);width:13px;height:13px}
+.tl .ev:disabled{cursor:default}
+.tl .tk{position:absolute;bottom:0;font:700 9.5px "IBM Plex Mono";color:var(--mut)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-top:8px;animation:in .45s ease-out}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card .x{font-size:15px;line-height:1.55;margin:0}
+.ad{margin-top:12px;border:1px solid var(--bd);border-radius:10px;overflow:hidden}
+.ad .h{background:rgba(215,180,106,.16);font:700 10.5px "IBM Plex Mono";letter-spacing:.1em;padding:6px 10px;color:var(--acc)}
+.ad .row{padding:8px 10px;border-top:1px solid var(--bd);font-size:13.5px;line-height:1.4}
+.ad .m{font-weight:700;margin-bottom:4px}.ad .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center}
+.ad .ba span{background:rgba(255,255,255,.09);border-radius:6px;padding:5px 7px;font-weight:600;font-size:13px}.ad .ba em{font-style:normal;color:var(--acc);font-weight:700}
+.ad .note{background:rgba(255,255,255,.04);font-size:13px}.ad .note b{display:block;font:700 10px "IBM Plex Mono";letter-spacing:.08em;color:var(--acc);margin-bottom:2px}
+.two{display:grid;gap:8px;margin-top:10px}.two>div{background:rgba(255,255,255,.05);border-radius:10px;padding:10px;font-size:13.5px;line-height:1.45}
+.two b{display:block;font:700 10px "IBM Plex Mono";letter-spacing:.08em;color:var(--acc);margin-bottom:3px}
+.nav{display:flex;gap:8px;margin-top:12px}
+.btn{flex:1;min-height:50px;border-radius:12px;border:1.5px solid var(--acc);color:var(--acc);font:700 13.5px "IBM Plex Mono";letter-spacing:.03em;padding:8px}
+.btn.solid{background:var(--acc);color:#14161F}.btn.ghost{border-color:var(--line);color:var(--mut);flex:0 0 64px}
+.btn:disabled{opacity:.35}
+.fn{display:inline-block;font:600 11.5px Inter;color:#F3DDA9;background:rgba(215,180,106,.14);border:1px solid rgba(215,180,106,.4);border-radius:99px;padding:0 7px;margin:0 2px;vertical-align:1px;text-align:left}
+#fnpop{position:fixed;left:14px;right:14px;bottom:14px;max-width:452px;margin:0 auto;background:#F4F1FA;color:#14161F;border-radius:14px;padding:14px 16px;z-index:60;display:none;font-size:.9rem;line-height:1.5;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+#fnpop a{color:#5B3FA0}#fnpop .x{position:absolute;right:10px;top:6px;font-size:20px;color:#14161F}
+.how{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px 14px;margin-top:12px;font-size:14.5px;line-height:1.5}
+.how a{color:#F3DDA9}
+.vt{display:block;width:100%;text-align:left;border:1px solid var(--bd);border-radius:12px;padding:12px;margin:8px 0;background:rgba(255,255,255,.04)}
+.vt b{display:block;font-size:15.5px}.vt small{color:var(--mut)}.vt.on{border-color:var(--acc);background:rgba(215,180,106,.1)}
+.cd p{margin:.45em 0;font-size:14.5px;line-height:1.5}.cd i{font-style:normal;font:700 10.5px "IBM Plex Mono";color:var(--acc);letter-spacing:.06em}
+.now{display:grid;grid-template-columns:1fr auto;gap:6px 10px;font-size:14px;margin-top:8px}.now span:nth-child(even){color:var(--mut);text-align:right}.now .br{color:var(--acc);font-weight:700}
+.rate{display:flex;gap:6px}.rate button{flex:1;border:1px solid var(--bd);border-radius:10px;padding:10px 0;font-weight:700}.rate button.on{background:var(--acc);color:#14161F}
+textarea,select{width:100%;font:inherit;border:1px solid var(--bd);border-radius:10px;padding:10px;background:rgba(255,255,255,.06);color:var(--ink)}
+select option{color:#14161F}
+.fontes li{font-size:.8rem;margin:.45em 0;color:var(--mut)}.fontes a{color:#F3DDA9}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style><link rel="canonical" href="https://pensemaisuma.com.br/cursos/aborto-na-lei/">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+</head><body>
+<div id="pmu-bar" style="font-family:Nunito,system-ui,sans-serif;background:#FAF7F0;color:#17150F;border-bottom:1.5px solid #17150F;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:14px;font-weight:800;position:relative;z-index:50">
+<a href="index.html" style="color:inherit;text-decoration:none">← Sobre o curso</a>
+<a href="../../index.html" style="display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none"><img src="../../assets/logo.svg" alt="" width="26" height="26"><span style="font-family:Fraunces,Georgia,serif">Pense Mais Uma</span></a>
+<a href="index.html#avaliar" style="color:inherit">Avaliar</a></div>
+<main id="app"></main>
+<div id="fnpop" role="dialog" aria-live="polite"><button class="x" aria-label="Fechar">×</button><div id="fnbody"></div></div>
+<script>
+const FONTES={
+ cef_pl:{s:"Congresso em Foco, 2024",t:"Congresso em Foco (jun/2024): pelo PL 1904, o aborto após 22 semanas teria pena de 6 a 20 anos, inclusive para vítimas de estupro; a pena do estupro (art. 213) é de 6 a 10 anos, ou de 8 a 12 em casos agravados",u:"https://www.congressoemfoco.com.br/area/congresso-nacional/entenda-o-projeto-que-da-ate-20-anos-de-prisao-para-mulher-estuprada-que-abortar/"},
+ ms_pill:{s:"Ms. Magazine, 2025",t:"Ms. Magazine (dez/2025), com dados do #WeCount: em junho de 2025, cerca de 14.770 abortos por mês foram feitos com pílulas enviadas por telemedicina, de estados com leis de proteção, a moradoras de estados que proíbem ou restringem",u:"https://msmagazine.com/2025/12/18/abortion-pills-increase-telehealth-shield-law/"},
+ kff_mife:{s:"KFF, 2026",t:"KFF (mai/2026): em 14/mai/2026, a Suprema Corte manteve por enquanto o acesso à mifepristona por telemedicina enquanto o caso Louisiana v. FDA continua; a FDA segue revendo a pílula",u:"https://www.kff.org/quick-insights/supreme-court-leaves-mifepristone-access-unchanged-for-now/"},
+ oko:{s:"OKO.press, 2026",t:"OKO.press (6/nov/2026): o Senado polonês aprovou os dois projetos sobre aborto: 54 a 34 o que muda o Código Penal e 58 a 33, com 3 abstenções, o que permite o aborto por defeitos graves no feto",u:"https://oko.press/na-zywo/na-zywo-relacja/senat-przyjal-dwie-ustawy-o-aborcji"},
+ arg_pan:{s:"Diario Panorama, 2026",t:"Diario Panorama (nov/2026): o governo Milei decidiu deixar a revogação do aborto legal fora da reforma do Código Penal, apesar da fala do papa Leão XIV; a vice-presidente Villarruel criticou a decisão",u:"https://www.diariopanorama.com/noticia/572557/gobierno-descarto-derogar-aborto-legal-lo-dejara-fuera-reforma-codigo-penal"},
+ camara_ficha:{s:"Câmara dos Deputados",t:"Câmara dos Deputados, ficha de tramitação do PL 1904/2024: situação 'Aguardando Despacho do Presidente da Câmara dos Deputados'",u:"https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2434493"},
+ cfm_ass:{s:"CFM (parte interessada), 2026",t:"Conselho Federal de Medicina, parte interessada (mar/2026): a Resolução CFM 2.378/2024, que vedava a assistolia fetal em gestações acima de 22 semanas, foi suspensa por Alexandre de Moraes em maio de 2024 (ADPF 1141); em 19/mar/2026 o ministro liberou o caso para julgamento no plenário",u:"https://portal.cfm.org.br/noticias/stf-libera-para-julgamento-acao-que-suspendeu-resolucao-do-cfm-que-veda-assistolia-fetal/"},
+ sjose:{s:"Pacto de San José (Decreto 678/1992)",t:"Convenção Americana de Direitos Humanos (Pacto de San José), promulgada no Brasil pelo Decreto 678/1992, art. 4º: o direito à vida 'deve ser protegido pela lei e, em geral, desde o momento da concepção'",u:"https://www.planalto.gov.br/ccivil_03/decreto/d0678.htm"},
+ cc2:{s:"Código Civil, art. 2º",t:"Código Civil (Lei 10.406/2002), art. 2º: a personalidade civil começa do nascimento com vida, mas a lei põe a salvo, desde a concepção, os direitos do nascituro",u:"https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm"},
+ lpj:{s:"Le Petit Journal, 2026",t:"Le Petit Journal (2026): críticos do projeto, como o presidente Karol Nawrocki, dizem que permitir o aborto por doenças como a síndrome de Down seria eugenia",u:"https://lepetitjournal.com/varsovie/ivg-pologne-pourquoi-vote-historique-sejm-change-pas-loi-457369"},
+ rte25:{s:"RTÉ, 2025",t:"RTÉ (jul/2025), com o relatório anual do Ministério da Saúde irlandês: 10.852 abortos foram feitos na Irlanda em 2024",u:"https://www.rte.ie/news/ireland/2025/0715/1523603-ireland-abortion-figures"},
+ irl13:{s:"Lei irlandesa de 2013",t:"Protection of Life During Pregnancy Act 2013 (Lei 35/2013): permitia o aborto na Irlanda só quando havia risco real e substancial de morte da gestante, inclusive por risco de suicídio; vigorou de 2014 a 2018",u:"https://www.irishstatutebook.ie/2013/en/act/pub/0035/print.html"},
+ cp:{s:"Código Penal, art. 128",t:"Código Penal (Decreto-Lei 2.848/1940), art. 128: não se pune o aborto praticado por médico se não há outro meio de salvar a vida da gestante ou se a gravidez resulta de estupro",u:"https://www.planalto.gov.br/ccivil_03/decreto-lei/del2848compilado.htm"},
+ cnn_pl:{s:"CNN Brasil, 2024",t:"CNN Brasil (jun/2024): hoje não há no Código Penal um prazo máximo para o aborto legal, permitido em casos de estupro, risco de vida da mãe e anencefalia do feto",u:"https://www.cnnbrasil.com.br/politica/camara-urgencia-aborto/"},
+ camara_pl:{s:"Agência Câmara, 2024",t:"Agência Câmara (jun/2024): o PL 1904/24 equipara o aborto realizado após 22 semanas de gestação ao crime de homicídio simples, inclusive nos casos de gravidez resultante de estupro",u:"https://www.camara.leg.br/noticias/1071458-projeto-de-lei-preve-pena-de-homicidio-simples-para-aborto-apos-22-semanas-de-gestacao"},
+ camara_urg:{s:"Agência Câmara, 2024",t:"Agência Câmara (12/jun/2024): a Câmara aprovou a urgência para o projeto que equipara a homicídio o aborto de gestação acima de 22 semanas",u:"https://www.camara.leg.br/noticias/1072249-camara-aprova-urgencia-para-projeto-que-equipara-aborto-de-gestacao-acima-de-22-semanas-a-homicidio"},
+ pl_pena:{s:"CNN Brasil, 2024",t:"CNN Brasil (jun/2024): para homicídio simples, a pena prevista no Código Penal é de seis a vinte anos de prisão",u:"https://www.cnnbrasil.com.br/politica/projeto-aborto-homicidio-entenda/"},
+ pl_autor:{s:"Enquete da Câmara",t:"Câmara dos Deputados: o texto foi apresentado pelo deputado Sóstenes Cavalcante (PL-RJ) e outros; os autores argumentam que, quando o Código Penal foi escrito, um aborto de último trimestre seria chamado de homicídio ou infanticídio",u:"https://www.camara.leg.br/enquetes/2434493?opcao=4"},
+ stf54:{s:"STF, 2012",t:"STF (12/abr/2012): por maioria, o Plenário garantiu às gestantes de fetos anencéfalos o direito de interromper a gravidez (ADPF 54, ação da Confederação Nacional dos Trabalhadores na Saúde); ficaram vencidos os ministros Ricardo Lewandowski e Cezar Peluso",u:"https://noticias.stf.jus.br/?p=30808"},
+ jb54:{s:"Jornal do Brasil, 2012",t:"Jornal do Brasil (12/abr/2012): o STF decidiu por 8 votos a 2 que não pratica crime de aborto a mulher que decide pela antecipação do parto em caso de feto anencéfalo",u:"https://www.jb.com.br/pais/noticias/2012/04/12/amp/stf-decide-por-8-a-2-que-nao-e-crime-aborto-de-feto-anencefalo.html"},
+ jus54:{s:"Jus.com.br",t:"Jus.com.br (2012), artigo de opinião: na ADPF 54, o STF teria atuado como 'legislador positivo', criando uma hipótese que o Código Penal não prevê",u:"https://jus.com.br/artigos/21532/stf-aborto-de-fetos-anencefalos-adpf-54-e-legislador-positivo"},
+ cef442:{s:"Congresso em Foco",t:"Congresso em Foco: a ADPF 442 foi proposta pelo PSOL em 2017 e questiona a criminalização do aborto até a 12ª semana; com o pedido de destaque, o julgamento fica suspenso até nova data",u:"https://www.congressoemfoco.com.br/noticia/113066/barroso-vota-por-descriminalizar-aborto-e-gilmar-suspende-julgamento"},
+ stf_rw:{s:"STF, 2025",t:"STF (out/2025): o julgamento da ADPF 442 estava suspenso desde setembro de 2023, após o voto da relatora, ministra Rosa Weber; Barroso votou pela descriminalização até 12 semanas e disse: 'Ninguém é a favor do aborto em si'",u:"https://noticias.stf.jus.br/postsnoticias/ministro-barroso-vota-pela-descriminalizacao-do-aborto-ate-12-semanas-de-gestacao/"},
+ mig_bar:{s:"Migalhas, 2025",t:"Migalhas (17/out/2025): Barroso votou para descriminalizar o aborto até a 12ª semana em seu último ato no STF, acompanhando Rosa Weber; logo depois, o julgamento foi suspenso por pedido de destaque de Gilmar Mendes",u:"https://www.migalhas.com.br/quentes/442602/barroso-vota-para-descriminalizar-o-aborto-gilmar-pede-destaque"},
+ mig_cn:{s:"Migalhas, 2025",t:"Migalhas (dez/2025), artigo de opinião: o poder de legislar sobre aborto é exclusivamente do Congresso Nacional, e o julgamento deveria ter os 11 ministros",u:"https://www.migalhas.com.br/depeso/445543/adpf-do-aborto--o-poder-de-legislar-e-exclusivamente-do-cn"},
+ pna:{s:"Revista Pesquisa FAPESP",t:"Revista Pesquisa FAPESP: segundo a Pesquisa Nacional de Aborto, uma em cada sete brasileiras de 40 anos já interrompeu ao menos uma gestação; a estimativa mais recente indica cerca de 500 mil abortos por ano no Brasil",u:"https://revistapesquisa.fapesp.br/uma-em-cada-sete-brasileiras-de-40-anos-ja-interrompeu-intencionalmente-ao-menos-uma-gestacao/"},
+ pna_sci:{s:"Ciência & Saúde Coletiva",t:"Pesquisa Nacional de Aborto 2021 (Ciência & Saúde Coletiva): cerca de 10% das mulheres disseram ter feito ao menos um aborto (15% em 2010); 43% foram hospitalizadas para finalizar o aborto (55% em 2010)",u:"https://www.scielo.br/j/csc/a/mDCFKkqkyPbXtHXY9qcpMqD/"},
+ df24:{s:"Datafolha, 2024",t:"Datafolha (2024), via CartaCapital: para 42% a lei do aborto deve continuar como está; 35% querem proibir o aborto em qualquer situação; 15% querem ampliar os casos permitidos",u:"https://www.cartacapital.com.br/?p=413555"},
+ df24b:{s:"Datafolha, 2024",t:"Datafolha (2024), via Diário Online: só 6% defendem que a mulher possa interromper a gravidez em qualquer situação",u:"https://dol.com.br/noticias/brasil/852923/datafolha-apenas-6-dos-brasileiros-defendem-aborto"},
+ df22:{s:"Datafolha, 2022",t:"Datafolha (mar/2022), via A Gazeta: 87% dos brasileiros acham que a mulher vítima de estupro deve ter a opção de abortar, como previsto em lei",u:"https://www.agazeta.com.br/brasil/datafolha-aborto-em-caso-de-estupro-e-defendido-por-87-dos-brasileiros-0322"},
+ df_pl:{s:"Datafolha, 2024",t:"Datafolha (jun/2024), via Bahia Notícias: 66% dos brasileiros se declararam contra o PL 1904/2024",u:"https://www.bahianoticias.com.br/noticia/293484-datafolha-66-dos-brasileiros-sao-contra-pl-que-equipara-aborto-apos-22-semanas-de-gestacao-a-um-homicidio"},
+ roe:{s:"CNN, via KRDO",t:"CNN (fast facts): em 22/jan/1973 a Suprema Corte dos EUA, por 7 a 2, afirmou o direito da mulher ao aborto; em 24/jun/2022, por 6 a 3, revogou Roe v. Wade, e deixou de existir um direito constitucional federal ao aborto",u:"https://krdo.com/?p=1245104"},
+ brit:{s:"Britannica",t:"Britannica: em Dobbs (2022), a Corte manteve por 6 a 3 a lei do Mississippi e revogou Roe e Casey por 5 a 4",u:"https://www.britannica.com/topic/Dobbs-v-Jackson-Womens-Health-Organization"},
+ kff:{s:"KFF, 2026",t:"KFF (2026): paradoxalmente, os dados mais recentes mostram que o número de abortos nos EUA aumentou levemente nos três anos seguintes à decisão Dobbs",u:"https://www.kff.org/womens-health-policy/issue-brief/key-facts-on-abortion-in-the-united-states/"},
+ wecount:{s:"AP, via Telemundo",t:"AP, via Telemundo (2024): o número de abortos caiu quase a zero nos estados que proíbem o aborto em todas as fases e caiu cerca de metade onde ele é proibido após seis semanas",u:"https://www.telemundo.com/noticias/amp/rcna165585"},
+ ap24:{s:"AP, via Telemundo",t:"AP, via Telemundo: a pesquisa #WeCount contou cerca de 1,1 milhão de abortos no país em 2024; os feitos com pílulas por telemedicina se tornaram mais comuns; 12 estados proíbem em todas as fases da gravidez",u:"https://www.telemundo.com/noticias/noticias-telemundo/salud/la-cifra-de-abortos-en-estados-unidos-aumento-en-2024-debido-a-recetas-rcna214560"},
+ kff_pre:{s:"KFF, 2026",t:"KFF (2026): logo após Dobbs, o número de abortos caiu à medida que mais estados aplicaram proibições e restrições",u:"https://www.kff.org/womens-health-policy/report/key-facts-on-abortion-in-the-united-states/"},
+ veil:{s:"Vie-publique (governo francês)",t:"Vie-publique, site do governo francês: a Lei Veil, de 17/jan/1975, descriminalizou temporariamente o aborto, tornado definitivo em dezembro de 1979; em 4/mar/2024, o Parlamento reunido em Congresso aprovou a inclusão na Constituição por 780 votos a 72",u:"https://www.vie-publique.fr/loi/292357-liberte-recours-ivg-dans-la-constitution-avortement-loi-du-8-mars-2024"},
+ cnn_es:{s:"CNN en Español, 2024",t:"CNN en Español (mar/2024): a França legalizou o aborto em 1975, após campanha da então ministra da Saúde Simone Veil, sobrevivente de Auschwitz",u:"https://cnnespanol.cnn.com/2024/03/04/francia-derecho-aborto-constitucion-trax/"},
+ mig_fr:{s:"Migalhas, 2024",t:"Migalhas (mar/2024): a França é o primeiro país a incluir na Constituição a 'liberdade garantida da mulher' de recorrer à interrupção voluntária da gravidez; 780 votaram a favor e 72 contra",u:"https://www.migalhas.com.br/quentes/402816/franca-e-o-primeiro-pais-a-incluir-direito-ao-aborto-na-constituicao"},
+ pbs_fr:{s:"AP, via PBS, 2024",t:"AP, via PBS (mar/2024): a medida foi pensada para evitar retrocessos como o visto nos EUA; o aborto tem amplo apoio na maior parte do espectro político francês; a antiga Iugoslávia já tinha incluído esse direito na Constituição de 1974",u:"https://www.pbs.org/newshour/world/french-lawmakers-approve-bill-making-abortion-a-constitutional-right"},
+ pol93:{s:"Il Post, 2026",t:"Il Post (out/2026): parlamentares do partido Lei e Justiça pediram em 2019 à Corte Constitucional que tornasse ainda mais restritiva a lei do aborto de 1993; a Corte o fez em 22/out/2020; em 2024, um projeto do governo Tusk para legalizar até 12 semanas foi derrotado; o jornal cita 1.363 abortos legais em 2020 e 475 em 2021",u:"https://www.ilpost.it/2026/10/21/polonia-leggi-aborto/"},
+ pol_n:{s:"Notes from Poland, 2022",t:"Notes from Poland (2022): só 107 abortos legais em 2021, contra uma média de 1.087 nos três anos anteriores; antes, cerca de 98% dos abortos legais eram por defeitos graves no feto",u:"https://notesfrompoland.com/?p=46161"},
+ pol_est:{s:"Notes from Poland, 2022",t:"Notes from Poland (2022): mesmo antes da proibição quase total, estima-se que dezenas de milhares de abortos aconteçam fora da lei",u:"https://notesfrompoland.com/2022/07/30/number-of-legal-abortions-falls-90-in-polands-first-year-of-near-total-ban/"},
+ pol_pills:{s:"Evangelical Focus, via WEA",t:"Evangelical Focus (2022): grupos pró-vida alertam que 'o maior problema agora são os abortos ilegais com pílulas'; o texto cita dados do Ministério da Saúde polonês: 107 abortos legais em 2021",u:"https://children.worldea.org/?p=1921"},
+ pol_fidh:{s:"FIDH, 2025",t:"FIDH, federação de direitos humanos (jun/2025): entre as decisões de 2020 e 2023, seis mulheres morreram por causa das restrições de acesso ao aborto na Polônia",u:"https://www.fidh.org/es/region/europa-y-asia-central/polonia/el-derecho-al-aborto-gran-ausente-en-las-elecciones-presidenciales"},
+ pol_ewtn:{s:"EWTN News, 2026",t:"EWTN News (out/2026): o Parlamento polonês aprovou em 20/out/2026 dois projetos para flexibilizar a lei, que devem enfrentar veto do presidente Karol Nawrocki; um projeto parecido tinha caído por 218 a 215 em 2024; o segundo passou por 233 a 203",u:"https://www.ewtnnews.com/world/polish-lawmakers-vote-to-ease-abortion-law-as-presidential-veto-looms"},
+ pol_bs:{s:"Brussels Signal, 2026",t:"Brussels Signal (out/2026): o Parlamento votou permitir o aborto em casos de defeitos graves no feto e descriminalizar em parte quem ajuda mulheres a abortar; Nawrocki fez campanha em 2025 defendendo a vida desde a concepção",u:"https://brusselssignal.eu/2026/10/tusk-puts-polish-president-nawrocki-on-the-spot-over-liberalising-abortion/"},
+ pol_aj:{s:"Al Jazeera, 2026",t:"Al Jazeera (out/2026): hospitais poloneses fizeram 573 abortos no primeiro semestre de 2026, contra 452 em todo o ano de 2022, segundo o Fundo Nacional de Saúde",u:"https://aljazeera.com/news/2026/10/23/thousands-protest-across-poland-for-access-to-free-and-legal-abortions"},
+ pol_poll:{s:"Notes from Poland, 2026",t:"Notes from Poland (out/2026): pesquisa para o jornal Rzeczpospolita mostra que quase 7 em cada 10 poloneses querem liberalizar a lei do aborto",u:"https://notesfrompoland.com/2026/10/26/two-thirds-of-poles-support-liberalising-abortion-law-finds-new-poll/"},
+ slv_voa:{s:"Voz da América",t:"Voz da América: El Salvador proíbe o aborto totalmente desde 1998; o aborto pode ser tratado como homicídio agravado, com penas de 30 a 50 anos; o presidente diz que não vai abrandar a lei",u:"https://www.vozdeamerica.com/a/como-son-las-leyes-salvadorenas-en-torno-al-aborto-/7619012.html"},
+ slv_lp:{s:"La Prensa (Honduras)",t:"La Prensa (Honduras): a nova lei entrou em vigor em 1998, e um ano depois uma reforma constitucional mandou o Estado proteger a vida humana desde a concepção",u:"https://www.laprensa.hn/mundo/aborto_el_salvador-codigo_penal_salvadoreno-congreso_el_salvador-CYLP1134710"},
+ slv_cbs:{s:"CBS News",t:"CBS News: mais de 140 mulheres foram acusadas com base na proibição total desde 1998, com penas de até 35 anos em alguns casos",u:"https://www.cbsnews.com/news/miscarriages-abortion-jail-el-salvador"},
+ slv_bdf:{s:"Brasil de Fato, 2025",t:"Brasil de Fato (set/2025): até 1997 o aborto era permitido em El Salvador em alguns casos; hoje 27 mulheres esperam julgamento acusadas de aborto",u:"https://www.brasildefato.com.br/2025/09/28/em-el-salvador-onde-a-interrupcao-da-gravidez-e-proibida-mulheres-sao-presas-por-aborto-espontaneo/"},
+ uy_chq:{s:"Chequeado",t:"Chequeado (Argentina): no Uruguai, os abortos responderam por 37% das mortes maternas em 2001-2005 e por cerca de 8% em 2011-2015, segundo trabalho da FIGO; o governo estimava 33 mil abortos ilegais por ano entre 1995 e 2002; entre 2012 e 2013, após a legalização, foram 6.676",u:"https://chequeado.com/?p=38507"},
+ uy_rn:{s:"Río Negro",t:"Río Negro (Argentina): segundo o médico uruguaio ouvido, a experiência começou em 2001 com o modelo de redução de riscos e danos, que levou a mortalidade materna por aborto inseguro a zero antes de 2012",u:"https://www.rionegro.com.ar/?p=843257"},
+ uy_cat:{s:"Catholic.net",t:"Catholic.net, site católico contrário ao aborto: contesta as estimativas de 33 mil ou 150 mil abortos anuais antes da lei, chamando-as de 'fantasiosas'",u:"https://www.es.catholic.net/plugins/convertpdf/docs/articulos.php?id=52671"},
+ uy_npr:{s:"NPR, 2012",t:"NPR (set/2012): o Parlamento uruguaio aprovou por margem muito estreita a lei que permite o aborto com limites",u:"https://www.npr.org/sections/thetwo-way/2012/09/26/161813073/lawmakers-in-uruguay-vote-to-legalize-abortion"},
+ uy_hrw:{s:"HRW, 2012",t:"Human Rights Watch (2012): a lei uruguaia estabelece um período de espera de cinco dias para a mulher refletir antes de confirmar a decisão",u:"https://www.hrw.org/es/news/2012/10/26/uruguay-nueva-ley-sobre-aborto-marca-un-paso-historico-para-los-derechos-de-las"},
+ irl_euro:{s:"Euronews, 2018",t:"Euronews (mai/2018): mais de 66% dos eleitores irlandeses votaram por revogar a Oitava Emenda, que desde 1983 proibia na prática o aborto e dizia que o nascituro tem o mesmo direito à vida que a gestante",u:"https://www.euronews.com/2018/05/26/ireland-repeals-abortion-ban-quiet-revolution-transforms-country-n877756"},
+ irl_dn:{s:"Diário de Notícias, 2018",t:"Diário de Notícias (Portugal): resultado oficial de 66,40% pelo 'sim'",u:"https://www.dn.pt/mundo/primeiros-resultados-oficiais-indicam-mais-de-60-dos-votos-para-o-sim-ao-aborto-na-irlanda-9381338.html"},
+ irl_rte:{s:"RTÉ, 2020",t:"RTÉ (2020), com dados do Ministério da Saúde britânico: 375 mulheres da Irlanda fizeram aborto na Inglaterra e no País de Gales em 2019, contra 2.879 em 2018",u:"https://www.rte.ie/news/2020/0611/1146820-375-irish-women-accessed-abortions-in-uk-last-year"},
+ irl_spuc:{s:"Live Action (pró-vida), 2025",t:"Live Action, site pró-vida, citando a SPUC e o serviço de saúde irlandês (HSE): 46.861 abortos foram feitos na Irlanda entre 2019 e 2024, com recorde de 10.852 em 2024",u:"https://www.liveaction.org/news/irelands-abortion-debate-changed-isnt-over"},
+ arg_hrw:{s:"HRW, 2025",t:"Human Rights Watch (set/2025): a Argentina legalizou o aborto até 14 semanas em dezembro de 2020; desde dezembro de 2023, o governo de Javier Milei desmontou proteções importantes de saúde sexual e reprodutiva",u:"https://www.hrw.org/news/2025/09/26/reproductive-rights-abortion-access-under-threat-in-argentina"},
+ arg_oas:{s:"OEA, 2023",t:"Documento apresentado à OEA (nov/2023) por integrantes da área de saúde sexual do Ministério da Saúde argentino: os dados de 2021 e 2022 mostram queda de cerca de 40% na mortalidade materna por aborto (DEIS)",u:"https://www.oas.org/en/sare/social-inclusion/events/ImplementacionLeyNacional.pdf"},
+ arg_chq:{s:"Chequeado, 2025",t:"Chequeado (2025): entre 2021 e 2024, foram feitas em média 78 mil interrupções voluntárias da gravidez por ano na Argentina, segundo dados oficiais",u:"https://chequeado.com/?p=100589"},
+ arg_chq2:{s:"Chequeado, 2025",t:"Chequeado (2025): em 2024 o governo projetou entregar 100.400 tratamentos de interrupção da gravidez e não entregou nenhum; uma deputada do partido de Milei apresentou projeto para revogar a lei e voltar a tipificar o aborto como crime",u:"https://chequeado.com/el-explicador/a-4-anos-de-la-ley-del-aborto-sin-entrega-de-medicamentos-y-con-un-proyecto-presentado-para-derogarla/"},
+ col_hrw:{s:"HRW, 2022",t:"Human Rights Watch (fev/2022): a Corte Constitucional da Colômbia, por 5 a 4 (sentença C-055), descriminalizou o aborto em todos os casos até 24 semanas",u:"https://www.hrw.org/es/news/2022/02/24/decision-historica-sobre-derechos-de-aborto-en-colombia"},
+ col_elp:{s:"El País (Colômbia), 2022",t:"El País (Cali, fev/2022): depois de 24 semanas, seguem valendo as três causas da sentença C-355 de 2006: malformação do feto, risco à saúde física e mental da mulher e estupro",u:"https://www.elpais.com.co/colombia/corte-constitucional-despenalizo-el-aborto-en-hasta-la-semana-24-de-embarazo.html"},
+};
+
+/* Países do mapa: posição e histórico [ano, status]. Status: p = a pedido (com prazo), v = varia por estado, e = só exceções, x = proibido sempre */
+const PAISES={
+ EUA:{n:"EUA",x:62,y:58,h:[[1940,"e"],[1973,"p"],[2022,"v"]]},
+ SLV:{n:"El Salvador",x:70,y:84,h:[[1940,"x"],[1973,"e"],[1998,"x"]]},
+ COL:{n:"Colômbia",x:88,y:98,h:[[1940,"x"],[2006,"e"],[2022,"p"]]},
+ BRA:{n:"Brasil",x:110,y:118,h:[[1940,"e"]]},
+ ARG:{n:"Argentina",x:94,y:150,h:[[1940,"e"],[2020,"p"]]},
+ URU:{n:"Uruguai",x:106,y:144,h:[[1940,"e"],[2012,"p"]]},
+ IRL:{n:"Irlanda",x:150,y:40,h:[[1940,"x"],[2013,"e"],[2018,"p"]]},
+ FRA:{n:"França",x:160,y:54,h:[[1940,"e"],[1975,"p"]]},
+ POL:{n:"Polônia",x:178,y:44,h:[[1956,"p"],[1993,"e"]]}
+};
+const ST={p:["a pedido, com prazo","#B9A6F2"],v:["varia por estado","#E39A6B"],e:["só em exceções","#D7B46A"],x:["proibido sempre","#6E7696"]};
+
+/* Momentos da linha do tempo. l: m = Mundo, b = Brasil; c = país; k = quem decidiu; ad = antes × depois; mud = o que mais mudou */
+const EV=[
+ {y:1940,l:"b",c:"BRA",k:"Código Penal",t:"O Brasil define as exceções",
+  x:"O Código Penal de 1940 pune o aborto, mas não pune o médico quando não há outro jeito de salvar a vida da gestante ou quando a gravidez resulta de estupro. [[cp]] A lei não fixa um prazo máximo de gestação para esses casos. [[cnn_pl]]"},
+ {y:1973,l:"m",c:"EUA",k:"Suprema Corte",t:"Roe v. Wade",
+  x:"Por 7 a 2, a Suprema Corte dos EUA afirma que a mulher tem direito ao aborto, e as leis estaduais que o proibiam caem. [[roe]]"},
+ {y:1975,l:"m",c:"FRA",k:"Parlamento",t:"A Lei Veil",
+  x:"A França descriminaliza o aborto, numa campanha liderada pela ministra da Saúde Simone Veil, sobrevivente de Auschwitz. [[cnn_es]] A lei era provisória e virou definitiva em 1979. [[veil]]"},
+ {y:1993,l:"m",c:"POL",k:"Parlamento",t:"A Polônia restringe",
+  x:"A lei de 1993 passa a permitir só em exceções, como estupro, risco à mulher e defeitos graves no feto. [[pol93]] [[pol_n]]"},
+ {y:1998,l:"m",c:"SLV",k:"Código Penal",t:"El Salvador proíbe em todos os casos",
+  x:"El Salvador, que até 1997 permitia o aborto em alguns casos, passa a proibi-lo sempre. [[slv_bdf]] Um ano depois, a Constituição manda proteger a vida desde a concepção. [[slv_lp]]",
+  ad:[["Mulheres acusadas com base na proibição","—","mais de 140 de 1998 a 2020",["slv_cbs"]]],
+  pro:"O Estado diz proteger a vida desde a concepção, e o presidente afirma que não vai abrandar a lei. [[slv_lp]] [[slv_voa]]",
+  con:"Organizações de direitos humanos denunciam mulheres presas após perder a gravidez, às vezes acusadas de homicídio agravado, com penas de 30 a 50 anos. [[slv_voa]] [[slv_cbs]]"},
+ {y:2012,l:"b",c:"BRA",k:"STF",t:"Anencefalia entra na lista",
+  x:"Por 8 a 2, o STF decide que interromper a gravidez de feto anencéfalo (sem a formação do cérebro) não é crime. Ficaram vencidos Ricardo Lewandowski e Cezar Peluso. [[jb54]] [[stf54]]",
+  pro:"Quem apoiou: obrigar a mulher a levar adiante uma gravidez sem chance de vida fora do útero violaria sua dignidade. [[stf54]]",
+  con:"Quem criticou: o STF teria criado uma exceção que só o Congresso poderia criar. [[jus54]]"},
+ {y:2012,l:"m",c:"URU",k:"Parlamento",t:"O Uruguai permite até 12 semanas",
+  x:"A lei passa por margem muito estreita [[uy_npr]] e exige consulta com equipe e cinco dias de reflexão antes da decisão. [[uy_hrw]]",
+  ad:[["Parcela das mortes maternas causada por aborto","37% (2001–05)","8% (2011–15)",["uy_chq"]],["Abortos por ano (estimativa de ilegais × registro de legais)","33 mil ilegais (1995–2002)","6.676 legais (2012–13)",["uy_chq"]]],
+  mud:"A queda das mortes começou antes da lei: desde 2001, um programa de redução de riscos orientava mulheres que iam abortar. [[uy_rn]] E o \"antes\" de 33 mil abortos é uma estimativa, contestada por grupos contrários [[uy_cat]]; o \"depois\" conta só os abortos legais, não os que continuaram fora da lei. [[uy_chq]]",
+  pro:"Quem apoiou: proibir não evitava o aborto, só o tornava inseguro. [[uy_chq]]",
+  con:"Quem criticou: grupos católicos dizem que os números de antes foram inflados para fazer a lei parecer um sucesso. [[uy_cat]]"},
+ {y:2017,l:"b",c:"BRA",k:"STF",t:"A ação das 12 semanas",
+  x:"O PSOL leva ao STF a ADPF 442, que pede que o aborto até a 12ª semana deixe de ser crime. [[cef442]]",
+  adh:"NÚMEROS DO BRASIL",ad:[["Mulheres que já fizeram aborto até os 40 anos",null,"1 em cada 7 (pesquisa de 2021)",["pna"]],["Abortos por ano no Brasil (estimativa)",null,"cerca de 500 mil",["pna"]]],
+  mud:"Esses números vêm da Pesquisa Nacional de Aborto, feita com questionário secreto. Outra medida da mesma pesquisa, a parcela de mulheres de 18 a 39 anos que já abortaram, caiu de 15% (2010) para 10% (2021), com a lei igual. [[pna_sci]]"},
+ {y:2018,l:"m",c:"IRL",k:"Referendo",t:"A Irlanda vota",
+  x:"Com 66,4% dos votos, a Irlanda revoga a emenda constitucional de 1983, que dava ao nascituro o mesmo direito à vida da gestante. [[irl_dn]] [[irl_euro]] Desde 2013, a lei só permitia o aborto em risco de vida da gestante. [[irl13]]",
+  ad:[["Irlandesas que viajaram à Inglaterra para abortar","2.879 (2018)","375 (2019)",["irl_rte"]],["Abortos feitos na Irlanda","quase nenhum (antes da lei)","10.852 em 2024",["rte25"]]],
+  mud:"Os dois lados citam números diferentes: quem apoiou destaca que as viagens quase acabaram; quem se opôs destaca o recorde de abortos no país. [[irl_rte]] [[irl_spuc]]",
+  pro:"Quem apoiou: as irlandesas deixaram de precisar viajar a outro país para abortar. [[irl_rte]]",
+  con:"Quem se opôs: o nascituro perdeu a proteção da Constituição, que lhe dava o mesmo direito à vida da gestante. [[irl_euro]]"},
+ {y:2020,l:"m",c:"POL",k:"Tribunal Constitucional",t:"A Polônia restringe mais",
+  x:"A pedido de parlamentares do partido Lei e Justiça, o Tribunal Constitucional proíbe o aborto por defeitos graves no feto, que eram cerca de 98% dos abortos legais. [[pol93]] [[pol_n]]",
+  ad:[["Abortos legais por ano (Ministério da Saúde)","cerca de 1.087 (média de 2018 a 2020)","107 (2021)",["pol_n","pol_pills"]]],
+  mud:"Mesmo antes, estimava-se que dezenas de milhares de abortos aconteciam fora da lei. [[pol_est]] Grupos pró-vida apontam as pílulas ilegais como o maior problema agora [[pol_pills]]; a FIDH contou seis mulheres mortas por causa das restrições até 2023. [[pol_fidh]]"},
+ {y:2020,l:"m",c:"ARG",k:"Congresso",t:"A Argentina legaliza até 14 semanas",
+  x:"Em dezembro de 2020, a Argentina permite o aborto até 14 semanas. [[arg_hrw]]",
+  ad:[["Mortalidade materna por aborto (2021–22 contra 2019–20)",null,"cerca de 40% menor",["arg_oas"]],["Interrupções legais por ano","—","78 mil em média (2021–24)",["arg_chq"]]],
+  mud:"A queda de 40% é informada por integrantes do próprio Ministério da Saúde que implantou a lei. [[arg_oas]] Desde 2024, o governo Milei cortou a entrega de medicamentos, e uma deputada do partido dele, Rocío Bonacci, propôs em fevereiro de 2024 revogar a lei. [[arg_chq2]] [[arg_hrw]] Em novembro de 2026, o governo decidiu deixar a revogação fora da reforma do Código Penal. [[arg_pan]]"},
+ {y:2022,l:"m",c:"COL",k:"Corte Constitucional",t:"A Colômbia vai a 24 semanas",
+  x:"Por 5 a 4, a Corte Constitucional tira o aborto do Código Penal até 24 semanas de gestação. [[col_hrw]] Depois disso, valem as três exceções de 2006. [[col_elp]]",},
+ {y:2022,l:"m",c:"EUA",k:"Suprema Corte",t:"Dobbs derruba Roe",
+  x:"Por 6 a 3, a Suprema Corte mantém a lei do Mississippi; por 5 a 4, revoga Roe v. Wade, e cada estado passa a decidir. [[brit]] [[roe]]",
+  ad:[["Abortos feitos por clínicas dentro dos estados com proibição total","antes de Dobbs","quase zero",["wecount"]],["Abortos no país inteiro","antes de Dobbs","subiram levemente em 3 anos",["kff"]]],
+  mud:"Logo após a decisão, o número caiu [[kff_pre]]; depois, as pílulas por telemedicina e as viagens a outros estados fizeram o total voltar a subir, para cerca de 1,1 milhão em 2024. [[ap24]] [[kff]] Moradoras dos estados com proibição ou restrição passaram a receber pílulas de médicos de outros estados: cerca de 14.770 por mês em junho de 2025, segundo o #WeCount. [[ms_pill]] Em maio de 2026, a Suprema Corte manteve por enquanto a pílula por telemedicina, enquanto o caso continua. [[kff_mife]]"},
+ {y:2023,l:"b",c:"BRA",k:"STF",t:"Rosa Weber vota",
+  x:"A relatora da ADPF 442, ministra Rosa Weber, vota pela descriminalização até 12 semanas, e o julgamento é suspenso. [[stf_rw]]"},
+ {y:2024,l:"m",c:"FRA",k:"Parlamento",t:"A França põe na Constituição",
+  x:"Por 780 votos a 72, a França se torna o primeiro país a garantir de forma explícita na Constituição a liberdade de a mulher interromper a gravidez [[mig_fr]]; a antiga Iugoslávia já tinha um direito parecido na Constituição de 1974. [[pbs_fr]] O objetivo declarado era evitar um retrocesso como o dos EUA. [[pbs_fr]]"},
+ {y:2024,l:"b",c:"BRA",k:"Câmara",t:"O PL 1904",
+  x:"A Câmara aprova a urgência de um projeto que equipara a homicídio simples o aborto após 22 semanas, inclusive em caso de estupro [[camara_urg]] [[camara_pl]], com pena de 6 a 20 anos. [[pl_pena]] A urgência foi aprovada, mas o projeto nunca foi votado: hoje aguarda despacho do presidente da Câmara. [[camara_ficha]]",
+  mud:"No mesmo ano, o Conselho Federal de Medicina proibiu os médicos de usar a assistolia fetal em gestações acima de 22 semanas; Alexandre de Moraes suspendeu a resolução em maio de 2024, e o caso foi liberado para o plenário do STF em março de 2026, ainda sem julgamento. [[cfm_ass]]",
+  pro:"Os autores dizem que, quando o Código Penal foi escrito, um aborto no fim da gestação seria chamado de homicídio. [[pl_autor]]",
+  con:"Quem criticou: a vítima de estupro poderia ter pena maior que a do estuprador, que é de 6 a 10 anos no caso básico [[cef_pl]]; segundo o Datafolha, 66% dos brasileiros foram contra. [[df_pl]]"},
+ {y:2025,l:"b",c:"BRA",k:"STF",t:"Barroso vota e o caso para",
+  x:"No último dia no STF, Barroso vota com Rosa Weber; o placar fica 2 a 0, e Gilmar Mendes suspende de novo o julgamento. [[mig_bar]] [[cef442]]",
+  pro:"Quem apoiou: Barroso disse que ninguém é a favor do aborto em si, e que a questão é se a mulher deve ser presa. [[stf_rw]]",
+  con:"Quem criticou: só o Congresso pode mudar a lei do aborto, e o julgamento deveria ter os 11 ministros. [[mig_cn]]"},
+ {y:2026,l:"m",c:"POL",k:"Parlamento",t:"A Polônia tenta voltar atrás",
+  x:"Em 20 de outubro de 2026, a Câmara aprova dois projetos: um volta a permitir o aborto por defeitos graves no feto, o outro descriminaliza em parte quem ajuda a mulher a abortar. [[pol_ewtn]] [[pol_bs]] O Senado aprova os dois em 6 de novembro. [[oko]] O presidente Karol Nawrocki, que fez campanha defendendo a vida desde a concepção, pode vetar; até 24 de novembro, o curso não encontrou decisão dele. [[pol_bs]] Quase 7 em cada 10 poloneses querem uma lei mais liberal. [[pol_poll]]",
+  ad:[["Abortos em hospitais (Fundo Nacional de Saúde)","452 em 2022","573 só no 1º semestre de 2026",["pol_aj"]]],
+  mud:"Esta série é do Fundo Nacional de Saúde; a de 2020–21 é do Ministério da Saúde, e outros veículos trazem números diferentes. [[pol93]] As séries não se comparam entre si."}
+];
+
+const VOTO=[
+ {t:"Proibir sempre",s:"o caminho de El Salvador",
+  pro:"A vida deve ser protegida desde a concepção, sem exceção. [[slv_lp]] No Brasil, 35% defendem proibir em qualquer situação (Datafolha, 2024). [[df24]]",
+  con:"Mulheres que perdem a gravidez podem acabar acusadas, com penas de 30 a 50 anos. [[slv_voa]] E, numa pergunta diferente, 87% dos brasileiros disseram que a vítima de estupro deve poder abortar (Datafolha, 2022). [[df22]]",
+  onde:"El Salvador, desde 1998. [[slv_bdf]]"},
+ {t:"Manter as exceções de hoje",s:"estupro, risco de vida e anencefalia",
+  pro:"É a posição mais comum: 42% querem a lei como está (Datafolha, 2024). [[df24]]",
+  con:"Uns dizem que a lei já vai longe demais, sem prazo máximo [[cnn_pl]] [[pl_autor]]; outros, que ela não evita cerca de 500 mil abortos por ano. [[pna]]",
+  onde:"Brasil, desde 1940 (anencefalia desde 2012). [[cp]] [[stf54]]"},
+ {t:"Ampliar as exceções",s:"por exemplo, defeitos graves no feto",
+  pro:"Na Polônia, o Parlamento aprovou voltar a permitir nesses casos, com apoio da maioria da população. [[oko]] [[pol_poll]] No Brasil, 15% querem ampliar os casos permitidos (Datafolha, 2024). [[df24]]",
+  con:"Críticos, como o presidente polonês Karol Nawrocki, dizem que permitir o aborto por doenças como a síndrome de Down seria eugenia. [[lpj]]",
+  onde:"Polônia até 2020; Colômbia, após 24 semanas. [[pol_n]] [[col_elp]]"},
+ {t:"Descriminalizar até 12 semanas",s:"o caminho da ADPF 442",
+  pro:"No Uruguai, a parcela das mortes maternas causada por aborto caiu muito, embora a queda tenha começado antes da lei. [[uy_chq]] [[uy_rn]] Barroso disse que ninguém é a favor do aborto em si, e que a questão é se a mulher deve ser presa. [[stf_rw]]",
+  con:"Na Irlanda, os abortos no país chegaram a recorde [[irl_spuc]]; e críticos dizem que só o Congresso pode decidir isso. [[mig_cn]]",
+  onde:"Uruguai (12 semanas), Argentina (14), Colômbia (24), França. [[uy_npr]] [[arg_hrw]] [[col_hrw]] [[veil]]"}
+];
+
+const KEY="pmu-aborto-v1";let S;try{S=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){S=null}
+const fresh=()=>({scr:"intro",max:0,cur:0,vote:null,fb:{}});if(!S)S=fresh();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const src=h=>String(h).replace(/\[\[([a-z0-9_]+)\]\]/g,(m,k)=>FONTES[k]?`<button type="button" class="fn" data-f="${k}" aria-label="Ver fonte: ${esc(FONTES[k].s)}">🔎 ${esc(FONTES[k].s)}</button>`:"");
+const tx=h=>src(esc(h).replace(/&quot;/g,'"'));
+const app=document.getElementById("app");const N=EV.length;const Y0=1940,Y1=2026;
+function statusAt(code,i){const e=EV[i],P=PAISES[code];let st=null;
+ for(const [yr,s] of P.h){if(yr<e.y){st=s;continue}if(yr===e.y){const ix=EV.findIndex(v=>v.c===code&&v.y===yr);if(ix<0||ix<=i)st=s}}return st}
+function mapSVG(i,hl){const L="#1E2437";let s=`<svg class="map" viewBox="0 0 240 172" role="img" aria-label="Mapa com a lei de cada país em ${EV[i].y}">`;
+ s+=`<path fill="${L}" d="M18 34 Q40 16 74 22 Q96 26 98 42 Q92 60 80 66 Q72 76 66 88 Q58 82 54 70 Q30 62 18 34Z M74 92 Q96 84 116 96 Q128 108 122 126 Q110 150 98 166 Q88 150 84 128 Q76 110 74 92Z M140 26 Q160 16 190 20 Q206 28 200 44 Q186 56 168 58 Q148 54 140 26Z M150 66 Q178 60 196 74 Q202 104 186 128 Q172 140 166 120 Q158 96 150 66Z M206 22 Q232 24 238 46 Q232 68 214 70 Q204 52 206 22Z"/>`;
+ for(const code in PAISES){const P=PAISES[code],st=statusAt(code,i),col=st?ST[st][1]:"#2A3047",on=code===hl;
+  s+=`<circle class="d" cx="${P.x}" cy="${P.y}" r="${on?7:4.6}" fill="${col}" ${on?'stroke="#ECE9F5" stroke-width="1.6"':""}/>`;
+  if(on||code==="BRA")s+=`<text x="${P.x+(P.x>200?-8:9)}" y="${P.y+3}" font-size="7.5" font-weight="700" fill="${on?"#ECE9F5":"#BFC4D6"}" font-family="IBM Plex Mono" ${P.x>200?'text-anchor="end"':""}>${esc(P.n.toUpperCase())}</text>`}
+ return s+`</svg>`}
+const leg=()=>`<div class="leg">${Object.values(ST).map(([n,c])=>`<span><i style="background:${c}"></i>${n}</span>`).join("")}<span><i style="background:#2A3047"></i>sem dado</span></div>`;
+function pos(i){const e=EV[i];let x=(e.y-Y0)/(Y1-Y0)*100;const same=EV.filter((v,k)=>k<i&&v.y===e.y&&v.l===e.l).length;return Math.min(100,x+same*2.2)}
+function timeline(){return `<div class="tl"><span class="lane" style="top:6px">MUNDO</span><span class="lane" style="top:32px">BRASIL</span><div class="ln" style="top:15px"></div><div class="ln" style="top:41px"></div>
+ ${EV.map((e,i)=>`<button class="ev ${i<=S.max?"on":""} ${i===S.cur?"cur":""}" data-i="${i}" ${i<=S.max?"":"disabled"} aria-label="${e.y}: ${esc(e.t)}${i<=S.max?"":" (bloqueado)"}" style="left:calc(52px + (100% - 58px) * ${pos(i)/100});top:${e.l==="m"?16:42}px"><i></i></button>`).join("")}
+ <span class="tk" style="left:52px">1940</span><span class="tk" style="left:calc(52px + (100% - 58px) * ${(1973-Y0)/(Y1-Y0)});transform:translateX(-50%)">1973</span><span class="tk" style="left:calc(52px + (100% - 58px) * ${(2000-Y0)/(Y1-Y0)});transform:translateX(-50%)">2000</span><span class="tk" style="right:6px">2026</span></div>`}
+function adTable(e){if(!e.ad&&!e.mud)return"";return `<div class="ad"><div class="h">${e.adh||"ANTES × DEPOIS"}</div>${(e.ad||[]).map(([m,a,d,fs])=>`<div class="row"><div class="m">${esc(m)}</div>${a===null?`<div><span style="display:block;background:rgba(255,255,255,.09);border-radius:6px;padding:5px 7px;font-weight:600;font-size:13px">${esc(d)}</span></div>`:`<div class="ba"><span>${esc(a)}</span><em>→</em><span>${esc(d)}</span></div>`}<div style="margin-top:4px">${fs.map(f=>src("[["+f+"]]")).join("")}</div></div>`).join("")}${e.mud?`<div class="row note"><b>${e.ad?"O QUE MAIS MUDOU NA MESMA ÉPOCA":"PARA LER ESSE NÚMERO"}</b>${tx(e.mud)}</div>`:""}</div>`}
+function render(){window.scrollTo(0,0);({intro,tl:play,end})[S.scr]()}
+function intro(){app.innerHTML=`<div class="top"><span>PENSE MAIS UMA · MUNDO × BRASIL</span><span>LINHA DO TEMPO</span></div>
+ ${mapSVG(N-1,"BRA")}${leg()}
+ <div class="k" style="margin-top:14px">1940 → 2026 · 18 momentos</div><h1>Aborto na lei: como o mundo decidiu e onde o Brasil está?</h1>
+ <p class="l">Avance pela linha do tempo e veja o mapa mudar: cada país acende com a cor da lei daquele ano. A linha de cima é o Mundo; a de baixo, o Brasil.</p>
+ <div class="how"><b>Como funciona</b><br>Não tem pergunta nem ponto. Você destrava os 18 momentos, um por vez, e pode voltar a qualquer um tocando na linha. Em cada momento: o que mudou, os números de antes e depois e os dois lados, com fonte em cada dado (toque em 🔎). Antes e depois mostra o que mudou, não prova o que causou. No fim, o mapa de hoje, o debate e o seu voto.</div>
+ <div class="how" style="font-size:13px;color:var(--mut)">O mapa é simplificado: cada país tem detalhes que o cartão explica. El Salvador não tinha exceção escrita na lei até 1973, e a Irlanda só permitia em risco de vida de 2014 a 2018. Este curso trata de leis e números, sem imagens nem relatos de casos.</div>
+ <button class="btn solid" id="go" style="margin-top:16px;width:100%">${S.max>0?"CONTINUAR DE "+EV[S.cur].y:"COMEÇAR EM 1940"}</button>
+ <p style="text-align:center;font:600 11px 'IBM Plex Mono';color:var(--mut)">DADOS ATUALIZADOS EM NOVEMBRO DE 2026</p>`;
+ document.getElementById("go").onclick=()=>{S.scr="tl";save();render()}}
+function play(){const i=S.cur,e=EV[i],P=PAISES[e.c],last=i===N-1;
+ app.innerHTML=`<div class="top"><span>1940 → 2026</span><span>${S.max+1}/${N} DESTRAVADOS</span></div>
+ ${mapSVG(i,e.c)}${leg()}
+ <div class="yr"><b>${e.y}</b><span>${e.l==="m"?"MUNDO":"BRASIL"} · MOMENTO ${i+1} DE ${N}</span></div>${timeline()}
+ <div class="card" key="${i}"><div class="k">${esc(P.n)} · ${esc(e.k)}</div><h2>${esc(e.t)}</h2><p class="x">${tx(e.x)}</p>
+ ${adTable(e)}${e.pro||e.con?`<div class="two">${e.pro?`<div><b>QUEM APOIA DIZ</b>${tx(e.pro)}</div>`:""}${e.con?`<div><b>QUEM CRITICA DIZ</b>${tx(e.con)}</div>`:""}</div>`:""}</div>
+ <div class="nav"><button class="btn ghost" id="prev" ${i===0?"disabled":""} aria-label="Momento anterior">←</button>
+ <button class="btn solid" id="next">${last?"VER O MAPA DE HOJE":i<S.max?"PRÓXIMO MOMENTO →":"DESTRAVAR "+EV[i+1].y+" →"}</button></div>
+ <button class="btn ghost" id="home" style="margin-top:8px;flex:none;width:100%;min-height:40px">VOLTAR AO INÍCIO</button>`;
+ app.querySelectorAll(".tl .ev").forEach(b=>b.onclick=()=>{S.cur=+b.dataset.i;save();render()});
+ document.getElementById("prev").onclick=()=>{S.cur=Math.max(0,i-1);save();render()};
+ document.getElementById("next").onclick=()=>{if(last){S.scr="end"}else{S.cur=i+1;S.max=Math.max(S.max,i+1)}save();render()};
+ document.getElementById("home").onclick=()=>{S.scr="intro";save();render()}}
+function end(){const F=S.fb,v=S.vote;const order=["BRA","SLV","POL","EUA","IRL","FRA","URU","ARG","COL"];
+ app.innerHTML=`<div class="top"><span>2026</span><span>${N}/${N} DESTRAVADOS</span></div>${mapSVG(N-1,"BRA")}${leg()}
+ <div class="k" style="margin-top:12px">O mapa de hoje</div><h2>Onde cada país está em 2026</h2>
+ <div class="now">${order.map(c=>`<span class="${c==="BRA"?"br":""}">${esc(PAISES[c].n)}</span><span class="${c==="BRA"?"br":""}">${ST[statusAt(c,N-1)][0]}</span>`).join("")}</div>
+ <p class="l" style="font-size:14px;color:var(--mut)">${tx("O Brasil está entre os países que só permitem em exceções. No STF, a ação das 12 semanas está em 2 a 0 e parada [[cef442]]; na Câmara, o PL 1904 iria na direção contrária. [[camara_pl]]")}</p>
+ <div class="how"><b>O debate de verdade</b><p style="font-size:14px;line-height:1.5;margin:.4em 0">${tx("O que é fato: as leis mudaram nos dois sentidos, e os números de antes e depois são os que os dados mostram até agora. O que é opinião: qual lei é a melhor. Os dois lados partem de valores que levam a sério.")}</p>
+ <div class="two"><div><b>QUEM DEFENDE PROTEGER A VIDA DESDE A CONCEPÇÃO</b>${tx("A vida deve ser protegida desde a concepção: o Pacto de San José, que o Brasil assinou, diz que a vida deve ser protegida \"em geral, desde o momento da concepção\" [[sjose]], e o Código Civil põe a salvo os direitos do nascituro desde a concepção. [[cc2]] No Brasil, 35% querem proibir em qualquer situação, e só 6% aceitam o aborto em qualquer caso (Datafolha, 2024). [[df24]] [[df24b]]")}</div>
+ <div><b>QUEM DEFENDE A ESCOLHA DA MULHER</b>${tx("Proibir não impede o aborto, só o torna inseguro: no Brasil, estima-se meio milhão por ano. [[pna]] No Uruguai, a parcela das mortes maternas causada por aborto caiu, embora a queda tenha começado antes da lei. [[uy_chq]] [[uy_rn]] E 87% dos brasileiros apoiam o direito em caso de estupro (Datafolha, 2022). [[df22]]")}</div></div>
+ <p style="font-size:13px;color:var(--mut);margin:.6em 0 0">O curso não toma partido: você decide qual argumento pesa mais.</p></div>
+ <div class="how"><b>Se você fosse deputado(a), qual lei proporia?</b><p style="font-size:13px;color:var(--mut);margin:.3em 0">Não existe resposta certa e o voto não vale ponto. Toque em cada opção para ver os argumentos.</p>
+ ${VOTO.map((o,k)=>`<button class="vt ${v===k?"on":""}" data-k="${k}"><b>${esc(o.t)}</b><small>${esc(o.s)}</small></button>`).join("")}
+ ${v!==null?`<div class="cd"><p><i>QUEM DEFENDE DIZ</i><br>${tx(VOTO[v].pro)}</p><p><i>QUEM CRITICA DIZ</i><br>${tx(VOTO[v].con)}</p><p><i>ONDE FOI TENTADO</i><br>${tx(VOTO[v].onde)}</p></div>`:""}</div>
+ <div class="how"><b>Avalie o curso</b><p style="font-size:14px">Que nota você dá?</p><div class="rate">${[1,2,3,4,5].map(x=>`<button data-n="${x}" class="${F.nota===x?"on":""}">${x}</button>`).join("")}</div>
+ <p style="font-size:14px">O que você aprendeu que não sabia?</p><textarea id="apr" rows="2">${esc(F.apr||"")}</textarea>
+ <p style="font-size:14px">Sentiu que o curso favoreceu algum lado?</p><select id="lado"><option value="">Escolha</option>${["Não","Sim, a favor de proibir","Sim, a favor de liberar","Não sei"].map(o=>`<option ${F.lado===o?"selected":""}>${o}</option>`).join("")}</select>
+ <p style="font-size:14px">Comentário</p><textarea id="com" rows="2">${esc(F.com||"")}</textarea>
+ <p style="font-size:14px">Que tema você quer que vire curso?</p><textarea id="tema" rows="2">${esc(F.tema||"")}</textarea>
+ <button class="btn solid" id="env" style="width:100%;margin-top:10px">${F.sent?"AVALIAÇÃO ENVIADA ✓":"ENVIAR AVALIAÇÃO"}</button></div>
+ <div class="how"><b>Quer se aprofundar?</b><br><a href="https://www.youtube.com/results?search_query=debate+aborto+STF+ADPF+442" target="_blank" rel="noopener">Vídeos sobre o debate no STF (busca no YouTube)</a></div>
+ <div class="how"><b>Fontes</b><ul class="fontes">${Object.values(FONTES).map(f=>`<li>${esc(f.t)}${f.u?` · <a href="${f.u}" target="_blank" rel="noopener">abrir</a>`:""}</li>`).join("")}</ul></div>
+ <div class="nav"><button class="btn" id="back">← VOLTAR À LINHA</button><button class="btn" id="again">RECOMEÇAR</button></div>`;
+ app.querySelectorAll(".vt").forEach(b=>b.onclick=()=>{S.vote=+b.dataset.k;save();const y=b.getBoundingClientRect().top;render();const nb=app.querySelector('.vt[data-k="'+S.vote+'"]');if(nb)window.scrollTo(0,nb.getBoundingClientRect().top+scrollY-y)});
+ app.querySelectorAll("[data-n]").forEach(b=>b.onclick=()=>{S.fb.nota=+b.dataset.n;save();app.querySelectorAll("[data-n]").forEach(x=>x.classList.toggle("on",x===b))});
+ ["apr","com","tema"].forEach(k=>document.getElementById(k).oninput=e=>{S.fb[k]=e.target.value;save()});
+ document.getElementById("lado").onchange=e=>{S.fb.lado=e.target.value;save()};
+ document.getElementById("env").onclick=e=>{S.fb.sent=true;try{const q=JSON.parse(localStorage.getItem("pmu-fila")||"[]");q.push({curso:"aborto-mundo-brasil",quando:new Date().toISOString(),voto:S.vote,...S.fb});localStorage.setItem("pmu-fila",JSON.stringify(q))}catch(x){}save();e.target.textContent="AVALIAÇÃO ENVIADA ✓"};
+ document.getElementById("back").onclick=()=>{S.scr="tl";save();render()};
+ document.getElementById("again").onclick=()=>{S=fresh();save();render()}}
+const pop=document.getElementById("fnpop");
+document.addEventListener("click",e=>{const b=e.target.closest(".fn");if(b){e.preventDefault();e.stopPropagation();const f=FONTES[b.dataset.f];if(!f)return;document.getElementById("fnbody").innerHTML=`<b>Fonte</b><br>${esc(f.t)}${f.u?`<br><a href="${f.u}" target="_blank" rel="noopener">Abrir a fonte ↗</a>`:""}`;pop.style.display="block";return}
+ if(e.target.closest("#fnpop .x")||!e.target.closest("#fnpop"))pop.style.display="none"},true);
+render();
+</script>
+</body></html>

@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="O que muda na renda, na escola e no trabalho de quem recebe? A viagem começa no México, passa por Chile, Argentina e Finlândia e chega ao Brasil.">
+<title>Bolsa Família: tira da pobreza ou acomoda? • Pense Mais Uma</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Literata:opsz,wght@7..72,500;7..72,700&display=swap');
+:root{color-scheme:light;--paper:#F1EEE6;--ink:#1D2A2C;--plum:#1F5C5A;--muted:#55625F;--line:#C3CCC8;--lav:#DDE9E6;--peach:#F0D9C8;--white:#FFFCF6;--display:Literata,Georgia,serif}
+*{box-sizing:border-box}
+body{margin:0;background:#DCE6E3;color:var(--ink);font:16px/1.43 'DM Sans',system-ui,sans-serif;overflow:hidden}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--plum);text-underline-offset:3px}
+:focus-visible{outline:3px solid #2A7A74;outline-offset:3px}
+.app{height:100vh;height:100dvh;max-width:760px;margin:auto;display:grid;grid-template-rows:auto minmax(0,1fr) auto;background:var(--paper);box-shadow:0 0 80px #1F5C5A24}
+header{padding:12px clamp(18px,5vw,46px);display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line)}
+.brand{font:650 clamp(19px,4vw,25px)/1 var(--display);letter-spacing:-.05em;background:none;border:0;padding:8px 0}
+.brand i{font-style:normal;color:#2E6F6B}
+header .ghost{font-size:.82rem}
+main{min-height:0;overflow:auto;overscroll-behavior:contain;display:flex;flex-direction:column}
+.page{width:100%;max-width:660px;margin:auto;padding:clamp(14px,3.8vw,34px) clamp(18px,5vw,46px);animation:appear .19s ease-out}
+@keyframes appear{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:none}}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{font-family:var(--display);font-weight:650;line-height:1.02;letter-spacing:-.04em}
+h1{font-size:clamp(2.7rem,11vw,5.1rem);max-width:620px}
+h1 em{display:block;font-weight:500;color:var(--plum)}
+h2{font-size:clamp(2rem,8vw,3.5rem)}
+h3{font-size:1.4rem}
+p{margin-top:12px}
+.context{color:var(--plum);font-weight:700;font-size:.87rem;margin:0 0 8px}
+.seal{display:inline-block;background:var(--lav);border-radius:30px;padding:5px 10px;color:var(--plum);font-size:.76rem;font-weight:700;margin-bottom:10px}
+.cover-art{height:clamp(44px,9vh,90px);position:relative;overflow:hidden;margin:13px 0 8px;border-block:1px solid var(--line);background:repeating-linear-gradient(90deg,transparent 0 11.9%,#3F716D29 12% 12.3%)}
+.cover-art i{display:block;position:absolute;border:1px solid #2E6F6B;border-radius:50%;width:64%;height:87%;top:8%;left:6%;transform:rotate(-7deg)}
+.cover-art i:nth-child(2){left:22%;transform:rotate(8deg);background:#5E918C28}.cover-art i:nth-child(3){left:46%;background:#E0A07A5e}
+.meta{font-size:.85rem;color:var(--muted);margin-top:11px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.primary,.ghost,.choice{border:1px solid var(--plum);border-radius:24px;padding:8px 14px;background:none;min-height:42px}
+.primary{background:var(--plum);color:var(--white);font-weight:700}
+.ghost{border-color:var(--line)}
+.choice{text-align:left;width:100%;border-radius:12px;background:var(--white);margin-top:8px}
+.choice[aria-pressed=true]{border-color:var(--plum);background:var(--lav)}
+.scope{margin-top:14px;display:grid;gap:2px;padding:10px 13px;border-left:4px solid #5E918C;background:var(--lav);font-size:.9rem}
+.scope strong{font-size:.76rem;color:var(--plum)}
+.study{border-top:1px solid var(--line);padding-top:10px;margin-top:15px}
+.study p{margin-top:5px}
+.sides{margin-top:14px;display:grid;gap:12px}
+.sides section{padding:8px 12px;border-left:3px solid #4F8782;background:var(--lav)}
+.sides section+section{border-color:#B0683F;background:var(--peach)}
+.sides p{margin-top:4px}
+sup{vertical-align:super;line-height:0}
+.cite{position:relative;display:inline-block;line-height:1;border:0;background:transparent;color:#1F5C5A;padding:0 3px;font-size:.73rem;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.cite::after{content:"";position:absolute;inset:-6px -2px}
+footer{background:#E3ECE9;border-top:1px solid var(--line);padding:9px clamp(11px,4vw,32px) max(8px,env(safe-area-inset-bottom));color:var(--plum)}
+.timeline-top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-inline:4px;font-size:.74rem}
+.timeline-top strong{font-size:.82rem}
+.track{position:relative;margin-inline:13px;height:40px}
+.track::before{content:"";position:absolute;left:0;right:0;top:19px;height:2px;background:#8AA29E}
+.ticks{position:absolute;inset:0;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+.ticks i{width:7px;height:7px;margin-inline:-3.5px;border-radius:50%;background:#3F716D}
+.track input{position:absolute;inset:0 -12px;margin:0;width:calc(100% + 24px);height:40px;appearance:none;background:none;touch-action:pan-y;cursor:ew-resize}
+.track input::-webkit-slider-thumb{appearance:none;width:24px;height:24px;border-radius:50%;background:var(--plum);border:3px solid var(--white);box-shadow:0 0 0 1px var(--plum)}
+.track input::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--plum);border:3px solid var(--white);box-shadow:0 0 0 1px var(--plum)}
+.years{display:flex;justify-content:space-between;gap:0}
+.year{background:none;border:0;padding:3px 3px;min-height:30px;flex:1;font-size:clamp(.64rem,2.8vw,.83rem);line-height:1.15}
+.year[aria-current=true]{font-weight:700;text-decoration:underline;text-underline-offset:4px}
+dialog{max-width:min(410px,calc(100vw - 28px));width:100%;max-height:80dvh;color:var(--ink);background:var(--white);border:1px solid var(--plum);border-radius:18px;padding:19px;box-shadow:0 16px 55px #12262A4a}
+dialog::backdrop{background:#12262657}
+dialog .actions{justify-content:space-between;align-items:center}
+ol{margin:15px 0 0;padding-inline-start:25px}
+li{padding:6px 0;border-bottom:1px solid var(--line);font-size:.89rem}
+.field{display:grid;gap:4px;margin-top:8px;font-size:.9rem;font-weight:600}
+textarea,input[type=text],select{width:100%;padding:7px 9px;background:var(--white);border:1px solid #7F9692;border-radius:9px}
+textarea{min-height:45px;resize:vertical}
+fieldset{margin:11px 0 0;border:0;padding:0}
+legend{font-size:.9rem;font-weight:700}
+.rating{display:flex;gap:9px;margin-top:5px}
+.rating label{display:grid;place-items:center;border:1px solid #7F9692;border-radius:50%;width:40px;height:40px;background:var(--white);position:relative}
+.rating label:has(input:checked){background:var(--plum);color:white}
+.rating label:has(input:focus-visible){outline:3px solid #2A7A74;outline-offset:2px}
+.rating input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.status{font-size:.85rem}
+@media(max-height:760px){
+.page.debate,.page.books{font-size:.92rem;line-height:1.36;padding-block:11px}
+.page.debate h2,.page.books h2{font-size:clamp(1.9rem,7.4vw,3.2rem)}
+.page.debate .sides{gap:8px;margin-top:10px}
+.page.books .study{margin-top:9px;padding-top:7px}
+.page.debate .actions,.page.books .actions{margin-top:10px}
+}
+@media(max-height:680px){.page{padding-block:12px}p{margin-top:8px}.scope,.study,.actions{margin-top:10px}.cover-art{margin-block:8px}.sides{gap:7px;margin-top:8px}}
+@media(prefers-reduced-motion:reduce){.page{animation:none}}
+</style>
+<link rel="canonical" href="https://pensemaisuma.com.br/cursos/bolsa-familia/">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+<div id="pmu-bar" style="font-family:Nunito,system-ui,sans-serif;background:#FAF7F0;color:#17150F;border-bottom:1.5px solid #17150F;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:14px;font-weight:800;position:relative;z-index:50">
+<a href="index.html" style="color:inherit;text-decoration:none">← Sobre o curso</a>
+<a href="../../index.html" style="display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none"><img src="../../assets/logo.svg" alt="" width="26" height="26"><span style="font-family:Fraunces,Georgia,serif">Pense Mais Uma</span></a>
+<a href="index.html#avaliar" style="color:inherit">Avaliar</a></div>
+<div class="app">
+<header><button class="brand" id="home" aria-label="Pense Mais Uma, voltar à capa">Pense Mais <i>Uma</i></button><button class="ghost" id="future">E você?</button></header>
+<main id="main" tabindex="-1"></main>
+<footer>
+<div class="timeline-top"><strong id="route-label">Linha do tempo</strong><span id="position" aria-live="polite">Arraste para explorar</span></div>
+<div class="track"><div class="ticks" id="ticks" aria-hidden="true"></div><input type="range" id="timeline" min="0" max="7" value="0" step="1" aria-label="Arraste pela linha do tempo de 2003 a 2026"></div>
+<nav class="years" id="years" aria-label="Anos da linha do tempo"></nav>
+</footer>
+</div>
+<dialog id="source" aria-labelledby="source-title"><h3 id="source-title"></h3><p id="source-note"></p><div class="actions"><a id="source-link" target="_blank" rel="noopener noreferrer">Abrir a fonte</a><button class="ghost" id="close-source">Fechar</button></div></dialog>
+<noscript>Ative o JavaScript para navegar pela linha do tempo e abrir as fontes.</noscript>
+<script>
+const sources = [
+ [
+  "Skoufias e McClafferty · Avaliação do Progresa (IFPRI)",
+  "Acompanhou famílias rurais entre 1997 e 1999. Distingue os efeitos sobre matrícula, desempenho escolar e trabalho dos adultos.",
+  "https://ageconsearch.umn.edu/nanna/record/15963/files/dp01118b.pdf?registerDownload=1&version=1&withMetadata=0&withWatermark=0"
+ ],
+ [
+  "Banco Mundial · For Protection and Promotion, quadro 5.11",
+  "Descreve o início do Chile Solidario, a transferência monetária e o acompanhamento das famílias.",
+  "https://documents1.worldbank.org/curated/en/821781468337846298/pdf/454960PUB0Box3101OFFICIAL0USE0ONLY1.pdf"
+ ],
+ [
+  "Carneiro, Galasso e Ginja · The Economic Journal (2019)",
+  "Avalia o acesso a benefícios e serviços de emprego, além dos efeitos sobre o emprego no curto e no longo prazo.",
+  "https://doi.org/10.1111/ecoj.12594"
+ ],
+ [
+  "Kela · Experimento finlandês de renda básica (2021)",
+  "Descreve os participantes, o valor mensal e as condições do pagamento.",
+  "https://www.kela.fi/ajankohtaista/perustulokokeilu-opetti-mita-yhteiskunnallisen-kenttakokeen-toteuttaminen-vaatii"
+ ],
+ [
+  "Governo da Finlândia · Avaliação do experimento (2020)",
+  "Compara os registros de emprego dos grupos e explica por que outra reforma dificulta interpretar o segundo ano.",
+  "https://valtioneuvosto.fi/-/1271139/perustulokokeilun-tulokset-tyollisyysvaikutukset-vahaisia-toimeentulo-ja-psyykkinen-terveys-koettiin-paremmaksi?languageId=en_US"
+ ],
+ [
+  "Câmara dos Deputados · MP 132/2003",
+  "Cria o programa e identifica os programas anteriores reunidos pela medida.",
+  "https://www2.camara.leg.br/legin/fed/medpro/2003/medidaprovisoria-132-20-outubro-2003-497302-norma-pe.html"
+ ],
+ [
+  "Banco Mundial · Relatório de conclusão do projeto (2010)",
+  "O gráfico da p. 55 informa cobertura em dezembro e pagamentos em benefícios no ano.",
+  "https://documents1.worldbank.org/curated/en/835351468007512804/pdf/ICR14860P087711fficial0Use0Only0191.pdf"
+ ],
+ [
+  "Souza, Osorio, Paiva e Soares · Ipea (2019)",
+  "Com dados de 2001 a 2017, o estudo compara a renda com e sem as transferências e estima o efeito contábil sobre pobreza e desigualdade.",
+  "https://repositorio.ipea.gov.br/items/53006dfc-16db-46d0-a9bc-212c7121c2af"
+ ],
+ [
+  "Presidência da República · Lei 10.836/2004",
+  "O texto histórico converte a medida provisória em lei e prevê contrapartidas de saúde e educação.",
+  "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.836.htm"
+ ],
+ [
+  "Paul Glewwe e Ana Lúcia Kassouf · Journal of Development Economics (2012)",
+  "Os autores comparam escolas que adotaram o Bolsa Escola/Família em momentos diferentes. Também apresentam um cálculo de retorno salarial.",
+  "https://ideas.repec.org/a/eee/deveco/v97y2012i2p505-517.html"
+ ],
+ [
+  "Câmara dos Deputados · Decreto 5.749/2006",
+  "Atualiza os limites de renda para pobreza e extrema pobreza no programa.",
+  "https://www2.camara.leg.br/legin/fed/decret/2006/decreto-5749-11-abril-2006-541735-publicacaooriginal-47694-pe.html"
+ ],
+ [
+  "Davide Rasella e colegas · The Lancet (2013)",
+  "Em 2.853 municípios, maior cobertura do programa se associou a menor mortalidade antes dos cinco anos, com destaque para desnutrição e diarreia.",
+  "https://abrasco.org.br/UserFiles/Image/Bolsa%20Familia%20-%20Mortalidade%20Criancas%20Lancet%20Online%20%281%29.pdf"
+ ],
+ [
+  "Câmara dos Deputados · Decreto 8.232/2014",
+  "Atualiza os limites de renda e os valores dos benefícios a partir de junho.",
+  "https://www2.camara.leg.br/legin/fed/decret/2014/decreto-8232-30-abril-2014-778649-publicacaooriginal-144019-pe.html"
+ ],
+ [
+  "Conselho Nacional de Assistência Social e MDS · II Plano Decenal (2016)",
+  "O gráfico 2, na p. 58, traz cobertura e transferências. Os valores são corrigidos para preços de outubro de 2014.",
+  "https://blog.mds.gov.br/redesuas/wp-content/uploads/2016/05/II-Plano-Decenal-de-Assistencia-Social.pdf"
+ ],
+ [
+  "Jorge Meza, representante da FAO no Brasil · artigo de 2025",
+  "Artigo publicado em 13/08/2025 e reproduzido pela FAO Brasil. Registra a saída do Mapa da Fome em 2014 e de novo em 2025 e destaca a proteção social e os investimentos em segurança alimentar.",
+  "https://www.fao.org/brasil/news/detail/Brasil-voltou-a-sair-do-Mapa-da-Fome/pt"
+ ],
+ [
+  "Presidência da República · Lei 14.284/2021",
+  "Institui o Auxílio Brasil e revoga a lei do Bolsa Família de 2004.",
+  "https://legislacao.presidencia.gov.br/atos/?ano=2021&ato=8ebk3YU9UMZpWT35a&numero=14284&tipo=LEI"
+ ],
+ [
+  "Vale e Soares · Ipea, Nota Técnica 78 (2025)",
+  "Ricardo Campante Vale e Fábio Veras Soares avaliam o aumento do piso em agosto de 2022: menor participação na força de trabalho (de 2,2 a 4,7 pontos), concentrada em pessoas sem emprego ou em postos precários e maior entre mulheres com responsabilidades de cuidado; efeito incerto sobre horas e nenhum efeito detectado na informalidade.",
+  "https://www.ipea.gov.br/portal/publicacao-item?id=2926813b-1ecd-4ffa-a04f-7a87f3eeb32f"
+ ],
+ [
+  "Folha de Boa Vista, citando o Ministério da Cidadania (nov/2021)",
+  "Primeira folha do Auxílio Brasil: mais de 14,5 milhões de famílias e gasto de cerca de R$ 3,25 bilhões.",
+  "https://www.folhabv.com.br/?p=82038"
+ ],
+ [
+  "Alan de Brauw e colegas · Economic Development and Cultural Change (2015)",
+  "Estima horas de trabalho totais e por setor. As horas totais não caem, mas há migração grande de horas do trabalho formal para o informal nas cidades, que os autores atribuem ao uso da renda formal para definir quem entra no programa.",
+  "https://www.journals.uchicago.edu/doi/abs/10.1086/680092"
+ ],
+ [
+  "Fruttero, Leichsenring e Paiva · FMI, texto para discussão (2020)",
+  "Explora uma mudança de elegibilidade e estima aumento na entrada no emprego formal, especialmente entre os mais jovens.",
+  "https://www.imf.org/en/publications/wp/issues/2020/06/19/social-programs-and-formal-employment-evidence-from-the-brazilian-bolsa-famlia-program-49512"
+ ],
+ [
+  "Presidência da República · Lei 14.601/2023",
+  "Restabelece o Bolsa Família, define quem pode entrar, as parcelas e os compromissos de saúde e escola.",
+  "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14601.htm"
+ ],
+ [
+  "Secom · Folha de dezembro de 2023",
+  "Publica o número nacional de famílias e o desembolso do mês.",
+  "https://www.gov.br/secom/pt-br/acompanhe-a-secom/noticias/2023/12/2023-e-o-ano-com-maior-media-de-beneficiarios-de-valor-medio-e-de-investimento-federal-na-historia-do-bolsa-familia/"
+ ],
+ [
+  "TCU · Auditoria de focalização e equidade (2024)",
+  "Avalia o piso familiar e os adicionais por pessoa. Simula um desenho alternativo e recomenda reavaliar possíveis efeitos sobre a formalização.",
+  "https://sites.tcu.gov.br/relatorio-de-politicas/2024/05-auditoria-de-focalizacao-e-equidade-do-novo-bolsa-familia.html"
+ ],
+ [
+  "TCU · Auditoria do Cadastro Único (Acórdão 2.342/2023)",
+  "Por amostra, estimou que 22,5% das famílias beneficiárias (cerca de 4,75 milhões) não atendiam aos requisitos, com impacto estimado de R$ 34,18 bilhões em 2023; atribuiu o problema à autodeclaração sem checagem e a falhas de supervisão e disse que isso estimula a omissão de renda. Recomenda cruzamentos e verificações domiciliares.",
+  "https://sites.tcu.gov.br/relatorio-de-politicas/2024/04-auditoria-no-cadastro-unico-de-programas-assistenciais.html"
+ ],
+ [
+  "MDS · Perguntas frequentes sobre a Regra de Proteção (2025)",
+  "Explica a aplicação na folha de julho, os limites, a transição entre as normas e o retorno garantido.",
+  "https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia/informes/2025/relatorios/informe-bolsa-familia-80/perguntas_frequentes_nova_regra_de_protecao_pbf.pdf"
+ ],
+ [
+  "MDS · Folha de julho de 2025",
+  "Publica o número nacional de famílias e o total mensal.",
+  "https://www.gov.br/mds/pt-br/noticias-e-conteudos/Noticias/2025/bolsa-familia-atende-19-6-milhoes-de-familias-em-julho-com-investimento-de-r-13-16-bilhoes/"
+ ],
+ [
+  "MDS · Folha de novembro de 2026",
+  "Informa alcance, transferência total e valor médio da folha de novembro.",
+  "https://www.gov.br/mds/pt-br/noticias-e-conteudos/Noticias/2026/em-novembro-bolsa-familia-chega-a-19-07-milhoes-de-familias"
+ ],
+ [
+  "MDS · Resultados do SOFI 2026 (ONU)",
+  "Resume a edição de 2026 do relatório da ONU para o Brasil, referente ao triênio 2023–2025.",
+  "https://www.gov.br/mds/pt-br/noticias-e-conteudos/Noticias/2026/relatorio-da-onu-confirma-que-brasil-permanece-fora-do-mapa-da-fome-e-aponta-melhora-em-indicadores"
+ ],
+ [
+  "Lena Lavinas · The Takeover of Social Policy by Financialization: The Brazilian Paradox (2017)",
+  "Em inglês (Palgrave, 2017). Analisa como a financeirização afeta a proteção social brasileira, incluindo o papel das transferências de renda.",
+  "https://link.springer.com/book/10.1057/978-1-137-49107-7"
+ ],
+ [
+  "Campello e Neri (orgs.) · Programa Bolsa Família: uma década de inclusão e cidadania (2013)",
+  "Coletânea do Ipea sobre a primeira década. Os organizadores eram, na época, a ministra do Desenvolvimento Social (Tereza Campello) e o presidente do Ipea (Marcelo Neri).",
+  "https://repositorio.ipea.gov.br/entities/book/1c5a505a-85f4-4fc3-827e-b97a38fa7a90"
+ ],
+ [
+  "Brasil de Fato · reajuste de setembro de 2026",
+  "Anúncio de 17/09/2026: reajuste de cerca de 15%; piso por família de R$ 600 para R$ 691, valor por pessoa de R$ 142 para R$ 164 e adicional por criança pequena de R$ 150 para R$ 173.",
+  "https://www.brasildefato.com.br/2026/09/17/lula-anuncia-reajuste-de-15-no-bolsa-familia-e-piso-sobe-para-r-691/"
+ ],
+ [
+  "Agência Brasil, via B3 Bora Investir · reajuste vale desde outubro",
+  "O reajuste de cerca de 15% produz efeitos financeiros a partir de 1º de outubro de 2026.",
+  "https://borainvestir.b3.com.br/noticias/bolsa-familia-e-reajustado-em-15-medida-vale-a-partir-de-outubro/"
+ ],
+ [
+  "Agência Brasil · regra de transição de 2025",
+  "Explica a Portaria MDS 1.084/2025: famílias com pessoa com deficiência que recebe BPC ficam até 12 meses na Regra de Proteção.",
+  "https://agenciabrasil.ebc.com.br/economia/noticia/2025-05/governo-altera-regra-de-transicao-do-bolsa-familia-entenda/"
+ ],
+ [
+  "Garganta e Gasparini · Journal of Development Economics (2015)",
+  "Avaliam a Asignación Universal por Hijo, da Argentina, paga só a famílias sem emprego formal, e encontram desestímulo estatisticamente significativo e grande à formalização dos beneficiários.",
+  "https://econpapers.repec.org/RePEc:eee:deveco:v:115:y:2015:i:c:p:99-110"
+ ],
+ [
+  "Agência Brasil · cadastros de pessoas sozinhas (2023)",
+  "Segundo o MDS, os cadastros de famílias de uma pessoa só cresceram 224% entre dezembro de 2019 e dezembro de 2022, o que levou a uma revisão de cerca de 5 milhões de beneficiários.",
+  "https://agenciabrasil.ebc.com.br/economia/noticia/2023-02/governo-revisara-dados-de-beneficiarios-que-declaram-morar-sozinhos"
+ ]
+];
+const claims = {
+ "A01": [
+  "Nas comunidades rurais mexicanas avaliadas, o Progresa pagava uma ajuda escolar condicionada à frequência dos filhos às aulas.",
+  [
+   1
+  ]
+ ],
+ "A02": [
+  "Na avaliação de Skoufias e McClafferty, as matrículas aumentaram, sobretudo entre meninas no ensino secundário. Os pesquisadores não detectaram melhora nas notas dos testes nem desestímulo aparente ao trabalho dos adultos nesse período.",
+  [
+   1
+  ]
+ ],
+ "A03": [
+  "Lançado em 2002, o Chile Solidario combinou apoio em dinheiro e visitas às famílias em extrema pobreza para facilitar o acesso a serviços públicos.",
+  [
+   2
+  ]
+ ],
+ "A04": [
+  "Carneiro, Galasso e Ginja (2019) observaram que famílias antes fora da rede passaram a usar mais benefícios e serviços de emprego. O estudo não detectou efeito sobre a chance de estar empregado, no curto ou no longo prazo.",
+  [
+   3
+  ]
+ ],
+ "A05": [
+  "Na Finlândia, 2 mil pessoas desempregadas receberam 560 euros por mês durante dois anos. Podiam manter o valor mesmo se começassem a ganhar um salário.",
+  [
+   4
+  ]
+ ],
+ "A06": [
+  "A avaliação de 2020 não detectou diferença no emprego entre os grupos no primeiro ano. De novembro de 2017 a outubro de 2018, quem recebeu a renda trabalhou em média seis dias a mais. Uma mudança nas regras do seguro-desemprego em 2018 dificulta saber quanto dessa diferença veio da renda básica.",
+  [
+   5
+  ]
+ ],
+ "A07": [
+  "A MP 132 criou o Bolsa Família para reunir Bolsa Escola, Bolsa Alimentação, Auxílio-Gás e o programa de acesso à alimentação.",
+  [
+   6
+  ]
+ ],
+ "A08": [
+  "3,6 milhões de famílias em dezembro · R$ 0,6 bilhão pago no ano (valores da época).",
+  [
+   7
+  ]
+ ],
+ "A09": [
+  "Souza e colegas (Ipea, 2019) estimam que o Bolsa Família e os programas que o antecederam responderam por quase 17% da queda da desigualdade de renda observada entre 2001 e 2006. É um cálculo contábil, que mede quanto essa renda pesou na queda da desigualdade; não é um experimento.",
+  [
+   8
+  ]
+ ],
+ "A10": [
+  "A Lei 10.836 consolidou o programa e previu contrapartidas de frequência escolar e de acompanhamento de saúde.",
+  [
+   9
+  ]
+ ],
+ "A11": [
+  "6,6 milhões de famílias em dezembro · R$ 3,8 bilhões pagos no ano (valores da época).",
+  [
+   7
+  ]
+ ],
+ "A12": [
+  "Glewwe e Kassouf (2012) estimaram mais matrículas, menor abandono e mais aprovações após a adoção do Bolsa Escola/Família nas escolas estudadas.",
+  [
+   10
+  ]
+ ],
+ "A13": [
+  "No mesmo estudo, um cálculo dos autores sugere que os ganhos de salário futuro decorrentes das matrículas podem ficar aquém do custo do programa.",
+  [
+   10
+  ]
+ ],
+ "A14": [
+  "O Decreto 5.749 atualizou os limites do programa para R$ 120 por pessoa ao mês na pobreza e R$ 60 na extrema pobreza. Continuava previsto o acompanhamento do crescimento das crianças.",
+  [
+   11,
+   9
+  ]
+ ],
+ "A15": [
+  "Cerca de 11 milhões de famílias em dezembro · R$ 7,5 bilhões pagos no ano (valores da época).",
+  [
+   7
+  ]
+ ],
+ "A16": [
+  "Rasella e colegas (2013) associaram maior cobertura do programa a menos mortes antes dos cinco anos, sobretudo por desnutrição e diarreia. A comparação foi entre municípios no período de 2004 a 2009.",
+  [
+   12
+  ]
+ ],
+ "A17": [
+  "O Decreto 8.232 elevou as linhas de renda do programa para R$ 154 na pobreza e R$ 77 na extrema pobreza, por pessoa ao mês.",
+  [
+   13
+  ]
+ ],
+ "A18": [
+  "14,1 milhões de famílias · R$ 26,3 bilhões no ano, em preços de outubro de 2014.",
+  [
+   14
+  ]
+ ],
+ "A19": [
+  "Em 2014, o Brasil saiu do Mapa da Fome. Em artigo de 2025, o representante da FAO no Brasil, Jorge Meza, relacionou o marco ao fortalecimento da proteção social e aos investimentos em segurança alimentar.",
+  [
+   15
+  ]
+ ],
+ "A20": [
+  "Ao comparar a renda de 2017 com e sem o benefício, Souza e colegas (Ipea, 2019) estimaram 15% menos pessoas na pobreza e 25% menos na extrema pobreza. A comparação mede o efeito da transferência sobre a renda daquele período.",
+  [
+   8
+  ]
+ ],
+ "A21": [
+  "O Auxílio Brasil substituiu o Bolsa Família em 2021. Em agosto de 2022, seu piso passou de R$ 400 para R$ 600.",
+  [
+   16,
+   17
+  ]
+ ],
+ "A22": [
+  "Cerca de 14,5 milhões de famílias · cerca de R$ 3,25 bilhões na primeira folha, de novembro (valor de um mês).",
+  [
+   18
+  ]
+ ],
+ "A23": [
+  "Vale e Soares (Ipea, 2025) estimaram que, após o aumento, a proporção de pessoas trabalhando ou procurando trabalho caiu de 2,2 a 4,7 pontos percentuais entre pessoas de famílias que recebiam o benefício. A queda se concentrou em pessoas sem emprego ou em postos precários e foi maior entre mulheres com responsabilidades de cuidado. Não houve efeito detectável sobre a informalidade.",
+  [
+   17
+  ]
+ ],
+ "A24": [
+  "De Brauw e colegas (2015) estimaram que o programa original não reduziu as horas totais de trabalho das famílias. Mas, nas cidades, causou uma migração grande de horas do trabalho com carteira para o informal; para os autores, o motivo provável é que a regra de entrada enxergava mais a renda formal. Fruttero, Leichsenring e Paiva (2020) estimaram maior entrada no emprego formal, sobretudo entre jovens, após uma mudança de elegibilidade.",
+  [
+   19,
+   20
+  ]
+ ],
+ "A25": [
+  "Os três estudos medem coisas diferentes, em épocas diferentes. De Brauw: as horas totais da família não caíram, mas parte delas passou do trabalho com carteira para o informal nas cidades. Fruttero: mais gente entrou em emprego com carteira depois de uma mudança na regra. Vale e Soares: depois do aumento para R$ 600, caiu de 2,2 a 4,7 pontos a parcela de pessoas trabalhando ou procurando trabalho; quem continuou trabalhando não reduziu as horas de forma clara, e a informalidade não mudou.",
+  [
+   19,
+   20,
+   17
+  ]
+ ],
+ "A26": [
+  "A Lei 14.601 voltou a instituir o Bolsa Família. Definiu renda de entrada de até R$ 218 mensais por pessoa, piso familiar de R$ 600 e parcelas extras, como R$ 150 por criança menor de sete anos.",
+  [
+   21
+  ]
+ ],
+ "A27": [
+  "21,06 milhões de famílias · R$ 14,25 bilhões na folha de dezembro (por mês).",
+  [
+   22
+  ]
+ ],
+ "A28": [
+  "O TCU (2024) avaliou que os adicionais por pessoa melhoraram a distribuição dentro do programa. Também criticou o piso idêntico para famílias de tamanhos diferentes e simulou economia de 9,1% com o mesmo efeito na pobreza em um desenho sem o complemento do piso.",
+  [
+   23
+  ]
+ ],
+ "A29": [
+  "Em auditoria por amostra, o TCU (2023) estimou que 22,5% das famílias beneficiárias, cerca de 4,75 milhões, não cumpriam os requisitos, com impacto estimado de R$ 34 bilhões em 2023. O tribunal atribuiu o problema à autodeclaração sem checagem e a falhas de supervisão, e disse que isso estimula a omissão de renda. Uma divergência no cadastro, sozinha, não prova intenção de fraudar.",
+  [
+   24
+  ]
+ ],
+ "A30": [
+  "A partir da folha de julho, novas famílias na Regra de Proteção com renda instável acima de R$ 218 e até R$ 706 por pessoa passaram a receber metade do benefício por até 12 meses. Para renda estável, o prazo geral é de dois meses; famílias com pessoa com deficiência que recebe BPC ficam até 12 meses. Quem já estava na regra até junho segue a norma anterior, de até 24 meses.",
+  [
+   25,
+   33
+  ]
+ ],
+ "A31": [
+  "19,6 milhões de famílias · R$ 13,16 bilhões na folha de julho (por mês).",
+  [
+   26
+  ]
+ ],
+ "A32": [
+  "O MDS (2025) apresenta a manutenção temporária de metade do benefício como apoio à transição de renda e diz que encurtou o prazo para focalizar melhor e por causa das condições do orçamento. O TCU (2024), antes da mudança, alertou que a perda do benefício nos limites de renda pode desestimular a formalização. O alerta trata do desenho da regra, sem medir o efeito do prazo novo.",
+  [
+   25,
+   23
+  ]
+ ],
+ "A33": [
+  "Um decreto de setembro de 2026 reajustou os valores em cerca de 15%, a partir da folha de outubro: o mínimo por família passou de R$ 600 para R$ 691 e o valor por pessoa de R$ 142 para R$ 164. Na folha de novembro, o MDS divulgou benefício médio de R$ 783,63 por família.",
+  [
+   31,
+   32,
+   27
+  ]
+ ],
+ "A34": [
+  "Mais de 19,07 milhões de famílias · mais de R$ 14,88 bilhões na folha de novembro (por mês).",
+  [
+   27
+  ]
+ ],
+ "A35": [
+  "O SOFI 2026 manteve o Brasil fora do Mapa da Fome: a subalimentação ficou abaixo de 2,5% no triênio 2023–2025. O país tinha voltado ao Mapa da Fome em 2021 e saiu de novo em 2025. O indicador descreve o país e, sozinho, não isola o efeito do Bolsa Família.",
+  [
+   28,
+   15
+  ]
+ ],
+ "A36": [
+  "Lena Lavinas (2017) critica o avanço de uma proteção social mediada pelo mercado. Nessa leitura, transferências monetárias precisam ser avaliadas junto com o acesso a serviços públicos e a forma como as famílias se inserem no mercado.",
+  [
+   29
+  ]
+ ],
+ "A37": [
+  "Manter parte do auxílio por mais tempo pode dar previsibilidade a quem ganha renda irregular. É a lógica de transição que o MDS (2025) usa para justificar a própria Regra de Proteção.",
+  [
+   25
+  ]
+ ],
+ "A38": [
+  "Custa mais e mantém pagamento a famílias que já passaram da linha de pobreza. Em 2025, o próprio MDS encurtou o prazo para focalizar melhor o programa e por causa das condições do orçamento.",
+  [
+   25
+  ]
+ ],
+ "A39": [
+  "Segundo o TCU (2024), pagar mais em função do número de integrantes melhoraria a distribuição por pessoa; a simulação do órgão indica espaço para reduzir o gasto mantendo o efeito sobre a pobreza. O MDS registrou alta de 224% nos cadastros de beneficiários que moram sozinhos entre dezembro de 2019 e dezembro de 2022, o que levou a uma revisão de cerca de 5 milhões de beneficiários.",
+  [
+   23,
+   35
+  ]
+ ],
+ "A40": [
+  "Se a mudança cortar o piso sem compensação, as famílias menores que hoje dependem do complemento podem receber menos. O Ipea (2019) já apontava o baixo valor do benefício como limite para reduzir a pobreza no desenho antigo.",
+  [
+   21,
+   8
+  ]
+ ],
+ "A41": [
+  "O TCU (2023) recomenda cruzar registros e melhorar a verificação domiciliar para corrigir divergências e reduzir o risco de pagamentos indevidos.",
+  [
+   24
+  ]
+ ],
+ "A42": [
+  "Para Souza e colegas (Ipea, 2019), o apego excessivo à focalização pode prejudicar o combate à pobreza se endurecer as regras de permanência ou reduzir o número de famílias atendidas. O TCU (2023) também apontou falhas de capacidade das equipes locais.",
+  [
+   8,
+   24
+  ]
+ ],
+ "A43": [
+  "Programa Bolsa Família: uma década de inclusão e cidadania — Tereza Campello e Marcelo Côrtes Neri (orgs., 2013). Uma coletânea sobre os resultados da primeira década.",
+  [
+   30
+  ]
+ ],
+ "A44": [
+  "The Takeover of Social Policy by Financialization: The Brazilian Paradox — Lena Lavinas (2017), em inglês. Uma leitura crítica sobre o lugar das transferências na proteção social brasileira.",
+  [
+   29
+  ]
+ ],
+ "A45": [
+  "Na Argentina, a Asignación Universal por Hijo paga um auxílio a famílias com filhos e sem carteira assinada. Ela foi estudada por Garganta e Gasparini (2015).",
+  [
+   34
+  ]
+ ],
+ "A46": [
+  "Eles encontraram um desestímulo grande e estatisticamente claro à passagem dos beneficiários para empregos com carteira. Não acharam evidência suficiente de que quem tinha carteira tenha ido para a informalidade para receber.",
+  [
+   34
+  ]
+ ],
+ "A47": [
+  "O TCU (2024) estimou cerca de 2,2 milhões de famílias a mais recebendo do que o público previsto, com possíveis erros de inclusão (dado de agosto de 2023). O tribunal recomendou refazer o desenho do programa para focalizar melhor. Em 2025, o próprio MDS encurtou a Regra de Proteção alegando focalização e orçamento.",
+  [
+   23,
+   25
+  ]
+ ],
+ "A48": [
+  "Para Souza e colegas (Ipea, 2019), endurecer as regras de permanência pode prejudicar o combate à pobreza; e Vale e Soares (Ipea, 2025) viram que a saída do trabalho se concentrou em empregos precários e em mulheres com responsabilidades de cuidado.",
+  [
+   8,
+   17
+  ]
+ ]
+};
+const intro = [
+ [
+  "México · 1997–1999",
+  "O que muda quando a ajuda depende da frequência à escola?",
+  "A01",
+  "A02"
+ ],
+ [
+  "Chile · 2002",
+  "E quando a ajuda inclui alguém que visita a família?",
+  "A03",
+  "A04"
+ ],
+ [
+  "Argentina · a partir de 2009",
+  "E quando a ajuda some ao conseguir emprego com carteira?",
+  "A45",
+  "A46"
+ ],
+ [
+  "Finlândia · 2017–2018",
+  "E se o benefício continuar ao conseguir emprego?",
+  "A05",
+  "A06"
+ ]
+];
+const stops = [
+  {
+    "year": "2003",
+    "title": "Quatro programas, um só",
+    "subtitle": "A criação",
+    "rule": "A07",
+    "stats": "A08",
+    "studies": [
+      "A09"
+    ]
+  },
+  {
+    "year": "2004",
+    "title": "O benefício vira lei",
+    "subtitle": "A renda e as contrapartidas",
+    "rule": "A10",
+    "stats": "A11",
+    "studies": [
+      "A12",
+      "A13"
+    ]
+  },
+  {
+    "year": "2006",
+    "title": "A faixa de renda muda",
+    "subtitle": "Expansão e saúde",
+    "rule": "A14",
+    "stats": "A15",
+    "studies": [
+      "A16"
+    ]
+  },
+  {
+    "year": "2014",
+    "title": "O Brasil sai do Mapa da Fome",
+    "subtitle": "O que o indicador mede",
+    "rule": "A17",
+    "stats": "A18",
+    "studies": [
+      "A19",
+      "A20"
+    ]
+  },
+  {
+    "year": "2021",
+    "title": "Entra o Auxílio Brasil",
+    "subtitle": "O programa muda, o debate continua",
+    "rule": "A21",
+    "stats": "A22",
+    "studies": [
+      "A23",
+      "A24",
+      "A25"
+    ]
+  },
+  {
+    "year": "2023",
+    "title": "O Bolsa Família volta",
+    "subtitle": "Piso por família, adicionais por pessoa",
+    "rule": "A26",
+    "stats": "A27",
+    "studies": [
+      "A28",
+      "A29"
+    ]
+  },
+  {
+    "year": "2025",
+    "title": "Uma transição mais curta",
+    "subtitle": "A Regra de Proteção",
+    "rule": "A30",
+    "stats": "A31",
+    "studies": [
+      "A32"
+    ]
+  },
+  {
+    "year": "2026",
+    "title": "O retrato mais recente",
+    "subtitle": "Novembro de 2026",
+    "rule": "A33",
+    "stats": "A34",
+    "studies": [
+      "A35",
+      "A36"
+    ]
+  }
+];
+const paths = [
+ [
+  "Estender a transição",
+  "A37",
+  "A38"
+ ],
+ [
+  "Dar mais peso ao valor por pessoa",
+  "A39",
+  "A40"
+ ],
+ [
+  "Revisar o cadastro com atendimento",
+  "A41",
+  "A42"
+ ],
+ [
+  "Endurecer a porta de saída",
+  "A47",
+  "A48"
+ ]
+];
+const books = [
+  "A43",
+  "A44"
+];
+const youtube = [
+  "https://www.youtube.com/results?search_query=Bolsa+Fam%C3%ADlia+Ipea+pobreza+trabalho",
+  "https://www.youtube.com/results?search_query=Bolsa+Fam%C3%ADlia+TCU+Cad%C3%9Anico+auditoria"
+];
+const main = document.querySelector('#main');
+const timeline = document.querySelector('#timeline');
+const dialog = document.querySelector('#source');
+const position = document.querySelector('#position');
+const yearNav = document.querySelector('#years');
+const feedback = {nota:'',aprendizado:'',imparcialidade:'',comentario:'',tema:''};
+let phase = 'cover';
+let year = 0;
+let part = 0;
+let vote = null;
+let activeCitation = null;
+let saved = false;
+
+const escapeHtml = value => String(value).replace(/[&<>"']/g, char =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[char]);
+const button = (label, action, primary = false) =>
+  `<button type="button" class="${primary ? 'primary' : 'ghost'}" data-go="${action}">${label}</button>`;
+const ref = id => `<sup><button class="cite" type="button" data-source="${id}" aria-label="Abrir fonte ${id}">${id}</button></sup>`;
+const claim = id => `<span data-claim="${id}">${escapeHtml(claims[id][0])}${claims[id][1].map(ref).join('')}</span>`;
+const actions = (...buttons) => `<div class="actions">${buttons.join('')}</div>`;
+const heading = (context, title) => `<p class="context">${context}</p><h2 id="page-title" tabindex="-1">${title}</h2>`;
+const external = (url, label) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+
+function start(index, focus = true) {
+  year = index;
+  part = 0;
+  phase = 'timeline';
+  render(focus);
+}
+
+function render(focus = true) {
+  const stop = stops[year];
+  timeline.value = year;
+  timeline.setAttribute('aria-valuetext', stop.year + ' — ' + stop.title);
+  [...yearNav.children].forEach((element, index) => {
+    element.setAttribute('aria-current', String(phase === 'timeline' && year === index));
+  });
+  position.textContent = phase === 'timeline' ? stop.year + ' · ' + stop.subtitle : 'Arraste para explorar';
+  document.querySelector('#route-label').textContent = ['cover','mexico','chile','argentina','finlandia'].includes(phase)
+    ? 'Depois da abertura · Brasil' : 'Linha do tempo';
+  let content;
+  if (phase === 'cover') {
+    content = `<span class="seal">Dados atualizados em novembro de 2026</span>
+      <h1 id="page-title" tabindex="-1">Bolsa Família <em>Tira da pobreza ou acomoda?</em></h1>
+      <div class="cover-art" aria-hidden="true"><i></i><i></i><i></i></div>
+      <p>O que muda na renda, na escola e no trabalho de quem recebe? A viagem começa no México, passa por Chile, Argentina e Finlândia e chega ao Brasil.</p>
+      <p class="meta">Cerca de 15 minutos · 4 experiências internacionais e 8 paradas no Brasil</p>
+      ${actions(button('Começar pelo México →','mexico',true))}`;
+  } else if (['mexico','chile','argentina','finlandia'].includes(phase)) {
+    const routes = ['mexico','chile','argentina','finlandia'];
+    const i = routes.indexOf(phase);
+    const [place, question, rule, result] = intro[i];
+    content = heading(place, question) + `<p>${claim(rule)}</p>
+      <div class="study"><strong>O que a pesquisa mediu</strong><p>${claim(result)}</p></div>` +
+      actions(button(['← Capa','← México','← Chile','← Argentina'][i], routes[i-1] ?? 'cover'),
+        button(['Seguir para o Chile →','Seguir para a Argentina →','Seguir para a Finlândia →','Brasil, 2003 →'][i], routes[i+1] ?? 'start', true));
+  } else if (phase === 'timeline') {
+    const advance = year === stops.length - 1 ? button('E você? →','future',true) : button(stops[year+1].year + ' →','next',true);
+    const studyTitles = ['O que os estudos dizem','Outra medida','Como ler em conjunto'];
+    content = part === 0
+      ? heading(stop.year + ' · ' + stop.subtitle, stop.title) +
+        `<p>${claim(stop.rule)}</p><div class="scope"><strong>Famílias e repasses</strong><span>${claim(stop.stats)}</span></div>` +
+        actions(button('Ver a evidência →','next-part',true), year ? button('← ' + stops[year-1].year,'previous') : button('← Finlândia','finlandia'))
+      : heading(stop.year + ' · ' + stop.subtitle, studyTitles[part-1]) +
+        `<div class="study"><p>${claim(stop.studies[part-1])}</p></div>` +
+        actions(button('← Voltar','previous-part'), part < stop.studies.length ? button('Continuar →','next-part',true) : advance);
+  } else if (phase === 'future') {
+    content = heading('A próxima parada', 'E você?') +
+      '<p>Que mudança você colocaria na sua linha do tempo?</p>' +
+      paths.map(([title], index) => `<button class="choice" type="button" data-vote="${index}" aria-pressed="${vote === index}">${title} →</button>`).join('') +
+      actions(button('Quer se aprofundar?','books'),button('Avaliar o curso','form'));
+  } else if (phase === 'debate') {
+    const [title, forId, againstId] = paths[vote];
+    content = heading('A sua linha do tempo', title) +
+      `<div class="sides"><section><h3>A favor</h3><p>${claim(forId)}</p></section><section><h3>Contra</h3><p>${claim(againstId)}</p></section></div>` +
+      actions(button('Outra escolha','future'), button('Continuar →','books',true));
+  } else if (phase === 'books') {
+    content = heading('Depois da linha do tempo','Quer se aprofundar?') +
+      `<div class="study"><strong>Resultados e defesa do programa</strong><p>${claim(books[0])}</p></div>
+       <div class="study"><strong>Leitura crítica (à forma da proteção social)</strong><p>${claim(books[1])}</p></div>
+       <div class="actions">${external(youtube[0], 'Buscar Ipea no YouTube ↗')} ${external(youtube[1], 'Buscar auditorias no YouTube ↗')}</div>` +
+      actions(button('Avaliar →','form',true),button('Fontes','sources'));
+  } else if (phase === 'form') {
+    content = formContent();
+  } else {
+    const offset = part * 4;
+    content = heading('Referências · ' + (part+1) + ' de ' + Math.ceil(sources.length/4),'Fontes') +
+      `<ol start="${offset+1}">${sources.slice(offset,offset+4).map(([name,,url]) => `<li>${external(url,escapeHtml(name))}</li>`).join('')}</ol>` +
+      actions(part ? button('← Anteriores','previous-part') : button('← Leituras','books'),
+        offset+4 < sources.length ? button('Mais fontes →','next-part',true) : button('Voltar à capa','cover'));
+  }
+  main.innerHTML = `<article class="page ${phase}" aria-labelledby="page-title">${content}</article>`;
+  main.scrollTop = 0;
+  if (focus) main.querySelector('#page-title').focus({preventScroll:true});
+}
+
+function formContent() {
+  if (saved) return heading('Depois da linha do tempo','Avaliação salva') +
+    '<p role="status">A avaliação ficou salva neste navegador.</p>' + actions(button('Consultar as fontes →','sources',true));
+  const textField = (name, label, multiline = false) =>
+    `<label class="field">${label}${multiline
+      ? `<textarea rows="1" maxlength="2000" name="${name}">${escapeHtml(feedback[name])}</textarea>`
+      : `<input type="text" maxlength="300" name="${name}" value="${escapeHtml(feedback[name])}">`}</label>`;
+  const options = ['Não','Sim, a favor do programa','Sim, contra o programa','Não sei'];
+  const first = `<fieldset><legend>Nota de 1 a 5</legend><div class="rating">${[1,2,3,4,5].map(n =>
+    `<label><input type="radio" name="nota" value="${n}" required ${feedback.nota === String(n) ? 'checked' : ''}>${n}</label>`).join('')}</div></fieldset>
+    ${textField('aprendizado','O que você aprendeu que não sabia?',true)}
+    <label class="field">Sentiu que o curso favoreceu algum lado?<select name="imparcialidade" required><option value="">Escolha uma resposta</option>
+    ${options.map(value => `<option ${feedback.imparcialidade === value ? 'selected' : ''}>${value}</option>`).join('')}</select></label>`;
+  const second = `${textField('comentario','Comentário',true)}${textField('tema','Que tema você quer que vire curso?')}
+    <p class="meta">A avaliação é salva somente neste navegador.</p>`;
+  return heading('Depois da linha do tempo · ' + (part+1) + ' de 2','Avaliação do curso') +
+    `<form id="feedback">${part === 0 ? first : second}
+    <div class="actions">${part === 0 ? button('Fontes','sources') : button('← Voltar','previous-part')}
+    <button class="primary" type="submit">${part === 0 ? 'Continuar →' : 'Enviar avaliação'}</button></div>
+    <p class="status" id="save-status" role="status"></p></form>`;
+}
+
+yearNav.innerHTML = stops.map((stop, index) =>
+  `<button class="year" type="button" data-year="${index}">${stop.year}</button>`).join('');
+document.querySelector('#ticks').innerHTML = '<i></i>'.repeat(stops.length);
+yearNav.addEventListener('click', event => {
+  const target = event.target.closest('[data-year]');
+  if (target) start(Number(target.dataset.year));
+});
+timeline.addEventListener('input', () => start(Number(timeline.value), false));
+timeline.addEventListener('click', () => {
+  if (phase !== 'timeline') start(Number(timeline.value), false);
+});
+document.querySelector('#home').addEventListener('click', () => navigate('cover'));
+document.querySelector('#future').addEventListener('click', () => navigate('future'));
+
+function navigate(action) {
+  switch (action) {
+    case 'start': start(0); return;
+    case 'next': start(year+1); return;
+    case 'previous': start(year-1); return;
+    case 'next-part': part++; break;
+    case 'previous-part': part--; break;
+    default: phase = action; part = 0;
+  }
+  render();
+}
+
+main.addEventListener('click', event => {
+  const element = event.target.closest('button');
+  if (!element) return;
+  if (element.dataset.source) {
+    const [name, note, url] = sources[Number(element.dataset.source)-1];
+    document.querySelector('#source-title').textContent = name;
+    document.querySelector('#source-note').textContent = note;
+    document.querySelector('#source-link').href = url;
+    activeCitation = element;
+    dialog.showModal();
+  } else if (element.dataset.vote !== undefined) {
+    vote = Number(element.dataset.vote);
+    navigate('debate');
+  } else if (element.dataset.go) {
+    navigate(element.dataset.go);
+  }
+});
+document.querySelector('#close-source').addEventListener('click', () => dialog.close());
+dialog.addEventListener('click', event => {
+  if (event.target === dialog) {
+    const bounds = dialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right ||
+        event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+  }
+});
+dialog.addEventListener('close', () => activeCitation?.focus());
+main.addEventListener('input', event => {
+  if (event.target.name in feedback) feedback[event.target.name] = event.target.value;
+});
+main.addEventListener('submit', event => {
+  if (event.target.id !== 'feedback') return;
+  event.preventDefault();
+  for (const [key, value] of new FormData(event.target)) feedback[key] = value;
+  if (part === 0) {
+    navigate('next-part');
+    return;
+  }
+  try {
+    const queue = JSON.parse(localStorage.getItem('pmu-fila') ?? '[]');
+    if (!Array.isArray(queue)) throw new TypeError('Fila inválida');
+    queue.push({
+      curso:'bolsa-familia', quando:new Date().toISOString(),
+      voto:vote === null ? null : paths[vote][0], ...feedback, nota:Number(feedback.nota)
+    });
+    localStorage.setItem('pmu-fila', JSON.stringify(queue));
+    saved = true;
+    render();
+  } catch {
+    document.querySelector('#save-status').textContent = 'A avaliação não pôde ser salva neste navegador. As respostas continuam no formulário.';
+  }
+});
+render(false);
+</script>
+</body>
+</html>

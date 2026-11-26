@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Privatizar: o serviço melhora ou piora? | Pense Mais Uma</title>
+<meta name="description" content="Seis casos em forma de recibo: telefone, Vale, trens britânicos, água (Sabesp e Thames Water), Eletrobras e Correios. O que mudou antes e depois, os dois lados e a fonte de cada número.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Paleta Grafite e lima: fundo #23262B, texto #EEF0F3, destaque #C8E64A, cartão #2F3338, apagado #AEB4BC */
+:root{--bg:#23262B;--ink:#EEF0F3;--soft:#D5D9DF;--mut:#AEB4BC;--acc:#C8E64A;--accd:#4E6B00;--card:#2F3338;--line:#3D424A}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font:400 16.5px/1.62 Inter,system-ui,sans-serif}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+main{max-width:560px;margin:0 auto;padding:0 18px 40px}
+.k{font:700 10.5px "JetBrains Mono",monospace;letter-spacing:.14em;color:var(--acc);text-transform:uppercase;margin:0 0 6px}
+h1{font:700 clamp(32px,9vw,42px)/1.05 "Space Grotesk",sans-serif;margin:6px 0 14px;letter-spacing:-.01em}
+h2{font:700 clamp(25px,7vw,30px)/1.1 "Space Grotesk",sans-serif;margin:2px 0 6px}
+.lugar{font:500 12px "JetBrains Mono";color:var(--mut);margin:0 0 16px}
+p{margin:0 0 14px;color:var(--soft)}
+.cover{min-height:94svh;display:flex;flex-direction:column;justify-content:center;padding:30px 0 10px}
+.lead{font-size:18px;color:var(--soft)}
+.op{background:var(--card);border-radius:12px;padding:14px;margin:16px 0 4px;font-size:14px}
+.op b{display:block;font:700 10px "JetBrains Mono";letter-spacing:.12em;color:var(--mut);margin-bottom:8px}
+.op .bar{display:flex;height:26px;border-radius:6px;overflow:hidden;font:700 11px/26px "JetBrains Mono";margin:6px 0 8px}
+.op .bar i{font-style:normal;padding-left:8px;white-space:nowrap}.op .bar .a{background:var(--acc);color:#1A1C20}.op .bar .c{background:#8D949C;color:#1A1C20}.op .bar .n{background:#454B53}
+.how{font-size:13.5px;color:var(--mut);margin-top:14px}
+.go{display:block;width:100%;min-height:52px;border-radius:12px;background:var(--acc);color:#1A1C20;font:700 13px "JetBrains Mono";letter-spacing:.06em;margin-top:18px;text-align:center;text-decoration:none;line-height:52px}
+.go.ghost{background:none;border:1.5px solid var(--acc);color:var(--acc)}
+#tray{position:sticky;top:0;z-index:40;background:rgba(35,38,43,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+#tray .in{max-width:560px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:10px}
+#tray .lb{font:700 10.5px "JetBrains Mono";letter-spacing:.1em;color:var(--mut);white-space:nowrap;min-width:84px}
+#tray .ds{display:flex;gap:4px;flex:1}#tray .ds i{flex:1;height:5px;border-radius:3px;background:var(--line)}#tray .ds i.on{background:var(--acc)}
+.caso{padding-top:52px;scroll-margin-top:36px}
+.rc{margin:18px 0 8px}
+.tk{background:#fff;color:#141414;padding:14px 14px 20px;font:500 12.5px/1.65 "JetBrains Mono",monospace;-webkit-mask:radial-gradient(circle 5px at 50% 100%,transparent 98%,#000) 0 0/14px 100% repeat-x;mask:radial-gradient(circle 5px at 50% 100%,transparent 98%,#000) 0 0/14px 100% repeat-x}
+.tk .h{display:flex;justify-content:space-between;font-weight:700;border-bottom:1px dashed #9AA4B5;padding-bottom:6px;margin-bottom:6px;gap:8px}
+.tk .r{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.tk .r span:first-child{flex:1}
+.tk .v{text-align:right;white-space:nowrap}
+.tk .v s{text-decoration:none;color:#7A7F86;font-weight:500;display:none}
+.tk .v em{font-style:normal;font-weight:700}
+.tk.on .v s{display:inline}.tk.on .v em{color:var(--accd)}
+.tk .obs{font-size:10.5px;color:#6B7078;border-top:1px dashed #C9CED6;margin-top:8px;padding-top:6px}
+.tk sup{line-height:0}
+.sw{display:flex;margin:12px 2px 0;height:40px;border-radius:20px;background:#3A3F46;position:relative;font:700 10.5px "JetBrains Mono";letter-spacing:.06em;width:calc(100% - 4px)}
+.sw span{flex:1;text-align:center;line-height:40px;font-size:10px;z-index:1;transition:color .3s}
+.sw i{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:17px;background:#6A717A;transition:transform .35s ease,background .35s}
+.sw .a{color:#fff}.sw .b{color:var(--mut)}
+.sw[aria-checked="true"] i{transform:translateX(100%);background:var(--acc)}
+.sw[aria-checked="true"] .a{color:var(--mut)}.sw[aria-checked="true"] .b{color:#1A1C20}
+.hint{font:500 11.5px "JetBrains Mono";color:var(--mut);text-align:center;margin:8px 0 0}
+.nota{border-left:3px solid var(--acc);padding:4px 0 4px 12px;margin:20px 0;font:500 15px/1.5 "Space Grotesk";color:var(--ink)}
+.duo{display:grid;gap:10px;margin:8px 0 0}
+.duo div{background:var(--card);border-radius:12px;padding:13px 14px;font-size:14.5px;line-height:1.55;color:var(--soft)}
+.duo b{display:block;font:700 10px "JetBrains Mono";letter-spacing:.1em;color:var(--mut);margin-bottom:6px}
+sup{line-height:0}
+.fn{font:700 10px/1 "JetBrains Mono";background:var(--acc);color:#1A1C20;border-radius:4px;padding:3px 5px;margin-left:2px;position:relative;top:-.55em}
+.tk .fn{background:#E4F2B0;color:#2E3D00}
+.fn+.fn,sup+sup .fn{margin-left:3px}
+.board{padding-top:56px}
+.col{background:var(--card);border-radius:12px;margin:0 0 12px;overflow:hidden}
+.col .h{font:700 11px "JetBrains Mono";letter-spacing:.12em;padding:9px 13px;display:flex;justify-content:space-between}
+.col.p .h{background:var(--acc);color:#1A1C20}.col.d .h{background:#4A5058}.col.n .h{background:#383D44;color:var(--mut)}
+.col ul{margin:0;padding:8px 13px 10px 30px;font-size:14px;line-height:1.5;color:var(--soft)}.col li{margin:6px 0}.col li small{color:var(--mut);font:500 10.5px "JetBrains Mono"}
+.box{border-top:1px solid var(--line);margin-top:40px;padding-top:14px;font-size:15px}
+.box h3{font:700 22px "Space Grotesk";margin:4px 0 10px}
+.vt{display:block;width:100%;text-align:left;border:1.5px solid var(--line);border-radius:12px;padding:12px 13px;margin:8px 0;background:var(--card)}
+.vt b{display:block;font-size:16px}.vt small{color:var(--mut);font-size:13px}.vt.on{border-color:var(--acc)}
+.cd{font-size:15px;line-height:1.55;color:var(--soft)}.cd i{font-style:normal;display:block;font:700 10px "JetBrains Mono";letter-spacing:.1em;color:var(--acc);margin-top:12px}
+.rate{display:flex;gap:6px}.rate button{flex:1;border:1.5px solid var(--line);border-radius:10px;min-height:44px;font-weight:700;background:var(--card)}.rate button.on{background:var(--acc);color:#1A1C20;border-color:var(--acc)}
+textarea,select{width:100%;font:inherit;font-size:15px;color:var(--ink);border:1.5px solid var(--line);border-radius:10px;padding:10px;background:var(--card)}
+.fontes{padding-left:26px}.fontes li{font-size:12.5px;margin:.55em 0;color:var(--mut)}.fontes a,.box a{color:var(--acc)}
+#fnpop{position:fixed;left:14px;right:14px;bottom:14px;max-width:520px;margin:0 auto;background:#EEF0F3;color:#1A1C20;border-radius:14px;padding:14px 16px;z-index:60;display:none;font:500 14px/1.5 Inter;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+#fnpop a{color:var(--accd);font-weight:700}#fnpop .x{position:absolute;right:8px;top:4px;font-size:22px;min-width:44px;min-height:44px}
+.b{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}.b.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.b{opacity:1;transform:none;transition:none}.sw i{transition:none}}
+</style><link rel="canonical" href="https://pensemaisuma.com.br/cursos/privatizar/">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+</head><body>
+<div id="pmu-bar" style="font-family:Nunito,system-ui,sans-serif;background:#FAF7F0;color:#17150F;border-bottom:1.5px solid #17150F;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:14px;font-weight:800;position:relative;z-index:50">
+<a href="index.html" style="color:inherit;text-decoration:none">← Sobre o curso</a>
+<a href="../../index.html" style="display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none"><img src="../../assets/logo.svg" alt="" width="26" height="26"><span style="font-family:Fraunces,Georgia,serif">Pense Mais Uma</span></a>
+<a href="index.html#avaliar" style="color:inherit">Avaliar</a></div>
+<div id="tray"><div class="in"><span class="lb" id="tl">INÍCIO</span><span class="ds" id="td"></span></div></div>
+<main id="app"></main>
+<div id="fnpop" role="dialog" aria-live="polite"><button class="x" aria-label="Fechar">×</button><div id="fnbody"></div></div>
+<script>
+const FONTES={
+ suno_cor23:{s:"Suno, abr/2023",t:"Suno (abr/2023): em fevereiro de 2021, Bolsonaro enviou ao Congresso o projeto que abria caminho para privatizar os Correios; aprovado pela Câmara, travou no Senado; em abril de 2023, um decreto de Lula retirou os Correios do programa de desestatização",u:"https://www.suno.com.br/noticias/lula-retira-correios-programa-desestatizacao/amp/"},
+ correios24:{s:"Correios, Relatório 2024",t:"Correios, Relatório de Administração 2024: a empresa se descreve como a única empresa pública presente em praticamente todos os municípios do país",u:"https://www.correios.com.br/acesso-a-informacao/institucional/publicacoes/relatorios/relatorio-de-administracao/arquivo/relatorio-de-administracao-2024-odt.odt"},
+ abr_cor21:{s:"Agência Brasil, mar/2022",t:"Agência Brasil (17/mar/2022): os Correios registraram lucro de R$ 3,7 bilhões em 2021, o dobro de 2020 e o melhor resultado em 22 anos, segundo a empresa",u:"https://agenciabrasil.ebc.com.br/geral/noticia/2022-03/correios-dobram-ganhos-e-registram-lucro-de-r-37-bilhoes-em-2021"},
+ folhape_cor:{s:"Folha de Pernambuco, abr/2026",t:"Folha de Pernambuco (abr/2026): os Correios fecharam 2025 com prejuízo de R$ 8,5 bilhões e acumulam 14 trimestres seguidos de prejuízo, desde o fim de 2022",u:"https://www.folhape.com.br/economia/correios-registram-prejuizo-de-r-85-bilhoes-em-2025/482762/"},
+ gp_cor25:{s:"Gazeta do Povo, abr/2026",t:"Gazeta do Povo (23/abr/2026): prejuízo de R$ 8,5 bilhões em 2025, mais que o triplo de 2024; R$ 6,4 bilhões foram para precatórios (dívidas judiciais); em dezembro de 2025, empréstimo de R$ 12 bilhões com Itaú, Bradesco, Santander, Banco do Brasil e Caixa, com garantia da União",u:"https://www.gazetadopovo.com.br/economia/prejuizo-dos-correios-triplica-e-chega-a-r-85-bilhoes-em-2025/"},
+ istoe_plano:{s:"IstoÉ Dinheiro, dez/2025",t:"IstoÉ Dinheiro (30/dez/2025): o plano de reestruturação prevê fechar cerca de mil agências (16% das 6 mil próprias) e um programa de demissão voluntária com economia anual estimada de R$ 2,1 bilhões",u:"https://istoedinheiro.com.br/plano-crise-correios-entenda"},
+ monitor_cor:{s:"Monitor do Mercado, abr/2026",t:"Monitor do Mercado (abr/2026): a receita bruta dos Correios caiu 11,35% em 2025, para R$ 17,3 bilhões; o principal fator foi a queda de 65,6% nas encomendas internacionais",u:"https://monitordomercado.com.br/noticias/377525-prejuizo-dos-correios-mais-que-triplica-e-chega-a-r-85-bilhoes-em-2025/"},
+ abr_cor26:{s:"Agência Brasil, abr/2026",t:"Agência Brasil (23/abr/2026): o prejuízo ocorre num período em que as empresas de comércio eletrônico ampliam a própria logística e deixam de depender dos Correios; o presidente da estatal disse que privatizar é decisão do governo",u:"https://agenciabrasil.ebc.com.br/economia/noticia/2026-04/prejuizo-dos-correios-chega-r-85-bilhoes-em-2025"},
+ vernalha:{s:"InfoMoney, out/2025",t:"InfoMoney (17/out/2025): para o jurista Fernando Vernalha, empréstimos e reestruturação só aliviam sintomas; ele defende abrir o setor à competição, com regras para os serviços de cobertura universal, e diz que a privatização num novo marco regulatório reduziria o uso de dinheiro público",u:"https://www.infomoney.com.br/?p=3067266"},
+ agostini:{s:"Times Brasil, dez/2025",t:"Times Brasil (9/dez/2025): Alex Agostini, economista-chefe da Austin Rating, defende transferir parte da operação dos Correios à iniciativa privada por meio de concessão",u:"https://timesbrasil.com.br/empresas-e-negocios/solucao-para-os-correios-esta-na-iniciativa-privada-diz-economista/"},
+ lula_cor:{s:"Folha de Pernambuco, dez/2025",t:"Folha de Pernambuco (18/dez/2025): Lula disse que, enquanto for presidente, não haverá privatização dos Correios, mas pode haver parceria com empresas ou economia mista",u:"https://www.folhape.com.br/economia/correios-transformar-empresa-em-economia-mista-e/457005/"},
+ tb_cor:{s:"Times Brasil, abr/2026",t:"Times Brasil (29/abr/2026): a queda das encomendas internacionais dos Correios em 2025 está ligada sobretudo a mudanças na tributação das compras internacionais de baixo valor e à entrada de concorrentes privados; o volume caiu de 149 milhões para 41 milhões de unidades",u:"https://timesbrasil.com.br/empresas-e-negocios/correios-em-numeros-o-tombo-nas-encomendas-internacionais-em-2025/"},
+ dp_cor:{s:"Diario de Pernambuco, abr/2026",t:"Diario de Pernambuco (23/abr/2026): os R$ 6,4 bilhões em processos judiciais incluem provisões trabalhistas ligadas a adicionais pagos a funcionários (distribuição e coleta externa e periculosidade); o custo operacional também pesou no prejuízo",u:"https://www.diariodepernambuco.com.br/amp/economia/2026/04/11712761-correios-tem-prejuizo-de-rs-85-bi-em-2025-puxado-por-obrigacoes-judiciais-e-custo-operacional.html"},
+ troster:{s:"Times Brasil, abr/2026",t:"Times Brasil (24/abr/2026): o economista Roberto Troster diz que dá para os Correios se reinventarem sem privatizar; sem regras, um comprador ficaria com a parte lucrativa e deixaria de atender o interior, onde a logística é mais cara",u:"https://timesbrasil.com.br/empresas-e-negocios/correios-precisam-se-reinventar-para-evitar-novos-prejuizos-diz-economista/"},
+ suno_df:{s:"Datafolha, via Suno, 2023",t:"Suno (abr/2023), sobre pesquisa Datafolha de 29 e 30 de março de 2023: 38% dos brasileiros apoiam as privatizações e 45% são contra; em setembro de 2022, 26% eram favoráveis. Sobre a Petrobras, 37% a favor de privatizar e 53% contra",u:"https://www.suno.com.br/noticias/?p=387140"},
+ agorarn_df:{s:"Datafolha, via Agora RN, 2023",t:"Agora RN (abr/2023), sobre pesquisa Datafolha de março de 2023: o apoio de 38% às privatizações é o maior da série desde pelo menos 2017, quando era de 20%; no saneamento, 49% apoiam a privatização e 44% são contra",u:"https://agorarn.com.br/?p=762544"},
+ istoe_tel:{s:"IstoÉ Dinheiro, 2018",t:"IstoÉ Dinheiro (2018): em 1998, o país tinha 17 milhões de linhas fixas e 4,6 milhões de celulares; 20 anos depois, 235,5 milhões de linhas de celular e 40,8 milhões de linhas fixas. Uma linha fixa chegava a custar US$ 5 mil. Para Eduardo Tude, da consultoria Teleco, foi a competição que acabou com as filas de espera",u:"https://istoedinheiro.com.br/apos-20-anos-de-privatizacao-uso-do-telefone-mudou"},
+ bndes_tel:{s:"BNDES",t:"BNDES: a privatização do Sistema Telebrás ocorreu em 29 de julho de 1998, em 12 leilões consecutivos; o governo arrecadou R$ 22 bilhões, ágio de 63% sobre o preço mínimo",u:"https://www.bndes.gov.br/wps/portal/site/home/transparencia/desestatizacao/processos-encerrados/Privatizacao-Federais-Telecomunicacoes"},
+ sesc_tel:{s:"Revista do Sesc SP, 2002",t:"Revista do Sesc SP (2002): segundo o Idec, em três anos a partir de julho de 1998 a assinatura básica subiu 42,5%, de R$ 13,82 para R$ 19,77; no mesmo período, a inflação (INPC) foi de no máximo 15%; o Procon-SP registrou de janeiro a agosto de 2001 um crescimento de 68,53% nas reclamações contra as operadoras em relação a todo o ano de 2000",u:"https://portal.sescsp.org.br/online/artigo/compartilhar/1092_LINHAS+ABERTAS"},
+ abr_tel:{s:"Agência Brasil, via O Jacaré, 2023",t:"Agência Brasil (jul/2023), 25 anos da privatização: a banda larga, que se popularizou a partir de 2004, foi ignorada pela Lei Geral das Telecomunicações, marco do leilão da Telebrás",u:"https://www.ojacare.com.br/2023/07/29/setor-de-telecomunicacoes-enfrenta-desafios-25-anos-apos-privatizacao"},
+ cut_vale:{s:"CUT, com Brasil de Fato, 2022",t:"CUT, com Brasil de Fato (mai/2022): em leilão de 6 de maio de 1997, o governo vendeu a maior parte de suas ações da Vale por cerca de R$ 3,3 bilhões; em abril de 2022, o valor de mercado da empresa era de R$ 452 bilhões, segundo a Economatica",u:"https://www.cut.org.br/noticias/privatizacao-da-vale-25-anos-lucros-e-crimes-evidenciam-mau-negocio-para-o-pais-92a3/"},
+ bdf_vale12:{s:"Brasil de Fato, 2022",t:"Brasil de Fato (mai/2022): pelo preço das ações vendidas no leilão de 1997, a Vale valia, ao todo, R$ 12,5 bilhões naquela época",u:"https://www.brasildefato.com.br/2022/05/06/privatizacao-da-vale-25-anos-lucros-e-crimes-cometidos-evidenciam-mau-negocio-para-o-pais"},
+ bdf_121:{s:"Brasil de Fato, 2024",t:"Brasil de Fato (mai/2024): só em 2021, a Vale lucrou R$ 121 bilhões; opositores da privatização denunciaram na época uma avaliação subestimada da empresa",u:"https://www.brasildefato.com.br/2024/05/13/desde-1997-vale-repassa-us-208-bi-a-acionistas-apos-privatizacao/"},
+ bdf_208:{s:"Brasil de Fato, 2024",t:"Brasil de Fato (mai/2024): a Vale já distribuiu ao menos US$ 208 bilhões a acionistas desde a privatização, em 1997",u:"https://brasildefato.com.br/2024/05/13/vale-ja-distribuiu-ao-menos-us-208-bilhoes-a-acionistas-desde-a-privatizacao-em-1997/"},
+ monitor_vale:{s:"Monitor Mercantil, 2007",t:"Monitor Mercantil (mai/2007), com dados dos balanços da Vale: lucro líquido consolidado de R$ 756 milhões em 1997",u:"https://monitormercantil.com.br/perdas-do-estado-na-privatizauuo-das-estatais-o-caso-vale/"},
+ puc_vale:{s:"Carrasco e Pinho de Mello (PUC-Rio), 2011",t:"Vinicius Carrasco e João Manoel Pinho de Mello, economistas da PUC-Rio, no Valor Econômico (mar/2011): compararam a Vale com a Rio Tinto, sempre privada, para descontar a alta do minério puxada pela China; de jun/1997 a jan/2011, a diferença de retorno das ações foi de 1.696 pontos percentuais, dos quais atribuem 1.514 à privatização. O minério de ferro, principal produto da Vale, subiu 750% de 2003 a 2010. Concluem que a evidência sugere que a gestão privada adicionou enorme valor à Vale, mas ressalvam que estabelecer causa é difícil",u:"https://www.econ.puc-rio.br/api/uploads/adm/trabalhos/files/valor_economico_vnc_jmpm.pdf"},
+ vale_fiscal:{s:"Vale, relatório fiscal 2019",t:"Relatório de transparência fiscal da Vale (2019): em 2019, a empresa diz ter pago US$ 4,5 bilhões em impostos e royalties no mundo, dos quais US$ 4,25 bilhões no Brasil",u:"https://vale.com/documents/d/guest/relatorio-de-transparencia-fiscal-2019_pt-1"},
+ agmin_mar:{s:"Agência Minas, 2024",t:"Agência Minas (out/2024): o rompimento da barragem de Mariana, das mineradoras Samarco, Vale e BHP, em 2015, tirou a vida de 19 pessoas; o novo acordo de reparação soma R$ 170 bilhões",u:"https://www.agenciaminas.mg.gov.br/noticia/novo-acordo-de-mariana-poder-publico-responsabiliza-mineradoras-e-reparacao-de-prejuizos-causados-por-rompimento-de-barragem-chegara-a-r-170-bilhoes-124010"},
+ mg_bru:{s:"Governo de Minas",t:"Governo de Minas Gerais: o rompimento das barragens da Vale em Brumadinho, em 25 de janeiro de 2019, tirou a vida de 272 pessoas; o acordo judicial de reparação tem valor global de R$ 37,68 bilhões",u:"https://www.mg.gov.br/pro-brumadinho/pagina/entenda-o-acordo-judicial-de-reparacao-ao-rompimento-em-brumadinho"},
+ dft15:{s:"Departamento de Transportes do Reino Unido, 2015",t:"Departamento de Transportes do Reino Unido (dez/2015), com dados do regulador ORR: as viagens de trem passaram de 735 milhões em 1994/95, ano da privatização, para 1,65 bilhão em 2014/15",u:"https://assets.publishing.service.gov.uk/media/5a80c4d4ed915d74e33fc4d1/rail-trends-factsheet-2015.pdf"},
+ commons_fares:{s:"Biblioteca da Câmara dos Comuns (dados do regulador ORR)",t:"Biblioteca da Câmara dos Comuns do Reino Unido: em janeiro de 2018, as passagens de todas as operadoras estavam 20% mais caras, descontada a inflação, do que em janeiro de 1995",u:"https://commonslibrary.parliament.uk/research-briefings/sn06384/"},
+ gov_chil:{s:"Governo do Reino Unido, 2026",t:"Declaração da secretária dos Transportes, Heidi Alexander, ao Parlamento (out/2026): em 20 de setembro de 2026, os serviços da Chiltern Railways passaram ao controle público; 10 das 14 operadoras inglesas sob contrato com o governo já são públicas; a Great Western passa em 13 de dezembro de 2026 e a Avanti em 7 de março de 2027; o programa deve terminar no fim de 2027",u:"https://www.gov.uk/government/speeches/transfer-of-chiltern-railways-services-into-public-ownership"},
+ gov_swr:{s:"Governo do Reino Unido, 2025",t:"Governo do Reino Unido (2025), na volta da South Western Railway ao controle público: a nova estatal Great British Railways vai administrar trilhos e trens juntos, para reduzir atrasos e cancelamentos",u:"https://www.gov.uk/government/news/new-dawn-for-rail-as-south-western-services-return-to-public-hands"},
+ express_fares:{s:"Express & Star, 2024",t:"Express & Star (2024): a volta das operadoras ao controle público não deve baixar as passagens; os contratos voltam ao Estado conforme vencem, para o contribuinte não ter de pagar indenização",u:"https://www.expressandstar.com/uk-news/three-rail-firms-to-be-brought-into-public-ownership-but-fares-will-still-rise-5741082"},
+ railpartners:{s:"Rail Partners, via PoliticsHome, 2024",t:"Andy Bagnall, presidente da Rail Partners, associação das operadoras privadas (PoliticsHome, abr/2024): não há evidência clara de que a estatização vá funcionar; segundo a consultoria Oxera, o contribuinte bancava um déficit de £ 800 milhões da British Rail na privatização, que as empresas privadas transformaram em superávit",u:"https://politicshome.com/thehouse/article/nationalising-railways-political-practical-plan"},
+ wiki_dfto:{s:"Wikipedia: DfT Operator",t:"Wikipedia, verbete DfT Operator: LNER passou ao Estado em 2018, Northern em 2020, Southeastern em 2021 e TransPennine em 2023, por falhas das operadoras; a South Western Railway, em 25 de maio de 2025, foi a primeira por fim de contrato",u:"https://en.wikipedia.org/wiki/DfT_Operator"},
+ orr_fares:{s:"ORR, índice de passagens 2026",t:"Regulador ferroviário britânico (ORR), índice de passagens de 2026: as passagens reguladas foram congeladas na Inglaterra em março de 2026",u:"https://dataportal.orr.gov.uk/media/mlsbipxn/rail-fares-index-2026.pdf"},
+ infomoney_stf:{s:"InfoMoney, 2025",t:"InfoMoney (dez/2025): o STF homologou em 11 de dezembro de 2025 o acordo entre a União e a Eletrobras, que dá ao governo três indicados no conselho",u:"https://www.infomoney.com.br/?p=3136991"},
+ isto_sab:{s:"IstoÉ Dinheiro, 2024",t:"IstoÉ Dinheiro (jul/2024): a Sabesp vendeu ações a R$ 67, levantando R$ 14,8 bilhões; o governo paulista reduziu sua participação de 50,3% para cerca de 18%",u:"https://istoedinheiro.com.br/privatizacao-da-sabesp-governo-de-sp-levanta-r-148-bilhoes-com-oferta-de-acoes"},
+ mt_golden:{s:"Money Times, 2024",t:"Money Times (jul/2024): depois da oferta, o Estado fica com cerca de 18% do capital e a Equatorial com 15%; o Estado também terá uma golden share, o direito de vetar certas decisões",u:"https://www.moneytimes.com.br/apos-privatizacao-sabesp-sbsp3-anuncia-reducao-de-tarifas-veja-lmrs"},
+ semil_tar:{s:"Governo de SP (Semil), 2025",t:"Secretaria de Meio Ambiente, Infraestrutura e Logística de SP (dez/2025): de janeiro a setembro de 2025, a Sabesp investiu R$ 10,4 bilhões, 151% a mais que no mesmo período de 2024; a tarifa de referência ficou 15% abaixo da estimada para a Sabesp estatal; o reajuste de 2026 repõe só a inflação, de 6,11%",u:"https://semil.sp.gov.br/2025/12/mesmo-com-investimento-151-maior-tarifa-da-sabesp-nao-tera-aumento-real-para-o-consumidor-em-2026/"},
+ isto_sab26:{s:"IstoÉ Dinheiro, 2025",t:"IstoÉ Dinheiro (dez/2025): o aumento de 6,11% na tarifa da Sabesp a partir de janeiro de 2026 gerou críticas, porque o governo estadual tinha dito, durante a venda, que a operação não resultaria em alta de preços no curto prazo",u:"https://istoedinheiro.com.br/sabesp-supera-metas-de-novas-ligacoes-e-reforca-plano-de-universalizar-ate-2029"},
+ mt_sab2:{s:"Money Times, 2026",t:"Money Times (jul/2026): o plano da nova Sabesp prevê cerca de R$ 70 bilhões em investimentos até 2029; o preço de venda das ações, R$ 67, com desconto de 18,3% em relação ao fechamento da véspera, foi alvo de críticas",u:"https://www.moneytimes.com.br/ex-presidente-da-sabesp-sbsp3-faz-balanco-de-dois-anos-da-privatizacao-investimentos-avancam-mas-gestao-divide-opinioes-lmrs/"},
+ semil_univ:{s:"Governo de SP (Semil)",t:"Governo de SP (Semil): o novo contrato da Sabesp garante cerca de R$ 70 bilhões em investimentos para universalizar o saneamento até 2029, quatro anos antes do prazo do Novo Marco Legal do Saneamento",u:"https://semil.sp.gov.br/?p=131006"},
+ wiki_thames:{s:"Wikipedia: Thames Water",t:"Wikipedia, verbete Thames Water: a empresa foi criada em 1989 na privatização da água na Inglaterra e no País de Gales; de 1990 a 2022, pagou £ 7 bilhões em dividendos",u:"https://en.wikipedia.org/wiki/Thames_Water"},
+ openedu:{s:"Open University",t:"Open University (OpenLearn): antes da privatização, a Thames Water era praticamente sem dívidas; em 1990/91, a dívida equivalia a 7% do capital",u:"https://www.open.edu/openlearn/money-business/business-strategy-studies/privatising-thames-water"},
+ hl_thames:{s:"Hargreaves Lansdown, 2026",t:"Hargreaves Lansdown (nov/2026): a Thames Water, que abastece 16 milhões de pessoas em Londres e no sudeste da Inglaterra, tenta há mais de dois anos evitar a administração especial, uma espécie de reestatização, depois de acumular dívidas de mais de £ 20 bilhões",u:"https://www.hl.co.uk/shares/stock-market-news/company--news/thames-water-asks-for-more-time-to-repay-debts"},
+ lbc_fine:{s:"LBC, 2025",t:"LBC (mai/2025): o regulador Ofwat multou a Thames Water em £ 122,7 milhões, a maior multa da história do setor, por falhas no tratamento de esgoto e por dividendos; em abril, a empresa tinha aumentado as contas em 31% em média",u:"https://www.lbc.co.uk/article/97ef434f9f1945c89916e394611265ee-rpWNJ_2/"},
+ yahoo_invest:{s:"Telegraph, via Yahoo Finance",t:"Telegraph (abr/2023), via Yahoo Finance: as empresas de água dizem ter investido mais de £ 160 bilhões no setor desde 1989",u:"https://uk.finance.yahoo.com/news/households-risk-water-bill-shock-090000685.html"},
+ yahoo_helm:{s:"Guardian, via Yahoo News",t:"Guardian (jun/2023), via Yahoo News: o economista Dieter Helm escreve que 30 anos de privatização da água trouxeram dívida alta, lucros e dividendos altos e investimento bem abaixo do possível",u:"https://uk.news.yahoo.com/down-drain-billions-pounds-sucked-103043335.html"},
+ cityam:{s:"City A.M., 2026",t:"City A.M. (2026): o governo já cogitou colocar a Thames Water em administração especial temporária, o que pode custar caro ao contribuinte",u:"https://www.cityam.com/?p=2475399"},
+ b3_el:{s:"B3 (Bora Investir), 2024",t:"Bora Investir, da B3 (jul/2024): a privatização da Eletrobras, em junho de 2022, movimentou R$ 34 bilhões",u:"https://borainvestir.b3.com.br/noticias/mercado/privatizacao-da-sabesp-e-a-maior-do-pais-no-ano-e-movimenta-r-147-bilhoes/"},
+ isto_acordo:{s:"IstoÉ Dinheiro, 2025",t:"IstoÉ Dinheiro (2025): com a privatização da Eletrobras, a União ficou com 43% do capital, mas com voto limitado a 10%; pelo acordo com a empresa, o governo passa a ter assentos nos conselhos, e a Eletrobras deixa de ser obrigada a pôr dinheiro na usina nuclear Angra 3",u:"https://istoedinheiro.com.br/acordo-eletrobras-uniao-conselho"},
+ neofeed:{s:"NeoFeed, 2026",t:"NeoFeed (2026), entrevista com o presidente da Axia, ex-Eletrobras: os investimentos previstos para 2026, de R$ 14 bilhões, são 2,5 vezes os de 2022, último ano como estatal; a empresa reduziu em 27% o número de funcionários e em 18% os custos operacionais",u:"https://neofeed.com.br/economia/o-novo-mantra-que-vai-guiar-o-ceo-da-axia-na-era-pos-eletrobras/"},
+ infomoney_axia:{s:"InfoMoney, 2025",t:"InfoMoney (2025): a maior elétrica da América Latina abandonou o nome Eletrobras e passou a se chamar Axia Energia, três anos depois da privatização",u:"https://www.infomoney.com.br/?p=3110467"},
+ metropoles_el:{s:"Metrópoles, 2022",t:"Metrópoles (mai/2022): o governo estimava que a privatização da Eletrobras poderia reduzir a conta de luz em 7,36%; especialistas do setor, como o ex-ministro Maurício Tolmasquim, apontavam o contrário",u:"https://www.metropoles.com/brasil/economia-br/entenda-como-a-privatizacao-da-eletrobras-vai-afetar-o-seu-bolso"},
+ gp_jabuti:{s:"Gazeta do Povo, 2022",t:"Gazeta do Povo (ago/2022): a lei da privatização da Eletrobras obrigou a contratar usinas térmicas a gás; pelos cálculos da Abrace, associação dos grandes consumidores de energia, só os custos dessas térmicas podem representar alta de 10% na tarifa a partir de 2030",u:"https://www.gazetadopovo.com.br/economia/jabuti-da-eletrobras-exige-termicas-onde-nao-ha-gas-e-pode-custar-caro/"},
+ bemparana:{s:"Bem Paraná, 2021",t:"Bem Paraná (2021): o secretário de Desestatização do Ministério da Economia afirmou que a privatização da Eletrobras garante R$ 10 bilhões por ano a mais em investimentos",u:"https://www.bemparana.com.br/noticia/secretario-de-guedes-diz-que-privatizacao-da-eletrobras-e-entrega-elevadissima-462"},
+ carta_el:{s:"CartaCapital, 2026",t:"CartaCapital (jun/2026), nos 4 anos da privatização da Eletrobras: ao perder o controle da companhia, o governo ficou sem um poderoso instrumento para influenciar o mercado e as tarifas",u:"https://www.cartacapital.com.br/?p=614215"}
+};
+
+const CASOS=[
+{id:"tel",k:"CASO 1 DE 6 · TELEFONE",t:"A fila de anos por uma linha",lugar:"Brasil, 1998",
+ story:[
+  "Nos anos 1990, ter telefone fixo era sinal de status: uma linha chegava a custar US$ 5 mil, e a espera podia levar anos. [[istoe_tel]]",
+  "Em 29 de julho de 1998, o governo vendeu o Sistema Telebrás em 12 leilões e arrecadou R$ 22 bilhões, 63% acima do preço mínimo. [[bndes_tel]]",
+  "Vinte anos depois, o país tinha 235,5 milhões de linhas de celular, mais do que habitantes. [[istoe_tel]]"],
+ recibos:[{h:"LINHA DE TELEFONE",a:"1998",b:"2018",la:"ESTATAL",lb:"PRIVATIZADA",linhas:[["Linhas fixas","17 mi","40,8 mi","istoe_tel"],["Celulares","4,6 mi","235,5 mi","istoe_tel"],["Assinatura mensal*","R$ 13,82","R$ 19,77","sesc_tel"]],obs:"* de julho de 1998 a 2001, sem correção pela inflação"}],
+ nota:"Antes e depois não prova causa: o celular também se espalhou pelo mundo nessa época.",
+ pro:"Para Eduardo Tude, da consultoria Teleco, foi a competição entre empresas que acabou com as filas de espera. [[istoe_tel]]",
+ con:"O Idec apontou que a assinatura subiu 42,5% em três anos, bem acima da inflação, e as reclamações no Procon-SP subiram 68% (jan–ago/2001 contra todo o ano de 2000). [[sesc_tel]] Críticos também lembram que a lei da privatização ignorou a banda larga. [[abr_tel]]",
+ vai:{p:"Depois da privatização da Telebrás, as linhas fixas mais que dobraram e os celulares passaram de 4,6 milhões para 235,5 milhões em 20 anos.",d:"Quanto da melhora veio da privatização e quanto veio da tecnologia, que avançou no mundo todo."}},
+{id:"vale",k:"CASO 2 DE 6 · VALE",t:"Vendida barata ou bem administrada?",lugar:"Brasil, 1997",
+ story:[
+  "Em 6 de maio de 1997, o governo vendeu o controle da Vale do Rio Doce por cerca de R$ 3,3 bilhões. [[cut_vale]] Pelo preço do leilão, a empresa inteira valia R$ 12,5 bilhões. [[bdf_vale12]]",
+  "Só em 2021, a Vale lucrou R$ 121 bilhões. [[bdf_121]] Desde a privatização, distribuiu pelo menos US$ 208 bilhões aos acionistas. [[bdf_208]]",
+  "Duas barragens romperam depois da venda: Mariana, em 2015, com 19 mortos, de uma empresa da Vale com a BHP [[agmin_mar]], e Brumadinho, em 2019, com 272 mortos. [[mg_bru]]"],
+ recibos:[{h:"QUANTO VALIA A VALE",a:"1997",b:"2021–22",la:"NA VENDA",lb:"DEPOIS",linhas:[["Valor da empresa","R$ 12,5 bi","R$ 452 bi","bdf_vale12 cut_vale"],["Lucro no ano (1997 e 2021)","R$ 756 mi","R$ 121 bi","monitor_vale bdf_121"]],obs:"1997: ano do leilão (maio); a Vale já era privada em 8 dos 12 meses. Valores sem correção pela inflação"}],
+ nota:"O minério de ferro, principal produto da Vale, subiu 750% de 2003 a 2010, puxado pela China, o que valorizou também mineradoras sempre privadas, como a Rio Tinto. [[puc_vale]]",
+ pro:"Os economistas Vinicius Carrasco e João Manoel Pinho de Mello (PUC-Rio) compararam a Vale com a Rio Tinto, sempre privada, para descontar o efeito do minério, e concluíram que a gestão privada adicionou enorme valor à empresa. [[puc_vale]] A Vale diz ter pago US$ 4,25 bilhões em impostos e royalties no Brasil só em 2019. [[vale_fiscal]]",
+ con:"Quem critica diz que a empresa foi vendida a preço baixo, por menos do que ela passou a lucrar em um só ano, e que os acionistas ficaram com a maior parte dos ganhos. [[bdf_121]] [[bdf_208]] As tragédias de Mariana e Brumadinho levaram a acordos de reparação de R$ 170 bilhões e R$ 37,68 bilhões. [[agmin_mar]] [[mg_bru]]",
+ vai:{d:"Se a Vale foi vendida barata ou se valorizou por causa da gestão privada e do minério.",n:"Se uma Vale estatal teria evitado os rompimentos de Mariana e Brumadinho."}},
+{id:"trem",k:"CASO 3 DE 6 · TRENS BRITÂNICOS",t:"Privatizou, cresceu e agora volta para o Estado",lugar:"Reino Unido, 1994 a 2027",
+ story:[
+  "O Reino Unido privatizou a operação dos trens a partir de 1994/95. Em 20 anos, as viagens mais que dobraram. [[dft15]]",
+  "Mas as passagens subiram acima da inflação: em 2018, estavam 20% mais caras do que em 1995, descontada a inflação. [[commons_fares]]",
+  "Em 2024, o governo trabalhista decidiu trazer as operadoras de volta conforme os contratos vencem. Em setembro de 2026, 10 das 14 operadoras inglesas já eram públicas, e o plano termina no fim de 2027. [[gov_chil]] O plano não promete baixar as passagens [[express_fares]], mas em março de 2026 as passagens reguladas foram congeladas na Inglaterra. [[orr_fares]]"],
+ recibos:[{h:"TREM NO REINO UNIDO",a:"1994/95",b:"2014–18",la:"NA VENDA",lb:"DEPOIS",linhas:[["Viagens por ano","735 mi","1,65 bi","dft15"],["Preço descontada a inflação","100","120","commons_fares"]],obs:"preço: índice, janeiro de 1995 = 100"}],
+ nota:"Pela nova lei, a primeira a voltar foi a South Western Railway, em maio de 2025; outras quatro já eram estatais desde 2018–2023, assumidas quando as empresas falharam. [[gov_swr]] [[wiki_dfto]]",
+ pro:"Quem defende a privatização lembra que as viagens dobraram e que, segundo a consultoria Oxera, um déficit de £ 800 milhões da British Rail virou superávit com as empresas privadas, como diz a Rail Partners, associação das operadoras. [[dft15]] [[railpartners]]",
+ con:"Quem defende a volta ao Estado diz que juntar trilhos e trens numa só empresa pública, a Great British Railways, vai reduzir atrasos e cancelamentos. [[gov_swr]]",
+ vai:{p:"No Reino Unido, as viagens de trem mais que dobraram depois da privatização, e as passagens ficaram 20% mais caras acima da inflação até 2018.",n:"Se a volta dos trens britânicos ao Estado vai melhorar o serviço ou baratear as passagens."}},
+{id:"agua",k:"CASO 4 DE 6 · ÁGUA",t:"Duas apostas: Sabesp e Thames Water",lugar:"São Paulo, 2024 · Londres, 1989",
+ story:[
+  "Em julho de 2024, São Paulo vendeu ações da Sabesp por R$ 14,8 bilhões, e a fatia do governo caiu de 50,3% para cerca de 18%. [[isto_sab]] O Estado manteve uma golden share, o poder de vetar certas decisões. [[mt_golden]]",
+  "O contrato prevê cerca de R$ 70 bilhões em investimentos para levar água e esgoto a todos até 2029. [[semil_univ]]",
+  "Do outro lado do oceano, a Thames Water, de Londres, foi privatizada em 1989 quase sem dívidas. [[openedu]] [[wiki_thames]] Em 2026, devia mais de £ 20 bilhões e lutava para não ser assumida pelo governo. [[hl_thames]]"],
+ recibos:[
+  {h:"SABESP",a:"2024",b:"2025–26",la:"ANTES",lb:"DEPOIS",linhas:[["Parte do governo","50,3%","18%","isto_sab"],["Investimento jan–set","base","+151%","semil_tar"],["Reajuste da tarifa","—","+6,11%","semil_tar"]],obs:"reajuste de jan/2026: repõe a inflação (IPCA) de jul/2024 a out/2025"},
+  {h:"THAMES WATER",a:"1989–91",b:"2025–26",la:"INÍCIO",lb:"HOJE",linhas:[["Dívida","quase nenhuma*","> £ 20 bi","openedu hl_thames"],["Multa do regulador","—","£ 122,7 mi","lbc_fine"],["Conta de água","—","+31%","lbc_fine"]],obs:"* em 1990/91, já privada, a dívida equivalia a 7% do capital; conta: aumento médio de abril de 2025"}],
+ nota:"Mesmo setor, histórias diferentes: a Thames está privatizada há mais de 35 anos; a Sabesp, há pouco mais de dois, e o resultado dela ainda está em aberto.",
+ pro:"O governo paulista diz que a Sabesp investiu 151% a mais de janeiro a setembro de 2025 do que no mesmo período de 2024 e que a tarifa ficou 15% abaixo da estimada para a empresa estatal. [[semil_tar]] As empresas de água inglesas dizem ter investido mais de £ 160 bilhões desde 1989. [[yahoo_invest]]",
+ con:"Críticos apontam que as ações da Sabesp foram vendidas com desconto e que a tarifa subiu 6,11% em 2026, apesar da promessa de não subir no curto prazo. [[mt_sab2]] [[isto_sab26]] Na Inglaterra, o economista Dieter Helm resume a privatização da água como dívida alta, dividendos altos e investimento abaixo do possível. [[yahoo_helm]]",
+ vai:{p:"A Thames Water foi privatizada quase sem dívidas, devia mais de £ 20 bilhões em 2026 e foi multada em £ 122,7 milhões em 2025.",d:"Se a Sabesp foi vendida por um preço justo, com desconto de 18,3% sobre a cotação da véspera.",n:"Se o modelo da Sabesp vai entregar mais investimento sem conta mais cara e se vai cumprir a meta de universalizar água e esgoto até 2029."}},
+{id:"luz",k:"CASO 5 DE 6 · ENERGIA",t:"Eletrobras: a empresa mudou, e a conta de luz?",lugar:"Brasil, 2022",
+ story:[
+  "Em junho de 2022, a Eletrobras foi privatizada numa operação de R$ 34 bilhões. [[b3_el]] O governo ficou com 43% das ações, mas com voto limitado a 10%. [[isto_acordo]]",
+  "Em 2025, governo e empresa fizeram um acordo: o governo ganhou assentos nos conselhos, e a empresa deixou de ser obrigada a pôr dinheiro na usina nuclear Angra 3. [[isto_acordo]] O STF homologou o acordo em dezembro de 2025. [[infomoney_stf]] A empresa passou a se chamar Axia Energia. [[infomoney_axia]]",
+  "Na época da venda, o governo estimava que a conta de luz poderia cair 7,36%; especialistas diziam o contrário. [[metropoles_el]]"],
+ recibos:[{h:"ELETROBRAS / AXIA",a:"2022",b:"2026",la:"ESTATAL",lb:"PRIVATIZADA",linhas:[["Voto do governo","controle","10%","isto_acordo"],["Investimento previsto 2026*","base","2,5×","neofeed"],["Funcionários","base","−27%","neofeed"]],obs:"* segundo a empresa: R$ 14 bilhões previstos para 2026"}],
+ nota:"Parte do efeito na conta de luz só deve aparecer a partir de 2030, quando entram os custos das térmicas exigidas pela lei, segundo a Abrace. [[gp_jabuti]]",
+ pro:"Quem defende diz que a privatização libera investimento: o governo da época falava em R$ 10 bilhões por ano a mais [[bemparana]], e a Axia prevê investir R$ 14 bilhões em 2026, 2,5 vezes o de 2022, com custos 18% menores. [[neofeed]]",
+ con:"Quem critica diz que o governo perdeu um instrumento para influenciar as tarifas [[carta_el]] e que a lei obrigou a contratar usinas térmicas a gás, que podem encarecer a conta em 10% a partir de 2030, segundo a Abrace, associação dos grandes consumidores de energia. [[gp_jabuti]]",
+ vai:{p:"Depois da privatização, a ex-Eletrobras reduziu em 27% o número de funcionários, segundo a própria empresa.",d:"Se a privatização da Eletrobras vai baratear ou encarecer a conta de luz."}},
+{id:"cor",k:"CASO 6 DE 6 · CORREIOS",t:"Vender, socorrer ou reinventar?",lugar:"Brasil, 2021 a 2026",
+ story:[
+  "Os Correios estão em praticamente todos os municípios do país. [[correios24]] Em 2021, a Câmara aprovou um projeto para privatizar a empresa, mas ele travou no Senado; em 2023, o governo Lula tirou os Correios da lista de privatizações. [[suno_cor23]]",
+  "Em 2021, a estatal teve lucro de R$ 3,7 bilhões, o maior em 22 anos, segundo a empresa. [[abr_cor21]] Desde o fim de 2022, só registra prejuízo: em 2025, foram R$ 8,5 bilhões. [[folhape_cor]]",
+  "No fim de 2025, a empresa pegou R$ 12 bilhões emprestados com cinco bancos, com garantia da União: se ela não pagar, o governo paga. [[gp_cor25]] O plano de reestruturação prevê fechar cerca de mil agências e um programa de demissão voluntária. [[istoe_plano]]"],
+ recibos:[{h:"CORREIOS EM DOIS ANOS",a:"2021",b:"2025",la:"MAIOR LUCRO EM 22 ANOS",lb:"CRISE",linhas:[["Resultado do ano","+R$ 3,7 bi","−R$ 8,5 bi","abr_cor21 gp_cor25"],["Empréstimo com garantia da União","—","R$ 12 bi","gp_cor25"]],obs:"Valores sem correção pela inflação. Os Correios não foram privatizados: aqui o antes e depois é da própria estatal"}],
+ nota:"O que pesou em 2025: as encomendas internacionais caíram 65,6%, depois da mudança na tributação de compras de baixo valor e da entrada de concorrentes privados [[monitor_cor]] [[tb_cor]]; grandes lojas online passaram a fazer as próprias entregas [[abr_cor26]]; o custo operacional também pesou; e R$ 6,4 bilhões foram para processos judiciais, boa parte trabalhistas. [[gp_cor25]] [[dp_cor]] Quanto disso vem da gestão estatal e quanto vem do mercado é justamente o que está em debate.",
+ pro:"O jurista Fernando Vernalha diz que empréstimos e reestruturação só aliviam sintomas e defende abrir o setor à competição, com regras para os serviços que precisam chegar a todos. [[vernalha]] O economista Alex Agostini, da Austin Rating, defende passar parte da operação à iniciativa privada por concessão. [[agostini]]",
+ con:"Lula diz que, enquanto for presidente, não haverá privatização, só parcerias ou economia mista. [[lula_cor]] O economista Roberto Troster diz que dá para reinventar a empresa sem vender e que, sem regras, um comprador ficaria só com a parte lucrativa e deixaria de atender o interior, onde a entrega é mais cara. [[troster]]",
+ vai:{d:"Se o prejuízo vem da gestão estatal ou de mudanças no mercado, como as lojas online fazendo as próprias entregas.",n:"Quem atenderia, e a que preço, as cidades onde a entrega dá prejuízo, se a empresa fosse vendida."}}
+];
+
+const VOTO=[
+ {t:"Privatizar mais",s:"como Correios e outras estatais",pro:"Quem defende cita a fila de anos pelo telefone que acabou com a competição e o salto de investimento na ex-Eletrobras. [[istoe_tel]] [[neofeed]]",con:"Quem critica cita a Thames Water, endividada e multada depois de privatizada, e as passagens de trem britânicas mais caras. [[hl_thames]] [[commons_fares]]"},
+ {t:"Manter as estatais estratégicas",s:"como Petrobras e bancos públicos",pro:"Quem defende diz que, sem o controle, o governo perde instrumentos para influenciar preços e tarifas, como críticos dizem da Eletrobras. [[carta_el]]",con:"Quem critica lembra que, com a Telebrás estatal, uma linha chegava a custar US$ 5 mil e a espera levava anos. [[istoe_tel]]"},
+ {t:"Depende do setor e das regras",s:"privatizar onde há concorrência e contrato com metas",pro:"Quem defende lembra que, para Eduardo Tude, o que acabou com as filas foi a competição, e que a Sabesp foi vendida com metas e golden share. [[istoe_tel]] [[mt_golden]]",con:"Quem critica lembra que a Thames Water também tinha regulador e licença, e mesmo assim acumulou dívida e multas. [[lbc_fine]] [[yahoo_helm]]"},
+ {t:"Trazer alguns serviços de volta ao Estado",s:"como o Reino Unido faz com os trens",pro:"Quem defende diz que uma empresa pública única, como a Great British Railways, reduz atrasos e cancelamentos. [[gov_swr]]",con:"Quem critica diz que não há evidência clara de que a estatização funcione e que, no caso da Thames, assumir a empresa pode custar caro ao contribuinte. [[railpartners]] [[cityam]]"}
+];
+
+const KEY="pmu-privatizar-v1";let S;try{S=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){S=null}if(!S)S={vote:null,fb:{},seen:[]};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const N={},ORD=[];const num=k=>{if(FONTES[k]&&!(k in N)){ORD.push(k);N[k]=ORD.length}};
+const COVER_SRC=["suno_df","agorarn_df"];COVER_SRC.forEach(num);
+CASOS.forEach(c=>{JSON.stringify(c.story).replace(/\[\[([a-z0-9_]+)\]\]/g,(m,k)=>num(k));c.recibos.forEach(r=>r.linhas.forEach(l=>l[3].split(" ").forEach(num)));JSON.stringify([c.nota,c.pro,c.con]).replace(/\[\[([a-z0-9_]+)\]\]/g,(m,k)=>num(k))});
+JSON.stringify(VOTO).replace(/\[\[([a-z0-9_]+)\]\]/g,(m,k)=>num(k));
+const sup=k=>FONTES[k]?`<sup><button type="button" class="fn" data-f="${k}" aria-label="Fonte ${N[k]}: ${esc(FONTES[k].s)}">${N[k]}</button></sup>`:"";
+const tx=h=>esc(h).replace(/\s*\[\[([a-z0-9_]+)\]\]/g,(m,k)=>sup(k));
+const COL={p:"PROVADO",d:"EM DISPUTA",n:"NINGUÉM SABE"};
+function recibo(r,ci,ri){const id=`sw-${ci}-${ri}`;
+ return `<div class="rc b"><div class="tk" id="tk-${ci}-${ri}"><div class="h"><span>${esc(r.h)}</span><span id="${id}-yr">${esc(r.a)}</span></div>
+ ${r.linhas.map(l=>`<div class="r"><span>${esc(l[0])}</span><span class="v"><s>${esc(l[1])} → </s><em data-a="${esc(l[1])}" data-b="${esc(l[2])}">${esc(l[1])}</em>${l[3].split(" ").map(sup).join("")}</span></div>`).join("")}
+ ${r.obs?`<div class="obs">${esc(r.obs)}</div>`:""}</div>
+ <button class="sw" id="${id}" role="switch" aria-checked="false" data-c="${ci}" data-r="${ri}" aria-label="Virar o recibo ${esc(r.h)}: ${esc(r.la||"antes")} ou ${esc(r.lb||"depois")}"><i></i><span class="a">${esc(r.la||"ANTES")} · ${esc(r.a)}</span><span class="b">${esc(r.lb||"DEPOIS")} · ${esc(r.b)}</span></button></div>`}
+function caso(c,i){return `<section class="caso" id="c${i}" data-i="${i}"><div class="k">${esc(c.k)}</div><h2>${esc(c.t)}</h2><div class="lugar">${esc(c.lugar)}</div>
+ ${c.story.map(p=>`<p class="b">${tx(p)}</p>`).join("")}
+ ${c.recibos.map((r,ri)=>recibo(r,i,ri)).join("")}${i===0?`<p class="hint">↑ toque na chave para virar o recibo</p>`:""}
+ <div class="nota b">${tx(c.nota)}</div>
+ <div class="duo b"><div><b>QUEM DEFENDE A PRIVATIZAÇÃO DIZ</b>${tx(c.pro)}</div><div><b>QUEM CRITICA DIZ</b>${tx(c.con)}</div></div></section>`}
+function board(){const L={p:[],d:[],n:[]};CASOS.forEach((c,i)=>Object.entries(c.vai).forEach(([k,t])=>L[k].push([t,i+1])));
+ return `<section class="board" id="balanco"><div class="k">O BALANÇO</div><h2>O que os cinco recibos mostram</h2>
+ <p>Os resultados variaram de caso para caso. O que está provado não decide a questão sozinho: a escolha também depende de valores.</p>
+ ${["p","d","n"].map(k=>`<div class="col ${k} b"><div class="h"><span>${COL[k]}</span><span>${L[k].length}</span></div><ul>${L[k].map(([t,n])=>`<li>${esc(t)} <small>CASO ${n}</small></li>`).join("")}</ul></div>`).join("")}
+ <section class="box" id="voto"><div class="k">E você?</div><h3>Se a decisão fosse sua</h3><p>Não existe resposta certa e não vale nota. Toque numa opção para ver os dois lados.</p>
+ ${VOTO.map((o,k)=>`<button class="vt ${S.vote===k?"on":""}" data-k="${k}"><b>${esc(o.t)}</b><small>${esc(o.s)}</small></button>`).join("")}<div id="vcd"></div></section>
+ <section class="box"><h3>Quer se aprofundar?</h3><p><b>Privatize já</b>, de Rodrigo Constantino: a defesa de vender estatais no Brasil.<br><br><b>O Estado empreendedor</b>, de Mariana Mazzucato: a defesa do papel do Estado na inovação e na economia.<br><br><a href="https://www.youtube.com/results?search_query=privatiza%C3%A7%C3%A3o+debate+Brasil" target="_blank" rel="noopener">Debates sobre privatização (busca no YouTube)</a><br><a href="https://www.youtube.com/results?search_query=Great+British+Railways+renationalisation" target="_blank" rel="noopener">A volta dos trens britânicos ao Estado (busca no YouTube)</a></p></section>
+ <section class="box" id="avaliar"><h3>Avalie o curso</h3><p>Que nota você dá?</p><div class="rate">${[1,2,3,4,5].map(x=>`<button data-n="${x}" class="${S.fb.nota===x?"on":""}" aria-label="Nota ${x}">${x}</button>`).join("")}</div>
+ <p style="margin-top:14px">O que você aprendeu que não sabia?</p><textarea id="apr" rows="2">${esc(S.fb.apr||"")}</textarea>
+ <p style="margin-top:14px">Sentiu que o curso favoreceu algum lado?</p><select id="lado"><option value="">Escolha</option>${["Não","Sim, a favor da privatização","Sim, contra a privatização","Não sei"].map(o=>`<option ${S.fb.lado===o?"selected":""}>${o}</option>`).join("")}</select>
+ <p style="margin-top:14px">Comentário</p><textarea id="com" rows="2">${esc(S.fb.com||"")}</textarea>
+ <p style="margin-top:14px">Que tema você quer que vire curso?</p><textarea id="tema" rows="2">${esc(S.fb.tema||"")}</textarea>
+ <button class="go" id="env">${S.fb.sent?"AVALIAÇÃO ENVIADA ✓":"ENVIAR AVALIAÇÃO"}</button></section>
+ <section class="box"><h3>Fontes</h3><ol class="fontes">${ORD.map(k=>{const f=FONTES[k];return `<li>${esc(f.t)}${f.u?` · <a href="${f.u}" target="_blank" rel="noopener">abrir</a>`:""}</li>`}).join("")}</ol>
+ <button class="go ghost" id="top">VOLTAR AO INÍCIO</button></section></section>`}
+function build(){let h=`<section class="cover"><div class="k">Pense Mais Uma · Recibo</div><h1>Privatizar: o serviço melhora ou piora?</h1>
+ <p class="lead">Cinco empresas que saíram das mãos do governo, ou estão voltando para ele, e uma estatal em crise que voltou ao debate: os Correios. Cada caso vira um recibo: o que mudou antes e depois, quem defende e quem critica.</p>
+ <div class="op"><b>O BRASIL ESTÁ DIVIDIDO · DATAFOLHA, MAR/2023</b><div class="bar"><i class="a" style="width:38%">38% A FAVOR</i><i class="c" style="width:45%">45% CONTRA</i><i class="n" style="width:17%"></i></div>Em 2017, só 20% apoiavam privatizar. ${sup("suno_df")}${sup("agorarn_df")}</div>
+ <p class="how">Sem perguntas: leia, vire os recibos e, no fim, veja o balanço. Cerca de 18 minutos. Toque no número pequeno ao lado de um dado para ver a fonte. Dados atualizados em novembro de 2026; a pesquisa Datafolha citada é de março de 2023.</p>
+ <a class="go" href="#c0">ABRIR O PRIMEIRO RECIBO</a></section>`;
+ h+=CASOS.map(caso).join("")+board();document.getElementById("app").innerHTML=h;
+ document.getElementById("td").innerHTML=CASOS.map(()=>"<i></i>").join("")}
+build();
+function flip(b,on){const ci=b.dataset.c,ri=b.dataset.r,r=CASOS[ci].recibos[ri];b.setAttribute("aria-checked",on?"true":"false");
+ const tk=document.getElementById(`tk-${ci}-${ri}`);tk.classList.toggle("on",on);document.getElementById(`${b.id}-yr`).textContent=on?`${r.a} → ${r.b}`:r.a;
+ tk.querySelectorAll("em").forEach(e=>e.textContent=on?e.dataset.b:e.dataset.a);
+ const key=b.id;if(on&&!S.seen.includes(key)){S.seen.push(key);save()}}
+document.querySelectorAll(".sw").forEach(b=>{b.onclick=()=>flip(b,b.getAttribute("aria-checked")!=="true");
+ let x0=null;b.addEventListener("touchstart",e=>{x0=e.touches[0].clientX},{passive:true});b.addEventListener("touchend",e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>30){e.preventDefault();flip(b,dx>0)}x0=null})});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add("in");io.unobserve(e.target)}),{threshold:.12});
+document.querySelectorAll(".b").forEach(b=>io.observe(b));
+let cur=-1;const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const i=e.target.id==="balanco"?CASOS.length:+e.target.dataset.i;cur=Math.max(cur,i);
+ document.getElementById("tl").textContent=e.target.id==="balanco"?"BALANÇO":`CASO ${i+1}/${CASOS.length}`;
+ document.querySelectorAll("#td i").forEach((x,j)=>x.classList.toggle("on",j<=Math.min(i,CASOS.length-1)))}}),{rootMargin:"-40% 0px -55% 0px"});
+document.querySelectorAll(".caso,#balanco").forEach(s=>io2.observe(s));
+document.getElementById("top").onclick=()=>scrollTo({top:0,behavior:"smooth"});
+function showVote(){const v=S.vote,el=document.getElementById("vcd");if(v==null){el.innerHTML="";return}const o=VOTO[v];el.innerHTML=`<div class="cd"><i>QUEM DEFENDE DIZ</i>${tx(o.pro)}<i>QUEM CRITICA DIZ</i>${tx(o.con)}</div>`}
+showVote();
+document.querySelectorAll(".vt").forEach(b=>b.onclick=()=>{S.vote=+b.dataset.k;save();document.querySelectorAll(".vt").forEach(x=>x.classList.toggle("on",x===b));showVote()});
+document.querySelectorAll("[data-n]").forEach(b=>b.onclick=()=>{S.fb.nota=+b.dataset.n;save();document.querySelectorAll("[data-n]").forEach(x=>x.classList.toggle("on",x===b))});
+["apr","com","tema"].forEach(k=>document.getElementById(k).oninput=e=>{S.fb[k]=e.target.value;save()});
+document.getElementById("lado").onchange=e=>{S.fb.lado=e.target.value;save()};
+document.getElementById("env").onclick=e=>{S.fb.sent=true;try{const q=JSON.parse(localStorage.getItem("pmu-fila")||"[]");q.push({curso:"privatizar",quando:new Date().toISOString(),voto:S.vote,...S.fb});localStorage.setItem("pmu-fila",JSON.stringify(q))}catch(x){}save();e.target.textContent="AVALIAÇÃO ENVIADA ✓"};
+const pop=document.getElementById("fnpop");
+document.addEventListener("click",e=>{const b=e.target.closest(".fn");if(b){e.preventDefault();e.stopPropagation();const f=FONTES[b.dataset.f];if(!f)return;document.getElementById("fnbody").innerHTML=`<b>Fonte ${N[b.dataset.f]}</b><br>${esc(f.t)}${f.u?`<br><a href="${f.u}" target="_blank" rel="noopener">Abrir a fonte ↗</a>`:""}`;pop.style.display="block";return}
+ if(e.target.closest("#fnpop .x")||!e.target.closest("#fnpop"))pop.style.display="none"},true);
+</script>
+</body></html>

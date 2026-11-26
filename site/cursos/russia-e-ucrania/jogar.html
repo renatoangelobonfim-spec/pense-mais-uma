@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rússia e Ucrânia: por que essa guerra começou e por que é tão difícil de acabar?</title>
+<meta name="description" content="Curso-jogo em formato de conversa: entre num grupo com as delegações, decida, preveja e tente montar um acordo. De 1991 a 2026, com fontes.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--wood:#2A211A;--wood2:#1B1511;--brass:#C9A45C;--brass2:#E3C68C;--paper:#F3EBDD;--ink:#2B231C;--txt:#F1E7D6;--mut:#B9AB93;--line:rgba(201,164,92,.25);--ok:#8FCB9B;--no:#E5A08F}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;font-family:Inter,system-ui,sans-serif;color:var(--txt);font-size:16px;line-height:1.5}
+body{background:radial-gradient(120% 70% at 50% 20%,#3A2E24 0,var(--wood) 45%,var(--wood2) 100%) fixed}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+#app{max-width:520px;margin:0 auto;min-height:100%;display:flex;flex-direction:column}
+.head{position:sticky;top:0;z-index:20;background:rgba(27,21,17,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 14px;display:flex;align-items:center;gap:10px}
+.stack{display:flex}.stack span{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:700 9px Inter;letter-spacing:-.02em;border:2px solid var(--wood2);margin-left:-5px;color:#1B1511}
+.stack span:first-child{margin-left:0}
+.ht{flex:1;min-width:0}.ht b{display:block;font:700 15px Inter}.ht small{display:block;color:var(--mut);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pts{font:700 12px Inter;color:var(--brass2);border:1px solid var(--line);border-radius:99px;padding:4px 9px;white-space:nowrap}
+.ib{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:14px}
+.prog{position:sticky;top:57px;z-index:19;height:3px;background:rgba(255,255,255,.06)}.prog i{display:block;height:100%;background:var(--brass);transition:width .4s}
+#feed{flex:1;padding:14px 12px 8px;display:flex;flex-direction:column;gap:8px}
+.day{align-self:center;font:600 11px Inter;letter-spacing:.12em;text-transform:uppercase;color:var(--brass2);background:rgba(201,164,92,.12);border:1px solid var(--line);border-radius:99px;padding:4px 12px;margin:10px 0 4px}
+.msg{display:flex;gap:8px;align-items:flex-end;max-width:92%;animation:in .25s ease-out}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.av{width:30px;height:30px;border-radius:50%;flex:none;display:grid;place-items:center;font:700 10px Inter;color:#1B1511}
+.bub{background:var(--paper);color:var(--ink);border-radius:16px 16px 16px 4px;padding:9px 12px;font-size:.95rem;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.bub .who{display:block;font:700 11.5px Inter;margin-bottom:2px}
+.bub .tag{font-weight:500;color:#8A7B64;font-size:10.5px}
+.msg.arq .bub{background:#33404E;color:#EEF1F4;border-left:3px solid var(--brass)}
+.msg.arq .bub .who{color:var(--brass2)}
+.msg.me{align-self:flex-end;flex-direction:row-reverse}
+.msg.me .bub{background:var(--brass);color:#1B1511;border-radius:16px 16px 4px 16px;font-weight:600}
+.msg.sys .bub{background:transparent;color:var(--mut);box-shadow:none;font-size:.85rem;padding:2px 4px}
+.typing{display:flex;gap:4px;padding:10px 12px;background:var(--paper);border-radius:16px;width:fit-content}
+.typing i{width:7px;height:7px;border-radius:50%;background:#9C8C74;animation:t 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes t{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+.fn{display:inline-block;font-size:.7rem;font-weight:600;color:#7A5C22;background:rgba(201,164,92,.22);border:1px solid rgba(201,164,92,.5);border-radius:99px;padding:0 7px;margin:0 2px;vertical-align:1px;text-align:left}
+.msg.arq .fn{color:var(--brass2);background:rgba(201,164,92,.15)}
+.card .fn{color:var(--brass2);background:rgba(201,164,92,.15)}
+.ok{color:#2E7A44;font-weight:700}.msg.arq .ok{color:var(--ok)}
+.tray{position:sticky;bottom:0;z-index:15;background:linear-gradient(transparent,rgba(27,21,17,.96) 22%);padding:16px 12px 14px}
+.tray .q{font:600 12px Inter;color:var(--mut);margin:0 4px 6px}
+.chips{display:flex;flex-direction:column;gap:7px}
+.chip{background:rgba(243,235,221,.08);border:1px solid var(--brass);color:var(--txt);border-radius:14px;padding:11px 13px;text-align:left;font-weight:600;font-size:.95rem}
+.chip:active{background:rgba(201,164,92,.25)}
+.chip.go{background:var(--brass);color:#1B1511;text-align:center}
+.card{background:#241C16;border:1px solid var(--line);border-radius:16px;padding:12px;align-self:stretch}
+.card h3{font:700 1.25rem "Cormorant Garamond",serif;margin:0 0 6px;color:var(--brass2)}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 10px}
+.row button{border:1px solid var(--line);border-radius:99px;padding:6px 11px;font-size:.85rem;font-weight:600}
+.row button.on{background:var(--brass);color:#1B1511;border-color:var(--brass)}
+.react{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+.react div{border:1px solid var(--line);border-radius:12px;padding:8px;font-size:.82rem}
+.react b{display:block;font-size:.8rem}
+.y{color:var(--ok)}.n{color:var(--no)}.m{color:var(--brass2)}
+.intro{flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px 22px}
+.notif{background:rgba(243,235,221,.95);color:var(--ink);border-radius:18px;padding:12px 14px;display:flex;gap:10px;align-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4);animation:drop .6s ease-out}
+@keyframes drop{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+.notif small{display:block;color:#7A6B55;font-size:11px}
+.intro h1{font:700 2.1rem/1.1 "Cormorant Garamond",serif;color:var(--brass2);margin:26px 0 10px}
+.intro p{color:#D9CDB8}
+.how{border:1px solid var(--line);border-radius:14px;padding:12px;font-size:.88rem;color:#D9CDB8;margin:8px 0 16px}
+#fnpop{position:fixed;left:14px;right:14px;bottom:14px;max-width:490px;margin:0 auto;background:#0F0C0A;border:1px solid var(--brass);border-radius:16px;padding:14px 16px;z-index:60;display:none;font-size:.9rem}
+#fnpop a{color:var(--brass2)}#fnpop .x{position:absolute;right:10px;top:6px;font-size:20px}
+textarea,select{width:100%;font:inherit;border:1px solid var(--line);border-radius:12px;padding:9px;background:#15110E;color:var(--txt)}
+.rate{display:flex;gap:6px}.rate button{flex:1;border:1px solid var(--line);border-radius:12px;padding:9px 0;font-weight:700}.rate button.on{background:var(--brass);color:#1B1511}
+.fontes li{font-size:.8rem;margin:.4em 0;color:#D9CDB8}.fontes a{color:var(--brass2)}
+</style><link rel="canonical" href="https://pensemaisuma.com.br/cursos/russia-e-ucrania/">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+</head><body>
+<div id="pmu-bar" style="font-family:Nunito,system-ui,sans-serif;background:#FAF7F0;color:#17150F;border-bottom:1.5px solid #17150F;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:14px;font-weight:800;position:relative;z-index:50">
+<a href="index.html" style="color:inherit;text-decoration:none">← Sobre o curso</a>
+<a href="../../index.html" style="display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none"><img src="../../assets/logo.svg" alt="" width="26" height="26"><span style="font-family:Fraunces,Georgia,serif">Pense Mais Uma</span></a>
+<a href="index.html#avaliar" style="color:inherit">Avaliar</a></div>
+<div id="app"></div>
+<div id="fnpop" role="dialog" aria-live="polite"><button class="x" aria-label="Fechar">×</button><div id="fnbody"></div></div>
+<script>
+const FONTES={
+ ref91:{s:"Britannica",t:"Encyclopaedia Britannica, \"Independent Ukraine\": no referendo de 1º/dez/1991, cerca de 84% dos eleitores votaram e cerca de 90% aprovaram a independência",u:"https://www.britannica.com/place/Ukraine/Independent-Ukraine"},
+ crim91:{s:"Michigan State Univ.",t:"Seventeen Moments in Soviet History (Michigan State University): no referendo de 1991, a Crimeia teve 54% de \"sim\" e Sevastopol, 57% — as menores maiorias do país",u:"https://soviethistory.msu.edu/1991/ukrainian-independence/"},
+ aca:{s:"Arms Control Association",t:"Arms Control Association: em 1991, a Ucrânia tinha o 3º maior arsenal nuclear do mundo (cerca de 1.900 ogivas estratégicas); em dez/1994 aderiu ao Tratado de Não Proliferação; até 1996 devolveu todas as ogivas à Rússia em troca de ajuda econômica e garantias de segurança",u:"https://www.armscontrol.org/factsheets/ukraine-nuclear-weapons-and-security-assurances-glance"},
+ harv:{s:"Harvard (Belfer)",t:"Belfer Center (Harvard): em 5/dez/1994, EUA, Reino Unido e Rússia assinaram em Budapeste garantias de segurança à Ucrânia, que aceitou abrir mão do 3º maior arsenal nuclear do mundo",u:"https://www.belfercenter.org/publication/budapest-memorandum-25-between-past-and-future"},
+ stan:{s:"Stanford",t:"Stanford (CISAC), \"Budapest Memorandum Myths\": sem os acordos de 1994, manter um arsenal próprio teria enfrentado desafios provavelmente intransponíveis",u:"https://cisac.fsi.stanford.edu/news/budapest-memorandum-myths"},
+ nato08:{s:"OTAN, 2008",t:"OTAN, Cúpula de Bucareste (3/abr/2008): os aliados \"concordam que esses países [Ucrânia e Geórgia] vão se tornar membros da OTAN\", sem dar o plano de adesão (MAP) naquele momento",u:"https://www.nato.int/docu/update/2008/04-april/e0403c.html"},
+ natoen:{s:"OTAN",t:"OTAN, \"Enlargement and Article 10\": de 12 membros em 1949 a 32, em rodadas de 1952, 1955, 1982, 1999, 2004, 2009, 2017, 2020, 2023 (Finlândia) e 2024 (Suécia)",u:"https://www.nato.int/en/what-we-do/partnerships-and-cooperation/enlargement-and-article-10"},
+ mear:{s:"Mearsheimer, 2014",t:"John Mearsheimer, \"Why the Ukraine Crisis Is the West's Fault\" (Foreign Affairs, 2014): a expansão da OTAN e da UE teria provocado a Rússia",u:null},
+ isw:{s:"ISW, nov/2026",t:"Institute for the Study of War (10/nov/2026): o Kremlin chama a expansão da OTAN de \"causa raiz\"; o ISW argumenta que nem a OTAN nem a Ucrânia tomaram medidas concretas para a adesão entre 2008 e 2022",u:"https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-november-10-2026-6af496163efe2"},
+ maidan:{s:"Britannica",t:"Encyclopaedia Britannica, \"The Maidan protest movement\": em nov/2013 o acordo com a UE foi suspenso dias antes da assinatura; em 21/fev/2014, acordo mediado pela UE previa eleições antecipadas",u:"https://www.britannica.com/place/Ukraine/The-Maidan-protest-movement"},
+ maidan2:{s:"Britannica",t:"Encyclopaedia Britannica, \"Ukraine crisis of 2013–14\": Yanukovych fugiu do país antes de uma votação de impeachment e de acusações criminais",u:"https://www.britannica.com/topic/Ukraine-crisis"},
+ un68:{s:"ONU, 2014",t:"ONU (27/mar/2014): a Assembleia Geral aprovou por 100 a 11, com 58 abstenções, a resolução 68/262, que pede que os países não reconheçam a mudança de status da Crimeia",u:"https://press.un.org/en/node/170363"},
+ putin:{s:"Reuters, via The Star",t:"Reuters, via The Star (24/fev/2022): Putin autorizou uma \"operação militar especial\" contra a Ucrânia, dizendo que o objetivo era \"desmilitarizar\" o país",u:"https://www.thestar.com.my/news/world/2022/02/24/russia039s-putin-authorises-military-operations-in-donbass---domestic-media"},
+ putin2:{s:"CNN",t:"CNN (24/fev/2022): Putin disse que o objetivo da operação era \"desmilitarizar\" e \"desnazificar\" a Ucrânia; minutos depois, mísseis começaram a atingir alvos",u:"https://amp.cnn.com/cnn/europe/live-news/ukraine-russia-news-02-23-22"},
+ es111:{s:"ONU, 2022",t:"ONU, registro de votação da resolução ES-11/1, \"Agressão contra a Ucrânia\" (2/mar/2022): 141 a favor, 5 contra, 35 abstenções",u:"https://www.un.org/sites/un2.un.org/files/voting_rec_a-es-11-l.1.pdf"},
+ govbr:{s:"Gov.br",t:"Governo do Brasil (2/mar/2022): o Brasil votou na Assembleia Geral da ONU para condenar a agressão da Rússia contra a Ucrânia",u:"https://www.gov.br/en/government-of-brazil/latest-news/2022/brazil-votes-to-condemn-russia2019s-aggression-against-ukraine-at-the-un-general-assembly"},
+ brch:{s:"Brasil de Fato",t:"Brasil de Fato: a proposta Brasil–China de 23/mai/2024 tem seis pontos, entre eles a não escalada, uma conferência internacional de paz reconhecida pelas duas partes e a troca de prisioneiros",u:"https://www.brasildefato.com.br/2024/09/25/entenda-plano-brasil-china-para-a-ucrania-mencionado-por-lula-na-onu"},
+ brch2:{s:"Estadão, via Folha PE",t:"Estadão, via Folha de Pernambuco (13/mai/2025): Putin defendeu a proposta Brasil–China; Zelensky a rejeitou, dizendo que ela \"ignora o sofrimento da Ucrânia\"",u:"https://www.folhape.com.br/noticias/lula-e-xi-jinping-defendem-negociacao-de-paz-imediata-entre-ucrania/410883/"},
+ civis:{s:"ONU (via Pravda)",t:"Missão de Monitoramento de Direitos Humanos da ONU na Ucrânia, relatório de out/2026 (via Ukrainska Pravda): pelo menos 17.994 civis mortos e 57.854 feridos confirmados desde fev/2022",u:"https://www.pravda.com.ua/eng/news/2026/11/17/8063349/index.amp"},
+ civis2:{s:"ONU",t:"ONU Ucrânia (14/jul/2026): os números verificados são mínimos; o número real provavelmente é muito maior, por falta de acesso",u:"https://news.un.org/en/story/2026/07/1167935"},
+ refug:{s:"ACNUR",t:"ACNUR (24/fev/2026): 5,9 milhões de pessoas fugiram da Ucrânia; 5,3 milhões estão na Europa",u:"https://www.unhcr.org/md/en/node/260"},
+ terr:{s:"Al Jazeera, fev/2026",t:"Al Jazeera (24/fev/2026): no 4º aniversário da guerra, a Rússia ocupa cerca de 20% do território ucraniano; no auge, em março de 2022, eram cerca de 27%",u:"https://www.aljazeera.com/news/2026/2/24/mapping-russian-attacks-and-territorial-gains-across-ukraine"},
+ abu:{s:"SCMP",t:"South China Morning Post (nov/2026): Rússia e Ucrânia fizeram as primeiras negociações mediadas pelos EUA desde fevereiro; os dois lados seguem distantes",u:"https://www.scmp.com/news/world/russia-central-asia/article/3373976/russia-ukraine-hold-us-backed-talks-first-time-february"},
+ abu2:{s:"Brasil de Fato",t:"Brasil de Fato (11/nov/2026): as negociações em Abu Dhabi (10 e 11/nov) terminaram sem avanços concretos; houve acordo para trocar mais de mil prisioneiros de cada lado e entendimentos parciais sobre segurança",u:"https://www.brasildefato.com.br/2026/11/11/russia-ucrania-e-eua-concluem-negociacoes-em-abu-dhabi-sem-avancos-concretos/"},
+ iswb:{s:"ISW, 12/nov/2026",t:"ISW (12/nov/2026): Putin disse considerar a fronteira do Estado russo — que, pela lei russa, inclui as quatro regiões anexadas — a única \"linha de demarcação\" clara",u:"https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-november-12-2026"},
+ iswc:{s:"ISW, 14/nov/2026",t:"ISW (14/nov/2026): Zelensky disse que a delegação dos EUA propôs a entrada da Ucrânia na OTAN em troca da retirada ucraniana de todo o Donbas; ele disse que levaria a proposta a referendo, desde que EUA e OTAN apoiassem",u:"https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-november-14-2026"},
+ tropas:{s:"Metrópoles, jan/2026",t:"Metrópoles (6/jan/2026): França e Reino Unido assinaram com Zelensky uma declaração de intenção de enviar tropas à Ucrânia depois de um cessar-fogo duradouro, como garantia de segurança",u:"https://www.metropoles.com/mundo/europa-plano-forca-ucrania"},
+ putintrop:{s:"Daily Sabah, 12/nov/2026",t:"Daily Sabah (12/nov/2026): Putin manteve as exigências territoriais, rejeitou zonas desmilitarizadas e descartou tropas de paz estrangeiras, que chamou de \"continuação da guerra\"",u:"https://www.dailysabah.com/world/europe/putin-holds-firm-on-ukraine-demands-offers-brief-cease-fire/amp"},
+ csis:{s:"Irish Times, jul/2026",t:"Irish Times (1º/jul/2026), sobre estudo do CSIS: a Rússia teve cerca de 1,4 milhão de baixas (mortos e feridos), com cerca de 450 mil mortos; a Ucrânia, de 525 a 625 mil, com 125 a 150 mil mortos",u:"https://www.irishtimes.com/world/europe/2026/07/01/troop-casualties-in-ukraine-war-top-2-million-study-finds/"},
+ sanc:{s:"Al Jazeera, set/2026",t:"Al Jazeera (19/set/2026): Trump sancionou a lei Graham, que permite tarifas de até 100% sobre os cinco maiores compradores de petróleo russo",u:"https://www.aljazeera.com/amp/news/2026/9/19/trump-signs-sweeping-russia-sanctions-over-ukraine-war"},
+ diesel:{s:"AP, via OPB, out/2026",t:"AP, via OPB (9/out/2026): Trump fechou com Putin um acordo para obter diesel russo, com licença do Tesouro dos EUA, numa reversão da política americana; Trump disse que preços mais baixos para os americanos são sua maior prioridade; Zelensky chamou de \"decisão fraca de parceiros fortes\"",u:"https://www.opb.org/article/2026/10/09/trump-strikes-deal-with-putin-to-get-diesel-in-sharp-reversal-of-us-policy-weeks-before-midterms/"},
+ ue21:{s:"Moscow Times, jul/2026",t:"Moscow Times (23/jul/2026): a UE aprovou o 21º pacote de sanções contra a Rússia, que congela o teto do petróleo russo em US$ 44",u:"https://www.themoscowtimes.com/2026/07/23/eu-agrees-21st-sanctions-package-against-russia-a93317/pdf"},
+ terr2:{s:"Al Jazeera, nov/2026",t:"Al Jazeera (6/nov/2026), com dados do ISW: a Rússia tomou só 117 km² nos dez primeiros meses de 2026",u:"https://www.aljazeera.com/news/2026/11/6/in-ukraine-russias-territorial-gains-dwindle-as-its-diesel-goes-unsold"},
+ linha:{s:"Al Jazeera",t:"Al Jazeera (nov/2025): a Ucrânia diz desde o início da guerra que ceder território é uma linha vermelha",u:"https://aljazeera.com/news/2025/11/21/ukraine-doubts-russias-desire-for-peace-amid-reports-of-us-drafted-plan"},
+ eur:{s:"Daily Sabah, nov/2026",t:"Daily Sabah (12/nov/2026): Kiev e líderes europeus rejeitam a divisão do continente em áreas de influência e pedem que as conversas tratem primeiro do fim da guerra na Ucrânia",u:"https://www.dailysabah.com/world/europe/putin-holds-firm-on-ukraine-demands-offers-brief-cease-fire/amp"}
+};
+const P={
+ arq:{n:"Arquivo",c:"#C9A45C",a:"📚",tag:"historiadores e documentos"},
+ ua:{n:"Delegação da Ucrânia",c:"#A9C7C2",a:"UA",tag:"posição resumida pelo curso"},
+ ru:{n:"Delegação da Rússia",c:"#C7B8D9",a:"RU",tag:"posição resumida pelo curso"},
+ eua:{n:"Delegação dos EUA",c:"#D9C7A0",a:"EUA",tag:"posição resumida pelo curso"},
+ ue:{n:"Europa",c:"#B8D0E0",a:"UE",tag:"posição resumida pelo curso"},
+ br:{n:"Itamaraty",c:"#C9DDB4",a:"BR",tag:"posição resumida pelo curso"}
+};
+/* roteiro: m = mensagem; c = escolhas; day = separador; game = mesa final */
+const R=[
+ {day:"1991"},
+ {m:["arq","Bem-vindo à mesa. Eu sou o Arquivo: trago datas, documentos e o que os historiadores dizem. As delegações falam por si. Você assessora o mediador."]},
+ {m:["arq","Começamos em 1991. A União Soviética acaba. Em 1º de dezembro, a Ucrânia faz um referendo: cerca de 84% dos eleitores votam, e cerca de 90% dizem sim à independência. [[ref91]]"]},
+ {c:{id:"p1",kind:"predict",q:"O Arquivo pergunta: e na Crimeia, de maioria russa, o \"sim\" venceu?",o:["Venceu com folga, como no resto do país","Venceu por pouco","Perdeu"],a:1,
+   r:"Venceu por pouco: 54% na Crimeia e 57% em Sevastopol, as menores maiorias do país. [[crim91]] Guarde esse dado: ele volta em 2014."}},
+ {day:"Dezembro de 1994"},
+ {m:["arq","A Ucrânia herdou da URSS o 3º maior arsenal nuclear do mundo, cerca de 1.900 ogivas estratégicas. [[aca]]"]},
+ {m:["ua","Se entregarmos essas armas, quem garante as nossas fronteiras?"]},
+ {c:{id:"d1",kind:"decide",q:"O mediador pede sua recomendação para a Ucrânia:",o:["Entregar as armas, com garantias por escrito","Manter parte do arsenal","Só entregar se entrar numa aliança militar"],
+   r:"Em 5 de dezembro de 1994, Ucrânia, Rússia, EUA e Reino Unido assinaram o Memorando de Budapeste. A Ucrânia abriu mão das armas; os outros prometeram respeitar suas fronteiras. [[harv]] Até 1996, todas as ogivas voltaram para a Rússia. [[aca]]",
+   x:"Um texto de Steven Pifer, ex-embaixador dos EUA na Ucrânia, publicado por Stanford, avalia que manter um arsenal próprio teria enfrentado desafios provavelmente intransponíveis. [[stan]] E as garantias eram promessas, não uma aliança militar."}},
+ {day:"Abril de 2008"},
+ {m:["arq","A OTAN, aliança militar do Ocidente, cresceu depois da Guerra Fria, com novas rodadas em 1999, 2004 e 2009. [[natoen]] Na cúpula de Bucareste, Ucrânia e Geórgia pedem um caminho para entrar."]},
+ {m:["eua","Defendemos que a porta da aliança fique aberta para quem quiser entrar."]},
+ {m:["ru","Somos contra. A entrada da Ucrânia na OTAN seria uma ameaça à nossa segurança."]},
+ {c:{id:"d2",kind:"decide",q:"Você está do lado da OTAN. O que a aliança deve dizer?",o:["Que vão entrar um dia, sem data","Que entram já, com um plano de adesão","Que não vão entrar"],
+   r:"A OTAN escolheu o meio-termo: declarou que Ucrânia e Geórgia \"vão se tornar membros\", mas sem o plano de adesão naquele momento. [[nato08]]"}},
+ {m:["arq","Aqui começa um debate de verdade. Para o cientista político John Mearsheimer, a expansão da OTAN provocou a Rússia. [[mear]] Para o Instituto para o Estudo da Guerra (ISW), nem a OTAN nem a Ucrânia deram passos concretos rumo à adesão entre 2008 e 2022. [[isw]] O fato é a declaração de 2008. O peso dela é interpretação."]},
+ {day:"2013 e 2014"},
+ {m:["arq","Novembro de 2013: o presidente ucraniano Viktor Yanukovych suspende, dias antes da assinatura, um acordo com a União Europeia. Começam protestos em Kiev. [[maidan]] Em fevereiro de 2014, depois de dias de violência, ele foge do país. [[maidan2]]"]},
+ {m:["ua","Foi a Revolução da Dignidade: o povo nas ruas contra um governo que virou as costas para a Europa."]},
+ {m:["ru","Foi um golpe apoiado pelo Ocidente contra um presidente eleito."]},
+ {m:["arq","Em março de 2014, a Rússia anexa a Crimeia, depois de um referendo feito com tropas russas na região. [[maidan2]] A Assembleia Geral da ONU declarou esse referendo inválido. [[un68]]"]},
+ {c:{id:"p2",kind:"predict",q:"O Arquivo pergunta: na votação da ONU sobre a Crimeia, quantos países votaram contra a resolução?",o:["Nenhum","11","Mais de 50"],a:1,
+   r:"Foram 100 votos a favor, 11 contra e 58 abstenções. [[un68]] Muitos países preferiram não tomar lado."}},
+ {day:"24 de fevereiro de 2022"},
+ {m:["arq","Depois de oito anos de conflito no leste ucraniano, a Rússia lança uma invasão em larga escala. [[putin]]"]},
+ {m:["ru","É uma operação militar especial para desmilitarizar e desnazificar a Ucrânia e proteger a população do Donbas. [[putin2]]"]},
+ {m:["ua","É uma guerra de agressão contra um país soberano, e não uma \"operação\"."]},
+ {m:["arq","Para a maioria dos países da ONU, foi uma agressão: em 2 de março de 2022, uma resolução que \"deplora\" a agressão e exige a retirada das tropas russas teve 141 votos a favor. [[es111]]"]},
+ {c:{id:"d3",kind:"decide",q:"Você é o Itamaraty. Como o Brasil vota essa resolução?",o:["A favor","Abstenção","Contra"],
+   r:"O Brasil votou a favor. [[govbr]] Placar final: 141 a favor, 5 contra, 35 abstenções. [[es111]]"}},
+ {m:["br","Defendemos uma saída negociada. Em 2024, apresentamos com a China seis pontos: não escalar a guerra, uma conferência de paz reconhecida pelos dois lados, troca de prisioneiros. [[brch]]"]},
+ {m:["arq","A proposta dividiu as partes: Putin a defendeu, e Zelensky a rejeitou, dizendo que ela ignorava o sofrimento da Ucrânia. [[brch2]]"]},
+ {day:"O custo",quiet:true},
+ {m:["arq","Uma pausa nos argumentos. Até outubro de 2026, a ONU confirmou pelo menos 17.994 civis mortos e 57.854 feridos na Ucrânia desde fevereiro de 2022. [[civis]] A própria ONU avisa que o número real provavelmente é muito maior. [[civis2]]"],quiet:true},
+ {m:["arq","Entre os soldados, os governos não divulgam números oficiais. Pelas estimativas do centro de estudos americano CSIS (jul/2026), a Rússia teve cerca de 1,4 milhão de mortos e feridos, com cerca de 450 mil mortos; a Ucrânia, de 525 a 625 mil, com 125 a 150 mil mortos. [[csis]]"],quiet:true},
+ {m:["arq","Cerca de 5,9 milhões de pessoas fugiram do país, segundo o ACNUR em fevereiro de 2026. [[refug]] A Rússia ocupa cerca de 20% do território ucraniano [[terr]]; nos dez primeiros meses de 2026, avançou só 117 km², segundo o ISW. [[terr2]]"],quiet:true},
+ {c:{id:"f1",kind:"factround",q:"Antes da mesa final, uma rodada rápida. Classifique cada frase:"}},
+ {day:"Novembro de 2026"},
+ {m:["arq","Enquanto isso, os EUA mandaram sinais diferentes. Em setembro de 2026, Trump sancionou uma lei que permite tarifas de até 100% sobre os maiores compradores de petróleo russo. [[sanc]] Em outubro, numa reversão da política americana, segundo a AP, fechou com Putin um acordo para liberar a venda de diesel russo, com licença do Tesouro dos EUA. Trump disse que baixar os preços para os americanos é sua maior prioridade; Zelensky chamou de \"decisão fraca de parceiros fortes\". [[diesel]] A União Europeia aprovou em julho seu 21º pacote de sanções. [[ue21]]"]},
+ {m:["arq","Em 10 e 11 de novembro de 2026, Rússia, Ucrânia e EUA voltaram a negociar em Abu Dhabi, pela primeira vez desde fevereiro. [[abu]] [[abu2]] Terminaram sem avanços concretos sobre o fim da guerra, mas com um acordo para trocar mais de mil prisioneiros de cada lado. [[abu2]]"]},
+ {m:["arq","Agora é com você. Monte uma proposta e veja como cada delegação reage, com base no que cada uma declarou publicamente."]},
+ {game:true},
+ {c:{id:"qz",kind:"quiz",q:"Três perguntas para fechar a conversa:"}},
+ {end:true}
+];
+const FR=[
+ {t:"Em 1994, a Ucrânia abriu mão de armas nucleares em troca de promessas sobre suas fronteiras.",a:0,e:"Fato. [[harv]]"},
+ {t:"A expansão da OTAN é a causa principal da guerra.",a:1,e:"Interpretação em disputa: há quem defenda e quem conteste. [[mear]] [[isw]]"},
+ {t:"A ONU aprovou em 2022 uma resolução que exige a retirada das tropas russas.",a:0,e:"Fato. [[es111]]"},
+ {t:"A guerra acabou com o acordo de Abu Dhabi, em novembro de 2026.",a:2,e:"Falso: as conversas terminaram sem avanços concretos. [[abu2]]"}
+];
+const QZ=[
+ {q:"O que a Ucrânia recebeu em troca das armas nucleares, em 1994?",o:["Promessas de respeito às fronteiras","A entrada na OTAN","Um tratado militar com os EUA"],a:0},
+ {q:"O que a OTAN declarou em 2008 sobre a Ucrânia?",o:["Que vai se tornar membro, sem data","Que entraria em 2010","Que nunca entraria"],a:0},
+ {q:"Como o Brasil votou a resolução da ONU de março de 2022?",o:["A favor","Abstenção","Contra"],a:0}
+];
+/* mesa final: reações com base em posições declaradas */
+const GAME={
+ terr:{l:"Território",o:["Congelar a linha atual","Ucrânia sai de todo o Donbas","Rússia fica com as 4 regiões que diz ter anexado","Rússia devolve tudo"]},
+ gar:{l:"Garantia de segurança",o:["Ucrânia entra na OTAN","Tropas europeias de paz","Só promessas por escrito"]}
+};
+function reacts(t,g){const R={};
+ R.ru=t===2&&g===2?["m","Talvez: atende à exigência territorial que Putin repete, mas a Rússia também quer uma Ucrânia \"desmilitarizada\". [[iswb]] [[putin]]"]:t===2?["n","Rejeita: o Kremlin trata a OTAN como \"causa raiz\" da guerra [[isw]] e chama tropas estrangeiras de \"alvo legítimo\". [[putintrop]]"]:["n","Rejeita: diz que a fronteira russa, com as quatro regiões, é a única linha possível. [[iswb]]"];
+ R.ua=t===3?["y","Aceita (posição resumida pelo curso): a retirada total das tropas russas é o que Kiev pede desde o início."]:t===1&&g===0?["m","Talvez: Zelensky disse que levaria uma proposta assim a referendo, se EUA e OTAN apoiassem. [[iswc]]"]:(t===1||t===2)?["n","Rejeita: segundo a Al Jazeera, Kiev trata ceder território como linha vermelha desde o começo da guerra. [[linha]]"]:g===2?["n","Rejeita (posição resumida pelo curso): depois de 1994, Kiev pede garantias além de promessas no papel."]:["m","Talvez: Zelensky já admitiu levar uma proposta de paz a referendo, com condições. [[iswc]]"];
+ R.ue=g===1?["y","Apoia: França e Reino Unido assinaram com Zelensky uma declaração de intenção de enviar tropas depois de um cessar-fogo. [[tropas]]"]:g===0?["m","Talvez: a entrada na OTAN depende de todos os 32 membros aprovarem. [[natoen]]"]:["n","Desconfia: quer garantias reais e quer estar na mesa. [[eur]]"];
+ R.eua=t===1&&g===0?["y","É parecido com o que a delegação americana propôs, segundo Zelensky: OTAN em troca do Donbas. [[iswc]]"]:["m","Talvez: os EUA mediam e já testaram fórmulas diferentes; nenhuma foi aceita pelos dois lados até agora. [[abu2]]"];
+ return R}
+/* estado */
+const KEY="pmu-russia-v1";let S;try{S=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){S=null}
+if(!S)S={pos:0,ans:{},pts:0,mute:true,fb:{},started:false,tries:0};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const src=h=>String(h).replace(/\[\[([a-z0-9_]+)\]\]/g,(m,k)=>FONTES[k]?`<button type="button" class="fn" data-f="${k}" aria-label="Ver fonte: ${esc(FONTES[k].s)}">🔎 ${esc(FONTES[k].s)}</button>`:"");
+let AC=null;function snd(t){if(S.mute)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);const f={ok:[620,880],no:[300,230],pop:[880,880]}[t];o.frequency.setValueAtTime(f[0],AC.currentTime);o.frequency.linearRampToValueAtTime(f[1],AC.currentTime+.12);g.gain.setValueAtTime(.05,AC.currentTime);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+.2);o.start();o.stop(AC.currentTime+.22)}catch(e){}}
+const app=document.getElementById("app");
+const MAX=20+30;
+let feed,tray,busy=false,FAST=false;
+function shell(){app.innerHTML=`<div class="head"><div class="stack">${["ua","ru","eua","ue","br"].map(k=>`<span style="background:${P[k].c}">${P[k].a}</span>`).join("")}</div><div class="ht"><b>Mesa de negociação</b><small>Arquivo, Ucrânia, Rússia, EUA, Europa, Itamaraty e você</small></div><span class="pts" id="pts">${S.pts} pts</span><button class="ib" id="mute" aria-label="Som">${S.mute?"🔇":"🔊"}</button></div><div class="prog"><i id="bar"></i></div><div id="feed" role="log" aria-live="polite"></div><div class="tray" id="tray"></div>`;
+ feed=document.getElementById("feed");tray=document.getElementById("tray");
+ document.getElementById("mute").onclick=e=>{S.mute=!S.mute;save();e.currentTarget.textContent=S.mute?"🔇":"🔊"}}
+function bar(){const b=document.getElementById("bar");if(b)b.style.width=Math.round(S.pos/(R.length-1)*100)+"%";const p=document.getElementById("pts");if(p)p.textContent=S.pts+" pts"}
+function down(){if(!FAST)window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"})}
+function addMsg(who,html){const d=document.createElement("div");
+ if(who==="me"){d.className="msg me";d.innerHTML=`<div class="bub">${html}</div>`}
+ else if(who==="sys"){d.className="msg sys";d.innerHTML=`<div class="bub">${html}</div>`}
+ else{const p=P[who];d.className="msg"+(who==="arq"?" arq":"");d.innerHTML=`<span class="av" style="background:${p.c}">${p.a}</span><div class="bub"><span class="who">${p.n} <span class="tag">· ${p.tag}</span></span>${src(html)}</div>`}
+ feed.appendChild(d);down();return d}
+function addDay(t){const d=document.createElement("div");d.className="day";d.textContent=t;feed.appendChild(d)}
+function typing(who){const p=P[who];const d=document.createElement("div");d.className="msg";d.innerHTML=`<span class="av" style="background:${p.c}">${p.a}</span><div class="typing"><i></i><i></i><i></i></div>`;feed.appendChild(d);down();return d}
+const wait=ms=>new Promise(r=>setTimeout(r,FAST?0:ms));
+async function step(){if(busy)return;busy=true;tray.innerHTML="";
+ while(S.pos<R.length){const b=R[S.pos];bar();
+  if(b.day){addDay(b.day);S.pos++;continue}
+  if(b.m){if(!FAST){const ty=typing(b.m[0]);await wait(Math.min(1600,450+b.m[1].length*9));ty.remove()}addMsg(b.m[0],b.m[1]);if(!FAST)snd("pop");S.pos++;save();continue}
+  if(b.c){const A=S.ans[b.c.id];if(A&&A.done){replayChoice(b.c,A);S.pos++;continue}
+   busy=false;showChoice(b.c);return}
+  if(b.game){if(S.ans.game&&S.ans.game.done){renderGame(true);S.pos++;continue}busy=false;renderGame(false);return}
+  if(b.end){busy=false;renderEnd();bar();return}
+ }busy=false}
+function chipsHTML(q,opts){return `<div class="q">${q}</div><div class="chips">${opts.map((o,k)=>`<button class="chip" data-k="${k}">${o}</button>`).join("")}</div>`}
+function showChoice(c){
+ if(c.kind==="factround")return factRound(c);
+ if(c.kind==="quiz")return quiz(c);
+ tray.innerHTML=chipsHTML(c.q,c.o);down();
+ tray.querySelectorAll(".chip").forEach(b=>b.onclick=async()=>{const k=+b.dataset.k;tray.innerHTML="";const A={v:k,done:true};
+  addMsg("me",c.o[k]);
+  if(c.kind==="predict"){const ok=k===c.a;A.ok=ok;if(ok){S.pts+=10;snd("ok")}else snd("no")}
+  S.ans[c.id]=A;S.pos++;save();await wait(500);
+  await reveal(c,A);busy=false;step()})}
+async function reveal(c,A){if(!FAST){const ty=typing("arq");await wait(1100);ty.remove()}
+ if(c.kind==="predict")addMsg("arq",(A.ok?`<span class="ok">Acertou. +10 pontos.</span> `:"")+c.r);
+ else{addMsg("arq","O que aconteceu de verdade: "+c.r);if(c.x){if(!FAST){const ty=typing("arq");await wait(900);ty.remove()}addMsg("arq",c.x)}}bar()}
+function replayChoice(c,A){if(c.kind==="factround"){addMsg("sys","Rodada rápida concluída.");return}if(c.kind==="quiz"){addMsg("sys","Teste concluído.");return}addMsg("me",c.o[A.v]);if(c.kind==="predict")addMsg("arq",(A.ok?`<span class="ok">Acertou. +10 pontos.</span> `:"")+c.r);else{addMsg("arq","O que aconteceu de verdade: "+c.r);if(c.x)addMsg("arq",c.x)}}
+function factRound(c){const A=S.ans.f1||{r:[]};S.ans.f1=A;const k=A.r.length;
+ if(k>=FR.length){A.done=true;S.pos++;save();busy=false;return step()}
+ const it=FR[k];addMsg("arq",`Frase ${k+1} de ${FR.length}: "${it.t}"`);
+ tray.innerHTML=chipsHTML(c.q,["✅ Fato","💬 Interpretação","❌ Desinformação"]);
+ tray.querySelectorAll(".chip").forEach(b=>b.onclick=async()=>{const v=+b.dataset.k;tray.innerHTML="";addMsg("me",["Fato","Interpretação","Desinformação"][v]);A.r.push(v);save();await wait(400);addMsg("arq",(v===it.a?`<span class="ok">Isso.</span> `:"Não exatamente. ")+it.e);await wait(300);factRound(c)})}
+function quiz(c){const A=S.ans.qz||{r:[]};S.ans.qz=A;const k=A.r.length;
+ if(k>=QZ.length){A.done=true;S.pos++;save();busy=false;return step()}
+ const it=QZ[k];addMsg("arq",`Pergunta ${k+1}: ${it.q}`);
+ tray.innerHTML=chipsHTML(c.q,it.o);
+ tray.querySelectorAll(".chip").forEach(b=>b.onclick=async()=>{const v=+b.dataset.k;tray.innerHTML="";addMsg("me",it.o[v]);A.r.push(v);const ok=v===it.a;if(ok){S.pts+=10;snd("ok")}else snd("no");save();bar();await wait(400);addMsg("arq",ok?`<span class="ok">Certo. +10 pontos.</span>`:`A resposta: ${it.o[it.a]}.`);await wait(300);quiz(c)})}
+function renderGame(done){const G=S.ans.game||{t:0,g:2,tries:0};S.ans.game=G;
+ const d=document.createElement("div");d.className="card";d.id="game";feed.appendChild(d);
+ const draw=()=>{const re=reacts(G.t,G.g);const all=Object.values(re).every(x=>x[0]==="y");
+  d.innerHTML=`<h3>Sua proposta</h3>${Object.entries(GAME).map(([k,v])=>`<b style="font-size:.85rem">${v.l}</b><div class="row">${v.o.map((o,i)=>`<button data-g="${k}" data-i="${i}" class="${(k==="terr"?G.t:G.g)===i?"on":""}" ${done?"disabled":""}>${o}</button>`).join("")}</div>`).join("")}
+  <b style="font-size:.85rem">Reações, com base no que cada lado declarou até nov/2026</b>
+  <div class="react">${["ua","ru","ue","eua"].map(k=>`<div><b>${{ua:"Ucrânia",ru:"Rússia",ue:"Europa",eua:"EUA"}[k]}</b><span class="${re[k][0]}">${{y:"✓ aceita",n:"✗ rejeita",m:"~ talvez"}[re[k][0]]}</span><br>${src(re[k][1].replace(/^[^:]{0,12}: /,""))}</div>`).join("")}</div>
+  <p style="font-size:.82rem;color:var(--mut);margin:8px 0 0">Tentativas: ${G.tries}. ${all?"Todos aceitaram!":"Ninguém conseguiu, até hoje, uma proposta que todos aceitem."}</p>`;
+  d.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{if(b.dataset.g==="terr")G.t=+b.dataset.i;else G.g=+b.dataset.i;G.tries++;save();draw()})};
+ draw();down();
+ if(done)return;
+ tray.innerHTML=`<div class="q">Teste quantas combinações quiser.</div><div class="chips"><button class="chip go" id="gdone">Entendi por que é tão difícil</button></div>`;
+ document.getElementById("gdone").onclick=async()=>{tray.innerHTML="";G.done=true;d.querySelectorAll("button").forEach(b=>b.disabled=true);S.pos++;save();addMsg("me","Entendi por que é tão difícil.");await wait(500);
+  addMsg("arq","É isso. As linhas vermelhas declaradas não se encaixam: a Rússia quer as quatro regiões e nenhuma tropa ocidental; a Ucrânia diz que não cede território sem consultar a população em referendo e não quer ficar só com promessas. Um acordo exige que alguém mude de posição, e por isso ele ainda não saiu.");busy=false;step()}}
+function renderEnd(){const F=S.fb;const d=document.createElement("div");d.className="card";
+ d.innerHTML=`<h3>Fim da conversa</h3><p>Você fez <b>${S.pts} de ${MAX} pontos</b> em previsões e no teste.</p>
+ <p style="font-size:.9rem;color:#D9CDB8">A guerra continua. Este curso tem dados até 20 de novembro de 2026 e será revisado todo mês.</p>
+ <b>Que nota você dá?</b><div class="rate">${[1,2,3,4,5].map(n=>`<button data-n="${n}" class="${F.nota===n?"on":""}">${n}</button>`).join("")}</div>
+ <p><b>Sentiu que o curso favoreceu algum lado?</b></p><select id="lado"><option value="">Escolha</option>${["Não","Sim, a Ucrânia","Sim, a Rússia","Não sei"].map(o=>`<option ${F.lado===o?"selected":""}>${o}</option>`).join("")}</select>
+ <p><b>Que tema você quer que vire curso?</b></p><textarea id="tema" rows="2">${esc(F.tema||"")}</textarea>
+ <button class="chip go" style="width:100%;margin-top:10px" id="env">${F.sent?"Avaliação enviada ✓":"Enviar avaliação"}</button>
+ <p style="margin-top:14px"><b>Para ir além</b></p><ul class="fontes"><li>"Os portões da Europa", de Serhii Plokhy: a história da Ucrânia.</li><li>Busque também autores que defendem a visão realista, como John Mearsheimer, e os que a contestam.</li></ul>
+ <p><b>Fontes</b></p><ul class="fontes">${Object.values(FONTES).map(f=>`<li>${esc(f.t)}${f.u?` · <a href="${f.u}" target="_blank" rel="noopener">abrir</a>`:""}</li>`).join("")}</ul>
+ <button class="chip" style="width:100%" id="again">Recomeçar a conversa</button>`;
+ feed.appendChild(d);down();
+ d.querySelectorAll("[data-n]").forEach(b=>b.onclick=()=>{S.fb.nota=+b.dataset.n;save();d.querySelectorAll("[data-n]").forEach(x=>x.classList.toggle("on",x===b))});
+ d.querySelector("#lado").onchange=e=>{S.fb.lado=e.target.value;save()};
+ d.querySelector("#tema").oninput=e=>{S.fb.tema=e.target.value;save()};
+ d.querySelector("#env").onclick=e=>{S.fb.sent=true;try{const q=JSON.parse(localStorage.getItem("pmu-fila")||"[]");q.push({curso:"russia-ucrania",quando:new Date().toISOString(),...S.fb});localStorage.setItem("pmu-fila",JSON.stringify(q))}catch(x){}save();e.target.textContent="Avaliação enviada ✓"};
+ d.querySelector("#again").onclick=()=>{S={pos:0,ans:{},pts:0,mute:S.mute,fb:{},started:true};save();start()};
+ tray.innerHTML=""}
+function intro(){app.innerHTML=`<div class="intro"><div class="notif"><span class="av" style="background:var(--brass)">📚</span><div><b>Mesa de negociação</b><small>Você foi adicionado ao grupo · agora</small></div></div>
+ <h1>Rússia e Ucrânia: por que essa guerra começou e por que é tão difícil de acabar?</h1>
+ <p>Entre num grupo com as delegações. Você assessora o mediador: recomenda, prevê o que aconteceu e, no fim, tenta montar um acordo.</p>
+ <div class="how"><b>Como funciona</b><br>Cerca de 10 minutos. As delegações falam por si, com posições resumidas pelo curso a partir do que declararam. O Arquivo traz os fatos, com 🔎 fonte em cada dado. Previsões certas valem pontos. As cores evitam as bandeiras dos dois países.</div>
+ <button class="chip go" id="go">Entrar no grupo</button><p style="font-size:.8rem;color:var(--mut);text-align:center">Dados atualizados em 20 de novembro de 2026.</p></div>`;
+ document.getElementById("go").onclick=()=>{S.started=true;save();start()}}
+function start(){shell();FAST=true;busy=false;const target=S.pos;S.pos=0;
+ // reconstrói a conversa até onde parou, sem animação
+ (async()=>{while(S.pos<target){const b=R[S.pos];if(b.day)addDay(b.day);else if(b.m)addMsg(b.m[0],b.m[1]);else if(b.c){const A=S.ans[b.c.id];if(A&&A.done)replayChoice(b.c,A);else break}else if(b.game){if(S.ans.game&&S.ans.game.done)renderGame(true);else break}S.pos++}
+  FAST=false;bar();step()})()}
+const pop=document.getElementById("fnpop");
+document.addEventListener("click",e=>{const b=e.target.closest(".fn");if(b){e.preventDefault();e.stopPropagation();const f=FONTES[b.dataset.f];if(!f)return;document.getElementById("fnbody").innerHTML=`<b>Fonte</b><br>${esc(f.t)}${f.u?`<br><a href="${f.u}" target="_blank" rel="noopener">Abrir a fonte ↗</a>`:""}`;pop.style.display="block";return}
+ if(e.target.closest("#fnpop .x")||!e.target.closest("#fnpop"))pop.style.display="none"},true);
+S.started?start():intro();
+</script>
+</body></html>

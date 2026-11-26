@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fato ou mito: o que mudou nas regras das redes sociais? | Pense Mais Uma</title>
+<meta name="description" content="Curso-jogo: as frases chegam como notificações. Arraste 16 delas para Fato, Mito ou Depende e entenda o que o STF decidiu, o ECA Digital, como outros países fazem e o debate sobre liberdade de expressão.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1C24;--mut:rgba(255,255,255,.85);--fato:#0E9F86;--mito:#E4572E;--dep:#6A5ACD;--glass:rgba(255,255,255,.80)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;font-family:Inter,system-ui,sans-serif;color:#fff;background:linear-gradient(160deg,#C24E3C 0%,#C23A63 32%,#6A5BC4 72%,#4C6BB5 100%) fixed;overscroll-behavior:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+#app{max-width:480px;margin:0 auto;min-height:100vh;padding:16px 16px 28px;display:flex;flex-direction:column}
+h1,h2,h3{font-family:"Space Grotesk",sans-serif;margin:0}
+.top{display:flex;justify-content:space-between;align-items:center;font:700 13.5px Inter;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.15)}
+.top .r{display:flex;gap:8px;align-items:center}
+.ib{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.22);display:grid;place-items:center;font-size:14px}
+.bar{height:5px;border-radius:9px;background:rgba(255,255,255,.3);margin:10px 0 6px}.bar i{display:block;height:100%;border-radius:9px;background:#fff;transition:width .4s}
+.clock{text-align:center;font:300 64px/1 Inter;letter-spacing:-2px;margin-top:6px;text-shadow:0 2px 12px rgba(0,0,0,.12)}.date{text-align:center;font:600 14px Inter;opacity:.92;margin-bottom:6px}
+.stack{position:relative;height:300px;margin-top:10px;touch-action:none}
+.c{position:absolute;left:0;right:0;top:0;border-radius:22px;padding:14px 16px 16px;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink);display:flex;flex-direction:column;box-shadow:0 8px 22px rgba(0,0,0,.12)}
+.c.b3{top:178px;transform:scale(.92);opacity:.55;height:70px}.c.b2{top:150px;transform:scale(.96);opacity:.75;height:80px}
+.c.top1{box-shadow:0 18px 36px rgba(0,0,0,.25);transition:transform .25s ease-out;cursor:grab;user-select:none;min-height:150px}
+.c.top1.drag{transition:none}
+.nh{display:flex;justify-content:space-between;align-items:center;font:700 12px Inter;color:#555}.nh span:first-child{display:flex;gap:7px;align-items:center}.nh i{width:20px;height:20px;border-radius:6px;background:var(--ink);display:inline-grid;place-items:center;font-style:normal;font-size:11px;color:#fff}
+.chip{display:none}
+.claim{font:700 clamp(18px,5.2vw,21px)/1.3 Inter;margin:8px 0 0;color:var(--ink)}
+.hint{margin-top:10px;font-size:12px;color:#6b6b76}
+.stamp{position:absolute;top:10px;right:14px;font:800 17px "Space Grotesk";color:#fff;border-radius:9px;padding:3px 10px;opacity:0;transform:rotate(10deg);pointer-events:none}
+.stamp.f{background:var(--fato)}.stamp.m{background:var(--mito);right:auto;left:14px;transform:rotate(-10deg)}.stamp.d{background:var(--dep);right:50%;transform:translateX(50%)}
+.acts{display:flex;justify-content:space-between;gap:10px;margin-top:auto;padding-top:18px}
+.acts button{flex:1;height:56px;border-radius:18px;font:700 15px Inter;background:rgba(255,255,255,.22);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.65);color:#fff}
+.acts button:active{background:rgba(255,255,255,.4)}
+.sw{text-align:center;color:#fff;opacity:.9;font-size:12.5px;margin-top:10px}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;animation:up .3s ease-out}
+@keyframes up{from{transform:translateY(100%)}to{transform:none}}
+.sheet>div{width:100%;max-width:480px;background:rgba(255,255,255,.96);color:var(--ink);border-radius:26px 26px 0 0;padding:18px 20px 22px;max-height:78vh;overflow:auto;box-shadow:0 -14px 40px rgba(0,0,0,.25)}
+.verd{display:flex;align-items:center;gap:10px;font:700 15px "Space Grotesk"}
+.pill{border-radius:10px;padding:4px 10px;font:700 14px "Space Grotesk";color:#fff}
+.pill.f{background:var(--fato)}.pill.m{background:var(--mito)}.pill.d{background:var(--dep)}
+.ok{color:var(--fato)}.no{color:var(--mito)}
+.sheet p{color:#2b2b35;line-height:1.55;font-size:15.5px;margin:10px 0}
+.go{width:100%;height:54px;border-radius:18px;background:var(--ink);color:#fff;font:700 16px Inter;margin-top:8px}
+.go.alt{background:rgba(255,255,255,.25);color:#fff;border:1.5px solid rgba(255,255,255,.7)}
+#app>.go{background:#fff;color:var(--ink)}
+.fn{display:inline-block;font:600 11.5px Inter;color:#4A3DB0;background:rgba(106,90,205,.12);border:1px solid rgba(106,90,205,.35);border-radius:99px;padding:0 7px;margin:0 2px;vertical-align:1px;text-align:left}
+.panel{background:var(--glass);backdrop-filter:blur(12px);color:var(--ink);border-radius:22px;padding:16px 18px;margin-top:12px}
+.panel p{color:#2b2b35;line-height:1.55;margin:.5em 0}
+.k{font:700 12px "Space Grotesk";letter-spacing:.14em;text-transform:uppercase;color:#fff;opacity:.92}
+.big{font:700 clamp(28px,8vw,36px)/1.08 "Space Grotesk";margin:10px 0 12px;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.12)}
+.lead{color:#fff;font-weight:500;line-height:1.55;text-shadow:0 1px 3px rgba(0,0,0,.25)}
+.two{display:grid;gap:10px;margin-top:10px}
+.two>div{border-radius:18px;padding:14px;background:var(--glass);color:var(--ink)}
+.two b{font:700 14px "Space Grotesk";display:block;margin-bottom:4px}
+.two p{font-size:14.5px;margin:0;color:#2b2b35;line-height:1.5}
+.chaps{display:grid;gap:8px;margin-top:14px}
+.chaps>div{display:flex;justify-content:space-between;align-items:center;background:var(--glass);color:var(--ink);border-radius:16px;padding:12px 14px;font-weight:600}
+.chaps span{color:#6b6b76;font-size:13px}
+.stars{color:#E0A100;letter-spacing:2px}.stars span{letter-spacing:0;white-space:nowrap}
+#fnpop{position:fixed;left:14px;right:14px;bottom:14px;max-width:452px;margin:0 auto;background:#1C1C24;color:#fff;border-radius:16px;padding:14px 16px;z-index:60;display:none;font-size:.9rem;line-height:1.5}
+#fnpop a{color:#C9C2FF}#fnpop .x{position:absolute;right:10px;top:6px;font-size:20px;color:#fff}
+.rate{display:flex;gap:6px}.rate button{flex:1;border:1px solid #d6d3e6;border-radius:12px;padding:10px 0;font-weight:700;color:var(--ink)}.rate button.on{background:var(--dep);color:#fff}
+textarea,select{width:100%;font:inherit;border:1px solid #d6d3e6;border-radius:12px;padding:10px;background:#fff;color:var(--ink)}
+.fontes li{font-size:.8rem;margin:.45em 0;color:#2b2b35}.fontes a{color:#4A3DB0}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:70}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style><link rel="canonical" href="https://pensemaisuma.com.br/cursos/fato-ou-mito-redes-sociais/">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+</head><body>
+<div id="pmu-bar" style="font-family:Nunito,system-ui,sans-serif;background:#FAF7F0;color:#17150F;border-bottom:1.5px solid #17150F;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:14px;font-weight:800;position:relative;z-index:50">
+<a href="index.html" style="color:inherit;text-decoration:none">← Sobre o curso</a>
+<a href="../../index.html" style="display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none"><img src="../../assets/logo.svg" alt="" width="26" height="26"><span style="font-family:Fraunces,Georgia,serif">Pense Mais Uma</span></a>
+<a href="index.html#avaliar" style="color:inherit">Avaliar</a></div>
+<div id="app"></div>
+<div id="fnpop" role="dialog" aria-live="polite"><button class="x" aria-label="Fechar">×</button><div id="fnbody"></div></div>
+<script>
+const FONTES={
+ estadao25:{s:"Estadão, jun/2025",t:"O Estado de S. Paulo (27/jun/2025), via clipping do Senado: por 8 a 3, o STF decidiu sobre o artigo 19, que isentava as plataformas de responsabilidade por publicações de terceiros, exceto se descumprissem decisão judicial de remoção; para WhatsApp, Telegram, e-mail e plataformas de reunião continua valendo o artigo 19",u:"https://www2.senado.leg.br/jspui/bitstream/id/757291/1/noticia.html"},
+ conjur25:{s:"Conjur, ago/2025",t:"Conjur (ago/2025): em 26/jun/2025, por 8 a 3, o STF considerou o artigo 19 do Marco Civil parcial e progressivamente inconstitucional (Temas 987 e 533)",u:"https://www.conjur.com.br/2025-ago-15/o-stf-e-a-inconstitucionalidade-parcial-e-progressiva-do-artigo-19-do-marco-civil-da-internet//?print=1"},
+ carta25:{s:"CartaCapital, jun/2025",t:"CartaCapital (jun/2025): o placar foi de 8 a 3, com as divergências de André Mendonça, Edson Fachin e Nunes Marques",u:"https://www.cartacapital.com.br/?p=523711"},
+ stf26:{s:"STF, jun/2026",t:"STF (17/jun/2026): o tribunal concluiu os ajustes na tese, a partir de recursos (embargos) de Facebook, Google e entidades; as plataformas têm 60 dias para implementar medidas estruturais; a lista fechada de crimes graves sujeitos ao dever de cuidado inclui tentativa de golpe, terrorismo, incentivo ao suicídio ou à automutilação, racismo, homofobia e crimes contra mulheres e crianças",u:"https://noticias.stf.jus.br/postsnoticias/plataformas-terao-60-dias-para-implementar-medidas-estruturais-decide-stf/"},
+ dgabc26:{s:"DGABC, jun/2026",t:"DGABC (17/jun/2026): a decisão do STF sobre os recursos foi unânime",u:"https://www.dgabc.com.br/Noticia/4329699/stf-aprova-ajustes-em-tese-sobre-marco-civil-da-internet-e-define-alcance-temporal"},
+ metro26:{s:"Metrópoles, jun/2026",t:"Metrópoles (11/jun/2026): nos crimes contra a honra, manteve-se a exigência de ordem judicial do artigo 19, sem impedir a retirada de conteúdo por notificação extrajudicial",u:"https://www.metropoles.com/colunas/manoela-alcantara/stf-da-60-dias-para-big-techs-aplicarem-alteracoes-no-marco-civil-mas-deixa-tese-pendente"},
+ metro26b:{s:"Metrópoles, jun/2026",t:"Metrópoles (17/jun/2026): provedores podem ser responsabilizados por conteúdos ilícitos sem ordem judicial, mas o STF esclareceu que não haverá responsabilidade objetiva (automática) das plataformas; nas hipóteses de crime ou ato ilícito civil contra a honra, aplica-se o art. 19, sem prejuízo da remoção por notificação extrajudicial",u:"https://www.metropoles.com/colunas/manoela-alcantara/stf-define-tese-que-endurece-regras-de-responsabilizacao-das-redes"},
+ teletime26:{s:"Teletime, jun/2026",t:"Teletime (17/jun/2026): nos anúncios, impulsionamentos pagos e mecanismos artificiais de disseminação há presunção relativa de culpa e a responsabilização pode ocorrer independentemente de notificação; os provedores ficam excluídos se comprovarem que atuaram diligentemente e em tempo razoável",u:"https://teletime.com.br/17/06/2026/stf-conteudos-marco-civil-internet/"},
+ toffoli26:{s:"Conjur, jun/2026",t:"Conjur (10/jun/2026): a proposta de Toffoli, depois adotada, trocou a presunção de responsabilidade em anúncios pagos e redes artificiais, como robôs, por uma presunção relativa de culpa",u:"https://www.conjur.com.br/2026-jun-10/toffoli-propoe-limitar-responsabilidade-sobre-circulacao-de-ilicitos-a-big-techs/"},
+ tele25:{s:"Teletime, jun/2025",t:"Teletime (26/jun/2025): as plataformas passam a ter dever de cuidado quando conteúdos ilícitos graves circulam de forma massiva, com uma lista fechada de crimes graves",u:"https://teletime.com.br/26/06/2025/art-19-stf-concilia-votos-e-plataformas-terao-responsabilizacao-parcial/"},
+ mpg:{s:"Instituto Max Planck",t:"Resumo da decisão (Instituto Max Planck): nos crimes gravíssimos da lista, como atos antidemocráticos e crimes contra mulheres em razão de gênero, aplica-se o dever de cuidado; a responsabilização ocorre apenas quando houver falha sistêmica do provedor",u:"https://sipla.ip.mpg.de/fileadmin/Files/Files/STF_Responsabilidade_de_plataformas_digitais_por_conteudo_de_terceiros.pdf"},
+ xconjur:{s:"Conjur, out/2024",t:"Conjur (8/out/2024): o X ficou bloqueado no Brasil desde 30 de agosto e foi liberado depois de pagar quase R$ 29 milhões em multas por descumprir ordens judiciais",u:"https://www.conjur.com.br/2024-out-08/x-paga-r-286-mi-em-multas-e-alexandre-determina-desbloqueio-da-plataforma/"},
+ xcorreio:{s:"Correio, out/2024",t:"Correio (8/out/2024): o X foi suspenso após fechar seu escritório no Brasil e ficar sem representante legal, condição obrigatória para funcionar; ficou 39 dias fora do ar",u:"https://www.correio24horas.com.br/brasil/moraes-autoriza-desbloqueio-do-x-apos-rede-cumprir-exigencias-legais-1024"},
+ eca26:{s:"Agência Senado, mar/2026",t:"Agência Senado (17/mar/2026): o ECA Digital, Lei 15.211, publicada em setembro de 2025, entrou em vigor; a vigência foi antecipada por medida provisória",u:"https://www12.senado.leg.br/noticias/materias/2026/03/17/eca-digital-para-protecao-on-line-de-criancas-e-adolescentes-entra-em-vigor"},
+ ecamulta:{s:"Metrópoles, mar/2026",t:"Metrópoles (mar/2026): quem descumprir o ECA Digital pode ter multa de até R$ 50 milhões, suspensão de atividades ou até fechamento; a fiscalização fica com a ANPD, transformada em agência reguladora em fevereiro de 2026",u:"https://www.metropoles.com/minas-gerais/eca-digital-lei-entra-em-vigor-proteger-criancas-e-adolescentes"},
+ ecaregras:{s:"Agência Gov, ago/2026",t:"Agência Gov (ago/2026): nas redes sociais, contas de crianças e adolescentes de até 16 anos devem estar vinculadas à conta de um responsável legal; o ECA Digital estabelece proteção de dados e privacidade, verificação de idade, supervisão parental, regras de publicidade e jogos eletrônicos, além de responsabilidades para as plataformas",u:"https://agenciagov.ebc.com.br/noticias/202608/eca-digital-conheca-as-regras-de-protecao-de-criancas-e-adolescentes-no-ambiente-online"},
+ aus:{s:"CNN Brasil",t:"CNN Brasil: desde 10/dez/2025, menores de 16 anos que vivem na Austrália ficam proibidos de ter redes sociais; foi a primeira medida do tipo adotada por um país",u:"https://www.cnnbrasil.com.br/tecnologia/entenda-por-que-a-australia-decidiu-restringir-redes-sociais-para-jovens/"},
+ aus47:{s:"Olhar Digital, jan/2026",t:"Olhar Digital (jan/2026): segundo o órgão regulador australiano (eSafety), 4,7 milhões de contas de adolescentes foram desativadas pelas redes no primeiro mês",u:"https://olhardigital.com.br/2026/01/15/internet-e-redes-sociais/como-esta-a-australia-apos-derrubar-quase-5-milhoes-de-contas-de-adolescentes/"},
+ aus80:{s:"CartaCapital/DW, jul/2026",t:"CartaCapital/DW (31/jul/2026): numa pesquisa do órgão regulador australiano, mais de 80% dos menores de 16 anos que já acessavam redes dizem ter mantido o hábito nos primeiros meses da proibição",u:"https://www.cartacapital.com.br/tecnologia/veto-a-redes-para-menores-quase-nao-gera-efeito-na-australia/"},
+ publica:{s:"Agência Pública, 2025",t:"Agência Pública (set/2025): o PL 2630, o PL das Fake News, foi proposto em maio de 2020 e aprovado pelo Senado pouco mais de um mês depois; a reportagem descreve como ele parou na Câmara",u:"https://apublica.org/2025/09/como-as-big-techs-mataram-o-pl-das-fake-news/"},
+ rsf:{s:"RSF, 2025",t:"Repórteres sem Fronteiras (2025): os ministros pediram, no voto, a aprovação de uma nova lei pelo Congresso que corrija as falhas do artigo 19; a RSF considerou a decisão bem-vinda",u:"https://rsf.org/pt-br/no-brasil-o-supremo-tribunal-federal-aumenta-responsabilidade-das-redes-sociais-e-clama-por-uma"},
+ dsa:{s:"CartaCapital, 2023",t:"CartaCapital (ago/2023): na União Europeia, as big techs que descumprirem as regras do Digital Services Act podem levar multas de até 6% do faturamento anual",u:"https://www.cartacapital.com.br/?p=367251"},
+ s230:{s:"Univ. de Chicago",t:"Chicago Journal of International Law: nos EUA, a Section 230 imuniza as plataformas de muitas formas de responsabilidade por hospedar conteúdo de terceiros",u:"https://cjil.uchicago.edu/print-archive/digital-services-act-and-brussels-effect-platform-content-moderation"},
+ mendonca:{s:"SBT News, jun/2025",t:"SBT News (jun/2025): o ministro André Mendonça sinalizou divergência e defendeu que a regulação das redes seja feita pelo Congresso",u:"https://sbtnews.sbt.com.br/noticia/politica/mendonca-sinaliza-divergencia-e-defende-regulacao-das-redes-pelo-congresso"},
+ mendonca2:{s:"Correio da Manhã, jun/2025",t:"Correio da Manhã (jun/2025): Mendonça votou para manter o artigo 19 e defendeu que a punição recaia sobre os usuários que publicam conteúdo ilegal, não sobre as plataformas",u:"https://www.correiodamanha.com.br/politica/2025/06/203260-mendonca-abre-divergencia-em-julgamento-sobre-regulacao-das-redes.html"},
+ moraes:{s:"O Povo, jun/2025",t:"O Povo (jun/2025): em seu voto, Moraes disse que a autorregulação das big techs faliu; para ele, \"aqui não se discute nenhuma limitação ao exercício da liberdade de expressão, aqui se discute a responsabilização pelo abuso criminoso da expressão\"",u:"https://www.opovo.com.br/noticias/politica/2025/06/13/moraes-em-seu-voto-diz-que-big-techs-tem-ideologia-e-autorregulacao-faliu.html"},
+ migart19:{s:"Migalhas, nov/2025",t:"Migalhas (nov/2025): há o temor de que uma regulação exagerada leve à moderação automática e preventiva de manifestações legítimas, como autoproteção contra sanções; o objetivo do artigo 19 era proteger a liberdade de expressão e impedir a censura, evitando que plataformas removam conteúdos por pressão extrajudicial ou critérios subjetivos",u:"https://www.migalhas.com.br/depeso/444422/regulamentar-redes-sociais-configura-ou-nao-censura"},
+ mci:{s:"Marco Civil, Lei 12.965",t:"Lei 12.965/2014 (Planalto): o artigo 19 começa com \"Com o intuito de assegurar a liberdade de expressão e impedir a censura\" e só responsabiliza a plataforma se ela descumprir ordem judicial específica; o artigo 21 responsabiliza a plataforma, após notificação da vítima, pela divulgação sem autorização de imagens de nudez ou atos sexuais privados",u:"https://planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l12965.htm"},
+ decreto:{s:"Teletime, mai/2026",t:"Teletime (20/mai/2026): o governo editou decreto que regulamenta o Marco Civil e atribui a fiscalização das plataformas à ANPD; a avaliação considera a atuação sistêmica, e a ANPD não pode enviar notificações pedindo ação isolada sobre um conteúdo",u:"https://teletime.com.br/20/05/2026/governo-edita-regras-para-redes-sociais-e-atribui-fiscalizacao-a-anpd/"},
+ decvig:{s:"Migalhas, 2026",t:"Migalhas (2026): as plataformas digitais tinham até 20 de julho de 2026 para se adequar ao decreto",u:"https://www.migalhas.com.br/depeso/458631/plataformas-digitais-tem-ate-20-de-julho-de-2026-para-se-adequar"},
+ cfoco:{s:"Congresso em Foco, jul/2026",t:"Congresso em Foco (20/jul/2026): os decretos sobre big techs entraram em vigor; deputados e senadores apresentaram uma série de projetos para suspendê-los, sob o argumento de que o Executivo teria ultrapassado sua competência e criado deveres que deveriam ter sido discutidos e aprovados pelo Congresso",u:"https://www.congressoemfoco.com.br/noticia/120607/decretos-de-lula-sobre-big-techs-entram-em-vigor-veja-o-que-muda"},
+ cgi:{s:"CGI.br, 2026",t:"Nota pública do CGI.br sobre os decretos 12.975 e 12.976/2026: avalia que trazem critérios claros e possibilidade de contestação",u:"https://cgi.br/esclarecimentos/ver/nota-publica-sobre-os-decretos-nos-12-975-2026-e-12-976-2026-regulamentacao-do-marco-civil-da-internet.pdf"},
+ ecacw:{s:"Computer Weekly",t:"Computer Weekly: as multas do ECA Digital vão até R$ 50 milhões por infração; suspensão e proibição de atividades dependem de decisão judicial",u:"https://www.computerweekly.com/br/reportagen/ECA-Digital-obrigacoes-penalidades-e-o-que-muda-para-plataformas-digitais-no-Brasil"},
+ discord1:{s:"Agência Gov, ago/2026",t:"Agência Gov (ago/2026): em medida preventiva, a ANPD determinou que o Discord suspenda as transmissões ao vivo",u:"https://agenciagov.ebc.com.br/noticias/202608/em-medida-preventiva-anpd-determina-que-discord-suspenda-transmissoes-ao-vivo"},
+ discord2:{s:"Teletime, nov/2026",t:"Teletime (19/nov/2026): a ANPD rejeitou o recurso do Discord",u:"https://teletime.com.br/19/11/2026/anpd-rejeita-recurso-discord/"},
+ dsax:{s:"Comissão Europeia, dez/2025",t:"Comissão Europeia (dez/2025): primeira multa sob o Digital Services Act, de 120 milhões de euros, aplicada ao X",u:"https://digital-strategy.ec.europa.eu/en/news/commission-fines-x-eu120-million-under-digital-services-act"},
+ fachin:{s:"Brasil de Fato, jun/2025",t:"Brasil de Fato (25/jun/2025): Fachin defendeu regulação sistêmica das redes, mas preferentemente não via Poder Judiciário",u:"https://www.brasildefato.com.br/2025/06/25/edson-fachin-defende-regulacao-sistemica-das-redes-mas-preferentemente-nao-via-poder-judiciario/"},
+ nunes:{s:"CNN Brasil, jun/2025",t:"CNN Brasil (jun/2025): Nunes Marques acompanhou a divergência e afirmou que o Congresso Nacional é o ambiente mais apropriado para a regulação",u:"https://www.cnnbrasil.com.br/politica/nunes-marques-acompanha-divergencia-contra-responsabilizacao-de-big-techs/"},
+ art19ong:{s:"Artigo 19 (ONG), 2025",t:"Nota técnica da ONG Artigo 19 (ago/2025): aponta incertezas no regime de dever de cuidado por falha sistêmica criado pelo STF",u:"https://artigo19.org/wp-content/blogs.dir/24/files/2025/08/Nota-Tecnica-MCI-A19-final.pdf"}
+};
+const V={f:"Fato",m:"Mito",d:"Depende"};
+const CH=[
+ {t:"O que mudou na lei",i:"⚖️",cards:[
+  {c:"Até 2025, em regra, uma rede social só podia ser condenada por um post de outra pessoa se descumprisse uma ordem da Justiça.",a:"f",e:"Era a regra do artigo 19 do Marco Civil da Internet, de 2014: a plataforma só respondia por publicação de terceiros se não cumprisse uma decisão judicial de remoção. [[estadao25]] A principal exceção era a divulgação de imagens íntimas sem autorização: aí bastava a notificação da vítima (artigo 21). [[mci]]"},
+  {c:"O STF mudou essa regra por unanimidade em 2025.",a:"m",e:"Foi por 8 a 3, em 26 de junho de 2025. Votaram contra André Mendonça, Edson Fachin e Nunes Marques. [[conjur25]] [[carta25]] Os ajustes feitos em junho de 2026, depois de recursos de Google, Facebook e entidades, é que foram decididos por unanimidade. [[stf26]] [[dgabc26]]"},
+  {c:"Para calúnia, injúria e difamação, a regra continua exigindo ordem da Justiça para a rede ser condenada.",a:"f",e:"Nas ofensas à honra, o STF manteve a exigência de ordem judicial do artigo 19 para a rede ser condenada. Mas nada impede que ela retire o conteúdo depois de receber uma notificação, se quiser. [[metro26]] [[metro26b]]"},
+  {c:"A nova regra vale também para conversas privadas no WhatsApp e no Telegram.",a:"m",e:"Para mensagens privadas, como WhatsApp e Telegram, e-mail e plataformas de reunião, continua valendo a regra antiga do artigo 19. [[estadao25]]"}
+ ]},
+ {t:"Censura ou proteção?",i:"📣",cards:[
+  {c:"Com a decisão do STF, as redes passaram a apagar qualquer post que o governo mandar.",a:"m",e:"A decisão não trata de ordens do governo. Ela define quando a plataforma responde na Justiça por um conteúdo ilícito de outra pessoa, e o STF deixou claro que essa responsabilidade não é automática. [[metro26b]] Desde 2026, um decreto pôs a ANPD para fiscalizar as redes, mas ela avalia o sistema da plataforma como um todo e não pode mandar apagar um post isolado. [[decreto]] [[decvig]]"},
+  {c:"Anúncios e posts impulsionados com dinheiro têm regra mais dura que posts comuns.",a:"f",e:"A tese final, de junho de 2026, prevê presunção relativa de culpa em anúncios, impulsionamentos pagos e redes artificiais, como robôs. Nesses casos a rede pode responder mesmo sem ter sido avisada, a menos que prove que agiu com diligência e em tempo razoável. [[teletime26]] [[toffoli26]]"},
+  {c:"Para alguns crimes graves, a rede tem obrigação de agir mesmo sem ser avisada.",a:"f",e:"É o dever de cuidado, que vale para uma lista fechada de crimes graves, como tentativa de golpe, terrorismo, racismo e crimes contra mulheres e crianças, quando circulam em massa. [[tele25]] [[stf26]] Mas a rede só é responsabilizada se houver falha sistêmica, não por um post isolado que escapou. [[mpg]]"},
+  {c:"O Brasil já tirou uma rede social inteira do ar.",a:"f",e:"O X ficou bloqueado de 30 de agosto a 8 de outubro de 2024. A suspensão veio depois que a empresa fechou o escritório no Brasil e ficou sem representante legal, condição obrigatória para funcionar. [[xcorreio]] Voltou depois de pagar quase R$ 29 milhões em multas por descumprir ordens judiciais. [[xconjur]]"}
+ ]},
+ {t:"Crianças na internet",i:"🧒",cards:[
+  {c:"O Brasil tem uma lei específica para proteger crianças e adolescentes nas redes, em vigor desde 2026.",a:"f",e:"É o ECA Digital, a Lei 15.211, publicada em setembro de 2025 e em vigor desde 17 de março de 2026. [[eca26]]"},
+  {c:"Uma plataforma que descumprir o ECA Digital pode levar multa de até R$ 50 milhões.",a:"f",e:"Quem fiscaliza é a ANPD, que virou agência reguladora em fevereiro de 2026. [[ecamulta]] O valor é por infração, e suspender ou proibir as atividades depende de decisão judicial. [[ecacw]] Um exemplo de fiscalização: em agosto de 2026, como medida preventiva, a ANPD mandou o Discord suspender as transmissões ao vivo e recursos parecidos de vídeo, e em novembro negou o recurso da empresa. [[discord1]] [[discord2]]"},
+  {c:"O Brasil proibiu redes sociais para menores de 16 anos, como fez a Austrália.",a:"m",e:"Quem proibiu foi a Austrália, desde 10 de dezembro de 2025, a primeira a fazer isso. [[aus]] O ECA Digital não proíbe. Ele exige que a conta de quem tem até 16 anos esteja ligada à de um responsável, além de verificação de idade, supervisão dos pais e regras de publicidade. [[ecaregras]]"},
+  {c:"Na Austrália, a proibição fez os adolescentes saírem das redes.",a:"d",e:"Depende de como se mede. No primeiro mês, as redes desativaram 4,7 milhões de contas de adolescentes, segundo o órgão regulador (dado de janeiro de 2026). [[aus47]] Mas, numa pesquisa do mesmo órgão, mais de 80% dos menores de 16 anos que já usavam redes disseram que continuaram usando (julho de 2026). [[aus80]]"}
+ ]},
+ {t:"Brasil e mundo: o debate",i:"🌍",cards:[
+  {c:"O Congresso brasileiro já aprovou uma lei geral para regular as redes sociais.",a:"m",e:"O PL das Fake News foi aprovado pelo Senado em 2020, mas parou na Câmara. [[publica]] No julgamento, os ministros do STF também pediram ao Congresso uma nova lei. [[rsf]] Em 2026 o governo regulamentou o Marco Civil por decreto, que não é lei, e deputados e senadores apresentaram projetos para derrubá-lo. [[decreto]] [[cfoco]]"},
+  {c:"Na Europa, as grandes plataformas podem levar multas de até 6% do faturamento anual.",a:"f",e:"É a regra do Digital Services Act, a lei de serviços digitais da União Europeia. [[dsa]]"},
+  {c:"Nos Estados Unidos, as plataformas não respondem pela maior parte do que os usuários postam.",a:"f",e:"A Section 230, uma lei americana de 1996, protege as plataformas de muitas formas de responsabilidade por conteúdo de terceiros, sem impor condições. [[s230]] O artigo 19 brasileiro também protegia as plataformas, mas com uma condição: cumprir a ordem judicial. [[mci]]"},
+  {c:"Os ministros que votaram contra a mudança defenderam que a regra deveria vir do Congresso, não do STF.",a:"f",e:"André Mendonça defendeu que a regulação das redes seja feita pelo Congresso [[mendonca]] e que a punição recaia sobre quem publica, não sobre a plataforma. [[mendonca2]] Edson Fachin disse que a regulação deve vir, de preferência, de fora do Judiciário [[fachin]], e Nunes Marques chamou o Congresso de ambiente mais apropriado. [[nunes]]"}
+ ],debate:true}
+];
+const ALL=CH.flatMap((ch,ci)=>ch.cards.map((c,k)=>({...c,ci,k,id:ci+"-"+k})));
+const KEY="pmu-fom-redes-v1";let S;try{S=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){S=null}
+if(!S)S={scr:"intro",ci:0,k:0,ans:{},pts:0,streak:0,mute:true,fb:{},rel:null};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const src=h=>String(h).replace(/\[\[([a-z0-9_]+)\]\]/g,(m,k)=>FONTES[k]?`<button type="button" class="fn" data-f="${k}" aria-label="Ver fonte: ${esc(FONTES[k].s)}">🔎 ${esc(FONTES[k].s)}</button>`:"");
+let AC=null;function snd(t){if(S.mute)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);const f={ok:[600,900],no:[300,210],sw:[420,520],win:[520,1040]}[t];o.type="triangle";o.frequency.setValueAtTime(f[0],AC.currentTime);o.frequency.linearRampToValueAtTime(f[1],AC.currentTime+.14);g.gain.setValueAtTime(.06,AC.currentTime);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+.25);o.start();o.stop(AC.currentTime+.26)}catch(e){}}
+const app=document.getElementById("app");
+const right=()=>ALL.filter(c=>S.ans[c.id]&&S.ans[c.id].ok).length;
+function stars(ci){const cs=CH[ci].cards.map((c,k)=>S.ans[ci+"-"+k]);if(cs.some(a=>!a))return"";const r=cs.filter(a=>a.ok).length/cs.length;return r>=.9?"★★★":r>=.6?"★★☆":"★☆☆"}
+function clk(){const d=new Date();return `<div class="clock">${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}</div><div class="date">${d.toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"long"})}</div>`}
+function head(label,prog){return `<div class="top"><span>${label}</span><span class="r"><span>${S.pts} pts${S.streak>=3?" · 🔥 "+S.streak:""}</span><button class="ib" id="mute" aria-label="${S.mute?"Ligar som":"Desligar som"}">${S.mute?"🔇":"🔊"}</button></span></div><div class="bar"><i style="width:${prog}%"></i></div>`}
+function bindHead(){const b=document.getElementById("mute");if(b)b.onclick=()=>{S.mute=!S.mute;save();render()}}
+function render(){window.scrollTo(0,0);const f={intro,chap,card,recap,debate,rel,end}[S.scr];f();bindHead()}
+function intro(){app.innerHTML=`<div class="top"><span>Pense Mais Uma · Fato ou mito?</span><span>Série nº 2</span></div>${clk()}
+ <div style="margin-top:8px"><div class="k">Fato ou mito?</div><h1 class="big">O que mudou nas regras das redes sociais?</h1>
+ <p class="lead">16 frases sobre redes sociais vão chegar como notificações. Arraste cada uma para Fato, Mito ou Depende e veja a explicação, sempre com fonte.</p></div>
+ <div class="panel"><b>Como funciona</b><p style="font-size:14.5px">4 capítulos, uns 12 minutos. Acerto vale 10 pontos; com 3 acertos seguidos, 15. Toque em 🔎 para ver a fonte. No fim, o debate de verdade: até onde as redes devem responder pelo que os usuários postam, com os dois lados.</p></div>
+ <div class="chaps">${CH.map((c,i)=>`<div>${c.i} ${c.t}<span class="stars">${stars(i)||"<span>"+c.cards.length+" frases</span>"}</span></div>`).join("")}</div>
+ <button class="go" id="start" style="margin-top:18px;background:#fff;color:#1C1C24">${Object.keys(S.ans).length?"Continuar":"Começar"}</button>
+ <p style="text-align:center;font-size:12.5px;opacity:.9">Dados atualizados em novembro de 2026.</p>`;
+ document.getElementById("start").onclick=()=>{if(!Object.keys(S.ans).length){S.scr="chap";S.ci=0;S.k=0}else resume();save();render()}}
+function resume(){for(let ci=0;ci<CH.length;ci++)for(let k=0;k<CH[ci].cards.length;k++)if(!S.ans[ci+"-"+k]){S.ci=ci;S.k=k;S.scr=k===0?"chap":"card";return}S.scr=S.rel&&S.rel.done?"end":"rel"}
+function chap(){const ch=CH[S.ci];app.innerHTML=head("Capítulo "+(S.ci+1)+" de "+CH.length,S.ci/CH.length*100)+`${clk()}<div style="margin-top:20px"><div class="k">Capítulo ${S.ci+1}</div><h2 class="big">${ch.i} ${ch.t}</h2><p class="lead">${ch.cards.length} notificações. Arraste ou toque nos botões.</p></div><button class="go" id="go" style="margin-top:auto">Ver a primeira frase</button>`;document.getElementById("go").onclick=()=>{S.scr="card";S.k=0;save();render()}}
+const SRCN=["Grupo da família","Fórum do bairro","Canal de notícias","Grupo do trabalho","Mensagem de um amigo","Perfil de política","Grupo da escola","Vídeo curto"];
+function card(){const ch=CH[S.ci],c=ch.cards[S.k],n=ALL.findIndex(x=>x.id===S.ci+"-"+S.k);
+ const nx=ch.cards[S.k+1],nx2=ch.cards[S.k+2];
+ app.innerHTML=head(ch.i+" "+ch.t+" · "+(S.k+1)+"/"+ch.cards.length,n/ALL.length*100)+clk()+`<div class="stack" id="stk">${nx2?`<div class="c b3"><div class="nh"><span><i>•</i>${SRCN[(n+2)%SRCN.length]}</span><span>12 min</span></div></div>`:""}${nx?`<div class="c b2"><div class="nh"><span><i>•</i>${SRCN[(n+1)%SRCN.length]}</span><span>5 min</span></div></div>`:""}
+ <div class="c top1" id="cd" role="group" aria-label="Notificação ${S.k+1} de ${ch.cards.length}"><div class="nh"><span><i>•</i>${SRCN[n%SRCN.length]}</span><span>agora</span></div><p class="claim">"${esc(c.c)}"</p><div class="hint">Arraste: ← mito · ↑ depende · fato →</div>
+ <div class="stamp m" id="sm">MITO</div><div class="stamp d" id="sd">DEPENDE</div><div class="stamp f" id="sf">FATO</div></div></div>
+ <div class="acts"><button class="m" data-v="m">← Mito</button><button class="d" data-v="d">↑ Depende</button><button class="f" data-v="f">Fato →</button></div><div class="sw">ou toque nos botões</div>`;
+ app.querySelectorAll(".acts button").forEach(b=>b.onclick=()=>fly(b.dataset.v));
+ drag(document.getElementById("cd"))}
+function drag(el){let x0,y0,dx=0,dy=0,on=false;const sf=document.getElementById("sf"),sm=document.getElementById("sm"),sd=document.getElementById("sd");
+ el.addEventListener("pointerdown",e=>{on=true;x0=e.clientX;y0=e.clientY;el.classList.add("drag");el.setPointerCapture(e.pointerId)});
+ el.addEventListener("pointermove",e=>{if(!on)return;dx=e.clientX-x0;dy=e.clientY-y0;el.style.transform=`translate(${dx}px,${dy}px) rotate(${dx/18}deg)`;sf.style.opacity=Math.max(0,Math.min(1,dx/90));sm.style.opacity=Math.max(0,Math.min(1,-dx/90));sd.style.opacity=Math.abs(dx)<60?Math.max(0,Math.min(1,-dy/90)):0});
+ const up=()=>{if(!on)return;on=false;el.classList.remove("drag");if(dx>100)fly("f");else if(dx<-100)fly("m");else if(dy<-100&&Math.abs(dx)<80)fly("d");else{el.style.transform="";sf.style.opacity=sm.style.opacity=sd.style.opacity=0}dx=dy=0};
+ el.addEventListener("pointerup",up);el.addEventListener("pointercancel",up)}
+let flying=false;
+function fly(v){if(flying)return;flying=true;const el=document.getElementById("cd");if(el){el.classList.remove("drag");const t={f:"translate(140%,0) rotate(18deg)",m:"translate(-140%,0) rotate(-18deg)",d:"translate(0,-130%)"}[v];el.style.transform=t;const s=document.getElementById("s"+v);if(s)s.style.opacity=1}snd("sw");setTimeout(()=>{flying=false;answer(v)},230)}
+function answer(v){const c=CH[S.ci].cards[S.k],id=S.ci+"-"+S.k,ok=v===c.a;
+ if(!S.ans[id]){S.ans[id]={v,ok};if(ok){S.streak++;S.pts+=S.streak>=3?15:10}else S.streak=0;save()}
+ snd(ok?"ok":"no");
+ const sh=document.createElement("div");sh.className="sheet";sh.innerHTML=`<div role="dialog" aria-label="Resposta"><div class="verd"><span class="pill ${c.a}">${V[c.a].toUpperCase()}</span><span class="${ok?"ok":"no"}">${ok?"Você acertou"+(S.streak>=3?" · 3 seguidos, +15":" · +10"):"Você disse "+V[v].toLowerCase()}</span></div><p>${src(c.e)}</p><button class="go" id="nx">${S.k<CH[S.ci].cards.length-1?"Próxima frase":"Fechar capítulo"}</button></div>`;
+ document.body.appendChild(sh);const st=document.getElementById("stk");if(st)st.style.visibility="hidden";
+ document.getElementById("nx").onclick=()=>{sh.remove();if(S.k<CH[S.ci].cards.length-1){S.k++}else S.scr="recap";save();render()}}
+function recap(){const ch=CH[S.ci],cs=ch.cards.map((c,k)=>({c,a:S.ans[S.ci+"-"+k]})),n=cs.filter(x=>x.a&&x.a.ok).length;if(n===cs.length)confetti();
+ app.innerHTML=head("Fim do capítulo "+(S.ci+1),(S.ci+1)/CH.length*100)+`<div style="margin-top:18px"><div class="k">Capítulo ${S.ci+1}</div><h2 class="big">${n} de ${cs.length} <span class="stars">${stars(S.ci)}</span></h2></div>
+ <div class="panel">${cs.map(x=>`<p><span class="pill ${x.c.a}" style="font-size:11px;padding:2px 7px">${V[x.c.a]}</span> ${esc(x.c.c)} ${x.a&&x.a.ok?"✅":"❌"}</p>`).join("")}</div>
+ <button class="go" id="go">${ch.debate?"Ver o debate de verdade":S.ci<CH.length-1?"Próximo capítulo":"Rodada relâmpago"}</button>`;
+ document.getElementById("go").onclick=()=>{if(ch.debate)S.scr="debate";else next();save();render()}}
+function next(){if(S.ci<CH.length-1){S.ci++;S.k=0;S.scr="chap"}else S.scr="rel"}
+function debate(){app.innerHTML=head("O debate de verdade",100)+`<div style="margin-top:14px"><div class="k">Opinião, com os dois lados</div><h2 class="big">As redes devem responder pelo que os usuários postam?</h2>
+ <p class="lead">O que é fato: o STF ampliou a responsabilidade das plataformas em 2025, por 8 a 3, e o Congresso ainda não aprovou uma lei geral. [[conjur25]] [[publica]]</p>
+ <p class="lead">O que é opinião: se isso protege as pessoas ou ameaça a liberdade de expressão. As duas posições têm argumentos sérios.</p></div>
+ <div class="two"><div><b style="color:#0E9F86">Quem defende mais responsabilidade das redes</b><p>Para Alexandre de Moraes, a autorregulação das plataformas faliu, e o que se discute não é limitar a liberdade de expressão, mas responsabilizar o abuso criminoso dela. [[moraes]] A Repórteres sem Fronteiras apoiou a decisão [[rsf]], o CGI.br viu nos decretos de 2026 critérios claros e direito de contestação [[cgi]], e a Europa já aplicou a primeira multa da sua lei: 120 milhões de euros ao X. [[dsax]]</p></div>
+ <div><b style="color:#E4572E">Quem defende mais cautela</b><p>O artigo 19 foi escrito para assegurar a liberdade de expressão e impedir a censura [[mci]]: o temor é que, por medo de processo, as redes passem a apagar posts legítimos. [[migart19]] André Mendonça defendeu punir quem publica, não a plataforma, e deixar a regra para o Congresso. [[mendonca2]] [[mendonca]] A ONG Artigo 19 apontou incertezas no novo dever de cuidado [[art19ong]], e críticos dizem que o governo criou por decreto deveres que deveriam passar pelo Congresso. [[cfoco]]</p></div></div>
+ <p class="lead" style="font-size:13.5px;margin-top:12px">O curso não toma partido nessa discussão: você decide qual argumento pesa mais.</p>
+ <button class="go" id="go" style="background:#fff;color:#1C1C24">Rodada relâmpago</button>`;
+ app.querySelectorAll("p").forEach(p=>p.innerHTML=src(p.innerHTML));
+ document.getElementById("go").onclick=()=>{next();save();render()}}
+function rel(){if(!S.rel){const pool=[...ALL].sort(()=>Math.random()-.5).slice(0,5).map(c=>c.id);S.rel={ids:pool,i:0,ok:0,done:false};save()}
+ const R=S.rel;if(R.i>=R.ids.length){R.done=true;S.scr="end";save();return render()}
+ const c=ALL.find(x=>x.id===R.ids[R.i]);
+ app.innerHTML=head("Rodada relâmpago · "+(R.i+1)+" de 5",R.i/5*100)+`<div class="k" style="margin-top:6px">Revisão: frases sorteadas dos 4 capítulos</div>
+ <div class="panel" style="margin-top:14px"><p class="claim" style="margin:0">"${esc(c.c)}"</p></div>
+ <div class="acts"><button class="m" data-v="m">Mito</button><button class="d" data-v="d">Depende</button><button class="f" data-v="f">Fato</button></div><div id="fbk"></div>`;
+ app.querySelectorAll(".acts button").forEach(b=>b.onclick=()=>{const ok=b.dataset.v===c.a;if(ok){R.ok++;S.pts+=10}snd(ok?"ok":"no");app.querySelectorAll(".acts button").forEach(x=>x.disabled=true);
+  document.getElementById("fbk").innerHTML=`<div class="panel"><div class="verd"><span class="pill ${c.a}">${V[c.a].toUpperCase()}</span><span class="${ok?"ok":"no"}">${ok?"+10":"Era "+V[c.a].toLowerCase()}</span></div></div><button class="go" id="nx">${R.i<4?"Próxima":"Ver resultado"}</button>`;
+  R.i++;save();bar0();document.getElementById("nx").onclick=()=>render()})}
+function bar0(){const t=app.querySelector(".top .r span");if(t)t.textContent=S.pts+" pts"}
+function end(){const F=S.fb,n=right(),R=S.rel||{ok:0};if(n>=13)confetti();
+ app.innerHTML=head("Resultado",100)+`<div style="margin-top:10px"><div class="k">Fato ou mito? · Regras das redes</div><h2 class="big">${n} de ${ALL.length} frases certas</h2><p class="lead">${S.pts} pontos, com ${R.ok} de 5 na rodada relâmpago.</p></div>
+ <div class="chaps">${CH.map((c,i)=>`<div>${c.i} ${c.t}<span class="stars">${stars(i)}</span></div>`).join("")}</div>
+ <div class="panel"><b>Antes de compartilhar</b><p style="font-size:14.5px">Quando uma notificação disser que "agora é proibido" ou "agora é liberado", procure a decisão ou a lei original. Muitas vezes o detalhe muda tudo, como você viu na frase marcada como Depende.</p></div>
+ <div class="panel"><b>Avalie o curso</b><p style="font-size:14px">Que nota você dá?</p><div class="rate">${[1,2,3,4,5].map(x=>`<button data-n="${x}" class="${F.nota===x?"on":""}">${x}</button>`).join("")}</div>
+ <p style="font-size:14px">O que você aprendeu que não sabia?</p><textarea id="apr" rows="2">${esc(F.apr||"")}</textarea>
+ <p style="font-size:14px">Sentiu que o curso favoreceu algum lado?</p><select id="lado"><option value="">Escolha</option>${["Não","Sim, a favor de regular mais","Sim, contra regular mais","Não sei"].map(o=>`<option ${F.lado===o?"selected":""}>${o}</option>`).join("")}</select>
+ <p style="font-size:14px">Comentário</p><textarea id="com" rows="2">${esc(F.com||"")}</textarea>
+ <p style="font-size:14px">Que tema você quer que vire o próximo Fato ou mito?</p><textarea id="tema" rows="2">${esc(F.tema||"")}</textarea>
+ <button class="go" id="env">${F.sent?"Avaliação enviada ✓":"Enviar avaliação"}</button></div>
+ <div class="panel"><b>Próximos da série Fato ou mito?</b><p style="font-size:14.5px">Já disponível: urna eletrônica. Em breve: novos temas, escolhidos pelas avaliações.</p></div>
+ <div class="panel"><b>Para ir além</b><p style="font-size:14px"><a style="color:#C9C2FF" href="https://www.youtube.com/results?search_query=STF+artigo+19+marco+civil+da+internet" target="_blank" rel="noopener">Vídeos sobre a decisão do STF e o Marco Civil (busca no YouTube)</a></p></div>
+ <div class="panel"><b>Fontes</b><ul class="fontes">${Object.values(FONTES).map(f=>`<li>${esc(f.t)}${f.u?` · <a href="${f.u}" target="_blank" rel="noopener">abrir</a>`:""}</li>`).join("")}</ul></div>
+ <button class="go alt" id="again">Jogar de novo</button>`;
+ app.querySelectorAll(".panel p").forEach(p=>p.innerHTML=src(p.innerHTML));
+ app.querySelectorAll("[data-n]").forEach(b=>b.onclick=()=>{S.fb.nota=+b.dataset.n;save();app.querySelectorAll("[data-n]").forEach(x=>x.classList.toggle("on",x===b))});
+ [["apr","apr"],["com","com"],["tema","tema"]].forEach(([i,k])=>document.getElementById(i).oninput=e=>{S.fb[k]=e.target.value;save()});
+ document.getElementById("lado").onchange=e=>{S.fb.lado=e.target.value;save()};
+ document.getElementById("env").onclick=e=>{S.fb.sent=true;try{const q=JSON.parse(localStorage.getItem("pmu-fila")||"[]");q.push({curso:"fato-ou-mito-redes",quando:new Date().toISOString(),...S.fb});localStorage.setItem("pmu-fila",JSON.stringify(q))}catch(x){}save();e.target.textContent="Avaliação enviada ✓"};
+ document.getElementById("again").onclick=()=>{S={scr:"intro",ci:0,k:0,ans:{},pts:0,streak:0,mute:S.mute,fb:{},rel:null};save();render()}}
+function confetti(){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;const cv=document.createElement("canvas");cv.className="confetti";cv.width=innerWidth;cv.height=innerHeight;document.body.appendChild(cv);const x=cv.getContext("2d");const P=Array.from({length:90},()=>({x:Math.random()*cv.width,y:-20-Math.random()*200,v:2+Math.random()*3,r:Math.random()*6.28,c:["#3DDBC0","#8C7CFF","#F07A4B","#FFD66B"][Math.random()*4|0]}));let t=0;(function f(){x.clearRect(0,0,cv.width,cv.height);P.forEach(p=>{p.y+=p.v;p.r+=.1;x.fillStyle=p.c;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillRect(-4,-2,8,4);x.restore()});if(++t<140)requestAnimationFrame(f);else cv.remove()})();snd("win")}
+const pop=document.getElementById("fnpop");
+document.addEventListener("click",e=>{const b=e.target.closest(".fn");if(b){e.preventDefault();e.stopPropagation();const f=FONTES[b.dataset.f];if(!f)return;document.getElementById("fnbody").innerHTML=`<b>Fonte</b><br>${esc(f.t)}${f.u?`<br><a href="${f.u}" target="_blank" rel="noopener">Abrir a fonte ↗</a>`:""}`;pop.style.display="block";return}
+ if(e.target.closest("#fnpop .x")||!e.target.closest("#fnpop"))pop.style.display="none"},true);
+if(S.scr==="card"&&S.ans[S.ci+"-"+S.k]){if(S.k<CH[S.ci].cards.length-1)S.k++;else S.scr="recap"}
+render();
+</script>
+</body></html>

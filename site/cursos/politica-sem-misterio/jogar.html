@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#0E0B24">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política sem Mistério</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Press+Start+2P&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0E0B24; --ink:#EAE6FF; --muted:#A39DCF; --card:#17123A; --card2:#1E1849; --line:#352D6E;
+  --cy:#3EF2FF; --mg:#FF4FD8; --yl:#FFE45E; --ok:#5CFF9D; --bad:#FF5A6E;
+  --pix:"Press Start 2P",monospace; --head:"Chakra Petch",Nunito,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;font-size:17px;line-height:1.6}
+body{background:radial-gradient(ellipse at 50% -10%,#2B1D6B 0%,#0E0B24 60%) fixed}
+body::after{content:"";position:fixed;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);pointer-events:none;z-index:90}
+h1,h2,h3{font-family:var(--head);font-weight:700;line-height:1.15;margin:0 0 .5em;color:#fff}
+b{color:#fff}
+button{font:inherit;cursor:pointer;border:0;color:inherit}
+#app{max-width:560px;margin:0 auto;padding:0 16px 48px}
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:rgba(14,11,36,.92);backdrop-filter:blur(8px);margin:0 -16px;padding:10px 16px;border-bottom:1px solid var(--line)}
+.toprow{display:flex;align-items:center;gap:10px}
+.lvl{font-family:var(--head);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--yl);border:1.5px solid var(--yl);border-radius:4px;padding:2px 8px;white-space:nowrap}
+.xpbar{flex:1;height:12px;border:2px solid var(--cy);padding:1px}
+.xpbar i{display:block;height:100%;background:repeating-linear-gradient(90deg,var(--cy) 0 6px,transparent 6px 8px);transition:width .6s;box-shadow:0 0 8px var(--cy)}
+.chip{font-family:var(--pix);font-size:.6rem;white-space:nowrap;color:var(--yl)}
+.xptxt{font-family:var(--head);font-weight:700;font-size:.72rem;color:var(--muted);margin-top:6px;display:flex;justify-content:space-between;letter-spacing:.02em}
+/* home */
+.hero{padding:24px 0 6px}
+.hero h1{font-size:2.3rem;letter-spacing:.03em;text-transform:uppercase;text-shadow:0 0 14px var(--mg),3px 3px 0 var(--mg)}
+.hero p{color:var(--muted);margin:0}
+.sec{font-family:var(--head);font-weight:700;font-size:.85rem;text-transform:uppercase;color:var(--cy);margin:28px 0 12px;letter-spacing:.12em}
+.trail{display:flex;flex-direction:column;gap:12px}
+.tile{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.04);border:2px solid var(--line);border-radius:6px;padding:12px;text-align:left;width:100%;transition:transform .1s}
+.tile:active{transform:scale(.98)}
+.tile .em{width:50px;height:50px;flex:none;border-radius:4px;display:grid;place-items:center;font-size:1.5rem;background:#1B1545;border:2px solid var(--mg)}
+.tile .tt{flex:1;min-width:0}
+.tile .tt b{display:block;font-family:var(--head);font-size:1.05rem;line-height:1.25}
+.tile .tt small{color:var(--muted);font-size:.84rem}
+.tile .tt .px{display:block;font-family:var(--pix);font-size:.52rem;color:var(--cy);margin-bottom:5px;letter-spacing:.03em}
+.tile .st{font-size:.8rem;white-space:nowrap;color:var(--yl)}
+.tile.locked{opacity:.42}
+.tile.next{border-color:var(--cy);box-shadow:0 0 16px rgba(62,242,255,.5),inset 0 0 14px rgba(62,242,255,.12)}
+.tile.special .em{border-color:var(--yl)}
+.badges{display:flex;flex-wrap:wrap;gap:8px}
+.bdg{background:rgba(255,255,255,.05);border:1.5px solid var(--line);border-radius:4px;padding:6px 10px;font-size:.82rem;font-weight:700}
+.bdg:not(.off){border-color:var(--yl);box-shadow:0 0 8px rgba(255,228,94,.35)}
+.bdg.off{opacity:.3;filter:grayscale(1)}
+/* lesson */
+.head{display:flex;align-items:center;gap:10px;padding:16px 0 6px}
+.back{background:transparent;border:2px solid var(--line);border-radius:4px;width:40px;height:40px;font-size:1.1rem}
+.head .ht{flex:1;font-family:var(--head);font-weight:700;font-size:.95rem}
+.dots{display:flex;gap:4px;margin:6px 0 14px}
+.dots i{flex:1;height:6px;background:#2A2360}
+.dots i.on{background:var(--cy);box-shadow:0 0 6px var(--cy)}
+.card{background:var(--card);border:2px solid var(--line);border-radius:6px;padding:22px 20px;animation:pop .25s ease;color:#DCD7F7}
+.card h2{font-size:1.5rem;color:var(--cy);text-shadow:0 0 10px rgba(62,242,255,.45)}
+.card p{margin:.6em 0}
+.card ul,.card ol{padding-left:1.1em;margin:.5em 0}
+.card li{margin:.35em 0}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+.tip,.pro,.con,.warn{border-radius:4px;padding:11px 13px;margin:12px 0;font-size:.95rem;border-left:4px solid}
+.tip{background:rgba(255,228,94,.08);border-color:var(--yl)}
+.pro{background:rgba(92,255,157,.08);border-color:var(--ok)}
+.con{background:rgba(255,90,110,.09);border-color:var(--bad)}
+.warn{background:rgba(255,255,255,.05);border-color:var(--muted);font-size:.86rem;color:#C9C4EA}
+.pro b,.con b,.tip b{display:block;margin-bottom:2px}
+.nav{display:flex;gap:10px;margin-top:16px}
+.btn{flex:1;background:var(--cy);color:#0E0B24;font-family:var(--head);font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-radius:4px;padding:15px;box-shadow:0 4px 0 #1A8C99,0 0 16px rgba(62,242,255,.45);font-size:1rem}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #1A8C99}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line);box-shadow:none;flex:.5}
+.btn.ok{background:var(--ok);box-shadow:0 4px 0 #22A35A,0 0 16px rgba(92,255,157,.45)}
+.btn:disabled{opacity:.45}
+/* quiz */
+.card.quiz{border-color:var(--mg);background:rgba(255,79,216,.05);box-shadow:0 0 18px rgba(255,79,216,.25)}
+.qtag{font-family:var(--head);font-size:.78rem;font-weight:700;color:var(--yl);text-transform:uppercase;letter-spacing:.06em}
+.qq{font-family:var(--head);font-weight:700;font-size:1.32rem;margin:6px 0 14px;line-height:1.25;color:#fff}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{text-align:left;background:rgba(255,255,255,.03);border:2px solid var(--line);border-radius:4px;padding:13px 14px;font-weight:700}
+.opt:active{border-color:var(--cy)}
+.opt.right{border-color:var(--ok);color:var(--ok);box-shadow:0 0 12px rgba(92,255,157,.45)}
+.opt.wrong{border-color:var(--bad);color:var(--bad);animation:shake .3s}
+.opt.dim{opacity:.4}
+.opts.grid2{display:grid;grid-template-columns:1fr 1fr}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.fb{border-radius:4px;padding:12px 14px;margin-top:14px;font-size:.95rem;animation:pop .2s;border-left:4px solid}
+.fb.good{background:rgba(92,255,157,.08);border-color:var(--ok)} .fb.badf{background:rgba(255,90,110,.09);border-color:var(--bad)}
+.fb b{display:block;font-family:var(--head)}
+/* result */
+.res{text-align:center}
+.big{font-size:3.4rem;margin:6px 0}
+.stars{font-size:2.2rem;letter-spacing:6px;color:var(--yl);text-shadow:0 0 12px var(--yl)}
+.reward{display:inline-block;border:2px solid var(--yl);color:var(--yl);font-family:var(--head);font-weight:700;border-radius:4px;padding:6px 14px;margin:6px 4px}
+.res h2{font-family:var(--pix);font-size:1rem;line-height:1.6;color:var(--yl);text-shadow:0 0 10px #FF8A00}
+/* compass */
+.compass{width:100%;max-width:340px;display:block;margin:10px auto}
+.compass text{font-family:"Chakra Petch",Nunito;font-weight:700}
+.qbox{cursor:pointer}
+.qinfo{min-height:60px;background:rgba(255,255,255,.05);border:1.5px solid var(--line);border-radius:4px;padding:11px 13px;font-size:.92rem}
+.scale{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+/* spectrum */
+.spec{display:flex;flex-direction:column;gap:6px;margin:12px 0}
+.spec div{border-radius:4px;padding:8px 12px;font-size:.9rem;font-weight:800;color:#0E0B24;display:flex;gap:10px;align-items:baseline;white-space:nowrap}
+.spec span{font-weight:600;font-size:.86rem;line-height:1.35;white-space:normal}
+.grad{height:8px;background:linear-gradient(90deg,#3EF2FF,#B9B4D9,#FFB347);box-shadow:0 0 8px rgba(62,242,255,.4)}
+.bars{margin:10px 0}
+.barrow{display:flex;align-items:center;gap:8px;font-size:.85rem;margin:6px 0}
+.barrow span{width:110px;flex:none}
+.barrow i{display:block;height:14px;background:repeating-linear-gradient(90deg,var(--mg) 0 6px,transparent 6px 8px);box-shadow:0 0 6px rgba(255,79,216,.5)}
+/* toast & confetti */
+.toast{position:fixed;left:50%;top:76px;transform:translateX(-50%);background:#0E0B24;border:2px solid var(--yl);color:var(--yl);font-family:var(--head);font-weight:700;font-size:.95rem;border-radius:4px;padding:10px 14px;z-index:95;animation:toast 1.4s forwards;pointer-events:none;box-shadow:0 0 14px rgba(255,228,94,.5);white-space:nowrap}
+@keyframes toast{0%{opacity:0;transform:translate(-50%,10px)}15%{opacity:1;transform:translate(-50%,0)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-14px)}}
+.cf{position:fixed;top:-12px;width:8px;height:8px;z-index:96;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(360deg)}}
+/* certificate */
+.cert{background:var(--card);border:3px solid var(--yl);border-radius:6px;padding:26px 18px;text-align:center;box-shadow:0 0 22px rgba(255,228,94,.35)}
+.cert h2{font-size:1.6rem;text-transform:uppercase;text-shadow:0 0 12px var(--mg),2px 2px 0 var(--mg)}
+.cert .nm{font-family:var(--head);font-size:1.7rem;font-weight:700;color:var(--cy);margin:8px 0;border-bottom:2px solid var(--line);padding-bottom:6px;text-shadow:0 0 10px rgba(62,242,255,.5)}
+input.txt,textarea.txt{width:100%;font:inherit;padding:13px;border:2px solid var(--line);border-radius:4px;background:var(--card);color:#fff;margin:10px 0}
+.foot{color:var(--muted);font-size:.78rem;text-align:center;margin-top:30px}
+.reset{background:none;color:var(--muted);text-decoration:underline;font-size:.8rem;margin-top:6px}
+.side,.side2{border-radius:4px;padding:11px 13px;margin:12px 0;font-size:.95rem;border-left:4px solid}
+.side{background:rgba(62,242,255,.07);border-color:var(--cy)} .side2{background:rgba(255,79,216,.07);border-color:var(--mg)}
+.side b,.side2 b{display:block;margin-bottom:2px}
+.argbox{background:rgba(255,228,94,.07);border:1.5px dashed var(--yl);border-radius:4px;padding:12px 13px;margin:10px 0 4px;font-style:italic;color:#fff}
+.argbox .who{font-style:normal;font-family:var(--head);font-weight:700;font-size:.8rem;color:var(--yl);margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.mute{background:transparent;border:1.5px solid var(--line);border-radius:4px;width:32px;height:28px;font-size:.9rem;padding:0}
+.upd{display:inline-block;margin-top:10px;font-family:var(--head);font-weight:700;font-size:.8rem;color:var(--ok);border:1.5px solid var(--ok);border-radius:4px;padding:3px 9px}
+.deep{background:var(--card);border:2px solid var(--line);border-radius:6px;padding:16px;margin-top:14px}
+.deep .bk{margin:10px 0}.deep .bk b{display:block;font-family:var(--head)}.deep .bk span{color:var(--muted);font-size:.86rem}
+.deep .yt{display:block;margin-top:10px;color:var(--cy);font-weight:700;font-size:.9rem}
+.pull{display:flex;gap:10px;align-items:baseline;margin:8px 0;font-size:.9rem}
+.pull span{flex:none;font-family:var(--head);font-weight:700;font-size:.75rem;color:var(--yl);border:1.5px solid var(--yl);border-radius:4px;padding:1px 6px;white-space:nowrap}
+.how{margin-top:12px;font-size:.88rem;color:#C9C4EA;background:rgba(255,255,255,.05);border:1.5px solid var(--line);border-radius:4px;padding:10px 12px}
+/* fontes: selo + toque */
+.fn{display:inline-flex;align-items:center;gap:3px;font:700 .72rem/1.3 "Chakra Petch",sans-serif;background:#FFE45E;color:#0E0B24;border:0;border-radius:4px;padding:1px 7px;margin:0 2px;vertical-align:1px;cursor:pointer;white-space:nowrap}
+.fl{margin:10px 0 0;font:600 .74rem "Chakra Petch",sans-serif;letter-spacing:.05em;opacity:.85}
+#fnpop{position:fixed;left:12px;right:12px;bottom:14px;max-width:536px;margin:0 auto;background:#1B1440;border:2px solid #3EF2FF;border-radius:14px;color:#fff;padding:14px 16px 12px;z-index:90;box-shadow:0 0 24px rgba(62,242,255,.35);font-size:.92rem;line-height:1.45}
+#fnpop b{display:block;font-family:"Chakra Petch",sans-serif;letter-spacing:.12em;color:#3EF2FF;font-size:.8rem;margin-bottom:4px}
+#fnpop a{color:#FFE45E;font-weight:700}
+#fnpop .x{position:absolute;top:8px;right:10px;background:none;border:0;color:#fff;font-size:1.1rem;cursor:pointer}
+#fnpop .nt{opacity:.7;font-size:.8rem;margin-top:4px}
+.fonteslist{background:rgba(255,255,255,.05);border:1.5px solid #3EF2FF;border-radius:14px;padding:14px 16px;margin-top:14px;text-align:left}
+.fonteslist ol{margin:6px 0 0;padding-left:1.2em;font-size:.86rem}
+.fonteslist li{margin:5px 0}
+.fonteslist a{color:#FFE45E;font-weight:700}
+.vcard video{width:100%;aspect-ratio:1/1;border-radius:14px;background:#0E0B24;display:block;margin:12px 0 6px}
+.btn.pulse{animation:pls 1s ease-in-out 3}@keyframes pls{50%{transform:scale(1.04)}}
+.av-q{font-weight:700;margin:16px 0 6px}.av-row{display:flex;gap:8px;flex-wrap:wrap}.av-row label{flex:1;min-width:52px;text-align:center;border:2px solid currentColor;opacity:.75;border-radius:8px;padding:10px 6px;cursor:pointer}.av-row input{position:absolute;opacity:0;pointer-events:none}.av-row label:has(input:checked){opacity:1;outline:3px solid currentColor;outline-offset:1px;font-weight:700}.av-row input:focus-visible+span{text-decoration:underline}textarea.txt{min-height:74px;resize:vertical}
+.vo{display:block;width:100%;text-align:left;margin:10px 0;padding:14px;border:2px solid currentColor;border-radius:10px;background:transparent;color:inherit;font:inherit;opacity:.85;cursor:pointer}.vo b{display:block;font-size:1.05em}.vo small{opacity:.8}.vo.on{opacity:1;outline:3px solid currentColor;outline-offset:2px}.vside{margin:10px 0 0;padding-top:10px;border-top:1px dashed currentColor}.vside b{display:block;margin-bottom:2px}
+</style>
+<link rel="canonical" href="https://pensemaisuma.com.br/cursos/politica-sem-misterio/">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+<div id="pmu-bar" style="font-family:Nunito,system-ui,sans-serif;background:#FAF7F0;color:#17150F;border-bottom:1.5px solid #17150F;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:14px;font-weight:800;position:relative;z-index:50">
+<a href="index.html" style="color:inherit;text-decoration:none">← Sobre o curso</a>
+<a href="../../index.html" style="display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none"><img src="../../assets/logo.svg" alt="" width="26" height="26"><span style="font-family:Fraunces,Georgia,serif">Pense Mais Uma</span></a>
+<a href="index.html#avaliar" style="color:inherit">Avaliar</a></div>
+<div id="app"></div>
+<script>
+/* =========================================================
+   CONTEÚDO DO CURSO
+   ========================================================= */
+const MODULES = [
+{
+  id:'mapa', emoji:'🧭', title:'O mapa da política', sub:'De onde vêm esquerda e direita', badge:'🧭 Navegador',
+  cards:[
+    {t:'Tudo começou com cadeiras', h:`<p>Em 1789, na Revolução Francesa, os deputados discutiam quanto poder o rei deveria ter.</p>
+      <p>Quem queria <b>manter</b> o poder do rei sentava à <b>direita</b> do presidente da Assembleia. Quem queria <b>mudanças</b> sentava à <b>esquerda</b>.</p>
+      <p>O lugar virou apelido, e o apelido virou a forma como o mundo inteiro fala de política.</p>
+      <div class="tip"><b>💡 Guarde isso</b>Na origem, "direita" significava preservar a ordem existente e "esquerda" significava transformá-la.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="history" aria-label="Ver fonte: History.com">🔎 History.com</button></p>`},
+    {t:'A ideia por trás dos lados', h:`<p>O filósofo italiano Norberto Bobbio resumiu a diferença assim:</p>
+      <ul><li>A <b>esquerda</b> se incomoda mais com a <b>desigualdade</b> e aceita mais ação do governo para reduzi-la.</li>
+      <li>A <b>direita</b> tende a ver parte da desigualdade como natural, ou como o preço da liberdade, e desconfia de um governo que interfere demais.</li></ul>
+      <div class="warn">É uma simplificação útil para começar, não uma regra absoluta.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="bobbio" aria-label="Ver fonte: Bobbio">🔎 Bobbio</button></p>`},
+    {t:'Por que uma linha só não basta', h:`<p>Pense em duas pessoas:</p>
+      <ul><li><b>Ana</b> quer impostos baixos e livre mercado, mas acha que adultos devem poder fazer o que quiserem da própria vida.</li>
+      <li><b>Bruno</b> quer o Estado forte na economia e também quer o governo defendendo costumes tradicionais.</li></ul>
+      <p>Onde você colocaria cada um numa linha que vai da esquerda à direita? Fica difícil.</p>
+      <p>Por isso muitos estudiosos usam <b>dois eixos</b>.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="heywood" aria-label="Ver fonte: Heywood">🔎 Heywood</button></p>`},
+    {t:'Os dois eixos', h:`<p><b>↔ Eixo econômico:</b> quanto o Estado deve mexer na economia. De um lado fica "mais Estado" (mais à esquerda), do outro "mais mercado" (mais à direita).</p>
+      <p><b>↕ Eixo das liberdades:</b> quanto o governo deve controlar a vida das pessoas. Em cima fica "mais ordem e autoridade", embaixo "mais liberdade individual".</p>
+      <p>👇 Toque em cada quadrante:</p>{{COMPASS}}
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="heywood" aria-label="Ver fonte: Heywood">🔎 Heywood</button></p>`},
+    {t:'Mini-dicionário', h:`<ul>
+      <li><b>Estado:</b> o conjunto de governo, leis, órgãos públicos e serviços. É diferente de "governo", que é quem está no comando agora.</li>
+      <li><b>Mercado:</b> pessoas e empresas comprando, vendendo e competindo livremente.</li>
+      <li><b>Privatizar:</b> vender uma empresa pública para donos privados. <b>Estatizar</b> é o contrário.</li>
+      <li><b>Progressista:</b> quem quer mudar costumes e instituições para ampliar direitos.</li>
+      <li><b>Conservador:</b> quem quer preservar costumes e instituições tradicionais.</li></ul>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="heywood" aria-label="Ver fonte: Heywood">🔎 Heywood</button></p>`}
+  ],
+  quiz:[
+    {q:'De onde vêm os termos "esquerda" e "direita"?', o:['Da posição dos deputados na Assembleia durante a Revolução Francesa','Dos partidos do Parlamento inglês no século XVII','Da Revolução Russa de 1917, entre bolcheviques e mencheviques','Da Guerra Fria, entre EUA e União Soviética'], a:0, e:'Foi em 1789, na França. A Revolução Russa e a Guerra Fria vieram muito depois e só herdaram os termos.'},
+    {q:'Para Norberto Bobbio, o que mais diferencia a esquerda da direita?', o:['A atitude diante da desigualdade','A posição sobre religião','O tamanho do Estado em qualquer situação','A defesa ou não da democracia'], a:0, e:'Existem democratas e autoritários dos dois lados. O critério de Bobbio é o peso dado à igualdade.'},
+    {q:'Ana quer impostos baixos, livre mercado e liberdade total para adultos decidirem a própria vida. Em qual quadrante ela fica?', o:['Mercado + liberdade','Mercado + ordem','Estado forte + liberdade','Bem no centro'], a:0, e:'Ela fica à direita na economia e embaixo, no lado da liberdade, nos costumes. É o perfil libertário.'},
+    {q:'Qual destas propostas é do eixo das LIBERDADES, e não do econômico?', o:['O Estado deve proibir certos livros e filmes','O Estado deve ser dono da Petrobras','Os impostos sobre grandes empresas devem subir','O governo deve controlar o preço da gasolina'], a:0, e:'Censura é sobre liberdade individual. As outras três tratam de dinheiro e propriedade.'}
+  ],
+  flash:{title:'Que eixo é esse?', ch:['💰 Econômico','🗽 Liberdades'], items:[
+    {t:'Privatizar empresas estatais', a:0, e:'O assunto é quem é dono das empresas, ou seja, economia.'},
+    {t:'Legalizar a maconha', a:1, e:'O assunto é o que adultos podem fazer da própria vida.'},
+    {t:'Aumentar o salário mínimo', a:0, e:'É uma regra de mercado de trabalho, portanto economia.'},
+    {t:'Censurar filmes considerados ofensivos', a:1, e:'O assunto é liberdade de expressão.'},
+    {t:'Criar um imposto sobre grandes fortunas', a:0, e:'Trata de tributação, portanto economia.'},
+    {t:'Casamento entre pessoas do mesmo sexo', a:1, e:'Trata de costumes e direitos individuais.'}
+  ]}
+},
+{
+  id:'eco', emoji:'💰', title:'Economia de bolso', sub:'Inflação, juros, impostos e dívida', badge:'💰 Economista de Bolso',
+  cards:[
+    {t:'Por que falar de economia?', h:`<p>Boa parte das brigas políticas é sobre dinheiro: quem paga imposto, quanto o governo gasta e quem recebe ajuda.</p>
+      <p>Com <b>4 conceitos</b> (inflação, juros, impostos e dívida) você entende a maior parte dessas discussões. As próximas fases vão usar muito essas ideias.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="heywood" aria-label="Ver fonte: Heywood">🔎 Heywood</button></p>`},
+    {t:'Inflação', h:`<p>É quando os preços sobem <b>no geral</b> e o mesmo dinheiro compra menos coisas.</p>
+      <p>No Brasil, a medida oficial é o <b>IPCA</b>, calculado pelo IBGE.</p>
+      <p>Existe uma <b>meta</b>: desde 2025 ela é de <b>3% ao ano</b>, com tolerância de 1,5 ponto para cima ou para baixo, ou seja, entre 1,5% e 4,5%.</p>
+      <div class="tip"><b>💡 Por que importa</b>A inflação pesa mais para quem é pobre, porque quem tem pouco dinheiro não consegue se proteger aplicando no banco.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="meta" aria-label="Ver fonte: CNN Brasil">🔎 CNN Brasil</button></p>`},
+    {t:'Juros e Selic', h:`<p>A <b>Selic</b> é a taxa básica de juros do país. Quem decide é o <b>Copom</b>, do Banco Central, a cada cerca de 45 dias.</p>
+      <ul><li><b>Juros altos:</b> o crédito fica caro, as pessoas compram menos e a inflação cai. Mas a economia esfria e a dívida do governo fica mais cara.</li>
+      <li><b>Juros baixos:</b> o efeito contrário.</li></ul>
+      <p>Em novembro de 2026, a Selic estava em <b>13,75% ao ano</b>, segundo o Copom. <button type="button" class="fn" data-f="copom" aria-label="Ver fonte: Copom, 4/nov/2026">🔎 Copom, 4/nov/2026</button> Antes, ficou em 15% de junho de 2025 a março de 2026.</p>
+      <div class="warn">Desde 2021 o Banco Central tem autonomia: o presidente da República não pode demitir o presidente do BC quando quiser.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="copom" aria-label="Ver fonte: Copom, 4/nov/2026">🔎 Copom, 4/nov/2026</button> <button type="button" class="fn" data-f="selic15" aria-label="Ver fonte: Exame">🔎 Exame</button></p>`},
+    {t:'Impostos', h:`<p>Existem dois grandes tipos:</p>
+      <ul><li><b>Sobre a renda</b>, como o Imposto de Renda: quem ganha mais paga uma porcentagem maior.</li>
+      <li><b>Sobre o consumo</b>, embutidos no preço do arroz, da luz e do celular: todo mundo paga a mesma porcentagem.</li></ul>
+      <p>No Brasil, os impostos sobre consumo pesam muito. Como quem é pobre gasta quase tudo o que ganha, proporcionalmente paga mais. Economistas chamam isso de sistema <b>regressivo</b>.</p>
+      <p>Mudanças recentes: desde janeiro de 2026, quem ganha até R$ 5 mil por mês não paga Imposto de Renda. Além disso, uma reforma está trocando vários impostos sobre consumo por um modelo mais simples, em transição até 2033.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="lei15270" aria-label="Ver fonte: Lei 15.270/2025">🔎 Lei 15.270/2025</button></p>`},
+    {t:'Gasto público e dívida', h:`<p>Quando o governo gasta mais do que arrecada, ele tem <b>déficit</b> e precisa pegar dinheiro emprestado. A soma dessas dívidas é a <b>dívida pública</b>.</p>
+      <div class="side"><b>⬅️ Visão mais à esquerda</b>Gasto público em saúde, educação e obras gera emprego e protege os pobres. Em crises, o governo deve gastar mais para reanimar a economia, ideia associada ao economista John Maynard Keynes.</div>
+      <div class="side2"><b>➡️ Visão mais à direita</b>Gastar demais gera dívida, juros altos e inflação, e no fim quem paga a conta são os mais pobres. O governo deve gastar só o que arrecada, ideia associada a Milton Friedman e Friedrich Hayek.</div>
+      <p>Muitos governos e economistas ficam no meio: aceita gasto público, mas com limite. No Brasil, esse limite apareceu no <b>teto de gastos</b> (2016) e no <b>arcabouço fiscal</b> (2023).</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="fiscal" aria-label="Ver fonte: EC 95 e LC 200">🔎 EC 95 e LC 200</button></p>`}
+  ],
+  quiz:[
+    {q:'O que é inflação?', o:['Aumento geral dos preços, que faz o dinheiro comprar menos','Aumento forte do preço de um único produto, como a gasolina','Aumento dos salários acima dos preços','Aumento da taxa de juros'], a:0, e:'Um produto subir sozinho não é inflação. Inflação é a média de muitos preços subindo.'},
+    {q:'Se o Banco Central sobe a Selic, o que tende a acontecer?', o:['O crédito encarece e a inflação tende a cair','Os preços sobem mais rápido','A dívida do governo fica mais barata','O desemprego cai imediatamente'], a:0, e:'Juros altos seguram o consumo e a inflação, mas encarecem a dívida pública e esfriam a economia.'},
+    {q:'Por que se diz que o sistema de impostos brasileiro é "regressivo"?', o:['Porque os impostos sobre consumo pesam proporcionalmente mais para quem ganha menos','Porque os ricos pagam uma porcentagem maior da renda','Porque a carga de impostos está diminuindo','Porque o Imposto de Renda é o principal imposto do país'], a:0, e:'Quem é pobre gasta quase tudo em consumo e, por isso, paga uma fatia maior da renda em impostos embutidos nos preços.'},
+    {q:'Qual é a meta de inflação do Brasil desde 2025?', o:['3% ao ano, com tolerância de 1,5 ponto','4,5% ao ano, sem tolerância','6% ao ano','Igual à taxa Selic'], a:0, e:'A inflação pode ficar entre 1,5% e 4,5% sem que a meta seja considerada descumprida.'}
+  ],
+  flash:{title:'Quem decide?', ch:['🏦 Banco Central','🏛️ Congresso','📊 IBGE'], items:[
+    {t:'A taxa Selic', a:0, e:'É decidida pelo Copom, do Banco Central.'},
+    {t:'Criar ou aumentar impostos', a:1, e:'Impostos precisam de lei, e quem faz leis é o Congresso.'},
+    {t:'Calcular a inflação oficial (IPCA)', a:2, e:'O IBGE mede os preços todo mês.'},
+    {t:'Aprovar o Orçamento do governo', a:1, e:'O governo propõe, mas quem aprova é o Congresso.'},
+    {t:'Medir a taxa de desemprego', a:2, e:'O IBGE mede pela pesquisa PNAD.'},
+    {t:'Emitir o dinheiro (o real)', a:0, e:'O Banco Central emite a moeda, e a Casa da Moeda a fabrica.'}
+  ]}
+},
+{
+  id:'liberal', emoji:'📜', title:'Liberalismo e libertarianismo', sub:'Liberdade individual e mercado', badge:'📜 Leitor de Locke',
+  cards:[
+    {t:'O liberalismo clássico', h:`<p>Nasceu entre os séculos XVII e XVIII com pensadores como <b>John Locke</b> e <b>Adam Smith</b>.</p>
+      <p>A ideia central é que cada pessoa tem direitos que nenhum governo pode tirar: <b>vida, liberdade e propriedade</b>.</p>
+      <ul><li>O governo deve ser limitado por leis e nem o rei fica acima delas.</li><li>As trocas livres no mercado geram riqueza.</li></ul>
+      <div class="tip"><b>💡 Curiosidade</b>Na época, isso era revolucionário: era o que a "esquerda" da Revolução Francesa defendia contra o rei.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="locke" aria-label="Ver fonte: Locke e Smith">🔎 Locke e Smith</button></p>`},
+    {t:'⚠️ Pegadinha do nome', h:`<p>"Liberal" significa coisas diferentes dependendo do país:</p>
+      <ul><li><b>No Brasil e na Europa:</b> geralmente é quem defende livre mercado e Estado menor, o que fica mais à direita na economia.</li>
+      <li><b>Nos EUA:</b> "liberal" é quem é <b>progressista</b>, de centro-esquerda.</li></ul>
+      <p>Por isso, quando você ler uma notícia americana, "liberal" quase sempre quer dizer o oposto do que se entende aqui.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="heywood" aria-label="Ver fonte: Heywood">🔎 Heywood</button></p>`},
+    {t:'As variações', h:`<ul>
+      <li><b>Liberalismo social:</b> aceita o mercado, mas quer que o Estado garanta educação, saúde e oportunidades para todos competirem em pé de igualdade.</li>
+      <li><b>"Neoliberalismo":</b> rótulo usado principalmente por críticos para as políticas dos anos 80 e 90, como privatizações, abertura comercial e controle de gastos. Margaret Thatcher e Ronald Reagan são os exemplos mais citados. Quase ninguém se apresenta como neoliberal.</li>
+      <li><b>Libertarianismo:</b> Estado mínimo na economia <b>e</b> nos costumes. Os mais radicais, os <b>anarcocapitalistas</b>, querem nenhum Estado.</li></ul>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="boas" aria-label="Ver fonte: Boas e Gans-Morse">🔎 Boas e Gans-Morse</button></p>`},
+    {t:'O debate', h:`<div class="pro"><b>👍 Quem defende diz</b>O mercado livre gera mais riqueza e inovação do que qualquer planejamento do governo. Governos concentram poder e erram, e a liberdade individual é o valor mais importante.</div>
+      <div class="con"><b>👎 Quem critica diz</b>O mercado sozinho gera desigualdade e não cuida de quem fica para trás. Ele também cria monopólios e crises financeiras, como a de 2008, que exigiram socorro do Estado.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="hayek" aria-label="Ver fonte: Hayek e Losurdo">🔎 Hayek e Losurdo</button></p>`}
+  ],
+  quiz:[
+    {q:'Nos EUA, um "liberal" geralmente é...', o:['Progressista, de centro-esquerda','Defensor do livre mercado, como no Brasil','Libertário, contra quase todo imposto','Conservador moderado'], a:0, e:'Lá a palavra ganhou outro sentido. No Brasil ela costuma indicar quem defende o livre mercado.'},
+    {q:'Qual ideia NÃO faz parte do liberalismo clássico?', o:['O Estado deve planejar o que as fábricas produzem','Ninguém, nem o governante, está acima da lei','Todos têm direito à vida, à liberdade e à propriedade','O comércio livre gera riqueza'], a:0, e:'Planejamento estatal da produção é o oposto da ideia liberal de mercado livre.'},
+    {q:'O termo "neoliberalismo" é...', o:['Usado mais por críticos para políticas de privatização e corte de gastos dos anos 80 e 90','Um conceito criado por Adam Smith no século XVIII','O nome oficial do programa de um partido brasileiro','Sinônimo de liberalismo social'], a:0, e:'Quase ninguém se apresenta como neoliberal. É mais um rótulo de quem critica essas políticas.'},
+    {q:'O que diferencia um libertário de um liberal-conservador?', o:['O libertário também quer o Estado fora dos costumes; o liberal-conservador quer preservar valores tradicionais','O libertário defende Estado forte na economia','O liberal-conservador é contra o livre mercado','Nada: são sinônimos'], a:0, e:'Os dois defendem o mercado. A diferença está no eixo das liberdades.'}
+  ]
+},
+{
+  id:'conserv', emoji:'🏛️', title:'Conservadorismo e as direitas', sub:'Tradição, ordem, nação', badge:'🏛️ Guardião de Burke',
+  cards:[
+    {t:'O pai do conservadorismo', h:`<p>Em 1790, o irlandês <b>Edmund Burke</b> escreveu criticando a Revolução Francesa.</p>
+      <p>A tese dele: instituições e tradições que duraram gerações guardam uma sabedoria acumulada. Destruir tudo de uma vez, em nome de uma teoria, costuma terminar mal. A Revolução desembocou no período chamado "Terror" (1793–94).</p>
+      <div class="tip"><b>💡 Importante</b>O conservador não é contra toda mudança. Ele é contra mudanças <b>bruscas</b> e prefere reformas graduais e prudentes.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="burke" aria-label="Ver fonte: Burke, 1790">🔎 Burke, 1790</button></p>`},
+    {t:'Valores típicos', h:`<ul><li>Família como base da sociedade</li><li>Papel da religião e da moral tradicional</li><li>Ordem, segurança e respeito à autoridade</li><li>Desconfiança de grandes projetos de "engenharia social"</li></ul>
+      <p><b>Liberal-conservador:</b> é uma combinação muito comum no Brasil, com economia de mercado (lado liberal) e costumes tradicionais (lado conservador).</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="scruton" aria-label="Ver fonte: Scruton">🔎 Scruton</button></p>`},
+    {t:'Nacionalismo e populismo', h:`<p><b>Nacionalismo:</b> coloca a nação em primeiro lugar, com soberania, fronteiras e identidade nacional. Existe nacionalismo de direita e também de esquerda.</p>
+      <p><b>Populismo:</b> para alguns estudiosos, é um <b>estilo</b>; para outros, como o cientista político Cas Mudde, é uma "ideologia fina", que se apoia em outras ideologias. <button type="button" class="fn" data-f="mudde" aria-label="Ver fonte: Mudde, 2017">🔎 Mudde, 2017</button> O líder diz falar pelo "povo puro" contra uma "elite corrupta" e desconfia de instituições intermediárias, como imprensa, tribunais e partidos. Pode aparecer na direita e na esquerda.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="mudde" aria-label="Ver fonte: Mudde, 2017">🔎 Mudde, 2017</button></p>`},
+    {t:'E a "extrema-direita"?', h:`<p>O termo costuma ser usado para grupos que vão além do conservadorismo democrático, por exemplo:</p>
+      <ul><li>rejeitando regras da democracia</li><li>tratando minorias ou imigrantes como ameaça</li><li>aceitando ou incentivando violência política</li></ul>
+      <div class="warn">⚠️ É um rótulo disputado: muitas vezes é usado como acusação contra qualquer conservador. O mesmo acontece com "extrema-esquerda". Na última fase você aprende a separar descrição de xingamento.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="muddefar" aria-label="Ver fonte: Mudde, 2019">🔎 Mudde, 2019</button></p>`},
+    {t:'O debate', h:`<div class="pro"><b>👍 Quem defende diz</b>A tradição é sabedoria testada pelo tempo. Família e comunidade dão coesão social, e ordem e segurança são condições para existir liberdade.</div>
+      <div class="con"><b>👎 Quem critica diz</b>"Sempre foi assim" já foi usado para manter injustiças, como a resistência ao voto feminino e aos direitos civis. A tradição também pode servir para excluir grupos.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="scruton" aria-label="Ver fonte: Scruton">🔎 Scruton</button> <button type="button" class="fn" data-f="robin" aria-label="Ver fonte: Robin">🔎 Robin</button></p>`}
+  ],
+  quiz:[
+    {q:'Burke criticava a Revolução Francesa principalmente porque...', o:['Ela destruía de uma vez instituições construídas por gerações','Ela defendia o livre mercado','Ela queria fortalecer o rei','Ela era religiosa demais'], a:0, e:'Para Burke, a sabedoria acumulada nas instituições não deveria ser jogada fora em nome de uma teoria.'},
+    {q:'Qual frase um conservador no estilo de Burke mais provavelmente diria?', o:['"Reforme o que não funciona, mas com cuidado e aos poucos"','"Nada deve mudar, nunca"','"Vamos refazer a sociedade do zero, com base na razão"','"O mercado resolve tudo, inclusive os costumes"'], a:0, e:'O conservador aceita mudança, desde que seja gradual e prudente.'},
+    {q:'Um político diz: "Eu sou a voz do povo contra as elites corruptas da imprensa e dos tribunais". Isso é um sinal típico de...', o:['Populismo, que pode ser de direita ou de esquerda','Conservadorismo clássico','Liberalismo','Social-democracia'], a:0, e:'"Povo puro contra elite corrupta" é a marca do estilo populista, em qualquer lado.'},
+    {q:'O nacionalismo é exclusivo da direita?', o:['Não: existem nacionalismos de esquerda, como muitos movimentos anticoloniais','Sim, sempre foi','Sim, desde a Revolução Francesa','Só no Brasil é'], a:0, e:'Movimentos de independência e o nacionalismo econômico de alguns governos de esquerda são exemplos.'}
+  ]
+},
+{
+  id:'social', emoji:'⚙️', title:'Socialismo, comunismo e cia.', sub:'E por que não são a mesma coisa', badge:'⚙️ Leitor de Marx',
+  cards:[
+    {t:'O contexto: século XIX', h:`<p>Revolução Industrial: fábricas com jornadas de 14 a 16 horas, trabalho infantil e nenhum direito trabalhista.</p>
+      <p>Muitos pensadores começaram a perguntar: <b>se o trabalhador produz a riqueza, por que ele fica com tão pouco dela?</b></p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="hobsbawm" aria-label="Ver fonte: Hobsbawm">🔎 Hobsbawm</button></p>`},
+    {t:'Karl Marx em 1 minuto', h:`<p>Em 1848, <b>Karl Marx</b> e <b>Friedrich Engels</b> publicaram o <i>Manifesto Comunista</i>.</p>
+      <ul><li>A história seria uma <b>luta de classes</b>.</li>
+      <li>A <b>burguesia</b> é dona dos <b>meios de produção</b>: fábricas, terras e máquinas.</li>
+      <li>O <b>proletariado</b> só tem o próprio trabalho para vender.</li>
+      <li>A proposta era tornar os meios de produção <b>coletivos</b>.</li></ul>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="manifesto" aria-label="Ver fonte: Manifesto, 1848">🔎 Manifesto, 1848</button></p>`},
+    {t:'Socialismo × comunismo', h:`<p><b>Socialismo:</b> os meios de produção passam a ser controlados coletivamente, pelo Estado ou por cooperativas, para reduzir a desigualdade. Na teoria marxista, seria uma fase de transição.</p>
+      <p><b>Comunismo:</b> na teoria, a etapa final, com uma sociedade sem classes, sem dinheiro e até sem Estado.</p>
+      <div class="tip"><b>💡 Na prática</b>Nenhum país chegou a esse "comunismo final". Os países chamados de comunistas, como a URSS, a China e Cuba, foram governados por um <b>partido comunista único</b>, com Estado muito forte e economia planejada pelo governo.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="manifesto" aria-label="Ver fonte: Manifesto, 1848">🔎 Manifesto, 1848</button> <button type="button" class="fn" data-f="heywood" aria-label="Ver fonte: Heywood">🔎 Heywood</button></p>`},
+    {t:'O balanço histórico', h:`<p>Entre os fatos documentados estão partido único, repressão e fomes com milhões de mortos. O debate é sobre como pesar esses fatos e os avanços sociais que os defensores apontam. <button type="button" class="fn" data-f="fomes" aria-label="Ver fonte: Conquest e Dikötter">🔎 Conquest e Dikötter</button></p>
+      <div class="pro"><b>👍 Quem defende lembra</b>Industrialização rápida, alfabetização em massa e saúde pública ampla, como em Cuba. Lembra também que muitos direitos trabalhistas surgiram da pressão de movimentos socialistas.</div>
+      <div class="con"><b>👎 Quem critica lembra</b>Partido único, repressão, censura e prisões políticas. Fomes enormes, como na Ucrânia soviética e na China do "Grande Salto Adiante", e economias planejadas que ficaram ineficientes.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="fomes" aria-label="Ver fonte: Conquest e Dikötter">🔎 Conquest e Dikötter</button></p>`},
+    {t:'Social-democracia', h:`<p>Aceita o <b>capitalismo e a democracia</b>, mas com um <b>Estado de bem-estar forte</b>:</p>
+      <ul><li>saúde e educação públicas</li><li>previdência e seguro-desemprego robustos</li><li>sindicatos fortes e impostos altos</li></ul>
+      <div class="tip"><b>⚠️ Pegadinha</b>Suécia e Dinamarca <b>não</b> são socialistas. São economias de mercado com um grande Estado de bem-estar, ou seja, social-democracias.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="esping" aria-label="Ver fonte: Esping-Andersen">🔎 Esping-Andersen</button></p>`},
+    {t:'Anarquismo', h:`<p>Quer o fim do Estado e de hierarquias impostas.</p>
+      <ul><li><b>Anarquismo de esquerda</b> (Proudhon, Bakunin): fim do Estado <b>e</b> da propriedade privada dos meios de produção, com a sociedade organizada em cooperativas e comunidades.</li>
+      <li><b>Anarcocapitalismo:</b> fim do Estado, com tudo resolvido pelo mercado.</li></ul>
+      <p>Os dois querem acabar com o Estado, mas por motivos opostos.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="proudhon" aria-label="Ver fonte: Proudhon">🔎 Proudhon</button></p>`}
+  ],
+  quiz:[
+    {q:'Para Marx, o que define a classe social de alguém?', o:['Ser ou não dono dos meios de produção','Quanto dinheiro a pessoa tem no banco','O nível de escolaridade','A religião da família'], a:0, e:'Um gerente bem pago ainda vende o próprio trabalho; o dono da fábrica, não.'},
+    {q:'URSS, China e Cuba chegaram ao "comunismo" descrito por Marx?', o:['Não: tiveram partido único e Estado fortíssimo, o oposto de uma sociedade sem Estado','Sim, todas chegaram','Só a URSS chegou','Sim, mas só por alguns anos'], a:0, e:'Na teoria, o comunismo final seria sem classes e sem Estado. Isso nunca existiu na prática.'},
+    {q:'A Suécia é...', o:['Uma social-democracia: economia de mercado com Estado de bem-estar forte','Um país socialista, com estatais na maioria dos setores','Um país comunista moderado','Um exemplo de Estado mínimo'], a:0, e:'Tem grandes empresas privadas, como IKEA e Spotify, e impostos altos que financiam serviços públicos.'},
+    {q:'O que um socialista e um social-democrata têm em comum?', o:['Querem reduzir a desigualdade','Querem acabar com as eleições','Querem estatizar todas as empresas','Querem o fim do Estado'], a:0, e:'A diferença está no caminho: o socialista quer substituir o capitalismo, o social-democrata quer regulá-lo.'}
+  ],
+  flash:{title:'Quem diria isso?', ch:['📜 Liberal','🏛️ Conservador','⚙️ Socialista','🤝 Social-democrata'], items:[
+    {t:'"O mercado livre gera mais riqueza do que qualquer governo planejando."', a:0, e:'É a defesa clássica do livre mercado.'},
+    {t:'"Tradições que duram séculos guardam sabedoria: mude com cuidado."', a:1, e:'É a ideia central de Burke.'},
+    {t:'"As fábricas deveriam pertencer a quem trabalha nelas."', a:2, e:'É a propriedade coletiva dos meios de produção.'},
+    {t:'"Mantenha o capitalismo, mas com saúde pública, previdência e impostos altos."', a:3, e:'É o modelo nórdico.'}
+  ]}
+},
+{
+  id:'autor', emoji:'🛡️', title:'Fascismo e autoritarismo', sub:'O eixo que mais importa', badge:'🛡️ Detector de Autoritarismo',
+  cards:[
+    {t:'Fascismo e nazismo', h:`<p><b>Fascismo:</b> Itália, Benito Mussolini, no poder a partir de 1922.<br><b>Nazismo:</b> Alemanha, Adolf Hitler, no poder a partir de 1933.</p>
+      <ul><li>Nacionalismo extremo e culto ao líder</li><li>Partido único e eliminação da oposição</li><li>Violência como ferramenta política</li><li>O Estado e a nação acima do indivíduo</li><li>Um "inimigo" a combater. No nazismo, isso levou ao Holocausto.</li></ul>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="paxton" aria-label="Ver fonte: Paxton">🔎 Paxton</button></p>`},
+    {t:'"Mas o nazismo tinha socialista no nome!"', h:`<p>É uma discussão frequente. O nome do partido era "Nacional-Socialista".</p>
+      <p>A <b>grande maioria dos historiadores</b> classifica o nazismo na <b>extrema-direita</b> porque ele:</p>
+      <ul><li>perseguiu e prendeu comunistas, socialistas e sindicalistas</li><li>manteve a propriedade privada e se aliou a grandes industriais</li><li>era ultranacionalista e racista</li></ul>
+      <p>Quem discorda aponta o forte controle estatal da economia. Para a maioria dos historiadores, esse controle existiu, mas a serviço da guerra e da nação, e não para socializar a propriedade.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="evans" aria-label="Ver fonte: Evans">🔎 Evans</button></p>`},
+    {t:'Autoritário × totalitário', h:`<p><b>Autoritarismo:</b> o poder é concentrado e a oposição, limitada, mas algumas áreas da vida ficam livres.</p>
+      <p><b>Totalitarismo:</b> o Estado tenta controlar <b>tudo</b>, de pensamento e arte a religião e família. Exemplos: Alemanha nazista, URSS de Stálin, Coreia do Norte.</p>
+      <div class="tip"><b>💡 Ditaduras dos dois lados</b>Direita: Chile de Pinochet e Brasil de 1964 a 1985, ambos anticomunistas. Esquerda: URSS, Cuba e Coreia do Norte.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="arendt" aria-label="Ver fonte: Arendt e Linz">🔎 Arendt e Linz</button></p>`},
+    {t:'A lição mais importante', h:`<p>Um democrata de esquerda e um democrata de direita têm mais em comum entre si do que cada um tem com os autoritários do próprio lado: os dois aceitam eleições, imprensa livre e alternância de poder.</p>
+      <p>Os cientistas políticos Steven Levitsky e Daniel Ziblatt (<i>Como as democracias morrem</i>) listam <b>4 sinais de alerta</b> num político:</p>
+      <ol><li>Rejeita ou desrespeita as regras do jogo democrático</li><li>Nega a legitimidade dos adversários</li><li>Tolera ou incentiva violência</li><li>Quer restringir liberdades de opositores e da imprensa</li></ol>
+      <p>Esses sinais valem para <b>qualquer</b> lado.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="levitsky" aria-label="Ver fonte: Levitsky e Ziblatt">🔎 Levitsky e Ziblatt</button></p>`}
+  ],
+  quiz:[
+    {q:'Qual característica é central no fascismo?', o:['Nacionalismo extremo, partido único e culto ao líder','Defesa do Estado mínimo e das liberdades individuais','Propriedade coletiva das fábricas pelos trabalhadores','Fim do Estado e de todas as hierarquias'], a:0, e:'O fascismo concentrava todo o poder no Estado e no líder.'},
+    {q:'Por que a maioria dos historiadores classifica o nazismo na extrema-direita, apesar do nome?', o:['Perseguiu a esquerda e os sindicatos, manteve a propriedade privada e era ultranacionalista','Porque defendia o livre mercado sem nenhuma intervenção','Porque chegou ao poder por eleições','Porque foi aliado da União Soviética durante toda a guerra'], a:0, e:'Houve um pacto com a URSS em 1939, mas a Alemanha invadiu a URSS em 1941.'},
+    {q:'A Coreia do Norte é um exemplo de...', o:['Totalitarismo: o Estado tenta controlar até o pensamento','Autoritarismo leve, com imprensa parcialmente livre','Democracia com um partido dominante','Anarquismo'], a:0, e:'Lá o Estado controla imprensa, religião, arte e até o que as pessoas podem dizer em casa.'},
+    {q:'Qual destes NÃO é um sinal de alerta de autoritarismo, segundo Levitsky e Ziblatt?', o:['Defender uma reforma econômica radical','Dizer que só aceita o resultado da eleição se vencer','Chamar adversários de traidores da pátria','Elogiar atos de violência de apoiadores'], a:0, e:'Propostas radicais, de qualquer lado, fazem parte da democracia. Os sinais tratam de como o político lida com as regras e com os adversários.'}
+  ]
+},
+{
+  id:'debates', emoji:'🧩', title:'Os novos debates', sub:'Clima, religião e identidade', badge:'🧩 Mediador de Debates',
+  cards:[
+    {t:'Política não é só economia', h:`<p>A partir dos anos 1960 e 70, novos temas entraram com força na política: <b>meio ambiente</b>, o <b>papel da religião</b> e os <b>direitos de grupos</b>.</p>
+      <p>Esses temas nem sempre seguem a linha esquerda/direita da economia. Há evangélicos que apoiam programas sociais e empresários ambientalistas, por exemplo.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="inglehart" aria-label="Ver fonte: Inglehart">🔎 Inglehart</button></p>`},
+    {t:'Ecologia política', h:`<p>O Brasil tem a maior parte da Amazônia e é um dos maiores produtores de alimentos do mundo. Por isso o tema pesa muito aqui.</p>
+      <div class="side"><b>🌱 Ambientalistas dizem</b>Proteger a floresta e o clima é urgente. O desmatamento ameaça até o agronegócio, que depende das chuvas que a floresta ajuda a produzir.</div>
+      <div class="side2"><b>🚜 Críticos das regras ambientais dizem</b>Regras rígidas travam o agro, que sustenta empregos e exportações. Dizem também que o Brasil já preserva mais vegetação nativa do que muitos países ricos.</div>
+      <div class="tip"><b>💡 Nem tudo é óbvio</b>Existe ambientalismo conservador, que vê a natureza como herança a preservar. E governos de esquerda também fizeram grandes obras com impacto ambiental, como a usina de Belo Monte.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="mapbiomas" aria-label="Ver fonte: MapBiomas">🔎 MapBiomas</button></p>`},
+    {t:'Religião e política', h:`<p>Censo 2022 (IBGE): <b>56,7%</b> dos brasileiros são católicos, <b>26,9%</b> evangélicos e <b>9,3%</b> sem religião. Em 2010, os evangélicos eram 21,6%.</p>
+      <p>A <b>Frente Parlamentar Evangélica</b>, conhecida como bancada evangélica, atua forte em temas como aborto, drogas e família.</p>
+      <p>O Brasil é um <b>Estado laico</b>: não tem religião oficial e garante a liberdade de todas as crenças.</p>
+      <div class="side"><b>⛪ Quem defende mais presença religiosa diz</b>A fé orienta os valores de milhões de pessoas, e é legítimo que eleitores religiosos tenham representantes.</div>
+      <div class="side2"><b>⚖️ Quem defende separação mais rígida diz</b>As leis valem para todos, inclusive para quem não tem a mesma fé, e o Estado não deve impor a moral de uma religião.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="censo" aria-label="Ver fonte: Censo 2022">🔎 Censo 2022</button></p>`},
+    {t:'Pautas identitárias', h:`<p>São as lutas por direitos de grupos específicos, como negros, mulheres, pessoas LGBT+ e indígenas.</p>
+      <p>Exemplos no Brasil: a <b>Lei de Cotas</b> nas universidades federais (2012) e a decisão do STF que equiparou a homofobia ao crime de racismo (2019).</p>
+      <div class="side"><b>✊ Defensores dizem</b>Desigualdades históricas, como a escravidão, exigem políticas específicas. Igualdade só no papel não basta.</div>
+      <div class="side2"><b>🤔 Críticos dizem</b>São críticos na direita e também em parte da esquerda. Para eles, dividir a sociedade em grupos gera ressentimento, e as políticas deveriam focar em renda ou mérito. Muitos também criticam a "cultura do cancelamento".</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="stfhomo" aria-label="Ver fonte: STF, 2019">🔎 STF, 2019</button></p>`},
+    {t:'Por que esses temas esquentam tanto?', h:`<p>Porque mexem com <b>identidade e valores</b>, e não só com números. Dá para negociar um meio-termo no valor de um imposto; é bem mais difícil fazer isso quando o assunto é fé ou o que cada um considera justo.</p>
+      <div class="tip"><b>💡 Dica</b>São justamente esses temas em que o desafio do "homem de aço" (Fase 12) e o jogo Advogado do outro lado mais fazem diferença.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="haidt" aria-label="Ver fonte: Haidt">🔎 Haidt</button></p>`}
+  ],
+  quiz:[
+    {q:'Segundo o Censo 2022, qual grupo religioso mais cresceu no Brasil desde 2010?', o:['Evangélicos','Católicos','Sem religião','Espíritas'], a:0, e:'Os evangélicos foram de 21,6% para 26,9%. Os sem religião também cresceram, mas menos: de 7,9% para 9,3%.'},
+    {q:'O que significa o Brasil ser um "Estado laico"?', o:['O Estado não tem religião oficial e garante a liberdade de todas as crenças','A religião é proibida em espaços públicos','O Estado favorece as religiões cristãs','Políticos não podem declarar sua religião'], a:0, e:'Laico não é antirreligioso: o Estado apenas não adota nem impõe uma fé.'},
+    {q:'Defender a preservação ambiental é exclusividade da esquerda?', o:['Não: há conservacionistas de direita, e governos de esquerda também fizeram obras de grande impacto ambiental','Sim, sempre foi','Sim, pelo menos no Brasil','Não, é exclusividade da direita'], a:0, e:'O tema cruza a linha esquerda/direita mais do que parece.'},
+    {q:'Qual destes é um argumento de quem CRITICA as políticas identitárias?', o:['Dividir a sociedade em grupos gera ressentimento; seria melhor focar em renda ou mérito','A escravidão deixou desigualdades que exigem políticas específicas','Igualdade só no papel não basta','As cotas aumentaram a diversidade nas universidades'], a:0, e:'As outras três alternativas são argumentos de quem defende essas políticas.'}
+  ]
+},
+{
+  id:'poder', emoji:'⚖️', title:'Como o poder funciona no Brasil', sub:'Três poderes e o caminho de uma lei', badge:'⚖️ Conhecedor dos Poderes',
+  cards:[
+    {t:'Os três poderes', h:`<ul><li><b>Executivo:</b> governa e executa as leis. São o presidente, os governadores e os prefeitos.</li>
+      <li><b>Legislativo:</b> faz as leis e fiscaliza o governo. São os deputados, senadores e vereadores.</li>
+      <li><b>Judiciário:</b> julga e garante que as leis e a Constituição sejam cumpridas.</li></ul>
+      <p>A ideia vem do pensador francês Montesquieu: dividir o poder para que um controle o outro. São os chamados <b>freios e contrapesos</b>.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="cf" aria-label="Ver fonte: Constituição">🔎 Constituição</button></p>`},
+    {t:'Quem é quem', h:`<p><b>🇧🇷 Nacional:</b> presidente e Congresso Nacional. O Congresso tem a Câmara, com 513 deputados eleitos para 4 anos (o número por estado segue a população, com mínimo de 8 e máximo de 70), e o Senado, com 81 senadores (3 por estado, eleitos para 8 anos).</p>
+      <p><b>🗺️ Estadual:</b> governador e Assembleia Legislativa, onde ficam os deputados estaduais.</p>
+      <p><b>🏙️ Municipal:</b> prefeito e Câmara Municipal, onde ficam os vereadores.</p>
+      <div class="warn">Não existe "deputado municipal" nem "senador estadual".</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="cf" aria-label="Ver fonte: Constituição">🔎 Constituição</button> <button type="button" class="fn" data-f="deputados" aria-label="Ver fonte: STF, 2025">🔎 STF, 2025</button></p>`},
+    {t:'Como nasce uma lei', h:`<ol><li>Alguém apresenta um projeto: um parlamentar, o presidente ou até os cidadãos, com um abaixo-assinado (a chamada iniciativa popular).</li>
+      <li>As comissões analisam.</li><li>Uma das Casas vota (em geral, a Câmara).</li><li>A outra revisa e vota.</li>
+      <li>O presidente <b>sanciona</b> ou <b>veta</b>.</li><li>Se houver veto, o Congresso pode <b>derrubá-lo</b>.</li></ol>
+      <p><b>Medida provisória:</b> o presidente edita e ela vale na hora, mas o Congresso tem até 120 dias para aprovar. Se não aprovar, ela perde a validade.</p>
+      <div class="tip"><b>🔎 Caso real</b>Em 2025, o Congresso aprovou aumentar a Câmara de 513 para 531 deputados. O presidente vetou, e uma decisão do ministro Luiz Fux, do STF, manteve 513 deputados para a eleição de 2026, e o plenário do STF confirmou por unanimidade em 1º de outubro de 2025. <button type="button" class="fn" data-f="deputados" aria-label="Ver fonte: STF, 2025">🔎 STF, 2025</button> <button type="button" class="fn" data-f="stf531" aria-label="Ver fonte: STF, out/2025">🔎 STF, out/2025</button> Qualquer mudança só pode valer a partir de 2030.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="cf" aria-label="Ver fonte: Constituição">🔎 Constituição</button></p>`},
+    {t:'O STF', h:`<p>O Supremo Tribunal Federal tem <b>11 ministros</b>. Eles são indicados pelo presidente, aprovados pelo Senado e podem ficar no cargo até os 75 anos.</p>
+      <p>A principal função é ser o guardião da Constituição: ele pode anular leis e atos que a contrariem.</p>
+      <div class="side"><b>🛡️ Quem defende um STF atuante diz</b>Ele protege direitos e a Constituição quando os outros poderes erram ou se omitem.</div>
+      <div class="side2"><b>⚠️ Quem critica diz</b>Há "ativismo judicial": ministros que não foram eleitos decidindo temas que deveriam ser do Congresso.</div>
+      <p>Curiosidade: as críticas vêm da esquerda ou da direita dependendo de qual decisão está em jogo.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="cf" aria-label="Ver fonte: Constituição">🔎 Constituição</button></p>`},
+    {t:'De quem é a culpa? (federalismo)', h:`<ul><li><b>🏙️ Prefeitura:</b> buracos na rua, coleta de lixo, postos de saúde, creches e boa parte do ensino fundamental</li>
+      <li><b>🗺️ Estado:</b> Polícia Militar e Polícia Civil, ensino médio, presídios e hospitais regionais</li>
+      <li><b>🇧🇷 União:</b> moeda, Forças Armadas, relações com outros países, aposentadorias do INSS e universidades federais</li></ul>
+      <div class="tip"><b>💡 Na prática</b>Antes de cobrar o presidente pelo buraco da sua rua, lembre que isso é com a prefeitura. A saúde (SUS) é dividida entre os três níveis.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="cf" aria-label="Ver fonte: Constituição">🔎 Constituição</button></p>`}
+  ],
+  quiz:[
+    {q:'Quantos senadores cada estado elege?', o:['3, independentemente da população','Um número proporcional à população, como os deputados','1 por estado','8 por estado'], a:0, e:'Por isso São Paulo e Roraima têm o mesmo número de senadores.'},
+    {q:'O presidente vetou um projeto aprovado pelo Congresso. O que pode acontecer?', o:['O Congresso pode derrubar o veto, e o projeto vira lei mesmo assim','O projeto é arquivado para sempre','O STF decide sozinho se o projeto vira lei','O presidente precisa convocar um plebiscito'], a:0, e:'O veto não é a palavra final: é um dos freios e contrapesos.'},
+    {q:'Quem escolhe os ministros do STF?', o:['O presidente indica e o Senado aprova','Os próprios ministros escolhem os colegas','O povo elege','A Câmara dos Deputados elege'], a:0, e:'É um exemplo de dois poderes participando de uma decisão.'},
+    {q:'De quem é a responsabilidade principal pela Polícia Militar?', o:['Do governo estadual','Da prefeitura','Do governo federal','Do Ministério Público'], a:0, e:'A segurança pública fica principalmente com os estados.'}
+  ],
+  flash:{title:'De quem é a responsabilidade?', ch:['🏙️ Prefeitura','🗺️ Estado','🇧🇷 União'], items:[
+    {t:'Tapar buraco na rua', a:0, e:'As ruas da cidade são da prefeitura.'},
+    {t:'Coleta de lixo', a:0, e:'É um serviço municipal.'},
+    {t:'Polícia Militar', a:1, e:'É comandada pelo governador.'},
+    {t:'Escolas de ensino médio públicas', a:1, e:'Ficam principalmente com os estados.'},
+    {t:'Emissão da moeda (o real)', a:2, e:'É competência da União, pelo Banco Central.'},
+    {t:'Aposentadorias do INSS', a:2, e:'O INSS é federal.'}
+  ]}
+},
+{
+  id:'centro', emoji:'🤝', title:'Centro e Centrão', sub:'Parecem iguais, mas não são', badge:'🤝 Decifrador do Centrão',
+  cards:[
+    {t:'O centro ideológico', h:`<p>É quem mistura ideias dos dois lados e prefere <b>mudanças graduais</b> e negociação.</p>
+      <p>Exemplo famoso: a <b>"Terceira Via"</b> dos anos 90, de Tony Blair no Reino Unido, que tentava combinar mercado eficiente com políticas sociais.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="giddens" aria-label="Ver fonte: Giddens">🔎 Giddens</button></p>`},
+    {t:'O Centrão brasileiro', h:`<p>⚠️ O Centrão <b>não é</b> o centro ideológico.</p>
+      <p>É um bloco de partidos no Congresso, com origem na Constituinte de 1987–88, conhecido pelo <b>pragmatismo</b>: segundo analistas e críticos, costuma apoiar governos de lados diferentes em troca de cargos, emendas e verbas.</p>
+      <p>Por que ele existe? Por causa do <b>presidencialismo de coalizão</b>, expressão do cientista político Sérgio Abranches. Como há muitos partidos, nenhum presidente tem maioria sozinho e precisa negociar.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="abranches" aria-label="Ver fonte: Abranches, 1988">🔎 Abranches, 1988</button></p>`},
+    {t:'O debate', h:`<div class="pro"><b>👍 Quem defende diz</b>Garante governabilidade, modera os extremos e leva demandas de cidades do interior que os grandes partidos ignoram.</div>
+      <div class="con"><b>👎 Quem critica diz</b>É "fisiologismo", ou seja, apoio trocado por vantagens. Tem pouca coerência de ideias e dificulta saber quem é responsável pelo quê.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="carazza" aria-label="Ver fonte: Carazza">🔎 Carazza</button></p>`},
+    {t:'O centro está sumindo?', h:`<p>Um estudo publicado em 2025 com cientistas políticos (Bolognesi, Ribeiro, Codato e Silva) pediu que posicionassem cada partido de 0 (extrema-esquerda) a 10 (extrema-direita).</p>
+      <p>O principal achado foi o <b>desaparecimento do centro ideológico</b>: partidos migrando para os polos.</p>
+      <p>Exemplo, comparando 2018 e 2022: o Cidadania foi de 4,9 para 6,2, saindo do centro para a centro-direita. <button type="button" class="fn" data-f="codato" aria-label="Ver fonte: Codato, 2025">🔎 Codato, 2025</button></p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="codato" aria-label="Ver fonte: Codato, 2025">🔎 Codato, 2025</button></p>`}
+  ],
+  quiz:[
+    {q:'Qual a diferença entre "centro" e "Centrão"?', o:['O centro é uma posição de ideias; o Centrão é um bloco pragmático que negocia apoio','São a mesma coisa com nomes diferentes','O Centrão é a ala moderada do PT','O centro só existe na Europa'], a:0, e:'O Centrão se define pelo comportamento no Congresso, não pelas ideias.'},
+    {q:'Por que se diz que o Brasil tem "presidencialismo de coalizão"?', o:['Com muitos partidos, o presidente precisa de alianças para ter maioria no Congresso','Porque o presidente e o vice são de partidos diferentes','Porque o presidente é escolhido pelo Congresso','Porque a lei obriga todos os partidos a governar juntos'], a:0, e:'Nenhum partido sozinho tem maioria, então é preciso negociar.'},
+    {q:'Qual é a crítica mais comum ao Centrão?', o:['Fisiologismo: trocar apoio por cargos e verbas','Ser radical demais','Nunca apoiar nenhum governo','Defender o fim do Congresso'], a:0, e:'Quem o defende, por outro lado, diz que ele garante a governabilidade.'},
+    {q:'No estudo publicado em 2025 com especialistas, o que aconteceu com o Cidadania entre 2018 e 2022?', o:['Saiu do centro para a centro-direita','Foi para a esquerda','Ficou exatamente no centro','Deixou de existir'], a:0, e:'Foi de 4,9 para 6,2 numa escala de 0 (extrema-esquerda) a 10 (extrema-direita).'}
+  ]
+},
+{
+  id:'mundo', emoji:'🌎', title:'A política pelo mundo', sub:'EUA, Europa e América Latina', badge:'🌎 Cidadão do Mundo',
+  cards:[
+    {t:'Dois jeitos de governar', h:`<p><b>Presidencialismo</b> (Brasil, EUA): o povo elege o presidente, que governa por um mandato fixo.</p>
+      <p><b>Parlamentarismo</b> (Reino Unido, Alemanha, Espanha): o povo elege o parlamento, e a maioria do parlamento escolhe o <b>primeiro-ministro</b>. Se ele perde o apoio, pode cair sem precisar de impeachment.</p>
+      <div class="tip"><b>💡 Por que isso importa</b>Com muitos partidos e parlamentarismo, quase ninguém tem maioria sozinho. Por isso boa parte da Europa vive de <b>governos de coalizão</b>.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="lijphart" aria-label="Ver fonte: Lijphart">🔎 Lijphart</button></p>`},
+    {t:'Estados Unidos', h:`<p>Na prática são <b>dois partidos</b>:</p>
+      <ul><li><b>Democratas:</b> centro-esquerda nos padrões americanos, os "liberals" de lá.</li>
+      <li><b>Republicanos:</b> direita, que reúne conservadores e defensores do livre mercado.</li></ul>
+      <p>Muitos analistas observam que o centro americano fica mais à direita que o europeu. Saúde pública universal, por exemplo, é consenso em boa parte da Europa e polêmica nos EUA.</p>
+      <p>Hoje o presidente é Donald Trump, republicano. Nas eleições de meio de mandato de 3 de novembro de 2026, a contagem da agência AP de 20/11 mostrava, na Câmara, 257 cadeiras ganhas pelos democratas e 172 pelos republicanos; outras 6 ainda não constavam como ganhas por nenhum partido. No Senado, contando os mandatos que continuam, eram 56 democratas (incluindo 2 que votam com eles) e 44 republicanos. Esses números podem mudar. <button type="button" class="fn" data-f="ap" aria-label="Ver fonte: AP, 20/nov/2026">🔎 AP, 20/nov/2026</button></p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="ap" aria-label="Ver fonte: AP, 20/nov/2026">🔎 AP, 20/nov/2026</button></p>`},
+    {t:'Europa', h:`<p>As grandes "famílias" de partidos:</p>
+      <ul><li><b>Social-democratas:</b> centro-esquerda</li><li><b>Democratas-cristãos:</b> centro-direita, como a CDU alemã</li><li><b>Liberais</b> e <b>Verdes</b></li>
+      <li><b>Direita nacionalista/populista</b>, que vem crescendo, como o Reagrupamento Nacional (França), a AfD (Alemanha) e o Chega (Portugal)</li></ul>
+      <p>Exemplo de 2026: em Portugal, o socialista António José Seguro venceu a eleição presidencial contra André Ventura, do Chega, com 66,8% dos votos.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="portugal" aria-label="Ver fonte: Executive Digest">🔎 Executive Digest</button></p>`},
+    {t:'América Latina: o pêndulo', h:`<p>Nos anos 2000 veio a <b>"onda rosa"</b>, uma série de governos de esquerda: Lula, Chávez, os Kirchner, Evo Morales, Bachelet. Eram esquerdas bem diferentes entre si, das democráticas e moderadas, como no Chile e no Uruguai, até a da Venezuela, hoje classificada como autoritária por índices internacionais de democracia. <button type="button" class="fn" data-f="vdem" aria-label="Ver fonte: V-Dem e Freedom House">🔎 V-Dem e Freedom House</button></p>
+      <p>Nos anos 2020 houve uma <b>guinada à direita</b> em vários países:</p>
+      <ul><li><b>Argentina:</b> Javier Milei, que se define libertário e anarcocapitalista</li>
+      <li><b>Chile:</b> José Antonio Kast assumiu em março de 2026 após vencer a candidata comunista Jeannette Jara com 58% dos votos</li>
+      <li><b>Colômbia:</b> Abelardo de la Espriella (direita) venceu Iván Cepeda (esquerda) em junho de 2026 por cerca de 1 ponto; o resultado foi confirmado pela autoridade eleitoral (CNE) <button type="button" class="fn" data-f="colcne" aria-label="Ver fonte: Blu Radio, jun/2026">🔎 Blu Radio, jun/2026</button></li></ul>
+      <p>O Brasil foi na direção oposta, com Lula reeleito.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="chile" aria-label="Ver fonte: DF (Chile)">🔎 DF (Chile)</button></p>`},
+    {t:'A lição do mundo', h:`<p><b>1. Os rótulos mudam de país para país.</b> "Liberal" nos EUA é uma coisa e no Brasil é outra. "Socialista" em Portugal é um partido de centro-esquerda democrático, e não alguém que quer estatizar tudo.</p>
+      <p><b>2. O eleitor balança.</b> Nas democracias, governos de esquerda e de direita costumam se alternar no poder, como mostram os exemplos da América Latina nesta fase. <button type="button" class="fn" data-f="chile" aria-label="Ver fonte: DF (Chile)">🔎 DF (Chile)</button> <button type="button" class="fn" data-f="colcne" aria-label="Ver fonte: Blu Radio, jun/2026">🔎 Blu Radio, jun/2026</button></p>
+      <p><b>3. A régua é sempre relativa.</b> Antes de chamar alguém de "extremista", pergunte: extremo em relação a quê, e em qual país?</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="lijphart" aria-label="Ver fonte: Lijphart">🔎 Lijphart</button></p>`}
+  ],
+  quiz:[
+    {q:'No parlamentarismo, o que acontece se o primeiro-ministro perde o apoio da maioria?', o:['Pode cair e ser substituído sem impeachment','Continua até o fim de um mandato fixo','O rei assume o governo','Convoca-se um plebiscito automático'], a:0, e:'É uma das grandes diferenças em relação ao presidencialismo.'},
+    {q:'Por que se diz que o centro americano fica mais à direita que o europeu?', o:['Porque ideias como saúde pública universal, consenso em boa parte da Europa, são polêmicas nos EUA','Porque os EUA não têm eleições livres','Porque o Partido Democrata é de extrema-direita','Porque os EUA são parlamentaristas'], a:0, e:'A régua muda de país para país.'},
+    {q:'O Partido Socialista de Portugal é...', o:['Centro-esquerda democrática, que aceita a economia de mercado','Um partido que quer estatizar toda a economia','Um partido de direita com nome enganoso','Um partido comunista de partido único'], a:0, e:'Muitos partidos "socialistas" europeus são, na prática, social-democratas.'},
+    {q:'Javier Milei, presidente da Argentina, se define como...', o:['Libertário e anarcocapitalista','Social-democrata','Peronista','Nacionalista estatizante'], a:0, e:'Ele chegou ao poder derrotando o peronismo, a força política tradicional da Argentina.'}
+  ],
+  flash:{title:'Mais à esquerda ou à direita no seu país?', ch:['⬅️ Esquerda','Direita ➡️'], items:[
+    {t:'Partido Democrata (EUA)', a:0, e:'É centro-esquerda pelos padrões americanos.'},
+    {t:'Partido Republicano (EUA)', a:1, e:'É a direita americana.'},
+    {t:'Chega (Portugal)', a:1, e:'É direita nacionalista e populista.'},
+    {t:'Partido Socialista (Portugal)', a:0, e:'É centro-esquerda democrática, apesar do nome.'},
+    {t:'José Antonio Kast (Chile)', a:1, e:'É um conservador de direita, eleito em 2025.'},
+    {t:'Gabriel Boric (Chile)', a:0, e:'Foi o presidente de esquerda que antecedeu Kast.'}
+  ]}
+},
+{
+  id:'brasil', emoji:'🇧🇷', title:'Aplicando ao Brasil', sub:'Partidos, eleitores e pautas', badge:'🇧🇷 Analista do Brasil',
+  cards:[
+    {t:'Quantos partidos?', h:`<p>Em 2026 o Brasil tinha <b>cerca de 30 partidos registrados</b> no TSE.</p>
+      <p>Existem também as <b>federações</b>: partidos que se unem e funcionam como um só por <b>no mínimo 4 anos</b>. Nas eleições de 2026 havia cinco:</p>
+      <ul><li>Brasil da Esperança (PT, PCdoB, PV)</li><li>PSOL–Rede</li><li>PSDB–Cidadania</li><li>Renovação Solidária (PRD, Solidariedade)</li><li>União Progressista (União Brasil, PP)</li></ul>
+      <div class="warn">Federações e partidos mudam com frequência. Confira a lista atual no site do TSE.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="tsefed" aria-label="Ver fonte: TSE">🔎 TSE</button> <button type="button" class="fn" data-f="partidos" aria-label="Ver fonte: Congresso em Foco">🔎 Congresso em Foco</button></p>`},
+    {t:'Onde ficam os partidos (aproximado)', h:`<p>Esta é a classificação de uma pesquisa de 2018 com cientistas políticos (Revista Dados, artigo de 2023), numa régua de 0 a 10. Os especialistas divergem, e os partidos mudam com o tempo.</p>
+      <div class="grad"></div>
+      <div class="spec">
+        <div style="background:#3EF2FF">Esquerda<span>PCdoB, PT; na extrema-esquerda, PSOL, PSTU, PCO e PCB</span></div>
+        <div style="background:#9BF5FF">Centro-esquerda<span>PDT, PSB</span></div>
+        <div style="background:#D8D4F2">Centro<span>Rede, Cidadania (antigo PPS), PV</span></div>
+        <div style="background:#FFD49A">Centro-direita<span>Avante, Solidariedade, PTB</span></div>
+        <div style="background:#FFB347">Direita<span>MDB, PSD, PSDB e Podemos (no limite, com notas de 7,0 a 7,2); PL (então PR), Republicanos (então PRB), Novo, PP</span></div>
+      </div>
+      <p>O União Brasil, criado em 2022 pela fusão de DEM e PSL, não estava na pesquisa. Numa nova rodada, de 2022, partidos migraram para os polos (veja a Fase 9).</p>
+      <p>Analistas costumam incluir no <b>Centrão</b> partidos de centro e de direita, como PP, PL, Republicanos, União Brasil, PSD e MDB.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="scielo" aria-label="Ver fonte: Revista Dados, 2023">🔎 Revista Dados, 2023</button></p>`},
+    {t:'Como os brasileiros se veem', h:`<p>Pesquisa Datafolha (dez/2025), em que cada pessoa se <b>autodeclarou</b>:</p>
+      <div class="bars">
+        <div class="barrow"><span>Direita</span><i style="width:35%"></i>35%</div>
+        <div class="barrow"><span>Centro-direita</span><i style="width:11%"></i>11%</div>
+        <div class="barrow"><span>Centro</span><i style="width:17%"></i>17%</div>
+        <div class="barrow"><span>Centro-esquerda</span><i style="width:7%"></i>7%</div>
+        <div class="barrow"><span>Esquerda</span><i style="width:22%"></i>22%</div>
+        <div class="barrow"><span>Não sabe</span><i style="width:8%"></i>8%</div>
+      </div>
+      <div class="tip"><b>🤯 Dado curioso</b>Na mesma pesquisa, 34% dos petistas se colocaram na direita ou centro-direita, e 14% dos bolsonaristas na esquerda ou centro-esquerda. <button type="button" class="fn" data-f="df25" aria-label="Ver fonte: Datafolha, dez/2025">🔎 Datafolha, dez/2025</button></div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="df25" aria-label="Ver fonte: Datafolha, dez/2025">🔎 Datafolha, dez/2025</button></p>`},
+    {t:'Rótulo × opinião', h:`<p>Em pesquisa feita em junho e divulgada em julho de 2026, o Datafolha mediu de outro jeito: em vez de perguntar o rótulo, perguntou <b>opiniões</b> sobre temas. O resultado foi 44% à direita ou centro-direita, 39% à esquerda ou centro-esquerda e 17% no centro.</p>
+      <p><b>Lição:</b> rótulo, opinião e voto nem sempre andam juntos. Na mesma pesquisa, 24% dos eleitores de Lula tinham perfil de direita ou centro-direita, e 19% dos de Flávio, de esquerda ou centro-esquerda. <button type="button" class="fn" data-f="df26cb" aria-label="Ver fonte: Correio Braziliense, jul/2026">🔎 Correio Braziliense, jul/2026</button></p>
+      <p>A polarização segue forte. Em 2026, Lula (PT) foi reeleito no 2º turno com 51,79% dos votos válidos, contra 48,21% de Flávio Bolsonaro (PL).</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="df26" aria-label="Ver fonte: Datafolha, jun/2026">🔎 Datafolha, jun/2026</button> <button type="button" class="fn" data-f="tse26" aria-label="Ver fonte: TSE, 2026">🔎 TSE, 2026</button></p>`}
+  ],
+  quiz:[
+    {q:'Quantos partidos estavam registrados no TSE em 2026?', o:['Cerca de 30','Cerca de 15','Cerca de 50','Cerca de 80'], a:0, e:'Havia ainda outros 23 em formação.'},
+    {q:'O que é uma federação partidária?', o:['Partidos que se unem e atuam como um só por no mínimo 4 anos','Uma aliança que vale só para uma eleição','A fusão definitiva de dois partidos em um novo','Um bloco informal no Congresso, como o Centrão'], a:0, e:'A coligação vale só para uma eleição e a fusão cria um partido novo. A federação fica no meio.'},
+    {q:'34% dos petistas se diziam de direita ou centro-direita (Datafolha, dez/2025). O que isso pode indicar?', o:['Que o rótulo ideológico que muitos eleitores usam nem sempre combina com o lado político que apoiam','Que a pesquisa estava errada','Que o PT é um partido de direita','Que a pergunta foi mal traduzida'], a:0, e:'É um sinal de que o rótulo e o lado político que a pessoa apoia nem sempre andam juntos.'},
+    {q:'O Datafolha mediu de dois jeitos: pelo rótulo que a pessoa escolhe e pelas opiniões dela sobre temas. Qual é a lição?', o:['Rótulo, opinião e voto nem sempre andam juntos','Quem se diz de direita sempre vota na direita','A maioria dos brasileiros é de centro','Ideologia não influencia nada no voto'], a:0, e:'Em jun/2026, 24% dos eleitores de Lula tinham perfil de direita ou centro-direita, e 19% dos de Flávio, de esquerda ou centro-esquerda. Por isso vale olhar as ideias concretas, e não só o rótulo.'}
+  ],
+  flash:{title:'Onde essa pauta costuma ficar?', ch:['⬅️ Mais à esquerda','Mais à direita ➡️'], items:[
+    {t:'Privatizar empresas estatais', a:1, e:'Faz parte da defesa de mais mercado e menos Estado.'},
+    {t:'Taxar grandes fortunas', a:0, e:'Tem foco em reduzir a desigualdade via Estado.'},
+    {t:'Facilitar a posse e o porte de armas', a:1, e:'É uma pauta associada à liberdade individual e à segurança pessoal no campo conservador.'},
+    {t:'Ampliar a demarcação de terras indígenas', a:0, e:'É uma pauta de direitos de grupos e preservação ambiental.'},
+    {t:'Reduzir a maioridade penal', a:1, e:'Faz parte de uma agenda de ordem e punição mais dura.'},
+    {t:'Fortalecer sindicatos e direitos trabalhistas', a:0, e:'É uma tradição histórica da esquerda.'}
+  ]}
+},
+{
+  id:'pensar', emoji:'🔍', title:'Pensando sozinho', sub:'Seu kit anti-manipulação', badge:'🔍 Pensador Independente',
+  cards:[
+    {t:'Rótulo virou xingamento', h:`<p>"Comunista!", "Fascista!": no dia a dia, esses termos muitas vezes servem para <b>desqualificar</b> alguém, e não para <b>descrever</b> o que a pessoa pensa.</p>
+      <p><b>Teste rápido:</b> a pessoa defende as ideias centrais daquela ideologia, como partido único ou fim da propriedade privada? Se não defende, é xingamento, não descrição.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="heywood" aria-label="Ver fonte: Heywood">🔎 Heywood</button></p>`},
+    {t:'Fato × opinião', h:`<ul><li><b>Fato:</b> "O desemprego caiu 1 ponto em 2025". Dá para checar.</li><li><b>Opinião:</b> "O governo é ótimo". É um julgamento de valor.</li></ul>
+      <p>Dá para concordar sobre os fatos e discordar sobre o que eles significam. É exatamente aí que mora o debate político saudável.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="ibge" aria-label="Ver fonte: IBGE">🔎 IBGE</button></p>`},
+    {t:'Seu cérebro te engana', h:`<p><b>Viés de confirmação:</b> todos nós tendemos a aceitar fácil o que confirma o que já pensamos e a duvidar do que contradiz.</p>
+      <p><b>Bolha do algoritmo:</b> as redes mostram mais do que você já curte. Com o tempo, parece que "todo mundo pensa igual a mim".</p>
+      <div class="tip"><b>💡 Desafio do "homem de aço"</b>Tente explicar o argumento do lado oposto tão bem que alguém de lá diria: "é isso mesmo que eu penso". Se você não consegue, ainda não entendeu o debate.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="kahneman" aria-label="Ver fonte: Kahneman">🔎 Kahneman</button></p>`},
+    {t:'Checklist antes de compartilhar', h:`<ol><li>Quem publicou? É um veículo conhecido?</li><li>Qual é a data? Notícias velhas voltam como se fossem novas.</li><li>Outros veículos confirmam?</li><li>O título bate com o texto?</li><li>É só um print sem link? Desconfie.</li></ol>
+      <p>Agências de checagem: <b>Lupa</b>, <b>Aos Fatos</b> e o projeto <b>Comprova</b>.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="comprova" aria-label="Ver fonte: Projeto Comprova">🔎 Projeto Comprova</button></p>`}
+  ],
+  quiz:[
+    {q:'Alguém chama de "comunista" uma pessoa que só defende mais verba para o SUS. Outro chama de "fascista" quem só defende penas mais duras. Os dois casos são...', o:['Rótulos usados como xingamento, não como descrição','Descrições corretas','Só o primeiro é xingamento','Só o segundo é xingamento'], a:0, e:'Nenhuma das duas posições implica partido único, fim da propriedade ou culto ao líder.'},
+    {q:'Você lê uma manchete que confirma tudo o que já pensa e compartilha sem ler. Isso é...', o:['Viés de confirmação','Bolha do algoritmo','Pensamento crítico','Checagem de fatos'], a:0, e:'A bolha te mostra o conteúdo; o viés de confirmação é você aceitar sem questionar.'},
+    {q:'Qual destas é uma afirmação de FATO, que dá para checar?', o:['"O Brasil tem 26 estados e um Distrito Federal"','"Esse é o pior governo da história"','"Os impostos no Brasil são injustos"','"O Congresso deveria trabalhar mais"'], a:0, e:'As outras três são julgamentos de valor, ainda que possam ser defendidas com argumentos.'},
+    {q:'Antes de compartilhar um print de notícia sem link, o mais seguro é...', o:['Procurar a notícia no site do veículo e em outras fontes','Compartilhar com o aviso "não sei se é verdade"','Confiar se muita gente já compartilhou','Ver se o print parece profissional'], a:0, e:'Prints são fáceis de falsificar. Quantidade de compartilhamentos não é prova.'}
+  ],
+  flash:{title:'Fato ou opinião?', ch:['📊 Fato','💭 Opinião'], items:[
+    {t:'"O Brasil tinha cerca de 30 partidos registrados em 2026."', a:0, e:'Dá para checar no TSE.'},
+    {t:'"Esse partido é o melhor para o país."', a:1, e:'É um julgamento de valor.'},
+    {t:'"Lula foi reeleito em 2026 com 51,79% dos votos válidos."', a:0, e:'É um dado oficial da Justiça Eleitoral.'},
+    {t:'"Impostos altos são injustos."', a:1, e:'É uma opinião, embora possa ser defendida com argumentos.'}
+  ]}
+}
+];
+
+const COMPASS_Q = [
+  {t:'O governo deveria controlar o preço de produtos essenciais, como gás e alimentos.', ax:'x', d:-1},
+  {t:'Empresas estatais, como os Correios, deveriam ser vendidas para a iniciativa privada.', ax:'x', d:1},
+  {t:'Quem ganha mais deveria pagar uma porcentagem maior de imposto.', ax:'x', d:-1},
+  {t:'Menos regras e impostos para empresas geram mais empregos para todos.', ax:'x', d:1},
+  {t:'Saúde e educação devem ser públicas e gratuitas para todos, mesmo que isso exija impostos altos.', ax:'x', d:-1},
+  {t:'Programas de transferência de renda deveriam ser temporários e exigir contrapartidas rígidas.', ax:'x', d:1},
+  {t:'O Estado deveria ser dono de empresas estratégicas, como a Petrobras.', ax:'x', d:-1},
+  {t:'O salário mínimo deveria ser definido mais pelo mercado e menos pelo governo.', ax:'x', d:1},
+  {t:'Grandes heranças deveriam pagar mais imposto.', ax:'x', d:-1},
+  {t:'Reduzir impostos é mais importante do que ampliar programas sociais.', ax:'x', d:1},
+  {t:'Bancos públicos devem oferecer crédito mais barato para setores escolhidos pelo governo.', ax:'x', d:-1},
+  {t:'Leis trabalhistas mais flexíveis ajudam a criar empregos.', ax:'x', d:1},
+  {t:'O Estado não deve interferir no que adultos fazem com a própria vida, se não prejudicam ninguém.', ax:'y', d:-1},
+  {t:'Penas mais duras e mais policiamento são o melhor caminho contra o crime.', ax:'y', d:1},
+  {t:'A escola deve ensinar os valores tradicionais da família.', ax:'y', d:1},
+  {t:'A liberdade de expressão deve valer mesmo para opiniões que a maioria considera ofensivas.', ax:'y', d:-1},
+  {t:'Em crises, o governo pode limitar algumas liberdades para manter a ordem.', ax:'y', d:1},
+  {t:'O uso de drogas por adultos deveria ser tratado como questão de saúde, não de polícia.', ax:'y', d:-1},
+  {t:'A decisão sobre o aborto deveria caber à mulher, e não ser proibida pelo Estado.', ax:'y', d:-1},
+  {t:'O governo deveria poder monitorar redes sociais para combater crimes, mesmo afetando a privacidade.', ax:'y', d:1},
+  {t:'Valores religiosos deveriam orientar as leis do país.', ax:'y', d:1},
+  {t:'Casais do mesmo sexo devem ter exatamente os mesmos direitos que os demais casais.', ax:'y', d:-1},
+  {t:'Manifestações que bloqueiam ruas e estradas deveriam ser proibidas.', ax:'y', d:1},
+  {t:'A polícia deveria precisar de ordem judicial para quase toda busca em casas.', ax:'y', d:-1}
+];
+
+const QUAD = {
+  tl:{n:'Estado forte + ordem', c:'#3A2A7A', d:'Quer o governo atuando muito na economia e também garantindo ordem e costumes. Inclui desde nacionalistas estatizantes até regimes socialistas de partido único, no extremo.'},
+  tr:{n:'Mercado + ordem', c:'#5A2A63', d:'Livre mercado na economia, com tradição, ordem e segurança nos costumes. É onde costuma ficar o liberal-conservador, muito comum na direita brasileira. No extremo, ditaduras com economia de mercado, como o Chile de Pinochet.'},
+  bl:{n:'Estado forte + liberdade', c:'#164A5C', d:'O Estado reduz desigualdades com impostos e serviços públicos e garante liberdades individuais nos costumes. É onde costumam ficar social-democratas e a esquerda progressista.'},
+  br:{n:'Mercado + liberdade', c:'#5C2340', d:'Estado mínimo tanto na economia quanto na vida privada. É onde ficam libertários e liberais clássicos.'}
+};
+
+/* Jogo "Advogado do outro lado": a primeira opção é sempre a resposta forte (embaralhada na tela).
+   Metade dos argumentos vem da esquerda e metade da direita. */
+const FONTES={"history": {"s": "History.com", "t": "History.com: como surgiram os rótulos \"esquerda\" e \"direita\" na Revolução Francesa", "u": "https://www.history.com/news/how-did-the-political-labels-left-wing-and-right-wing-originate"}, "bobbio": {"s": "Bobbio", "t": "Norberto Bobbio, Direita e esquerda", "u": null}, "heywood": {"s": "Heywood", "t": "Andrew Heywood, Ideologias políticas", "u": null}, "meta": {"s": "CNN Brasil", "t": "CNN Brasil: o que é a meta contínua de inflação (3%, com tolerância de 1,5 ponto)", "u": "https://www.cnnbrasil.com.br/economia/o-que-e-meta-continua-de-inflacao-que-sera-adotada-no-brasil-a-partir-de-2025/"}, "copom": {"s": "Copom, 4/nov/2026", "t": "Banco Central do Brasil, comunicado do Copom de 4/11/2026; Lei Complementar 179/2021 (autonomia do BC)", "u": "https://www.bcb.gov.br/content/copom/atascopom/Copom282-not20261104282.pdf"}, "selic15": {"s": "Exame", "t": "Exame: Copom baixa juros para 14,75% após 9 meses em 15%", "u": "https://exame.com/economia/copom-baixa-juros-para-1475-apos-9-meses/"}, "lei15270": {"s": "Lei 15.270/2025", "t": "Lei 15.270/2025 (isenção do Imposto de Renda até R$ 5 mil) e Emenda Constitucional 132/2023 (reforma tributária)", "u": "https://legis.senado.leg.br/norma/41758136/publicacao/41762089"}, "fiscal": {"s": "EC 95 e LC 200", "t": "Emenda Constitucional 95/2016 (teto de gastos) e Lei Complementar 200/2023 (arcabouço fiscal)", "u": null}, "locke": {"s": "Locke e Smith", "t": "John Locke, Segundo tratado sobre o governo; Adam Smith, A riqueza das nações", "u": null}, "boas": {"s": "Boas e Gans-Morse", "t": "Taylor Boas e Jordan Gans-Morse (2009), sobre os usos do termo \"neoliberalismo\"", "u": null}, "hayek": {"s": "Hayek e Losurdo", "t": "Friedrich Hayek, O caminho da servidão; Domenico Losurdo, Contra-história do liberalismo", "u": null}, "burke": {"s": "Burke, 1790", "t": "Edmund Burke, Reflexões sobre a Revolução na França (1790)", "u": null}, "scruton": {"s": "Scruton", "t": "Roger Scruton, Como ser um conservador", "u": null}, "mudde": {"s": "Mudde, 2017", "t": "Cas Mudde e Cristóbal Rovira Kaltwasser, Populism: A Very Short Introduction (2017)", "u": "https://www2.daad.de/medien/mudde_rovira_kaltwasser_2017_populism.pdf"}, "muddefar": {"s": "Mudde, 2019", "t": "Cas Mudde, The Far Right Today (2019)", "u": null}, "robin": {"s": "Robin", "t": "Corey Robin, The Reactionary Mind", "u": null}, "hobsbawm": {"s": "Hobsbawm", "t": "Eric Hobsbawm, A era das revoluções", "u": null}, "manifesto": {"s": "Manifesto, 1848", "t": "Karl Marx e Friedrich Engels, Manifesto Comunista (1848)", "u": null}, "fomes": {"s": "Conquest e Dikötter", "t": "Robert Conquest, Colheita da dor; Frank Dikötter, A grande fome de Mao", "u": null}, "esping": {"s": "Esping-Andersen", "t": "Gøsta Esping-Andersen, The Three Worlds of Welfare Capitalism (1990)", "u": null}, "proudhon": {"s": "Proudhon", "t": "Pierre-Joseph Proudhon, O que é a propriedade? (1840)", "u": null}, "paxton": {"s": "Paxton", "t": "Robert Paxton, A anatomia do fascismo", "u": null}, "evans": {"s": "Evans", "t": "Richard Evans, O Terceiro Reich no poder", "u": null}, "arendt": {"s": "Arendt e Linz", "t": "Hannah Arendt, Origens do totalitarismo; Juan Linz, Totalitarian and Authoritarian Regimes", "u": null}, "levitsky": {"s": "Levitsky e Ziblatt", "t": "Steven Levitsky e Daniel Ziblatt, Como as democracias morrem", "u": null}, "inglehart": {"s": "Inglehart", "t": "Ronald Inglehart, The Silent Revolution (1977)", "u": null}, "mapbiomas": {"s": "MapBiomas", "t": "MapBiomas, dados sobre desmatamento e uso da terra no Brasil", "u": null}, "censo": {"s": "Censo 2022", "t": "Agência Gov: Censo 2022, religião (católicos, evangélicos e sem religião)", "u": "https://agenciagov.ebc.com.br/noticias/202506/censo-2022-catolicos-seguem-em-queda-evangelicos-e-sem-religiao-crescem-no-pais"}, "stfhomo": {"s": "STF, 2019", "t": "STF (2019): homofobia enquadrada como racismo; Lei 12.711/2012 (cotas)", "u": "https://noticias.stf.jus.br/?p=47951"}, "haidt": {"s": "Haidt", "t": "Jonathan Haidt, A mente moralista", "u": null}, "cf": {"s": "Constituição", "t": "Constituição Federal de 1988 (arts. 2º, 21 a 30, 44 a 46, 61 a 66, 101 e 144)", "u": null}, "deputados": {"s": "STF, 2025", "t": "STF: mantido o número de 513 deputados federais para 2026", "u": "https://noticias.stf.jus.br/postsnoticias/supremo-mantem-numero-de-deputados-federais-para-2026/"}, "giddens": {"s": "Giddens", "t": "Anthony Giddens, A terceira via", "u": null}, "abranches": {"s": "Abranches, 1988", "t": "Sérgio Abranches, Presidencialismo de coalizão (revista Dados, 1988)", "u": "https://dados.iesp.uerj.br/artigos/?id=348"}, "carazza": {"s": "Carazza", "t": "Bruno Carazza, Dinheiro, eleições e poder", "u": null}, "codato": {"s": "Codato, 2025", "t": "Adriano Codato e coautores: pesquisa com cientistas políticos sobre a posição dos partidos (2018 e 2022)", "u": "https://adrianocodato.substack.com/p/o-banquete-de-macbeth-conversando"}, "lijphart": {"s": "Lijphart", "t": "Arend Lijphart, Modelos de democracia", "u": null}, "ap": {"s": "AP, 20/nov/2026", "t": "Associated Press (AP), contagem das eleições de 3/11/2026 nos EUA, em 20/11/2026", "u": null}, "portugal": {"s": "Executive Digest", "t": "Executive Digest: António José Seguro eleito presidente de Portugal com 66,83%", "u": "https://executivedigest.sapo.pt/presidenciais-resultados-antonio-jose-seguro-eleito-presidente-com-6683-resultados-globais/"}, "chile": {"s": "DF (Chile)", "t": "Diario Financiero: resultado do 2º turno no Chile (14/12/2025)", "u": "https://www.df.cl/economia-y-politica/politica/resultado-elecciones-segunda-vuelta"}, "partidos": {"s": "Congresso em Foco", "t": "Congresso em Foco: Brasil tem 23 legendas em formação; TSE: federações registradas", "u": "https://www.congressoemfoco.com.br/noticia/115425/com-23-legendas-em-formacao-brasil-pode-chegar-a-53-partidos"}, "scielo": {"s": "Revista Dados, 2023", "t": "Bolognesi, Ribeiro e Codato, Revista Dados, vol. 66 (2023): classificação ideológica dos partidos por cientistas políticos (pesquisa de julho de 2018)", "u": "https://scielo.br/j/dados/a/zzyM3gzHD4P45WWdytXjZWg/?lang=en"}, "df25": {"s": "Datafolha, dez/2025", "t": "Datafolha (2 a 4/dez/2025), via CNN Brasil: autodeclaração ideológica", "u": "https://www.cnnbrasil.com.br/politica/datafolha-14-de-bolsonaristas-se-dizem-esquerda-e-34-petistas-direita/"}, "df26": {"s": "Datafolha, jun/2026", "t": "Datafolha (17 e 18/jun/2026, divulgada em julho), via InfoMoney: posição por opiniões", "u": "https://www.infomoney.com.br/mercados/datafolha-direita-ultrapassa-esquerda-entre-eleitores-pela-1a-vez-desde-2014/"}, "tse26": {"s": "TSE, 2026", "t": "TSE: resultado do 2º turno das eleições presidenciais de 2026", "u": "https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/presidente-do-tse-anuncia-reeleicao-de-lula-e-faz-balanco-do-2o-turno-das-eleicoes-2026"}, "ibge": {"s": "IBGE", "t": "IBGE: desocupação de 2025, a menor da série histórica", "u": "https://agenciadenoticias.ibge.gov.br/agencia-noticias/45761-desocupacao-cai-para-5-1-em-dezembro-e-2025-tem-melhores-resultados-da-serie-historica.html"}, "kahneman": {"s": "Kahneman", "t": "Daniel Kahneman, Rápido e devagar", "u": null}, "comprova": {"s": "Projeto Comprova", "t": "Projeto Comprova, guias de checagem de informação", "u": null}, "ocde": {"s": "OCDE, 2018", "t": "OCDE (2018), The Role and Design of Net Wealth Taxes in the OECD: países com o imposto caíram de 12 em 1990 para 4 em 2017; custos administrativos e falha em redistribuir", "u": "https://www.oecd.org/en/publications/the-role-and-design-of-net-wealth-taxes-in-the-oecd_9789264290303-en.html"}, "nij": {"s": "NIJ (EUA)", "t": "National Institute of Justice, órgão do Departamento de Justiça dos EUA: cinco coisas sobre dissuasão", "u": "https://nij.ojp.gov/topics/articles/five-things-about-deterrence"}, "ipea1721": {"s": "Ipea, 2012", "t": "Daniel Cerqueira e João M. P. de Mello, Ipea, Texto para Discussão 1721, \"Menos armas, menos crimes\" (2012): cidades de São Paulo, 2001–2007", "u": "https://ideas.repec.org/p/ipe/ipetds/1721.html"}, "tsefed": {"s": "TSE", "t": "TSE: federações partidárias registradas", "u": "https://www.tse.jus.br/partidos/federacoes-registradas-no-tse"}, "vdem": {"s": "V-Dem e Freedom House", "t": "Índices internacionais de democracia: V-Dem (autocracia eleitoral) e Freedom House (\"não livre\") para a Venezuela", "u": null}, "colcne": {"s": "Blu Radio, jun/2026", "t": "Blu Radio: CNE declara Abelardo de la Espriella presidente eleito após o escrutínio do 2º turno", "u": "https://www.bluradio.com/nacion/elecciones/cne-declara-a-abelardo-de-la-espriella-como-presidente-tras-finalizar-escrutinio-de-segunda-vuelta-so35"}, "stf531": {"s": "STF, out/2025", "t": "STF: plenário confirma por unanimidade a decisão que mantém 513 deputados para 2026", "u": "https://noticias.stf.jus.br/?p=147451"}, "df26cb": {"s": "Correio Braziliense, jul/2026", "t": "Correio Braziliense: Datafolha (17 e 18/jun/2026) mostra que 24% dos eleitores de Lula têm perfil de direita ou centro-direita e 19% dos de Flávio, de esquerda ou centro-esquerda", "u": "https://www.correiobraziliense.com.br/politica/2026/07/7456813-datafolha-24-dos-eleitores-de-lula-tem-perfil-ideologico-de-direita.html"}};
+const STEEL = [
+  {who:'Quem defende taxar grandes fortunas', arg:'Os super-ricos pagam proporcionalmente pouco imposto. Taxar grandes fortunas reduz a desigualdade.',
+   o:['Segundo a OCDE (2018), os países da OCDE com esse imposto caíram de 12, em 1990, para 4, em 2017; muitos o abandonaram porque era caro de administrar e não cumpria a meta de redistribuir. Quem critica o imposto defende, no lugar, taxar lucros e dividendos e fechar brechas.','Quem defende isso só quer o dinheiro dos outros.','Então você quer acabar com toda empresa privada?','Sempre foi assim e o país nunca quebrou por isso.'],
+   e:'A resposta forte usa experiência real e propõe uma alternativa. As outras atacam a pessoa, distorcem o argumento ou apelam para "sempre foi assim".', f:'ocde'},
+  {who:'Quem defende privatizações', arg:'Empresas estatais são usadas politicamente e são menos eficientes. Privatizar melhora o serviço.',
+   o:['Em setores de monopólio natural, como água e esgoto, uma empresa privada sem concorrência pode subir preços. O que define a qualidade é a regulação, não o dono.','Quem defende privatização está a serviço dos bilionários.','Então você quer vender o Brasil inteiro?','Meu professor disse que privatizar é sempre ruim.'],
+   e:'A resposta forte aponta um limite real do argumento. As outras são ataque pessoal, espantalho e apelo a uma autoridade qualquer.'},
+  {who:'Quem defende cotas raciais', arg:'Negros têm menos acesso à universidade por causa de desigualdades históricas, e as cotas corrigem isso.',
+   o:['Cotas baseadas em renda e escola pública alcançariam os mais pobres de todas as cores, já que a renda seria a principal barreira.','Isso é vitimismo.','Então você acha que brancos não podem estudar?','Sempre foi por mérito e sempre funcionou.'],
+   e:'A resposta forte discute qual critério atinge melhor o objetivo. As outras desqualificam, distorcem ou apelam à tradição.'},
+  {who:'Quem defende penas mais duras', arg:'Punição mais severa desestimula o crime e protege a população.',
+   o:['Segundo o NIJ, órgão do Departamento de Justiça dos EUA, a certeza de ser pego pesa mais do que o tamanho da pena. Investir em policiamento e em esclarecer crimes daria mais resultado.','Você só pensa assim porque tem medo de pobre.','Então você quer pena de morte para quem rouba chiclete?','Isso é discurso de político em ano de eleição.'],
+   e:'A resposta forte usa evidência e oferece uma alternativa. As outras atacam motivos, exageram o argumento ou mudam de assunto.', f:'nij'},
+  {who:'Quem defende mais gasto público na crise', arg:'Em crise, o governo deve gastar mais para gerar emprego.',
+   o:['Gastar mais com a dívida já alta pode elevar juros e inflação, anulando o efeito. O gasto deveria ser temporário e ter uma fonte de receita clara.','Quem fala isso nunca pagou um boleto na vida.','Então vamos imprimir dinheiro sem limite?','A maioria das pessoas que eu conheço é contra.'],
+   e:'A resposta forte mostra um efeito colateral e propõe condições. As outras são ataque pessoal, espantalho e apelo à maioria.'},
+  {who:'Quem defende facilitar o porte de armas', arg:'Cidadãos armados podem se defender, e o Estado não consegue proteger todo mundo.',
+   o:['Um estudo do Ipea, com cidades de São Paulo, associou mais armas em circulação a mais homicídios. O risco para a própria família pode superar o benefício.','Quem quer arma é violento.','Então você quer que crianças andem armadas?','Arma é coisa de filme americano.'],
+   e:'A resposta forte pesa custos e benefícios com dados. As outras rotulam a pessoa, exageram ou ridicularizam.', f:'ipea1721'},
+  {who:'Ambientalista', arg:'Precisamos zerar o desmatamento da Amazônia imediatamente.',
+   o:['Sem renda alternativa para quem vive na região, a proibição empurra pessoas para a ilegalidade. A transição precisa de pagamento por preservação junto com fiscalização.','Isso é papo de ONG estrangeira.','Então você quer acabar com o agro?','Ninguém da minha cidade concorda com isso.'],
+   e:'A resposta forte aponta um problema prático e propõe um caminho. As outras atacam a origem, distorcem ou apelam à maioria.'},
+  {who:'Quem defende valores tradicionais na escola', arg:'A escola deve reforçar os valores das famílias, que são majoritariamente religiosas.',
+   o:['A escola pública atende famílias de todas as crenças e de nenhuma. Os valores de uma religião podem ficar com a família e a igreja, e a escola pode focar em valores comuns, como o respeito.','Isso é fanatismo.','Então você quer transformar a escola em igreja?','Religião é coisa do passado.'],
+   e:'A resposta forte considera quem mais é afetado e propõe uma divisão de papéis. As outras são rótulo, espantalho e desprezo.'}
+];
+
+/* Leituras por fase: um livro de cada perspectiva quando faz sentido + busca de vídeos */
+const DEEP = {
+  mapa:{b:[['Direita e esquerda','Norberto Bobbio','o clássico que inspirou esta fase'],['A mente moralista','Jonathan Haidt','por que pessoas boas discordam sobre política']], yt:'esquerda e direita explicação'},
+  eco:{b:[['Economia numa única lição','Henry Hazlitt','visão liberal'],['Economia: modo de usar','Ha-Joon Chang','visão heterodoxa, mais à esquerda']], yt:'inflação juros Selic explicado'},
+  liberal:{b:[['O caminho da servidão','Friedrich Hayek','defende o liberalismo'],['Contra-história do liberalismo','Domenico Losurdo','critica o liberalismo']], yt:'liberalismo clássico explicado'},
+  conserv:{b:[['Como ser um conservador','Roger Scruton','defende o conservadorismo'],['The Reactionary Mind (em inglês)','Corey Robin','critica o conservadorismo']], yt:'Edmund Burke conservadorismo'},
+  social:{b:[['Manifesto Comunista','Karl Marx e Friedrich Engels','a fonte original'],['A revolução dos bichos','George Orwell','crítica ao stalinismo, escrita por um socialista democrático']], yt:'diferença socialismo comunismo social-democracia'},
+  autor:{b:[['Como as democracias morrem','Steven Levitsky e Daniel Ziblatt','os sinais de alerta'],['Origens do totalitarismo','Hannah Arendt','o clássico sobre nazismo e stalinismo']], yt:'o que foi o fascismo'},
+  debates:{b:[['Pequeno manual antirracista','Djamila Ribeiro','defende as pautas identitárias'],['The Identity Trap (em inglês)','Yascha Mounk','critica, a partir da centro-esquerda']], yt:'Estado laico explicação'},
+  poder:{b:[['Presidencialismo de coalizão','Sérgio Abranches','como o sistema brasileiro funciona'],['Constituição Federal (texto oficial, grátis)','planalto.gov.br','a fonte de tudo']], yt:'como funciona os três poderes'},
+  centro:{b:[['Dinheiro, eleições e poder','Bruno Carazza','como interesses circulam no Congresso']], yt:'o que é o Centrão'},
+  mundo:{b:[['A era dos extremos','Eric Hobsbawm','o século XX visto por um historiador marxista'],['Ordem mundial','Henry Kissinger','a visão de um realista conservador']], yt:'parlamentarismo e presidencialismo diferença'},
+  brasil:{b:[['Biografia do abismo','Felipe Nunes e Thomas Traumann','a polarização brasileira']], yt:'federação partidária explicação'},
+  pensar:{b:[['Rápido e devagar','Daniel Kahneman','os atalhos que o cérebro usa'],['Factfulness','Hans Rosling','como checar a própria visão de mundo']], yt:'como identificar fake news'}
+};
+
+const LEVELS = [{xp:0,n:'Leigo curioso'},{xp:250,n:'Antenado'},{xp:600,n:'Analista de sofá'},{xp:1000,n:'Comentarista'},{xp:1500,n:'Debatedor'},{xp:2100,n:'Cientista político'}];
+const EXTRA_BADGES = ['🎯 Autoconhecimento','🎭 Advogado do Diabo','🔁 Aprendiz Persistente','🎓 Iniciado em Política'];
+const B_COMPASS=0, B_STEEL=1, B_REVIEW=2, B_FINAL=3;
+const UPDATED = 'nov/2026';
+
+/* =========================================================
+   ESTADO
+   ========================================================= */
+const KEY='politica-sem-misterio-v1';
+let S = load();
+function blank(){return {xp:0,done:{},badges:[],streak:0,best:0,compass:null,name:'',wrong:[],mute:false}}
+function load(){try{const r=localStorage.getItem(KEY); if(r) return Object.assign(blank(),JSON.parse(r));}catch(e){} return blank();}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+let V = {screen:'home'};
+const app = document.getElementById('app');
+const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const NF = MODULES.length;
+
+function level(){let L=LEVELS[0],N=null;for(let i=0;i<LEVELS.length;i++){if(S.xp>=LEVELS[i].xp){L=LEVELS[i];N=LEVELS[i+1]||null}}return {L,N}}
+function giveBadge(b){if(!S.badges.includes(b)){S.badges.push(b);save();return true}return false}
+function unlocked(i){return i===0 || !!S.done[MODULES[i-1].id] || !!S.done[MODULES[i].id]}
+function allDone(){return MODULES.every(m=>S.done[m.id])}
+function addWrong(k){if(!S.wrong.includes(k)){S.wrong.push(k);save();}}
+function delWrong(k){const i=S.wrong.indexOf(k); if(i>=0){S.wrong.splice(i,1);save();}}
+
+/* =========================================================
+   SOM 8-BIT (sintetizado, sem arquivos)
+   ========================================================= */
+let AC=null;
+const SEQ={ok:[[660,.07],[880,.11]],bad:[[196,.12],[147,.2]],combo:[[523,.06],[659,.06],[784,.06],[1047,.15]],win:[[523,.1],[659,.1],[784,.1],[1047,.1],[1319,.32]]};
+function snd(t){
+  if(S.mute) return;
+  try{
+    AC = AC || new (window.AudioContext||window.webkitAudioContext)();
+    if(AC.state==='suspended') AC.resume();
+    let at=AC.currentTime+.01;
+    SEQ[t].forEach(([f,d])=>{const o=AC.createOscillator(),g=AC.createGain();o.type='square';o.frequency.setValueAtTime(f,at);g.gain.setValueAtTime(.05,at);g.gain.exponentialRampToValueAtTime(.0008,at+d);o.connect(g);g.connect(AC.destination);o.start(at);o.stop(at+d+.02);at+=d;});
+  }catch(e){}
+}
+
+/* =========================================================
+   BANCO DE PERGUNTAS
+   ========================================================= */
+function mkModuleQ(m,q){return {key:q.q,tag:'Desafio',q:q.q,o:q.o,a:q.a,e:q.e,shuffle:true,from:m.emoji+' '+m.title};}
+function mkFlashQ(m,it){return {key:it.t,tag:'⚡ Rodada relâmpago · '+m.flash.title,q:it.t,o:m.flash.ch,a:it.a,e:it.e,shuffle:false,grid:true,from:m.emoji+' '+m.flash.title};}
+function mkSteelQ(r){return {key:r.arg,tag:'🎭 Advogado do outro lado',who:r.who,sub:r.arg,q:'Qual seria a resposta MAIS FORTE de quem discorda?',o:r.o,a:0,e:r.e,f:r.f,shuffle:true,from:'🎭 Advogado do outro lado'};}
+const ALLQ={};
+MODULES.forEach(m=>{ m.quiz.forEach(q=>ALLQ[q.q]=mkModuleQ(m,q)); if(m.flash) m.flash.items.forEach(it=>ALLQ[it.t]=mkFlashQ(m,it)); });
+STEEL.forEach(r=>ALLQ[r.arg]=mkSteelQ(r));
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function inst(base,tag){const q=Object.assign({},base); if(tag) q.tag=tag; if(base.shuffle){const idx=shuffle(base.o.map((_,k)=>k)); q.o=idx.map(k=>base.o[k]); q.a=idx.indexOf(base.a);} return q;}
+
+/* =========================================================
+   UI HELPERS
+   ========================================================= */
+function topbar(){
+  const {L,N}=level();
+  const pct = N ? Math.round((S.xp-L.xp)/(N.xp-L.xp)*100) : 100;
+  return `<div class="top"><div class="toprow">
+    <span class="lvl">${L.n}</span>
+    <div class="xpbar"><i style="width:${pct}%"></i></div>
+    <button class="mute" id="mute" aria-label="Som">${S.mute?'🔇':'🔊'}</button></div>
+    <div class="xptxt"><span>⭐ ${S.xp} pontos · 🔥 ${S.streak} seguidos · 🏅 ${S.badges.length}</span><span>${N?('Próximo nível: '+N.xp):'Nível máximo!'}</span></div></div>`;
+}
+function toast(t){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1500)}
+function confetti(){const cols=['#3EF2FF','#FF4FD8','#FFE45E','#5CFF9D','#8E7BFF'];for(let i=0;i<70;i++){const c=document.createElement('i');c.className='cf';c.style.left=Math.random()*100+'vw';c.style.background=cols[i%cols.length];c.style.animationDuration=(1.6+Math.random()*1.6)+'s';c.style.animationDelay=(Math.random()*.4)+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),3800)}}
+function go(v){V=v;render();window.scrollTo(0,0)}
+app.addEventListener('click',e=>{ if(e.target.closest('#mute')){ S.mute=!S.mute; save(); render(); if(!S.mute) snd('ok'); } });
+
+function compassSVG(point){
+  const lab = (x,y,t,anchor)=>`<text x="${x}" y="${y}" font-size="11" fill="#A39DCF" text-anchor="${anchor||'middle'}">${t}</text>`;
+  const box=(k,x,y,l1,l2)=>`<g class="qbox" data-q="${k}"><rect x="${x}" y="${y}" width="140" height="140" fill="${QUAD[k].c}" rx="12"/><text x="${x+70}" y="${y+66}" font-size="12" text-anchor="middle" fill="#FFFFFF">${l1}</text><text x="${x+70}" y="${y+82}" font-size="12" text-anchor="middle" fill="#FFFFFF">${l2}</text></g>`;
+  let s=`<svg class="compass" viewBox="0 0 320 345" role="img" aria-label="Mapa político de dois eixos">
+    ${box('tl',20,20,'Estado forte','+ ordem')}${box('tr',160,20,'Mercado','+ ordem')}${box('bl',20,160,'Estado forte','+ liberdade')}${box('br',160,160,'Mercado','+ liberdade')}
+    <line x1="20" y1="160" x2="300" y2="160" stroke="#3EF2FF" stroke-width="2"/><line x1="160" y1="20" x2="160" y2="300" stroke="#3EF2FF" stroke-width="2"/>
+    ${lab(160,13,'▲ mais ordem / autoridade')}${lab(160,316,'▼ mais liberdade individual')}
+    ${lab(22,340,'◀ mais Estado','start')}${lab(298,340,'mais mercado ▶','end')}`;
+  if(point){const cx=160+point.x*130, cy=160-point.y*130;
+    s+=`<circle cx="${cx}" cy="${cy}" r="13" fill="#FF4FD8" opacity=".35"><animate attributeName="r" values="11;18;11" dur="1.6s" repeatCount="indefinite"/></circle><circle cx="${cx}" cy="${cy}" r="8" fill="#FF4FD8" stroke="#fff" stroke-width="3"/>`;}
+  return s+'</svg>';
+}
+function bindCompass(){
+  document.querySelectorAll('.qbox').forEach(g=>g.addEventListener('click',()=>{
+    const q=QUAD[g.dataset.q]; const box=document.getElementById('qinfo'); if(box) box.innerHTML='<b>'+q.n+'</b><br>'+q.d;
+  }));
+}
+function fontesHTML(id){
+  const m=MODULES.find(x=>x.id===id); if(!m) return '';
+  const ks=[...new Set([...m.cards.map(c=>c.h).join('').matchAll(/data-f="(\w+)"/g)].map(x=>x[1]))];
+  if(!ks.length) return '';
+  return `<div class="fonteslist"><div class="qtag">🔎 Fontes desta fase</div><ol>`+ks.map(k=>{const f=FONTES[k];return `<li>${esc(f.t)}${f.u?` · <a href="${f.u}" target="_blank" rel="noopener">abrir ↗</a>`:''}</li>`}).join('')+`</ol></div>`;
+}
+function showFonte(k){const f=FONTES[k]; if(!f) return; let p=document.getElementById('fnpop'); if(!p){p=document.createElement('div');p.id='fnpop';p.setAttribute('role','dialog');document.body.appendChild(p);}
+  p.innerHTML=`<button class="x" aria-label="Fechar">✕</button><b>🔎 FONTE</b>${esc(f.t)}${f.u?`<br><a href="${f.u}" target="_blank" rel="noopener">Abrir a fonte original ↗</a>`:''}<div class="nt">A lista completa aparece no fim da fase.</div>`;}
+document.addEventListener('click',e=>{const b=e.target.closest('.fn'); const p=document.getElementById('fnpop');
+  if(b){e.stopPropagation();showFonte(b.dataset.f);return;}
+  if(p&&(e.target.closest('#fnpop .x')||!e.target.closest('#fnpop'))) p.remove();},true);
+function deepHTML(id){
+  const d=DEEP[id]; if(!d) return '';
+  return `<div class="deep"><div class="qtag">📚 Quer se aprofundar?</div>`+
+    d.b.map(b=>`<div class="bk"><b>${esc(b[0])}</b><span>${esc(b[1])} · ${esc(b[2])}</span></div>`).join('')+
+    `<a class="yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(d.yt)}" target="_blank" rel="noopener">🎥 Buscar vídeos no YouTube: "${esc(d.yt)}"</a></div>`;
+}
+
+/* =========================================================
+   TELAS
+   ========================================================= */
+function render(){
+  const s=V.screen;
+  if(s==='home') return renderHome();
+  if(s==='cards') return renderCards();
+  if(s==='video') return renderVideo();
+  if(s==='quiz') return renderQuiz();
+  if(s==='result') return renderResult();
+  if(s==='compass') return renderCompass();
+  if(s==='cert') return renderCert(); if(s==='aval') return renderAval(); if(s==='voto') return renderVoto();
+}
+
+function renderHome(){
+  const nextIdx = MODULES.findIndex(m=>!S.done[m.id]);
+  let h = topbar()+`<div class="hero"><h1>Política<br>sem Mistério</h1><p>De leigo a iniciado em ${NF} fases. Leia os cards, responda os desafios e desbloqueie a próxima fase.</p><div class="how"><b>⏱ Cerca de 40 minutos.</b> Seu progresso fica salvo neste aparelho: dá para parar e voltar depois.<br><b>Como funciona:</b> cada acerto vale <b>10 pontos</b>, ou 15 se você estiver numa sequência de 3 ou mais acertos seguidos 🔥. Os pontos sobem o seu nível, de "Leigo curioso" até "Cientista político". Errou? A pergunta vai para a Revisão dos erros.</div><span class="upd">📅 Dados atualizados em ${UPDATED}</span></div>`;
+  h+=`<div class="sec">Trilha</div><div class="trail">`;
+  MODULES.forEach((m,i)=>{
+    const d=S.done[m.id], lock=!unlocked(i), nx=i===nextIdx;
+    const stars = d ? '★'.repeat(d.stars)+'☆'.repeat(3-d.stars) : (lock?'🔒':'');
+    h+=`<button class="tile ${lock?'locked':''} ${nx?'next':''}" data-m="${i}" ${lock?'disabled':''}>
+      <span class="em">${m.emoji}</span><span class="tt"><span class="px">FASE ${i+1}${nx?' ▶ JOGAR':''}</span><b>${m.title}</b><small>${m.sub}</small></span><span class="st">${stars}</span></button>`;
+  });
+  const nW=S.wrong.filter(k=>ALLQ[k]).length;
+  h+=`</div><div class="sec">Bônus</div><div class="trail">
+    <button class="tile special" id="goCompass"><span class="em">🎯</span><span class="tt"><span class="px">BONUS</span><b>Bússola pessoal</b><small>24 frases para ver onde você cai no mapa</small></span><span class="st">${S.compass?'✅':''}</span></button>
+    <button class="tile special" id="goSteel"><span class="em">🎭</span><span class="tt"><span class="px">BONUS</span><b>Advogado do outro lado</b><small>Escolha a melhor resposta para argumentos dos dois lados</small></span><span class="st">${S.badges.includes(EXTRA_BADGES[B_STEEL])?'✅':''}</span></button>
+    <button class="tile special ${nW?'':'locked'}" id="goReview" ${nW?'':'disabled'}><span class="em">🔁</span><span class="tt"><span class="px">BONUS</span><b>Revisão dos erros</b><small>${nW?nW+' pergunta'+(nW>1?'s':'')+' para revisar':'Nenhum erro guardado. Bom sinal!'}</small></span><span class="st">${nW?nW:''}</span></button>
+    <button class="tile special ${allDone()?'':'locked'}" id="goFinal" ${allDone()?'':'disabled'}><span class="em">🗳️</span><span class="tt"><span class="px">FINAL</span><b>E você, o que acha?</b><small>${allDone()?'Sem nota: escolha um caminho e veja os dois lados':'Complete as '+NF+' fases para liberar'}</small></span><span class="st">${S.voto!=null?'✅':(allDone()?'':'🔒')}</span></button>
+    <button class="tile special" id="goAval"><span class="em">📝</span><span class="tt"><span class="px">BONUS</span><b>Avalie o curso</b><small>${S.aval?'Obrigado! Toque para mudar sua avaliação':'1 minuto: sua nota e o tema que você quer ver virar curso'}</small></span><span class="st">${S.aval?'✅':''}</span></button></div>`;
+  const all=[...MODULES.map(m=>m.badge),...EXTRA_BADGES];
+  h+=`<div class="sec">Conquistas (${S.badges.filter(b=>all.includes(b)).length}/${all.length})</div><div class="badges">`+all.map(b=>`<span class="bdg ${S.badges.includes(b)?'':'off'}">${b}</span>`).join('')+`</div>`;
+  h+=`<div class="foot">O curso apresenta cada corrente pelos argumentos de quem defende e de quem critica. Não diz qual lado está certo: essa conclusão é sua.<br>Dados atualizados até ${UPDATED} (TSE, IBGE, Banco Central, Datafolha e pesquisa acadêmica).<br><button class="reset" id="reset">Recomeçar do zero</button></div>`;
+  app.innerHTML=h;
+  app.querySelectorAll('.tile[data-m]').forEach(b=>b.onclick=()=>{const m=+b.dataset.m; go(m===0&&!S.done[MODULES[0].id]?{screen:'video'}:{screen:'cards',m,i:0});});
+  document.getElementById('goCompass').onclick=()=>go({screen:'compass',i:0,ans:[]});
+  document.getElementById('goSteel').onclick=startSteel;
+  if(nW) document.getElementById('goReview').onclick=startReview;
+  if(allDone()) document.getElementById('goFinal').onclick=startFinal;
+  document.getElementById('goAval').onclick=()=>go({screen:'aval'});
+  document.getElementById('reset').onclick=()=>{ if(V.confirmReset){S=blank();save();V={screen:'home'};render();} else {V.confirmReset=true; document.getElementById('reset').textContent='Toque de novo para confirmar (apaga seu progresso)';} };
+}
+
+function renderVideo(){
+  app.innerHTML = topbar()+`<div class="head"><button class="back" id="bk">←</button><span class="ht">${MODULES[0].emoji} Fase 1 · ${MODULES[0].title}</span></div>
+   <div class="card vcard"><h2>Antes de começar: 45 segundos</h2><p>De onde vieram as palavras "esquerda" e "direita"? Assista ou pule, se preferir: o vídeo tem legendas e funciona sem som.</p>
+   <video id="vid" controls playsinline preload="none" poster="esquerda-direita-capa.png" src="esquerda-direita-square.mp4" aria-label="Vídeo: de onde vieram esquerda e direita"></video>
+   <p class="fl">As fontes de cada cena aparecem no próprio vídeo: History.com, Herodote.net, Château de Versailles, Gauchet, Bobbio e Britannica.</p></div>
+   <div class="nav"><button class="btn ghost" id="skip">Pular</button><button class="btn" id="go1">Começar fase 1 →</button></div>`;
+  const v=document.getElementById('vid'), g=()=>{ try{v.pause()}catch(e){} go({screen:'cards',m:0,i:0}); };
+  document.getElementById('bk').onclick=()=>{ try{v.pause()}catch(e){} go({screen:'home'}); };
+  document.getElementById('skip').onclick=g; document.getElementById('go1').onclick=g;
+  v.addEventListener('ended',()=>{ const b=document.getElementById('go1'); if(b){ b.classList.add('pulse'); b.focus(); } });
+}
+
+function renderCards(){
+  const m=MODULES[V.m], c=m.cards[V.i], n=m.cards.length;
+  const body=c.h.replace('{{COMPASS}}', compassSVG(null)+'<div class="qinfo" id="qinfo">Toque num quadrante para ver quem costuma ficar ali.</div>');
+  app.innerHTML = topbar()+`<div class="head"><button class="back" id="bk">←</button><span class="ht">${m.emoji} Fase ${V.m+1} · ${m.title}</span></div>
+   <div class="dots">${m.cards.map((_,k)=>`<i class="${k<=V.i?'on':''}"></i>`).join('')}<i></i></div>
+   <div class="card"><h2>${c.t}</h2>${body}</div>
+   <div class="nav">${V.i>0?'<button class="btn ghost" id="prev">Voltar</button>':''}<button class="btn" id="next">${V.i<n-1?'Próximo →':'Hora do desafio ⚡'}</button></div>`;
+  bindCompass();
+  document.getElementById('bk').onclick=()=>go({screen:'home'});
+  const p=document.getElementById('prev'); if(p) p.onclick=()=>go({screen:'cards',m:V.m,i:V.i-1});
+  document.getElementById('next').onclick=()=>{ if(V.i<n-1) go({screen:'cards',m:V.m,i:V.i+1}); else startQuiz(V.m); };
+}
+
+function startQuiz(mi){
+  const m=MODULES[mi];
+  let qs=m.quiz.map(q=>inst(mkModuleQ(m,q)));
+  if(m.flash) qs=qs.concat(shuffle(m.flash.items).map(it=>inst(mkFlashQ(m,it))));
+  go({screen:'quiz',mode:'module',m:mi,qs,k:0,ok:0,picked:null,gained:0});
+}
+function startFinal(){ return go({screen:'voto'});
+  const pool=[]; MODULES.forEach(m=>m.quiz.forEach(q=>pool.push(inst(mkModuleQ(m,q),'Prova final · '+m.emoji+' '+m.title))));
+  go({screen:'quiz',mode:'final',qs:shuffle(pool).slice(0,10),k:0,ok:0,picked:null,gained:0});
+}
+function startSteel(){ go({screen:'quiz',mode:'steel',qs:shuffle(STEEL).map(r=>inst(mkSteelQ(r))),k:0,ok:0,picked:null,gained:0}); }
+function startReview(){
+  const keys=shuffle(S.wrong.filter(k=>ALLQ[k])).slice(0,10);
+  go({screen:'quiz',mode:'review',qs:keys.map(k=>inst(ALLQ[k],'🔁 Revisão · '+ALLQ[k].from)),k:0,ok:0,picked:null,gained:0});
+}
+
+function quizTitle(){
+  if(V.mode==='module') return MODULES[V.m].emoji+' Desafio · Fase '+(V.m+1);
+  return {final:'🎓 Prova final',steel:'🎭 Advogado do outro lado',review:'🔁 Revisão dos erros'}[V.mode];
+}
+function renderQuiz(){
+  const q=V.qs[V.k], n=V.qs.length, ans=V.picked!==null;
+  let h=topbar()+`<div class="head"><button class="back" id="bk">✕</button><span class="ht">${quizTitle()}</span><span class="chip">${V.k+1}/${n}</span></div>
+   <div class="dots">${V.qs.map((_,k)=>`<i class="${k<V.k||(k===V.k&&ans)?'on':''}"></i>`).join('')}</div>
+   <div class="card quiz"><div class="qtag">${esc(q.tag)}</div>`;
+  if(q.sub) h+=`<div class="argbox"><div class="who">💬 ${esc(q.who)}:</div>"${esc(q.sub)}"</div>`;
+  h+=`<div class="qq">${esc(q.q)}</div><div class="opts ${q.grid&&q.o.length<=4?'grid2':''}">`;
+  q.o.forEach((o,k)=>{let cl='opt'; if(ans){ if(k===q.a) cl+=' right'; else if(k===V.picked) cl+=' wrong'; else cl+=' dim'; }
+    h+=`<button class="${cl}" data-k="${k}" ${ans?'disabled':''}>${esc(o)}</button>`;});
+  h+=`</div>`;
+  if(ans){const good=V.picked===q.a; h+=`<div class="fb ${good?'good':'badf'}"><b>${good?(S.streak>=3?'🔥 Acertou! '+S.streak+' seguidas':'✅ Acertou!'):'❌ Não foi dessa vez'}</b>${esc(q.e)}${q.f&&FONTES[q.f]?' <button type="button" class="fn" data-f="'+q.f+'">🔎 '+esc(FONTES[q.f].s)+'</button>':''}${good?'':'<br><small>Essa pergunta foi para a sua Revisão dos erros.</small>'}</div>`;}
+  h+=`</div>`;
+  if(ans) h+=`<div class="nav"><button class="btn ${V.picked===q.a?'ok':''}" id="cont">${V.k<n-1?'Continuar →':'Ver resultado'}</button></div>`;
+  app.innerHTML=h;
+  document.getElementById('bk').onclick=()=>go({screen:'home'});
+  if(!ans) app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));
+  else document.getElementById('cont').onclick=()=>{ if(V.k<n-1){V.k++;V.picked=null;render();window.scrollTo(0,0);} else finishQuiz(); };
+}
+function pick(k){
+  const q=V.qs[V.k]; V.picked=k;
+  if(k===q.a){
+    V.ok++; S.streak++; S.best=Math.max(S.best,S.streak);
+    const pts=10+(S.streak>=3?5:0); V.gained+=pts; S.xp+=pts; delWrong(q.key); save();
+    toast('+'+pts+' pontos'+(S.streak>=3?' · '+S.streak+' seguidos!':'')); snd(S.streak>=3?'combo':'ok');
+  } else {
+    S.streak=0; addWrong(q.key); save(); snd('bad');
+    if(navigator.vibrate) try{navigator.vibrate(80)}catch(e){}
+  }
+  render();
+}
+function finishQuiz(){
+  const n=V.qs.length, pct=V.ok/n;
+  if(V.mode==='final'){
+    const pass=V.ok>=7; let newB=false;
+    if(pass){ newB=giveBadge(EXTRA_BADGES[B_FINAL]); if(newB){S.xp+=100;save();} snd('win'); confetti(); }
+    return go({screen:'result',mode:'final',ok:V.ok,n,pass,newB,gained:V.gained+(newB?100:0)});
+  }
+  if(V.mode==='steel'){
+    let newB=false; if(V.ok>=6){ newB=giveBadge(EXTRA_BADGES[B_STEEL]); if(newB){S.xp+=50;save();} snd('win'); confetti(); }
+    return go({screen:'result',mode:'steel',ok:V.ok,n,newB,gained:V.gained+(newB?50:0)});
+  }
+  if(V.mode==='review'){
+    let newB=false; if(V.ok===n){ newB=giveBadge(EXTRA_BADGES[B_REVIEW]); if(newB){S.xp+=40;save();} snd('win'); confetti(); }
+    return go({screen:'result',mode:'review',ok:V.ok,n,newB,gained:V.gained+(newB?40:0)});
+  }
+  const m=MODULES[V.m], stars=pct>=.9?3:pct>=.6?2:1, prev=S.done[m.id];
+  let bonus=0;
+  if(!prev) bonus=30+stars*10; else if(stars>prev.stars) bonus=(stars-prev.stars)*10;
+  S.done[m.id]={stars:Math.max(stars,prev?prev.stars:0)};
+  const newB=giveBadge(m.badge); S.xp+=bonus; save();
+  go({screen:'result',mode:'module',m:V.m,ok:V.ok,n,stars,newB,gained:V.gained+bonus});
+  if(stars>=2||newB){ snd('win'); confetti(); }
+}
+
+function renderResult(){
+  const nW=S.wrong.filter(k=>ALLQ[k]).length;
+  const rw = (V.gained?`<span class="reward">+${V.gained} pontos</span>`:'');
+  if(V.mode==='final'){
+    app.innerHTML=topbar()+`<div class="card res" style="margin-top:18px"><div class="big">${V.pass?'🎓':'📚'}</div><h2>${V.pass?'APROVADO!':'QUASE LA!'}</h2>
+      <p>Você acertou <b>${V.ok} de ${V.n}</b>.</p>${rw}${V.newB?`<span class="reward">${EXTRA_BADGES[B_FINAL]}</span>`:''}
+      <p style="color:var(--muted)">${V.pass?'Agora é hora de pegar seu certificado.':'Use a Revisão dos erros e tente de novo: as perguntas são sorteadas a cada vez.'}</p></div>
+      <div class="nav">${V.pass?'<button class="btn ok" id="cert">Pegar certificado</button>':'<button class="btn" id="again">Tentar de novo</button>'}<button class="btn ghost" id="home">Trilha</button></div>`;
+    const c=document.getElementById('cert'); if(c) c.onclick=()=>go({screen:'cert'});
+    const a=document.getElementById('again'); if(a) a.onclick=startFinal;
+    document.getElementById('home').onclick=()=>go({screen:'home'}); return;
+  }
+  if(V.mode==='steel'||V.mode==='review'){
+    const isS=V.mode==='steel';
+    const msg=isS?(V.ok>=6?'Você sabe separar argumento de ataque. É a habilidade mais rara do debate político.':'Dica: a melhor resposta quase sempre traz dados ou consequências, e nunca ataca a pessoa.')
+                 :(nW?'Ainda restam '+nW+' para revisar.':'Revisão zerada! 🎉');
+    app.innerHTML=topbar()+`<div class="card res" style="margin-top:18px"><div class="big">${isS?'🎭':'🔁'}</div><h2>${isS?'FIM DO JULGAMENTO':'REVISAO FEITA'}</h2>
+      <p>${V.ok} de ${V.n} acertos</p>${rw}${V.newB?`<span class="reward">${EXTRA_BADGES[isS?B_STEEL:B_REVIEW]}</span>`:''}<p style="color:var(--muted)">${msg}</p></div>
+      <div class="nav">${isS||nW?'<button class="btn" id="again">'+(isS?'Jogar de novo':'Revisar o resto')+'</button>':''}<button class="btn ghost" id="home">Trilha</button></div>`;
+    const a=document.getElementById('again'); if(a) a.onclick=isS?startSteel:startReview;
+    document.getElementById('home').onclick=()=>go({screen:'home'}); return;
+  }
+  const m=MODULES[V.m], nxt=MODULES[V.m+1];
+  const msg=V.stars===3?'Mandou muito! 🤩':V.stars===2?'Bom trabalho! 👏':'Valeu a tentativa: refaça para ganhar mais estrelas 💪';
+  app.innerHTML=topbar()+`<div class="card res" style="margin-top:18px"><div class="big">${m.emoji}</div><h2>FASE ${V.m+1} COMPLETA!</h2>
+    <div class="stars">${'★'.repeat(V.stars)}${'☆'.repeat(3-V.stars)}</div><p>${V.ok} de ${V.n} acertos · ${msg}</p>
+    ${rw}${V.newB?`<span class="reward">Nova conquista: ${m.badge}</span>`:''}</div>
+    ${fontesHTML(m.id)}${deepHTML(m.id)}
+    <div class="nav">${nxt?`<button class="btn" id="nx">Próxima fase: ${nxt.emoji}</button>`:(allDone()?'<button class="btn ok" id="fin">E você, o que acha? 🗳️</button>':'')}<button class="btn ghost" id="redo">Refazer</button></div>
+    <div class="nav"><button class="btn ghost" style="flex:1" id="home">Voltar à trilha</button></div>`;
+  const nx=document.getElementById('nx'); if(nx) nx.onclick=()=>go({screen:'cards',m:V.m+1,i:0});
+  const fi=document.getElementById('fin'); if(fi) fi.onclick=startFinal;
+  document.getElementById('redo').onclick=()=>startQuiz(V.m);
+  document.getElementById('home').onclick=()=>go({screen:'home'});
+}
+
+function renderCompass(){
+  const n=COMPASS_Q.length;
+  if(V.i>=n || V.show){
+    const p=S.compass;
+    const key = p.x<0 ? (p.y>0?'tl':'bl') : (p.y>0?'tr':'br');
+    const centro = Math.abs(p.x)<.2 && Math.abs(p.y)<.2;
+    const q=QUAD[key];
+    const pulls=(p.pulls||[]).map(u=>`<div class="pull"><span>${u.dir}</span>${esc(u.t)}</div>`).join('');
+    app.innerHTML=topbar()+`<div class="head"><button class="back" id="bk">←</button><span class="ht">🎯 Sua bússola</span></div>
+      <div class="card"><h2>${centro?'Bem perto do centro':'Você ficou em: '+q.n}</h2>${compassSVG(p)}
+      <p>${centro?'Suas respostas se equilibraram entre os lados. Muita gente que se diz "nem de esquerda nem de direita" cai aqui.':q.d}</p>
+      ${pulls?`<div class="qtag" style="margin-top:14px">As frases que mais te puxaram</div>${pulls}`:''}
+      <div class="warn">⚠️ São 24 frases, não um diagnóstico. Quase todo mundo mistura ideias de vários quadrantes, e tudo bem não caber num rótulo. Use o resultado para refletir, não como identidade.</div>
+      <div class="qinfo" id="qinfo">Toque nos outros quadrantes para comparar.</div></div>
+      <div class="nav"><button class="btn ghost" id="redo">Refazer</button><button class="btn" id="home">Voltar à trilha</button></div>`;
+    bindCompass();
+    document.getElementById('bk').onclick=()=>go({screen:'home'});
+    document.getElementById('home').onclick=()=>go({screen:'home'});
+    document.getElementById('redo').onclick=()=>go({screen:'compass',i:0,ans:[]});
+    return;
+  }
+  const q=COMPASS_Q[V.i];
+  const opts=[['Concordo totalmente',2],['Concordo em parte',1],['Neutro / não sei',0],['Discordo em parte',-1],['Discordo totalmente',-2]];
+  app.innerHTML=topbar()+`<div class="head"><button class="back" id="bk">←</button><span class="ht">🎯 Bússola pessoal</span><span class="chip">${V.i+1}/${n}</span></div>
+    <div class="dots">${COMPASS_Q.map((_,k)=>`<i class="${k<V.i?'on':''}"></i>`).join('')}</div>
+    <div class="card quiz"><div class="qtag">O que você acha?</div><div class="qq">${esc(q.t)}</div>
+    <div class="scale">${opts.map(o=>`<button class="opt" data-v="${o[1]}">${o[0]}</button>`).join('')}</div>
+    <p style="color:var(--muted);font-size:.85rem;margin-top:14px">Não existe resposta certa aqui, e suas respostas ficam só neste aparelho.</p></div>
+    ${V.i>0?'<div class="nav"><button class="btn ghost" style="flex:1" id="prevq">← Pergunta anterior</button></div>':''}`;
+  document.getElementById('bk').onclick=()=>go({screen:'home'});
+  const pq=document.getElementById('prevq'); if(pq) pq.onclick=()=>{V.i--;render();};
+  app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+    V.ans[V.i]=+b.dataset.v; V.i++;
+    if(V.i>=n){
+      let x=0,y=0; const contrib=[];
+      COMPASS_Q.forEach((c,k)=>{const v=(V.ans[k]||0)*c.d; if(c.ax==='x') x+=v; else y+=v;
+        if(v!==0) contrib.push({t:c.t,v,dir:c.ax==='x'?(v>0?'mercado ▶':'◀ Estado'):(v>0?'▲ ordem':'▼ liberdade')});});
+      const half=COMPASS_Q.length/2*2;
+      const pulls=contrib.sort((a,b)=>Math.abs(b.v)-Math.abs(a.v)).slice(0,4).map(u=>({t:u.t,dir:u.dir}));
+      S.compass={x:Math.max(-1,Math.min(1,x/half)),y:Math.max(-1,Math.min(1,y/half)),pulls};
+      const nb=giveBadge(EXTRA_BADGES[B_COMPASS]); if(nb){S.xp+=40;} save(); if(nb){toast('+40 pontos · '+EXTRA_BADGES[B_COMPASS]);confetti();snd('win');}
+    }
+    render(); window.scrollTo(0,0);
+  });
+}
+
+function renderCert(){
+  const d=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
+  app.innerHTML=topbar()+`<div class="head"><button class="back" id="bk">←</button><span class="ht">🎓 Certificado</span></div>
+    <input class="txt" id="nm" placeholder="Seu nome no certificado" value="${esc(S.name||'')}">
+    <div class="cert"><div style="font-size:2.4rem">🏆</div><div class="qtag">Certificado de conclusão</div>
+      <h2>Política sem Mistério</h2><p>Certificamos que</p><div class="nm" id="cn">${esc(S.name||'Seu nome aqui')}</div>
+      <p>concluiu as ${NF} fases do curso, de "O mapa da política" a "Pensando sozinho".</p>
+      <p style="color:var(--muted);font-size:.85rem">${d} · ${S.xp} pontos · nível ${level().L.n}</p></div>
+    <div class="nav"><button class="btn" id="cp">Copiar conquista</button><button class="btn ghost" id="home">Trilha</button></div>
+    <a class="btn" href="index.html#avaliar" style="display:block;text-align:center;text-decoration:none;margin:10px 0">⭐ Avaliar o curso e sugerir um tema</a>
+    <p style="color:var(--muted);font-size:.8rem;text-align:center">Dica: tire um print da tela para guardar o certificado.</p>`;
+  const nm=document.getElementById('nm');
+  nm.oninput=()=>{S.name=nm.value.slice(0,40);save();document.getElementById('cn').textContent=S.name||'Seu nome aqui';};
+  document.getElementById('bk').onclick=()=>go({screen:'home'});
+  document.getElementById('home').onclick=()=>go({screen:'home'});
+  document.getElementById('cp').onclick=async()=>{
+    const t=`🎓 ${S.name||'Eu'} concluí o curso "Política sem Mistério": ${NF} fases sobre esquerda, direita, centro, economia, os três poderes, política mundial e mais, com ${S.xp} pontos!`;
+    try{await navigator.clipboard.writeText(t);toast('Copiado!');}catch(e){toast('Não deu para copiar aqui');}
+  };
+}
+
+function renderAval(){
+  const a=S.aval||{};const ck=(k,v)=>a[k]===v?'checked':'';
+  const radios=(name,opts)=>`<div class="av-row" role="radiogroup">${opts.map(o=>`<label><input type="radio" name="${name}" value="${o}" ${ck(name,o)}><span>${o}</span></label>`).join('')}</div>`;
+  app.innerHTML=topbar()+`<div class="head"><button class="back" id="bk">←</button><span class="ht">📝 Avalie o curso</span></div>
+   <form class="card" id="avf"><p>Leva 1 minuto. Por enquanto, sua avaliação fica guardada neste aparelho.</p>
+    <div class="av-q" id="lr">Que nota você dá ao curso? <small style="font-weight:400;opacity:.8">(1 = não gostei, 5 = gostei muito)</small></div>${radios('rating',['1','2','3','4','5'])}
+    <label class="av-q" for="learned" style="display:block">O que você aprendeu que não sabia?</label><textarea class="txt" id="learned" name="learned" maxlength="600">${esc(a.learned||'')}</textarea>
+    <div class="av-q">Sentiu que o curso favoreceu algum lado?</div>${radios('bias',['Não','Sim','Não sei'])}
+    <div id="bd" ${a.bias==='Sim'?'':'hidden'}><label class="av-q" for="biasDetail" style="display:block">Qual lado, e em que parte?</label><input class="txt" id="biasDetail" name="biasDetail" maxlength="300" value="${esc(a.biasDetail||'')}"></div>
+    <label class="av-q" for="comment" style="display:block">Comentário livre</label><textarea class="txt" id="comment" name="comment" maxlength="1000">${esc(a.comment||'')}</textarea>
+    <label class="av-q" for="nextTopic" style="display:block">Que tema você quer que vire curso?</label><input class="txt" id="nextTopic" name="nextTopic" maxlength="200" value="${esc(a.nextTopic||'')}">
+    <div class="nav"><button type="button" class="btn ghost" id="home">Voltar</button><button type="submit" class="btn">Salvar avaliação</button></div></form>`;
+  const f=document.getElementById('avf');
+  const sync=()=>{const sim=(new FormData(f).get('bias')==='Sim');document.getElementById('bd').hidden=!sim;};
+  f.addEventListener('change',sync);
+  document.getElementById('bk').onclick=()=>go({screen:'home'});
+  document.getElementById('home').onclick=()=>go({screen:'home'});
+  f.onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f).entries());if(d.bias!=='Sim')delete d.biasDetail;
+    if(!d.rating){toast('Escolha uma nota de 1 a 5');return;}
+    S.aval=d;save();
+    try{const q=JSON.parse(localStorage.getItem('pmu-fila')||'[]');q.push({curso:'politica-sem-misterio',quando:new Date().toISOString(),...d});localStorage.setItem('pmu-fila',JSON.stringify(q));}catch(x){}
+    toast('Avaliação salva neste aparelho. Obrigado!');go({screen:'home'});};
+}
+
+const VOTO={"q": "Se a decisão fosse sua: qual deveria ser o tamanho do Estado na economia?", "o": [{"t": "Estado menor", "s": "menos impostos, menos gastos, mais espaço para o mercado", "pro": "Quem defende, na tradição liberal de Locke, Adam Smith e Hayek, diz que impostos e regras demais tiram liberdade das pessoas e travam o crescimento. [[locke]] [[hayek]]", "con": "Quem critica diz que o mercado sozinho não reduz a desigualdade e deixa os mais pobres sem proteção. [[bobbio]]"}, {"t": "Estado maior", "s": "mais serviços públicos e mais proteção social", "pro": "Quem defende cita os países nórdicos, onde impostos altos pagam saúde, educação e proteção social para todos. [[esping]]", "con": "Quem critica diz que isso exige impostos altos, tira o incentivo para investir e trabalhar e dá poder demais ao governo. [[hayek]]"}, {"t": "Meio-termo", "s": "mercado livre, com rede de proteção e contas sob controle", "pro": "Quem defende, como Anthony Giddens na chamada \"terceira via\", diz que dá para combinar mercado forte com proteção social. [[giddens]]", "con": "Quem critica, à esquerda e à direita, diz que o meio-termo vira indefinição: não corta o que deveria nem protege o suficiente. [[heywood]]"}]};
+function vtxt(t){return esc(t).replace(/\[\[([a-zA-Z0-9_]+)\]\]/g,(m,k)=>FONTES[k]?`<button type="button" class="fn" data-f="${k}" aria-label="Ver fonte: ${esc(FONTES[k].s)}">🔎 ${esc(FONTES[k].s)}</button>`:'');}
+function renderVoto(){
+  const k=S.voto, o=(k!=null)?VOTO.o[k]:null;
+  app.innerHTML=topbar()+`<div class="head"><button class="back" id="bk">←</button><span class="ht">🗳️ E você, o que acha?</span></div>
+   <div class="card"><h2>${esc(VOTO.q)}</h2><p>Não existe resposta certa e não vale nota. Toque numa opção para ver os dois lados.</p>
+   ${VOTO.o.map((x,i)=>`<button type="button" class="vo ${k===i?'on':''}" data-v="${i}" aria-pressed="${k===i}"><b>${esc(x.t)}</b><small>${esc(x.s)}</small></button>`).join('')}
+   ${o?`<div class="vside" aria-live="polite"><b>👍 A favor</b><p>${vtxt(o.pro)}</p><b>👎 Contra</b><p>${vtxt(o.con)}</p></div>`:''}</div>
+   <div class="nav"><button class="btn ghost" id="home">Trilha</button>${k!=null?'<button class="btn" id="ct">Pegar certificado 🎓</button>':''}</div>`;
+  app.querySelectorAll('.vo').forEach(b=>b.onclick=()=>{const first=S.voto==null;S.voto=+b.dataset.v;if(first&&giveBadge(EXTRA_BADGES[B_FINAL])){snd('win');}save();renderVoto();});
+  document.getElementById('bk').onclick=()=>go({screen:'home'});
+  document.getElementById('home').onclick=()=>go({screen:'home'});
+  const ct=document.getElementById('ct');if(ct)ct.onclick=()=>go({screen:'cert'});
+}
+
+render();
+</script>
+</body>
+</html>

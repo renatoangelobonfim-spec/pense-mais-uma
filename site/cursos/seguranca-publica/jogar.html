@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Segurança pública: o que funciona contra o crime? | Pense Mais Uma</title>
+<meta name="description" content="Documentário para ler rolando a tela: Medellín, Nova York, El Salvador e São Paulo derrubaram a violência por caminhos diferentes. Números de antes e depois, os dois lados e fonte em cada dado.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBF8F2;--ink:#1C1A17;--mut:#6B655C;--acc:#7A2E5C;--sec:#8A5A2B;--line:#DDD5C6;--card:#F3EEE4}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font:400 17px/1.6 "Source Serif 4",Georgia,serif}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+#bar{position:fixed;left:0;right:0;top:0;height:3px;background:var(--line);z-index:40}#bar i{display:block;height:100%;width:0;background:var(--acc)}
+main{max-width:560px;margin:0 auto;padding:0 22px 40px}
+.k{font:600 11px "IBM Plex Mono",monospace;letter-spacing:.14em;color:var(--sec);text-transform:uppercase;margin:26px 0 6px}
+h1{font:700 clamp(32px,9vw,42px)/1.08 "Source Serif 4",Georgia,serif;margin:6px 0 14px;letter-spacing:-.01em}
+h2{font:700 clamp(25px,7vw,30px)/1.12 "Source Serif 4",Georgia,serif;margin:4px 0 12px}
+.cover{min-height:92svh;display:flex;flex-direction:column;justify-content:center;padding-top:30px}
+.lead{font-style:italic;font-size:19px;color:#3A352F}
+.small{font:500 13px/1.5 Inter,sans-serif;color:var(--mut)}
+.go{display:block;width:100%;min-height:52px;border-radius:10px;background:var(--acc);color:#fff;font:600 13.5px "IBM Plex Mono";letter-spacing:.08em;margin-top:18px}
+.go.ghost{background:none;border:1.5px solid var(--acc);color:var(--acc);margin-top:10px}
+.cap{border-top:2px solid var(--ink);margin-top:56px;padding-top:4px}
+.b{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.b.in{opacity:1;transform:none}
+.b p,.b.p{margin:0 0 16px}
+.big{margin:22px 0 14px}.big .n{font:700 clamp(52px,16vw,68px)/1 "Source Serif 4";color:var(--acc);letter-spacing:-.02em}
+.big .l{font:500 11px/1.4 "IBM Plex Mono";letter-spacing:.06em;color:var(--mut);text-transform:uppercase;margin-top:6px}
+.chart{margin:10px 0 18px}.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart .ln{fill:none;stroke:var(--acc);stroke-width:3;stroke-linejoin:round;stroke-linecap:round;transition:stroke-dashoffset 2.2s ease}
+.chart .dot{fill:var(--acc);opacity:0;transition:opacity .4s ease 1.8s}.b.in .chart .dot,.chart.in .dot{opacity:1}
+.chart .ax{font:500 10px "IBM Plex Mono";fill:var(--mut)}.chart .vl{font:700 11px "IBM Plex Mono";fill:var(--ink)}
+.chart .ev{font:400 12px "Source Serif 4";fill:var(--ink)}
+.cnote{font:500 12px/1.45 Inter;color:var(--mut);margin-top:4px}
+.bars .r{display:grid;grid-template-columns:118px 1fr 44px;gap:8px;align-items:center;margin:7px 0;font:500 13px Inter}
+.bars .t{height:14px;background:var(--line);border-radius:2px;overflow:hidden}.bars .t i{display:block;height:100%;width:0;background:var(--acc);transition:width 1.4s ease}
+.bars .r:not(:first-of-type) .t i{background:#B9A28E}
+.bars .v{font:700 12px "IBM Plex Mono";text-align:right}
+.ad{border:1.5px solid var(--ink);margin:18px 0}.ad .h{background:var(--ink);color:var(--bg);font:600 10.5px "IBM Plex Mono";letter-spacing:.12em;padding:6px 10px}
+.ad .row{padding:10px;border-top:1px solid var(--line);font:500 14px/1.45 Inter}.ad .row:first-of-type{border-top:0}
+.ad .m{font-weight:700;margin-bottom:6px}.ad .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center}
+.ad .ba span{background:var(--card);padding:6px 8px;font-weight:700}.ad .ba em{font-style:normal;color:var(--acc);font-weight:700}
+.ad .note{background:var(--card)}.ad .note b{display:block;font:600 10px "IBM Plex Mono";letter-spacing:.1em;color:var(--sec);margin-bottom:4px}
+.two{display:grid;gap:10px;margin:18px 0}.two>div{border-left:3px solid var(--acc);padding:4px 0 4px 12px;font-size:15.5px;line-height:1.55}
+.two>div:last-child{border-left-color:var(--sec)}
+.two b{display:block;font:600 10px "IBM Plex Mono";letter-spacing:.12em;color:var(--mut);margin-bottom:3px}
+.leadx{font-style:italic;font-size:20px;line-height:1.5;border-left:3px solid var(--acc);padding-left:14px;margin:26px 0}
+.fn{display:inline-block;font:600 11px Inter;color:var(--sec);background:#F1E6D6;border:1px solid #E0CDB4;border-radius:99px;padding:0 7px;margin:0 2px;vertical-align:2px;text-align:left;line-height:1.6}
+#fnpop{position:fixed;left:14px;right:14px;bottom:14px;max-width:520px;margin:0 auto;background:var(--ink);color:#F4EFE6;border-radius:12px;padding:14px 16px;z-index:60;display:none;font:500 14px/1.5 Inter;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+#fnpop a{color:#F3C08A}#fnpop .x{position:absolute;right:10px;top:6px;font-size:20px;color:#F4EFE6}
+.vt{display:block;width:100%;text-align:left;border:1.5px solid var(--line);border-radius:10px;padding:12px;margin:8px 0;background:#fff;font-family:Inter}
+.vt b{display:block;font-size:16px}.vt small{color:var(--mut);font-size:13px}.vt.on{border-color:var(--acc);background:#F6ECF1}
+.cd{font-size:15.5px}.cd i{font-style:normal;display:block;font:600 10px "IBM Plex Mono";letter-spacing:.1em;color:var(--sec);margin-top:10px}
+.box{border-top:2px solid var(--ink);margin-top:40px;padding-top:10px;font-family:Inter;font-size:14.5px}
+.box h3{font:700 22px "Source Serif 4";margin:4px 0 10px}
+.rate{display:flex;gap:6px}.rate button{flex:1;border:1.5px solid var(--line);border-radius:8px;padding:10px 0;font-weight:700;background:#fff}.rate button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+textarea,select{width:100%;font:inherit;border:1.5px solid var(--line);border-radius:8px;padding:10px;background:#fff}
+.fontes li{font-size:12.5px;margin:.45em 0;color:var(--mut)}.fontes a,.box a{color:var(--acc)}
+@media (prefers-reduced-motion:reduce){.b{opacity:1;transform:none;transition:none}.chart .ln{transition:none}.bars .t i{transition:none}}
+</style><link rel="canonical" href="https://pensemaisuma.com.br/cursos/seguranca-publica/">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+</head><body>
+<div id="pmu-bar" style="font-family:Nunito,system-ui,sans-serif;background:#FAF7F0;color:#17150F;border-bottom:1.5px solid #17150F;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:14px;font-weight:800;position:relative;z-index:50">
+<a href="index.html" style="color:inherit;text-decoration:none">← Sobre o curso</a>
+<a href="../../index.html" style="display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none"><img src="../../assets/logo.svg" alt="" width="26" height="26"><span style="font-family:Fraunces,Georgia,serif">Pense Mais Uma</span></a>
+<a href="index.html#avaliar" style="color:inherit">Avaliar</a></div>
+<div id="bar"><i></i></div>
+<main id="app"></main>
+<div id="fnpop" role="dialog" aria-live="polite"><button class="x" aria-label="Fechar">×</button><div id="fnbody"></div></div>
+<script>
+const FONTES={
+ fbsp_inf:{s:"FBSP, Anuário 2026 (infográfico)",t:"Fórum Brasileiro de Segurança Pública, infográfico do Anuário 2026: 40.775 mortes violentas intencionais em 2025; 6.602 mortes decorrentes de intervenção policial, alta de 5,4%",u:"https://forumseguranca.org.br/wp-content/uploads/2026/07/anuario-2026-infografico.pdf"},
+ un26:{s:"ONU News, 2026",t:"ONU News (set/2026): a taxa global de homicídios foi de 5,2 por 100 mil habitantes em 2023",u:"https://news.un.org/en/story/2026/09/1168493"},
+ escobar:{s:"AP, via Telemundo",t:"AP, via Telemundo: Pablo Escobar morreu em 2 de dezembro de 1993, em Medellín",u:"https://www.telemundo.com/noticias/noticias-telemundo/narcotrafico/el-dolor-por-los-crimenes-de-pablo-escobar-perdura-30-anos-despues-de-rcna127772"},
+ radnac:{s:"Radio Nacional de Colombia, 2025",t:"Radio Nacional de Colombia (set/2025): a Operação Órion (2002) teve participação de Exército, Polícia e Força Aérea, com apoio de paramilitares; relatórios apontam execuções e desaparecimentos; a JEP, justiça de transição colombiana, já recuperou 7 corpos em La Escombrera",u:"https://radionacional.co/actualidad/paz/jep-recupera-7-victimas-en-la-escombrera-continua-busqueda-en-medellin"},
+ reut_nyc:{s:"Reuters, via Investing.com",t:"Reuters: Nova York teve 673 assassinatos em 2000, 292 em 2017, 468 em 2020 e 488 em 2021",u:"https://www.investing.com/news/world-news/factboxdespite-recent-uptick-new-york-city-crime-down-from-past-decades-2802666"},
+ ny1:{s:"NY1, 2026",t:"NY1 (nov/2026): de janeiro a outubro de 2026, Nova York teve 230 assassinatos, o menor número da história para o período, queda de 15,7%",u:"https://ny1.com/nyc/all-boroughs/public-safety/2026/11/09/nypd-october-2026-crime-statistics-murders-shootings-record-lows"},
+ tvn:{s:"TVN-2, 2023",t:"TVN-2: a taxa de homicídios de El Salvador foi de 38 por 100 mil em 2019, 18,1 em 2021 e 7,8 em 2022",u:"https://www.tvn-2.com/mundo/salvador-registra-baja-historica-tasa_1_2028692.html"},
+ edh547:{s:"El Diario de Hoy / EFE, 2026",t:"El Diario de Hoy, com a EFE (jul/2026): organizações salvadorenhas contam 547 mortes de presos sob o regime de exceção",u:"https://www.eldiariodehoy.com/noticias/nacionales/aumentan-a-547-las-muertes-en-carceles-bajo-regimen-de-excepcion-segun-ong/85663/2026/"},
+ willis:{s:"Graham Willis, The Killing Consensus (UC Press)",t:"University of California Press, sobre o livro The Killing Consensus (2015), de Graham Denyer Willis: o controle do PCC sobre a vida nas periferias, ironicamente, fez a cidade parecer mais segura para a maioria",u:"https://ucpress.edu/books/the-killing-consensus/epub-pdf"},
+ brapi:{s:"brapi, 2026",t:"brapi (10/nov/2026): o presidente do Senado, Davi Alcolumbre, disse que pretendia promulgar a PEC da Segurança em cerca de 15 dias",u:"https://brapi.dev/news/alcolumbre-planeja-promulgar-pec-da-seguranca-em-cerca-de-15-dias-com-013b7026"},
+ pec_fpe:{s:"Folha de Pernambuco, 2026",t:"Folha de Pernambuco (nov/2026): o Senado aprovou em segundo turno a PEC da Segurança por 75 a 0; a promulgação ficou com data a definir",u:"https://www.folhape.com.br/politica/senado-aprova-em-2o-turno-pec-da-seguranca-por-75-a-0/522191/"},
+ fbsp26:{s:"Anuário FBSP, 2026",t:"CNN Brasil, sobre o 20º Anuário Brasileiro de Segurança Pública (FBSP, jul/2026): o país registrou 40.775 mortes violentas intencionais em 2025, taxa de 19,1 por 100 mil habitantes",u:"https://www.cnnbrasil.com.br/nacional/brasil/quase-80-das-vitimas-de-mortes-violentas-no-brasil-sao-pessoas-negras/"},
+ fbsp12:{s:"Jornal do Brasil, 2026",t:"Jornal do Brasil, sobre o Anuário 2026: a taxa de 19,1 em 2025 é a primeira abaixo de 20 desde o início da série, em 2012, quando era de 27,7 por 100 mil",u:"https://www.jb.com.br/brasil/2026/07/1060384-brasil-tem-menor-taxa-de-mortes-violentas-intencionais-desde-2012.html"},
+ cef_mapa:{s:"Congresso em Foco, 2026",t:"Congresso em Foco (jul/2026), sobre o Anuário: uma em cada seis mortes violentas registradas no país em 2025 foi provocada por policiais civis ou militares",u:"https://www.congressoemfoco.com.br/noticia/120720/mortes-violentas-chegam-ao-menor-patamar-em-14-anos-veja-mapa"},
+ unodc:{s:"ONU (UNODC), 2023",t:"UNODC, Estudo Global sobre Homicídios 2023: em 2021, a média mundial foi de 5,8 homicídios por 100 mil habitantes; Ásia 2,3, Europa 2,2 e Oceania 2,9",u:"https://unis.unvienna.org/unis/pressrels/2023/uniscp1165.html"},
+ unodc_am:{s:"ONU (UNODC), 2023",t:"UNODC (dez/2023): as Américas tiveram a maior taxa regional de homicídios do mundo em 2021, 15 por 100 mil habitantes",u:"https://unodc.org/unodc/press/releases/2023/December/fifty-two-people-lost-their-lives-to-homicide-globally-every-hour-in-2021--says-new-report-from-unodc.html"},
+ med_gov:{s:"Prefeitura de Medellín",t:"Prefeitura de Medellín: no começo dos anos 1990, a cidade chegou a uma taxa de 381 homicídios por 100 mil habitantes",u:"https://www.medellin.gov.co/es/?p=574660"},
+ brook:{s:"Brookings, 2011",t:"Brookings (Vanda Felbab-Brown, 2011): em 1991, no auge da guerra de Pablo Escobar contra o Estado, o cartel de Cali e os paramilitares, a taxa de Medellín foi de 381 por 100 mil; a violência caiu até cerca de 2007, em parte pela queda de Escobar e pelo domínio dos bairros pobres pelo traficante e líder paramilitar Don Berna; em 2002, a Operação Órion expulsou as FARC da cidade; apesar dos investimentos, os homicídios voltaram a subir depois",u:"https://www.brookings.edu/articles/reducing-urban-violence-lessons-from-medellin-colombia/"},
+ mcv:{s:"Medellín Cómo Vamos, via Telemedellín",t:"Telemedellín, sobre o relatório Medellín Cómo Vamos: a taxa de homicídios caiu de 194,8 por 100 mil em 2002 para 13,9 em 2025",u:"https://telemedellin.tv/?p=196897"},
+ med26:{s:"Prefeitura de Medellín, 2026",t:"Prefeitura de Medellín (out/2026): até setembro de 2026, taxa acumulada de 6,9 homicídios por 100 mil, com projeção de 9,24 para o ano",u:"https://www.medellin.gov.co/es/sala-de-prensa/noticias/medellin-alcanza-cifra-historica-con-reduccion-del-79-de-homicidios-en-septiembre-el-mes-menos-violento-de-los-ultimos-50-anos/"},
+ upi:{s:"UPI / The Conversation, 2017",t:"UPI (Robert Muggah, 2017): depois que o governo tirou o controle das comunidades mais pobres dos paramilitares, o prefeito Sergio Fajardo adotou a 'acupuntura urbana': centros comunitários, escolas, transporte, teleféricos e escadas rolantes; nos anos 1990, Medellín teve uma das maiores taxas de homicídio já registradas no mundo",u:"https://www.upi.com/Top_News/Voices/2017/06/28/How-to-fix-Latin-Americas-homicide-problem/1521498660220/"},
+ emol:{s:"El Mercurio (Emol), 2024",t:"Emol (dez/2024): os economistas Christopher Blattman, Benjamin Lessing e Santiago Tobón falaram, em artigo de 2022, do 'terrível dilema' de Medellín: o preço de reduzir a violência pode ser aceitar que grupos criminosos governem partes da cidade",u:"https://www.emol.com/noticias/Nacional/2024/12/10/1150866/cronica-para-el-futuro.html"},
+ nysf:{s:"New York Focus, 2025",t:"New York Focus (ago/2025): o pico de assassinatos da cidade foi de 2.262 em 1990; as autoridades atribuíram a queda recente à análise de dados em tempo real e ao reforço de policiamento em pontos críticos",u:"https://nysfocus.com/2025/08/09/new-york-city-low-crime-2025"},
+ nyc25:{s:"ABC7, via Yahoo, 2026",t:"ABC7 (jan/2026): Nova York terminou 2025 com 305 assassinatos, 77 a menos que no ano anterior, segundo a polícia",u:"https://www.yahoo.com/news/articles/nypd-touts-historic-decline-murders-175911956.html"},
+ eji:{s:"EJI / ProPublica, 2018",t:"Equal Justice Initiative (2018), citando a ProPublica: as abordagens policiais subiram de cerca de 100 mil em 2002 para quase 700 mil em 2011; em 2013, uma juíza federal considerou a prática racialmente discriminatória e inconstitucional, observando que quase 90% dos abordados eram inocentes; em 2017, os assassinatos caíram para 291",u:"https://eji.org/news/new-york-crime-falls-as-police-end-stop-and-frisk/"},
+ brennan:{s:"Brennan Center, 2016",t:"Brennan Center (2016): o crime caiu tanto enquanto as abordagens aumentavam quanto depois que elas diminuíram, e continuou caindo após o fim do programa, em 2014",u:"https://www.brennancenter.org/index%2ephp/es/node/4758"},
+ pmc:{s:"MacDonald, Fagan e Geller, 2016",t:"Estudo publicado no PMC (2016) sobre a Operação Impacto (2004–2012): saturar de policiais os quarteirões com mais crime ajudou a reduzir o crime em Nova York, mas a maior parte das abordagens não teve papel importante na queda",u:"https://pmc.ncbi.nlm.nih.gov/articles/PMC4911104"},
+ zim_oup:{s:"Franklin Zimring (OUP)",t:"Franklin Zimring (Oxford University Press): os primeiros nove anos da queda em Nova York fizeram parte de uma tendência nacional, uma queda de quase 40% que começou no início dos anos 1990",u:"https://blog.oup.com/?p=19491"},
+ zim_wp:{s:"Zimring, NYU",t:"Franklin Zimring (NYU): a queda de Nova York foi duas vezes maior que a tendência nacional e durou duas vezes mais; as mudanças na polícia sem dúvida deram uma contribuição importante",u:"https://www.law.nyu.edu/sites/default/files/siwp/WP9Zimring.pdf"},
+ hemen:{s:"Injury Prevention (BMJ), 2012",t:"Resenha no Injury Prevention (BMJ): de 1990 a 2009, a taxa de homicídios de Nova York caiu 76%; em livro anterior, Zimring concluiu que a causa da queda americana dos anos 1990 continua em grande parte um mistério",u:"https://injuryprevention.bmj.com/content/18/4/283"},
+ ap_sv:{s:"AP, via Cadena 3, 2026",t:"AP (jan/2026): El Salvador fechou 2025 com 82 homicídios; em 2015 foram 6.656, taxa de 103 por 100 mil; organizações de direitos humanos registram mais de 6 mil denúncias",u:"https://www.cadena3.com/noticia/mundo/el-salvador-reporta-baja-record-en-homicidios-en-medio-de-su-lucha-contra-las-pandillas_505760"},
+ sv25:{s:"Governo de El Salvador, via El Mundo",t:"Diario El Mundo (jan/2026): o ministro da Segurança, Gustavo Villatoro, informou 82 homicídios em 2025, taxa de 1,3 por 100 mil",u:"https://diario.elmundo.sv/nacionales/seguridad-oficializa-82-homicidios-durante-el-2025"},
+ edh:{s:"El Diario de Hoy, 2026",t:"El Diario de Hoy (2026): o regime de exceção, aprovado pela Assembleia a pedido de Bukele, suspende garantias constitucionais e já deixou mais de 93 mil detenções; as autoridades não contam como homicídio as mortes de supostos criminosos em confronto, as ossadas em covas clandestinas nem as mortes sob custódia",u:"https://www.eldiariodehoy.com/?p=100733"},
+ sv_rx:{s:"El Mundo, 2026",t:"Diario El Mundo (2026): o regime de exceção está em vigor desde março de 2022 e suspende determinadas garantias constitucionais",u:"https://diario.elmundo.sv/nacionales/el-salvador-registra-61-homicidios-en-lo-que-va-de-2026-ministro-villatoro"},
+ dialogue:{s:"Inter-American Dialogue, 2025",t:"Inter-American Dialogue (mai/2025): a taxa caiu 50%, de 106 para 53 por 100 mil, entre 2015 e 2018, antes do governo Bukele; em 2024 chegou a 1,9, segundo a Polícia Nacional Civil; as extorsões caíram 57% entre 2022 e 2023",u:"https://thedialogue.org/wp-content/uploads/2025/05/El-Salvador_ES.pdf"},
+ treasury:{s:"Tesouro dos EUA, 2021",t:"Departamento do Tesouro dos EUA (dez/2021): acusou dois funcionários do governo Bukele, Osiris Luna e Carlos Marroquín, de organizar reuniões secretas com líderes de gangues presos para negociar uma trégua",u:"https://home.treasury.gov/news/press-releases/jy0519"},
+ reut_sv:{s:"Reuters, via Stabroek News, 2021",t:"Reuters (dez/2021): Bukele negou repetidamente que seu governo tenha negociado qualquer trégua e denunciou as sanções",u:"https://www.pressreader.com/guyana/stabroek-news/20211211/281560884093021"},
+ lpg:{s:"LPG Datos, via E&N, 2026",t:"Revista E&N, sobre pesquisa da LPG Datos: a aprovação de Bukele chegou a 91,9% no fim de 2025; a razão mais citada foi a melhora na segurança (33%)",u:"https://www.revistaeyn.com/centroamericaymundo/el-salvador-bukele-consolida-alto-respaldo-interno-y-suma-apoyo-externo-ID29194628"},
+ amnesty:{s:"Anistia Internacional",t:"Anistia Internacional (relatório sobre El Salvador): continuaram as detenções em massa e arbitrárias, com denúncias de tortura, mortes sob custódia e desaparecimentos forçados; as mortes sob custódia somavam cerca de 470 desde o início do regime de exceção",u:"https://www.amnesty.org/es/countries/americas/el-salvador/report-el-salvador/"},
+ wef:{s:"Fórum Econômico Mundial, 2018",t:"Fórum Econômico Mundial (Ilona Szabó e Robert Muggah, 2018): a taxa de homicídios da cidade de São Paulo caiu de 52,5 por 100 mil em 1999 para 6,1",u:"https://weforum.org/stories/2018/03/violent-crime-in-sao-paulo-has-dropped-dramatically-this-may-be-why"},
+ c24:{s:"Correio, sobre o Anuário 2026",t:"Correio (jul/2026), sobre o Anuário 2026: entre as capitais, São Paulo tem a menor taxa de mortes violentas intencionais, 7,2 por 100 mil",u:"https://www.correio24horas.com.br/brasil/saiba-quais-sao-as-cidades-menos-violentas-do-brasil-nenhuma-fica-na-bahia-0726"},
+ sp_sc:{s:"Estudo na Cambridge University Press",t:"Estudo publicado pela Cambridge University Press: São Paulo teve queda de 70% nas taxas de homicídio na década; comparado a um cenário sem as políticas do governo estadual, cerca de 20 mil vidas teriam sido salvas",u:"https://resolve.cambridge.org/core/product/E5AFC2A57EC06B0CAA65EFF98F6858AB/core-reader"},
+ alvar:{s:"Cadernos Gestão Pública, 2024",t:"Bruno Alvarenga (PM de SP), em artigo de 2024: analisa a hipótese de que a queda dos homicídios em SP teria ocorrido por causa da facção PCC e conclui que há indícios que permitem contestá-la",u:"https://ideas.repec.org/a/ekm/cgpc00/v29y2024id90191.html"},
+ justus:{s:"EconomiA, 2018",t:"Justus, Cerqueira, Kahn e Moreira (EconomiA, 2018): os resultados não sustentam a hipótese do PCC no nível do estado de São Paulo",u:"https://doaj.org/article/391555007d474abc957db907cbe47abb"},
+ pec_cam:{s:"Correio Braziliense, 2026",t:"Correio Braziliense (mar/2026): a Câmara aprovou a PEC da Segurança Pública por 461 votos a 14; o texto põe na Constituição o Sistema Único de Segurança Pública e exclui a redução da maioridade penal",u:"https://www.correiobraziliense.com.br/politica/2026/03/7368467-camara-aprova-pec-da-seguranca-publico-e-texto-segue-ao-senado.html"},
+ pec_sen:{s:"Congresso em Foco, 2026",t:"Congresso em Foco (3/nov/2026): o Senado aprovou a PEC da Segurança Pública em segundo turno, por 75 votos, unanimidade; a redução da maioridade penal foi separada para tramitação própria",u:"https://www.congressoemfoco.com.br/noticia/131279/senado-aprova-pec-da-seguranca-publica-em-dois-turnos"},
+ nij:{s:"Instituto Nacional de Justiça dos EUA",t:"National Institute of Justice (EUA), resumindo Daniel Nagin: a certeza de ser pego é um freio muito mais forte que a punição; a polícia reduz o crime quando aumenta a percepção de que o criminoso será pego, e o policiamento de pontos críticos é especialmente eficaz; aumentar a severidade da pena pouco reduz o crime; não há prova de que a pena de morte reduza o crime; as prisões servem para punir e tirar criminosos da rua, mas penas de prisão, sobretudo as longas, pouco dissuadem crimes futuros",u:"https://nij.ojp.gov/topics/articles/five-things-about-deterrence"}
+};
+
+const CAPS=[
+{id:"abertura",tab:"ABERTURA",blocks:[
+ {t:"p",x:"Em 2025, o Brasil registrou 40.775 mortes violentas intencionais: homicídios, latrocínios, lesões seguidas de morte e mortes causadas pela polícia. [[fbsp26]]"},
+ {t:"big",n:"19,1",l:"mortes violentas por 100 mil habitantes · Brasil, 2025"},
+ {t:"p",x:"É a menor da série, iniciada em 2012, quando era 27,7. [[fbsp12]] Mesmo assim, é mais de três vezes a média mundial de homicídios calculada pela ONU, de 5,2 em 2023. [[un26]]"},
+ {t:"bars",cap:"Mortes por 100 mil habitantes",rows:[["Brasil (2025)",19.1,"fbsp26"],["Américas (2021)",15,"unodc_am"],["Mundo (2023)",5.2,"un26"],["Europa (2021)",2.2,"unodc"]],note:"A conta brasileira inclui as mortes causadas pela polícia; a da ONU conta homicídios. As medidas são parecidas, não idênticas."},
+ {t:"p",x:"E há um outro número que cresce: em 2025, as polícias mataram 6.602 pessoas, o maior número da série. Uma em cada seis mortes violentas do país. [[fbsp_inf]] [[cef_mapa]]"},
+ {t:"lead",x:"Como se derruba a violência? Quatro lugares tentaram caminhos muito diferentes. Os números mostram o que mudou. Os dois lados discutem por quê."}
+]},
+{id:"medellin",tab:"CASO 1 DE 4 · MEDELLÍN, COLÔMBIA",title:"Uma das cidades mais violentas do mundo resolveu mudar. O que ela fez?",blocks:[
+ {t:"p",x:"Em 1991, Pablo Escobar estava em guerra contra o Estado, contra o cartel de Cali e contra os paramilitares. Medellín chegou a uma das maiores taxas de homicídio já registradas no mundo. [[brook]] [[upi]]"},
+ {t:"big",n:"381",l:"homicídios por 100 mil habitantes · Medellín, 1991"},
+ {t:"line",u:"homicídios por 100 mil",pts:[[1991,381],[2002,194.8],[2025,13.9]],ev:[[1993,"Escobar morre"]],src:["med_gov","mcv","escobar"],note:"Gráfico simplificado: liga os anos que têm dado com fonte. Entre 2002 e 2025 houve altos e baixos: a violência voltou a subir depois de 2007."},
+ {t:"p",x:"O que veio depois foi uma mistura. Em 2002, a Operação Órion, das forças de segurança, expulsou a guerrilha da Comuna 13. [[brook]] Segundo relatórios, ela teve apoio de paramilitares e deixou execuções e desaparecimentos; a justiça de transição colombiana já recuperou 7 corpos numa área da cidade chamada La Escombrera. [[radnac]] Nos anos 2000, os prefeitos levaram bibliotecas, escolas, teleféricos e escadas rolantes aos morros mais pobres, a chamada \"acupuntura urbana\". [[upi]]"},
+ {t:"ad",rows:[["Homicídios por 100 mil habitantes","381 (1991)","13,9 (2025)",["med_gov","mcv"]]],mud:"Parte da queda veio quando o traficante e líder paramilitar Don Berna passou a dominar os bairros pobres, depois da morte de Escobar. [[brook]] Economistas chamam isso de \"terrível dilema\": a violência pode cair porque grupos criminosos governam territórios. [[emol]] Para 2026, a prefeitura projeta 9,2 (6,9 acumulado até setembro). [[med26]]"},
+ {t:"two",pro:"Quem destaca o investimento social diz que levar Estado, transporte e escola aos bairros abandonados mudou a cidade, e cita a queda contínua até hoje. [[upi]] [[mcv]]",con:"Quem é cético lembra que parte da paz veio do domínio de grupos armados, e que a violência voltou a subir em alguns anos mesmo com os investimentos. [[brook]] [[emol]]"}
+]},
+{id:"novayork",tab:"CASO 2 DE 4 · NOVA YORK, EUA",title:"Nova York: a queda que ninguém explica sozinho",blocks:[
+ {t:"p",x:"Em 1990, Nova York teve 2.262 assassinatos. [[nysf]] Em 2025, foram 305. [[nyc25]] E 2026 segue caindo: até outubro, foram 230, o menor número da história para o período. [[ny1]]"},
+ {t:"big",n:"−87%",l:"assassinatos por ano · de 1990 a 2025"},
+ {t:"line",u:"assassinatos por ano",pts:[[1990,2262],[2000,673],[2017,292],[2020,468],[2021,488],[2025,305]],ev:[[2011,"pico das abordagens"]],src:["nysf","reut_nyc","nyc25"],note:"Gráfico simplificado: liga os anos que têm dado com fonte. A maior parte da queda veio antes de 2000; houve uma alta em 2020 e 2021."},
+ {t:"p",x:"A polícia mudou. Concentrar policiais nos quarteirões com mais crime ajudou a reduzir o crime, segundo um estudo de 2016. [[pmc]] Ao mesmo tempo, as abordagens na rua, o \"para e revista\", subiram de cerca de 100 mil em 2002 para quase 700 mil em 2011. [[eji]]"},
+ {t:"p",x:"Em 2013, uma juíza federal considerou essas abordagens discriminatórias e inconstitucionais: quase 90% dos abordados eram inocentes. As abordagens caíram, e o crime continuou caindo. [[eji]] [[brennan]]"},
+ {t:"ad",rows:[["Assassinatos por ano","2.262 (1990)","305 (2025)",["nysf","nyc25"]]],mud:"Nos anos 1990, o crime caiu quase 40% nos EUA inteiros, não só em Nova York. [[zim_oup]] A queda de Nova York foi duas vezes maior e durou duas vezes mais que a do país. [[zim_wp]] O pesquisador Franklin Zimring diz que a causa da queda americana continua, em grande parte, um mistério [[hemen]], mas escreve que, em Nova York, as mudanças na polícia sem dúvida deram uma contribuição importante. [[zim_wp]]"},
+ {t:"two",pro:"Quem defende o policiamento ativo diz que concentrar policiais e usar dados nos pontos críticos derrubou o crime, e a polícia atribui a ele os recordes recentes; o pesquisador Franklin Zimring vê na polícia uma contribuição importante. [[pmc]] [[nysf]] [[zim_wp]]",con:"Quem critica as abordagens em massa diz que elas atingiram sobretudo inocentes e não fizeram falta: o crime seguiu caindo depois do fim delas. [[eji]] [[brennan]]"}
+]},
+{id:"elsalvador",tab:"CASO 3 DE 4 · EL SALVADOR",title:"El Salvador: a aposta da mão dura",blocks:[
+ {t:"p",x:"Em 2015, El Salvador teve 6.656 assassinatos, uma taxa de 103 por 100 mil habitantes. [[ap_sv]] Em março de 2022, a Assembleia aprovou, a pedido do presidente Nayib Bukele, um regime de exceção, que suspende garantias da Constituição. [[sv_rx]] [[edh]] Mais de 93 mil pessoas foram presas desde então. [[edh]]"},
+ {t:"big",n:"103 → 1,3",l:"homicídios por 100 mil · 2015 e 2025 (número oficial)"},
+ {t:"line",u:"homicídios por 100 mil",pts:[[2015,103],[2018,53],[2019,38],[2021,18.1],[2022,7.8],[2024,1.9],[2025,1.3]],ev:[[2022,"regime de exceção"]],src:["ap_sv","dialogue","tvn","sv25"],note:"Gráfico simplificado: liga os anos que têm dado com fonte."},
+ {t:"ad",rows:[["Homicídios por 100 mil habitantes","103 (2015)","1,3 (2025)",["ap_sv","sv25"]]],mud:"A queda começou antes de Bukele, de 106 para 53 entre 2015 e 2018 [[dialogue]], e continuou antes do regime: 18,1 em 2021. [[tvn]] As fontes divergem um pouco para 2015: 103 (AP) ou 106 (Inter-American Dialogue). O governo não conta como homicídio as mortes em confronto com a polícia nem as mortes de presos; por isso, os números de 2015 e 2025 podem não ser comparáveis. [[edh]] Em 2021, o governo dos EUA acusou dois funcionários de Bukele de negociar uma trégua secreta com as gangues; Bukele nega. [[treasury]] [[reut_sv]]"},
+ {t:"two",pro:"Quem defende diz que a violência praticamente sumiu, que as extorsões também caíram e que a população aprova: 91,9% aprovavam Bukele no fim de 2025, e a segurança foi o motivo mais citado. [[dialogue]] [[lpg]]",con:"Quem critica, como a Anistia Internacional, aponta prisões em massa e arbitrárias e denúncias de tortura; ONGs salvadorenhas contavam 547 mortes de presos em julho de 2026. [[amnesty]] [[edh547]]"}
+]},
+{id:"saopaulo",tab:"CASO 4 DE 4 · SÃO PAULO, BRASIL",title:"São Paulo: o mistério brasileiro",blocks:[
+ {t:"p",x:"Em 1999, a cidade de São Paulo tinha 52,5 homicídios por 100 mil habitantes. [[wef]] Hoje, é a capital menos violenta do país. [[c24]]"},
+ {t:"big",n:"52,5 → 7,2",l:"por 100 mil · cidade de São Paulo, 1999 e 2025 (medidas diferentes)"},
+ {t:"p",x:"Ninguém tem uma explicação só. Um estudo calculou que as políticas do governo estadual salvaram cerca de 20 mil vidas no estado, na década da queda. [[sp_sc]] Outra explicação olha para o crime organizado: o pesquisador Graham Willis argumenta que o controle da facção PCC sobre as periferias fez a cidade parecer mais segura para a maioria. [[willis]] Estudos de 2018 e de 2024 testaram se o PCC explica a queda dos homicídios e contestam essa hipótese. [[justus]] [[alvar]]"},
+ {t:"ad",rows:[["Mortes por 100 mil habitantes (cidade de SP)","52,5 (1999)","7,2 (2025)",["wef","c24"]]],mh:"PARA LER ESSE NÚMERO",mud:"Os dois números não usam a mesma medida: o de 1999 conta homicídios; o de 2025, mortes violentas intencionais, que incluem as causadas pela polícia. [[wef]] [[c24]]"},
+ {t:"p",x:"E o país? Em 2026, o Congresso aprovou a PEC da Segurança Pública, que põe na Constituição um sistema único, integrando polícias da União, dos estados e dos municípios. Na Câmara, foram 461 votos a 14; no Senado, 75 a 0. A redução da maioridade penal ficou de fora e vai ser discutida à parte. A PEC seguiu para promulgação; em 10 de novembro, o presidente do Senado disse que pretendia promulgá-la em cerca de 15 dias. [[pec_cam]] [[pec_sen]] [[brapi]]"},
+ {t:"two",pro:"Quem credita o Estado diz que as políticas do governo paulista explicam boa parte da queda: um estudo calcula cerca de 20 mil vidas salvas. [[sp_sc]]",con:"Quem é cético olha também para o crime organizado: Graham Willis argumenta que o controle do PCC fez a cidade parecer mais segura para a maioria. E lembra que as mortes causadas por policiais bateram recorde no país. [[willis]] [[fbsp_inf]]"}
+]},
+{id:"fecho",tab:"O QUE SE SABE",title:"O que funciona, afinal?",blocks:[
+ {t:"k",x:"O que diz um resumo de pesquisas"},
+ {t:"p",x:"Segundo um resumo de pesquisas do Instituto Nacional de Justiça dos EUA, a chance de ser pego pesa muito mais do que o tamanho da pena. Policiar os pontos onde o crime se concentra funciona. Aumentar a pena, sozinho, pouco reduz o crime. [[nij]]"},
+ {t:"k",x:"Segue em disputa"},
+ {t:"p",x:"Quanto das quedas veio da polícia, e quanto veio de economia, mudanças nas cidades e até acordos com o crime. Nos EUA, a causa da queda dos anos 1990 ainda é discutida. [[hemen]]"},
+ {t:"k",x:"Ninguém sabe ainda"},
+ {t:"p",x:"Se a queda de El Salvador se mantém sem o regime de exceção, que continua em vigor. [[sv_rx]] E se a PEC da Segurança vai mudar os números do Brasil: ela acabou de ser aprovada e seguiu para promulgação. [[pec_fpe]] [[brapi]]"}
+]}
+];
+
+const VOTO=[
+ {t:"Mão dura",s:"prisões em massa e suspensão de garantias, como em El Salvador",pro:"Quem defende diz que funcionou onde nada mais funcionava: os homicídios caíram de 103 para 1,3 por 100 mil pelo número oficial, as extorsões também caíram, e a população aprova. [[ap_sv]] [[sv25]] [[dialogue]] [[lpg]]",con:"Quem critica aponta prisões arbitrárias e 547 mortes de presos contadas por ONGs, e lembra que, segundo um resumo de pesquisas, a prisão tira criminosos da rua, mas pouco dissuade novos crimes. [[amnesty]] [[edh547]] [[nij]]"},
+ {t:"Polícia focada",s:"inteligência, dados e policiamento nos pontos críticos, como em Nova York",pro:"Quem defende diz que é o que as pesquisas mais apoiam: a certeza de ser pego reduz o crime. [[nij]] [[pmc]]",con:"Quem critica lembra que, sem limite, o policiamento ativo pode virar abordagem em massa de inocentes, como Nova York viu. [[eji]]"},
+ {t:"Investimento nos bairros",s:"escola, transporte e Estado presente, como em Medellín",pro:"Quem defende diz que levar o Estado às áreas abandonadas muda a vida dos jovens e sustenta a queda no longo prazo. [[upi]] [[mcv]]",con:"Quem critica diz que, sem controle do território, o investimento não basta: em Medellín, a violência voltou a subir em alguns anos. [[brook]]"}
+];
+
+const KEY="pmu-seguranca-v1";let S;try{S=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){S=null}if(!S)S={last:0,vote:null,fb:{}};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const src=h=>String(h).replace(/\[\[([a-z0-9_]+)\]\]/g,(m,k)=>FONTES[k]?`<button type="button" class="fn" data-f="${k}" aria-label="Ver fonte: ${esc(FONTES[k].s)}">🔎 ${esc(FONTES[k].s)}</button>`:"");
+const tx=h=>src(esc(h).replace(/&quot;/g,'"'));
+const fmt=v=>String(v).replace(".",",");
+function line(b){const W=320,H=190,L=34,R=10,T=18,B=24;const xs=b.pts.map(p=>p[0]),ys=b.pts.map(p=>p[1]);const x0=Math.min(...xs),x1=Math.max(...xs),ymax=Math.max(...ys)*1.05;
+ const X=x=>L+(x-x0)/(x1-x0)*(W-L-R),Y=y=>T+(1-y/ymax)*(H-T-B);
+ const d=b.pts.map((p,i)=>(i?"L":"M")+X(p[0]).toFixed(1)+" "+Y(p[1]).toFixed(1)).join(" ");
+ let len=0;for(let i=1;i<b.pts.length;i++){len+=Math.hypot(X(b.pts[i][0])-X(b.pts[i-1][0]),Y(b.pts[i][1])-Y(b.pts[i-1][1]))}len=Math.ceil(len)+4;
+ const grid=[0,.5,1].map(f=>`<path d="M${L} ${Y(ymax/1.05*f).toFixed(1)}H${W-R}" stroke="#DDD5C6"/><text class="ax" x="${L-6}" y="${(Y(ymax/1.05*f)+3).toFixed(1)}" text-anchor="end">${fmt(Math.round(ymax/1.05*f))}</text>`).join("");
+ const ev=(b.ev||[]).map(([yr,l],i)=>{const x=X(yr);return `<path d="M${x.toFixed(1)} ${T}V${H-B}" stroke="#B9A28E" stroke-dasharray="2 3"/><text class="ev" x="${(x>W*.6?x-4:x+4).toFixed(1)}" y="${T+12+i*14}" text-anchor="${x>W*.6?"end":"start"}">${esc(l)} (${yr})</text>`}).join("");
+ const n=b.pts.length,show=[];let lx=-99;b.pts.forEach((p,i)=>{const x=X(p[0]);const ok=i===0||i===n-1||(x-lx>=30&&X(b.pts[n-1][0])-x>=30);show.push(ok);if(ok)lx=x});
+ const dots=b.pts.map((p,i)=>`<circle class="dot" cx="${X(p[0]).toFixed(1)}" cy="${Y(p[1]).toFixed(1)}" r="4"/>`+(show[i]?`<text class="vl" x="${X(p[0]).toFixed(1)}" y="${(Y(p[1])-9).toFixed(1)}" text-anchor="${X(p[0])>W-40?"end":X(p[0])<L+20?"start":"middle"}">${fmt(p[1])}</text><text class="ax" x="${X(p[0]).toFixed(1)}" y="${H-6}" text-anchor="${X(p[0])>W-40?"end":X(p[0])<L+20?"start":"middle"}">${p[0]}</text>`:"")).join("");
+ return `<div class="chart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Gráfico: ${esc(b.u)}, de ${x0} a ${x1}">${grid}${ev}<path class="ln" d="${d}" style="stroke-dasharray:${len};stroke-dashoffset:${len}" data-len="${len}"/>${dots}</svg><div class="cnote">${esc(b.u)} · ${b.src.map(k=>src("[["+k+"]]")).join("")}<br>${esc(b.note||"")}</div></div>`}
+function bars(b){const mx=Math.max(...b.rows.map(r=>r[1]));return `<div class="bars"><div class="cnote" style="margin-bottom:6px">${esc(b.cap)}</div>${b.rows.map(([l,v,f])=>`<div class="r"><span>${esc(l)}</span><span class="t"><i data-w="${(v/mx*100).toFixed(1)}"></i></span><span class="v">${fmt(v)}</span></div>`).join("")}<div class="cnote">${esc(b.note)}</div></div>`}
+function ad(b){return `<div class="ad"><div class="h">ANTES × DEPOIS</div>${b.rows.map(([m,a,d,fs])=>`<div class="row"><div class="m">${esc(m)}</div><div class="ba"><span>${esc(a)}</span><em>→</em><span>${esc(d)}</span></div><div style="margin-top:6px">${fs.map(f=>src("[["+f+"]]")).join("")}</div></div>`).join("")}<div class="row note"><b>${b.mh||"O QUE MAIS MUDOU NA MESMA ÉPOCA"}</b>${tx(b.mud)}<br><span style="color:var(--mut);font-size:13px">Antes e depois mostra o que mudou, não prova o que causou.</span></div></div>`}
+function block(b){switch(b.t){case"p":return `<p class="b">${tx(b.x)}</p>`;case"k":return `<div class="k b">${esc(b.x)}</div>`;
+ case"lead":return `<p class="b leadx">${esc(b.x)}</p>`;case"big":return `<div class="b big"><div class="n">${esc(b.n)}</div><div class="l">${esc(b.l)}</div></div>`;
+ case"line":return `<div class="b">${line(b)}</div>`;case"bars":return `<div class="b">${bars(b)}</div>`;case"ad":return `<div class="b">${ad(b)}</div>`;
+ case"two":return `<div class="b two"><div><b>QUEM DEFENDE DIZ</b>${tx(b.pro)}</div><div><b>QUEM CRITICA DIZ</b>${tx(b.con)}</div></div>`}return""}
+function build(){let h=`<section class="cover"><div class="k">Pense Mais Uma · Mundo × Brasil</div><h1>Segurança pública: o que funciona contra o crime?</h1>
+ <p class="lead">Medellín, Nova York, El Salvador e São Paulo derrubaram a violência por caminhos muito diferentes. Os números mostram o que mudou; os dois lados discutem por quê.</p>
+ <button class="go" id="start">${S.last>1?"CONTINUAR DE ONDE PAREI":"COMEÇAR A LER"}</button>${S.last>1?`<button class="go ghost" id="restart">LER DO COMEÇO</button>`:""}
+ <p class="small" style="margin-top:14px">Sem perguntas: é só rolar a tela. Cerca de 15 minutos. Toque em 🔎 para ver a fonte de cada número. Dados atualizados em novembro de 2026.</p></section>`;
+ CAPS.forEach((c,i)=>{h+=`<section class="cap" id="cap${i}" data-i="${i}"><div class="k">${esc(c.tab)}</div>${c.title?`<h2>${esc(c.title)}</h2>`:""}${c.blocks.map(block).join("")}</section>`});
+ h+=`<section class="box" id="voto"><div class="k">E você?</div><h3>Que caminho você seguiria?</h3><p style="color:var(--mut);margin-top:0">Não existe resposta certa e não vale nota. Toque numa opção para ver os dois lados.</p>
+ ${VOTO.map((o,k)=>`<button class="vt ${S.vote===k?"on":""}" data-k="${k}"><b>${esc(o.t)}</b><small>${esc(o.s)}</small></button>`).join("")}<div id="vcd"></div></section>
+ <section class="box"><h3>Quer se aprofundar?</h3><p><b>The War on Cops</b>, de Heather Mac Donald (em inglês): a defesa do policiamento ativo e a crítica a quem quer reduzi-lo.<br><br><b>A nova segregação</b>, de Michelle Alexander: a crítica ao encarceramento em massa nos EUA.<br><br><b>A guerra</b>, de Bruno Paes Manso e Camila Nunes Dias: a ascensão do PCC e o mundo do crime no Brasil.<br><br><a href="https://www.youtube.com/results?search_query=Medell%C3%ADn+redu%C3%A7%C3%A3o+homic%C3%ADdios+document%C3%A1rio" target="_blank" rel="noopener">Vídeos sobre a virada de Medellín (busca no YouTube)</a></p></section>
+ <section class="box"><h3>Avalie o curso</h3><p>Que nota você dá?</p><div class="rate">${[1,2,3,4,5].map(x=>`<button data-n="${x}" class="${S.fb.nota===x?"on":""}">${x}</button>`).join("")}</div>
+ <p>O que você aprendeu que não sabia?</p><textarea id="apr" rows="2">${esc(S.fb.apr||"")}</textarea>
+ <p>Sentiu que o curso favoreceu algum lado?</p><select id="lado"><option value="">Escolha</option>${["Não","Sim, a favor da mão dura","Sim, contra a mão dura","Não sei"].map(o=>`<option ${S.fb.lado===o?"selected":""}>${o}</option>`).join("")}</select>
+ <p>Comentário</p><textarea id="com" rows="2">${esc(S.fb.com||"")}</textarea>
+ <p>Que tema você quer que vire curso?</p><textarea id="tema" rows="2">${esc(S.fb.tema||"")}</textarea>
+ <button class="go" id="env">${S.fb.sent?"AVALIAÇÃO ENVIADA ✓":"ENVIAR AVALIAÇÃO"}</button></section>
+ <section class="box"><h3>Fontes</h3><ul class="fontes">${Object.values(FONTES).map(f=>`<li>${esc(f.t)}${f.u?` · <a href="${f.u}" target="_blank" rel="noopener">abrir</a>`:""}</li>`).join("")}</ul>
+ <button class="go ghost" id="top">VOLTAR AO INÍCIO</button></section>`;
+ document.getElementById("app").innerHTML=h}
+build();
+function showVote(){const v=S.vote,el=document.getElementById("vcd");if(v==null){el.innerHTML="";return}const o=VOTO[v];el.innerHTML=`<div class="cd"><i>QUEM DEFENDE DIZ</i>${tx(o.pro)}<i>QUEM CRITICA DIZ</i>${tx(o.con)}</div>`}
+showVote();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.add("in");
+ t.querySelectorAll(".ln").forEach(p=>p.style.strokeDashoffset="0");t.querySelectorAll(".bars i").forEach(i=>i.style.width=i.dataset.w+"%");
+ const cap=t.closest(".cap");if(cap){const i=+cap.dataset.i;if(i>S.last){S.last=i;save()}}io.unobserve(t)}),{threshold:.2});
+document.querySelectorAll(".b").forEach(b=>io.observe(b));
+const bar=document.querySelector("#bar i");addEventListener("scroll",()=>{const m=document.documentElement.scrollHeight-innerHeight;bar.style.width=(m>0?scrollY/m*100:0)+"%"},{passive:true});
+const go=i=>{const el=document.getElementById("cap"+i);if(el)el.scrollIntoView({behavior:"smooth"})};
+document.getElementById("start").onclick=()=>go(S.last>1?S.last:0);
+const rs=document.getElementById("restart");if(rs)rs.onclick=()=>{S.last=0;save();go(0)};
+document.getElementById("top").onclick=()=>scrollTo({top:0,behavior:"smooth"});
+document.querySelectorAll(".vt").forEach(b=>b.onclick=()=>{S.vote=+b.dataset.k;save();document.querySelectorAll(".vt").forEach(x=>x.classList.toggle("on",x===b));showVote()});
+document.querySelectorAll("[data-n]").forEach(b=>b.onclick=()=>{S.fb.nota=+b.dataset.n;save();document.querySelectorAll("[data-n]").forEach(x=>x.classList.toggle("on",x===b))});
+["apr","com","tema"].forEach(k=>document.getElementById(k).oninput=e=>{S.fb[k]=e.target.value;save()});
+document.getElementById("lado").onchange=e=>{S.fb.lado=e.target.value;save()};
+document.getElementById("env").onclick=e=>{S.fb.sent=true;try{const q=JSON.parse(localStorage.getItem("pmu-fila")||"[]");q.push({curso:"seguranca-publica",quando:new Date().toISOString(),voto:S.vote,...S.fb});localStorage.setItem("pmu-fila",JSON.stringify(q))}catch(x){}save();e.target.textContent="AVALIAÇÃO ENVIADA ✓"};
+const pop=document.getElementById("fnpop");
+document.addEventListener("click",e=>{const b=e.target.closest(".fn");if(b){e.preventDefault();e.stopPropagation();const f=FONTES[b.dataset.f];if(!f)return;document.getElementById("fnbody").innerHTML=`<b>Fonte</b><br>${esc(f.t)}${f.u?`<br><a href="${f.u}" target="_blank" rel="noopener">Abrir a fonte ↗</a>`:""}`;pop.style.display="block";return}
+ if(e.target.closest("#fnpop .x")||!e.target.closest("#fnpop"))pop.style.display="none"},true);
+</script>
+</body></html>

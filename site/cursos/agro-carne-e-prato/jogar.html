@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Comer carne destrói o planeta? O agro, o boi e o seu prato · Pense Mais Uma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,600&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBF6EC;--ink:#2B2118;--to:#C4472B;--ol:#3E4A2B;--sand:#F1E6D2;--br:#8A6A3E;--mut:#6E5E4E;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font:400 16px/1.5 'DM Sans',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+body{background-image:repeating-linear-gradient(0deg,transparent 0 22px,rgba(196,71,43,.035) 22px 24px),repeating-linear-gradient(90deg,transparent 0 22px,rgba(196,71,43,.035) 22px 24px)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:var(--to)}
+#app{max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding:0 20px calc(24px + env(safe-area-inset-bottom))}
+#pratos{display:flex;gap:8px;justify-content:center;padding:14px 0 6px}
+#pratos i{width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px var(--sand);display:block}
+#pratos i.on{background:var(--to);box-shadow:0 0 0 3px #F3C9BC}
+.k{font:italic 600 15px 'Fraunces',Georgia,serif;color:var(--to);margin-top:10px}
+h1{font:800 40px/1.05 'Fraunces',Georgia,serif;margin:10px 0 14px;letter-spacing:-.01em}
+h1 em{font-style:italic;color:var(--to)}
+h2{font:800 28px/1.12 'Fraunces',Georgia,serif;margin:4px 0 10px}
+.p{margin-bottom:12px}.m{color:var(--mut);font-size:15px}
+.nt{font:italic 600 15px/1.45 'Fraunces',Georgia,serif;color:var(--ol);background:#EEF0E6;border-radius:14px;padding:12px 14px;margin:6px 0 12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 14px}.chips span{background:var(--sand);border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px}
+.go{display:block;width:100%;min-height:54px;border-radius:999px;background:var(--to);color:#fff;font:800 18px 'DM Sans';margin-top:14px}
+.go.alt{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:18px}
+.nav button{min-height:48px;padding:0 6px;font-weight:700;color:var(--mut)}
+.nav .nx{background:var(--ink);color:var(--bg);border-radius:999px;padding:0 20px}
+/* prato */
+.plate{width:248px;height:248px;border-radius:50%;margin:8px auto 14px;background:#fff;box-shadow:0 0 0 14px var(--sand),0 10px 26px rgba(43,33,24,.14);position:relative;transition:transform .2s}
+.plate.drop{transform:scale(1.04)}
+.food{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;font:800 13px 'DM Sans';color:#fff;text-align:center;transition:all .35s cubic-bezier(.2,.8,.2,1)}
+.f-arroz{left:26px;top:34px;width:112px;height:112px;background:#EDE6D6;color:#6B5B45}
+.f-feijao{left:124px;top:38px;width:96px;height:96px;background:#5B3A26}
+.f-mix{left:62px;top:136px;width:126px;height:80px;border-radius:40px;opacity:0;transform:scale(.6)}
+.f-mix.on{opacity:1;transform:none}
+.tray{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;scrollbar-width:none}
+.tray::-webkit-scrollbar{display:none}
+.chip{flex:none;min-height:46px;padding:0 14px;border-radius:14px;background:#fff;border:2px dashed #D8C7AE;font-weight:700;font-size:14px;touch-action:none;user-select:none}
+.chip.on{border-style:solid;border-color:var(--to);background:#FDEDE8}
+.ghost{position:fixed;pointer-events:none;z-index:50;padding:10px 14px;border-radius:14px;background:#fff;border:2px solid var(--to);font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.bars{margin:6px 0 12px}
+.bar{display:grid;grid-template-columns:118px 1fr 44px;align-items:center;gap:8px;font-size:13px;margin-bottom:8px;min-height:28px;width:100%;text-align:left}
+.bar .tr{height:14px;border-radius:7px;background:var(--sand);overflow:hidden}
+.bar .tr i{display:block;height:100%;border-radius:7px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.bar b{font-weight:800;text-align:right}
+.big{font:800 54px/1 'Fraunces',Georgia,serif;color:var(--to)}
+.unit{font-size:13px;color:var(--mut);margin-bottom:10px}
+/* lados */
+.lado{background:#fff;border-radius:18px;padding:14px 16px;margin-bottom:10px;border-left:6px solid var(--c,var(--to))}
+.lado h3{font:800 17px 'Fraunces',Georgia,serif;margin-bottom:4px}
+.lado p{font-size:15px}
+/* pizza */
+.pie{width:248px;height:248px;border-radius:50%;margin:8px auto 14px;box-shadow:0 0 0 14px var(--sand),0 10px 26px rgba(43,33,24,.14);position:relative;transition:background .5s}
+.pie::after{content:attr(data-c);position:absolute;inset:58px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font:800 17px/1.15 'Fraunces',Georgia,serif;padding:6px;white-space:pre-line}
+.leg{display:grid;gap:8px;margin-bottom:10px}
+.leg button{display:flex;align-items:center;gap:10px;text-align:left;background:#fff;border-radius:14px;padding:10px 12px;min-height:48px;border:2px solid transparent;font-size:14px}
+.leg button.on{border-color:var(--ink)}
+.leg i{width:16px;height:16px;border-radius:50%;flex:none}
+.leg small{margin-left:auto;font-weight:800}
+.det{background:var(--sand);border-radius:14px;padding:12px 14px;font-size:15px;margin-bottom:12px;min-height:48px}
+.seg{display:flex;background:var(--sand);border-radius:999px;padding:4px;margin-bottom:8px}
+.seg button{flex:1;min-height:44px;border-radius:999px;font-weight:700;font-size:14px}
+.seg button.on{background:var(--ink);color:var(--bg)}
+.ch{display:flex;gap:10px;margin-bottom:12px}
+.ch div{flex:1;background:#fff;border-radius:16px;padding:12px}
+.ch b{font:800 22px 'Fraunces',Georgia,serif;display:block;color:var(--ol)}
+.ch p{font-size:13px}
+/* cardápios */
+.menu{display:block;width:100%;text-align:left;cursor:pointer;background:#fff;border-radius:16px;padding:14px 16px;margin-bottom:10px;border:2px solid var(--sand);min-height:56px}
+.menu h3{font:800 16px 'DM Sans';display:flex;justify-content:space-between}
+.menu h3 span{color:var(--mut);font-weight:700}
+.menu .in{display:none;margin-top:6px}
+.menu.on .in{display:block}
+.menu .pc{font:800 40px/1 'Fraunces',Georgia,serif;color:var(--to)}
+/* voto */
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 12px}
+.opt{background:#fff;border-radius:18px;padding:12px;text-align:center;border:2px solid transparent;min-height:120px}
+.opt.on{border-color:var(--to);background:#FDEDE8}
+.mini{width:58px;height:58px;border-radius:50%;margin:0 auto 8px;background:#fff;box-shadow:0 0 0 6px var(--sand);position:relative;overflow:hidden}
+.mini i{position:absolute;border-radius:50%}
+.opt b{font:800 15px 'Fraunces',Georgia,serif;display:block}.opt small{font-size:12px;color:var(--mut)}
+.cd{background:#fff;border-radius:18px;padding:14px 16px;margin-bottom:12px}
+.cd i{display:block;font:italic 700 14px 'Fraunces',Georgia,serif;margin:4px 0 2px;color:var(--ol)}
+.cd i.c{color:var(--to)}
+.box{background:#fff;border-radius:20px;padding:16px;margin-bottom:14px}
+.box h3{font:800 20px 'Fraunces',Georgia,serif;margin-bottom:8px}
+.box p+p{margin-top:10px}
+.rate{display:flex;gap:8px}.rate button{flex:1;min-height:48px;border-radius:14px;background:var(--sand);font:800 18px 'DM Sans'}
+.rate button.on{background:var(--ink);color:var(--bg)}
+textarea,select{width:100%;margin-top:6px;border:2px solid var(--sand);border-radius:12px;padding:10px;font:400 15px 'DM Sans';background:#fff;color:var(--ink)}
+ol.fontes{padding-left:22px;font-size:13px;color:var(--mut)}ol.fontes li{margin-bottom:8px}
+/* fonte */
+sup{line-height:0}
+.fn{font:800 11px 'DM Sans';min-width:22px;min-height:22px;padding:0 4px;margin-left:2px;border-radius:50%;background:var(--sand);color:var(--to);vertical-align:2px;position:relative}
+.fn::before{content:"";position:absolute;inset:-11px -6px}
+#fnpop{position:fixed;left:14px;right:14px;bottom:14px;max-width:500px;margin:0 auto;background:#fff;border-radius:20px;padding:16px 18px;z-index:60;display:none;font-size:14px;box-shadow:0 0 0 2px var(--ink),0 16px 40px rgba(43,33,24,.3)}
+#fnpop b{font:800 15px 'Fraunces',Georgia,serif}#fnpop a{font-weight:700}
+#fnpop .x{position:absolute;right:6px;top:2px;font-size:24px;min-width:44px;min-height:44px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style><link rel="canonical" href="https://pensemaisuma.com.br/cursos/agro-carne-e-prato/">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+</head><body>
+<div id="pmu-bar" style="font-family:Nunito,system-ui,sans-serif;background:#FAF7F0;color:#17150F;border-bottom:1.5px solid #17150F;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:14px;font-weight:800;position:relative;z-index:50">
+<a href="index.html" style="color:inherit;text-decoration:none">← Sobre o curso</a>
+<a href="../../index.html" style="display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none"><img src="../../assets/logo.svg" alt="" width="26" height="26"><span style="font-family:Fraunces,Georgia,serif">Pense Mais Uma</span></a>
+<a href="index.html#avaliar" style="color:inherit">Avaliar</a></div>
+<main id="app" aria-live="polite"></main>
+<div id="fnpop" role="dialog"><button class="x" aria-label="Fechar">×</button><div id="fnbody"></div></div>
+<script>
+const FONTES={
+ owid_less:{s:"Our World in Data, 2020",t:"Our World in Data (Hannah Ritchie, fev/2020), com dados de Poore e Nemecek (Science, 2018): a carne de boi tem mediana mundial de 25 kg de CO2 equivalente por 100 g de proteína (metade emite mais, metade menos), e os 10% de produtores de menor impacto emitem menos de 9; entre os vegetais, os 10% de maior impacto chegam a 3,5 no tofu, 2,4 nas castanhas e 0,8 na ervilha; frango dos 10% de menor impacto, 2,4. Conclusão do texto: comer menos carne é quase sempre melhor do que comer carne mais sustentável",u:"https://ourworldindata.org/less-meat-or-sustainable-meat"},
+ owid_mean:{s:"Our World in Data (Poore e Nemecek)",t:"Our World in Data, com a maior meta-análise já feita sobre impactos da comida (Poore e Nemecek, 2018: 570 estudos, cerca de 38.700 fazendas em 119 países, ano de referência mediano 2010): médias mundiais de emissões, em kg de CO2 equivalente por 100 g de proteína: boi de corte 49,9, queijo 10,8, porco 7,6, frango 5,7, ovo 4,2, tofu 2,0, feijão e outras leguminosas 0,84",u:"https://ourworldindata.org/grapher/ghg-per-protein-poore"},
+ fapesp:{s:"Revista Pesquisa Fapesp, 2022",t:"Revista Pesquisa Fapesp (abr/2022): quanto menor o tempo de vida do boi, mais baixa a emissão por quilo de carne; a integração da lavoura com a pecuária foi sistematizada pela Embrapa nos anos 1990, e as raízes do capim estocam carbono no solo; uma fazenda com integração citada pela revista emitia 11,5 t de CO2 equivalente por tonelada de carne, cerca de 40% abaixo da média mundial, valor que a revista ainda considera alto",u:"https://revistapesquisa.fapesp.br/o-esforco-do-brasil-para-reduzir-a-pegada-de-carbono-da-pecuaria/"},
+ embrapa_cbc:{s:"Embrapa, Protocolo Carne Baixo Carbono, 2025",t:"Embrapa (2025): o Protocolo Carne Baixo Carbono, de adesão voluntária, pretende valorizar a carne de sistemas capazes de mitigar as emissões do gado de corte, com práticas em pastagens, terminação intensiva e integração lavoura-pecuária, em linha com o Plano ABC+ do Ministério da Agricultura",u:"https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1180924/1/Protocolo-carne-baixo-carbono-2025.pdf"},
+ seeg25:{s:"SEEG, via Canal Rural, 2026",t:"Canal Rural (out/2026), com dados do SEEG: as emissões brutas do Brasil somaram 2,06 bilhões de toneladas de CO2 equivalente em 2025, queda de 6%; mudança de uso da terra (sobretudo desmatamento) 814 milhões de toneladas, queda de 15%; agropecuária 626 milhões, queda de 0,1%; energia 427 milhões, alta de 1,2%; resíduos 96 milhões; processos industriais 94 milhões",u:"https://www.canalrural.com.br/diversos/emissoes-liquidas-do-brasil-caem-ao-menor-nivel-desde-2012/"},
+ forbes:{s:"Imaflora/SEEG, via Forbes, 2026",t:"Forbes Agro (21/out/2026), com dados do Imaflora para o SEEG: a agropecuária emitiu 626,3 milhões de toneladas de CO2 equivalente em 2025; a pecuária caiu 1,68%, para 494,1 milhões, e a agricultura somou 132,1 milhões; o gado de corte respondeu por 410,7 milhões, 65,6% do total; no mesmo ano, a produção de carcaças bovinas avançou 7,2%",u:"https://forbes.com.br/forbes-agro/2026/10/emissoes-da-agropecuaria-ficam-em-626-milhoes-de-toneladas-de-co%e2%82%82-em-2025-diz-imaflora/"},
+ seeg13:{s:"SEEG 13 (dados de 2024)",t:"SEEG, relatório analítico 13 (dados de 2024): somando as emissões diretas do setor e o desmatamento, a atividade agropecuária responde por dois terços das emissões brutas do país; a pecuária sozinha responde por 51%",u:"https://seeg.eco.br/wp-content/uploads/2026/03/SEEG13-relatorio-analitico-BR.pdf"},
+ prodes26:{s:"Inpe/Prodes, via Canal Rural, 2026",t:"Canal Rural (out/2026), com dados do Prodes/Inpe divulgados pelo governo federal: o desmatamento na Amazônia somou 3.335 km² entre agosto de 2025 e julho de 2026, queda de 41,8%, a menor taxa da série iniciada em 1988; no Cerrado, 5.516,69 km², queda de 23,8%, a menor da série iniciada em 2001",u:"https://www.canalrural.com.br/politica/queda-do-desmatamento-reforca-discurso-ambiental-do-agro-brasileiro/"},
+ cepea_pib:{s:"Cepea e CNA, 2026",t:"CNA (4/mai/2026), com o Cepea/USP: o PIB do agronegócio cresceu 12,2% em 2025, e a participação do setor na economia subiu de 22,9% em 2024 para 25,13%. O conceito soma insumos, produção, agroindústria e serviços ligados ao agro",u:"https://cnabrasil.org.br/noticias/cna-e-cepea-apontam-crescimento-de-12-2-do-pib-do-agronegocio-em-2025"},
+ ibge61:{s:"IBGE, via CNN Brasil, 2026",t:"CNN Brasil (2026), com dados do IBGE: o PIB da agropecuária, que mede a produção dentro da fazenda, somou R$ 775,3 bilhões em 2025, o que correspondeu a aproximadamente 6,1% do PIB",u:"https://www.cnnbrasil.com.br/agro/pib-da-agropecuaria-cresce-117-e-soma-r-7753-bi-em-2025/"},
+ emprego:{s:"Cepea e CNA, via Agrolink, 2026",t:"Agrolink (mai/2026), com Cepea e CNA: o agronegócio teve 28,4 milhões de pessoas ocupadas em 2025, recorde, alta de 2,2%; o setor respondeu por 26,3% dos empregos do país",u:"https://www.agrolink.com.br/noticias/agronegocio-responde-por-26-3--dos-empregos-no-brasil_513941.html"},
+ export:{s:"Ministério da Agricultura, via Band, 2026",t:"Band (2026), com o Ministério da Agricultura: em 2025, as exportações do agronegócio somaram US$ 169,2 bilhões, 48,5% do total das vendas externas do Brasil",u:"https://www.band.com.br/agro/brasil-consolida-lideranca-global-e-bate-recordes-de-produtividade"},
+ conab_bov:{s:"Conab, via Itatiaia, 2026",t:"Itatiaia (2026), com dados da Conab: a oferta de carne bovina por habitante deve cair de 34,6 kg por ano em 2026 para 31,9 kg em 2027; segundo a Conab, a carne bovina perdeu espaço no orçamento das famílias de menor renda para proteínas mais acessíveis, como frango e porco",u:"https://www.itatiaia.com.br/agro/ciclo-pecuario-reduz-producao-e-consumo-de-carne-bovina-em-2027-aponta-conab/"},
+ abpa_fra:{s:"ABPA, via Notícias Agrícolas, 2026",t:"Notícias Agrícolas (6/mai/2026), com o Relatório Anual da Associação Brasileira de Proteína Animal: o consumo de frango no Brasil alcançou 46,7 kg por habitante em 2025",u:"https://www.noticiasagricolas.com.br/noticias/granjeiros/420278-consumo-de-frango-no-brasil-chega-a-46-7-kg-por-habitante-e-impulsiona-avicultura.amp.html"},
+ ibope18:{s:"Ibope 2018, via CNN Brasil",t:"CNN Brasil (2022): pesquisa do Ibope de 2018 apontou que 14% dos brasileiros (cerca de 30 milhões de pessoas à época) se reconheciam vegetarianos",u:"https://www.cnnbrasil.com.br/viagemegastronomia/viagem/dia-mundial-sem-carne-mercado-cresce-e-se-adapta-a-novos-habitos/"},
+ ibope_svb:{s:"Tribuna de Jundiaí",t:"Tribuna de Jundiaí: o dado de 14% de vegetarianos (30 milhões de brasileiros) vem de pesquisa da Sociedade Vegetariana Brasileira (SVB), alta de 75% sobre 2012, quando a proporção era de 8%",u:"https://tribunadejundiai.com.br/gastronomia/30-milhoes-de-brasileiros-ja-sao-vegetarianos-diz-pesquisa/"},
+ svb25:{s:"Datafolha para a SVB, 2025",t:"Sociedade Vegetariana Brasileira (21/mar/2025), sobre pesquisa Datafolha encomendada por ela: 7% da população (cerca de 15 milhões) concorda, total ou parcialmente, que é vegana; a SVB diz que a metodologia mediu o senso de identidade, não detalhes do que cada pessoa come",u:"https://svb.org.br/wp-content/uploads/2025/04/declaracao-pesquisa-7-veganos.pdf"},
+ opovo_df:{s:"Datafolha para a SVB, via O Povo, 2025",t:"O Povo (mar/2025), sobre a pesquisa Datafolha encomendada pela SVB: 74% da população concorda, em algum grau, com a possibilidade de parar de consumir carne pela própria saúde, e 22% afirmam já ter tentado parar de comer carne em algum momento",u:"https://mais.opovo.com.br/colunistas/eliziane-colares/2025/03/29/7-dos-brasileirossao-veganos.html"},
+ ipsos_veg:{s:"Ipsos para o EscolhaVeg, 2023",t:"Ipsos (16/mai/2023), para o programa EscolhaVeg, da ONG Mercy For Animals (1.001 entrevistas on-line): 55% dos brasileiros têm alimentação onívora, 22% flexitariana, 8% vegetariana estrita ou vegana, 7% pescetariana e 5% ovolactovegetariana",u:"https://www.ipsos.com/pt-br/pesquisa-aponta-habitos-alimentares-da-populacao-brasileira-e-busca-por-alimentacao-nutritiva-e"},
+ inca:{s:"INCA, sobre a avaliação da OMS, 2015",t:"Instituto Nacional de Câncer (INCA), sobre o relatório da Agência Internacional de Pesquisa em Câncer (Iarc), da OMS, de outubro de 2015: carnes processadas, como salsicha, linguiça, bacon e presunto, foram classificadas no grupo 1 (evidência suficiente de que causam câncer colorretal); cada porção diária de 50 g aumenta esse risco em 18%; a carne vermelha entrou no grupo 2A, de carcinógeno provável",u:"https://ninho.inca.gov.br/jspui/bitstream/123456789/9068/1/Informe%20INCA%20341-4.pdf"},
+ iarc_ind:{s:"Iarc, via Observador, 2015",t:"Observador (2015), citando Kurt Straif, diretor do programa de monografias da Iarc: para um indivíduo, o risco de câncer colorretal pelo consumo de carne processada continua pequeno, mas aumenta com a quantidade consumida; o jornal acrescenta que estar no mesmo grupo do tabaco não quer dizer que o risco seja equivalente",u:"https://observador.pt/?p=1019847"},
+ ada:{s:"Academia de Nutrição e Dietética dos EUA, 2016",t:"Academia de Nutrição e Dietética dos EUA (2016): dietas vegetarianas, incluindo veganas, bem planejadas são saudáveis, nutricionalmente adequadas e podem trazer benefícios para prevenir e tratar certas doenças; veganos precisam de fontes confiáveis de vitamina B12, como alimentos fortificados ou suplementos",u:"https://pubmed.ncbi.nlm.nih.gov/27886704/"},
+ embrapa_carne:{s:"Embrapa, Valor Nutritivo da Carne, 2003",t:"Embrapa, Valor Nutritivo da Carne (2003): a carne é uma excelente fonte de proteínas em quantidade e qualidade; 100 g de coxão mole magro cozido contêm cerca de 30 g de proteína; também é fonte de vitaminas do complexo B (principalmente B12), ferro e zinco",u:"https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/45667/1/OK-JeitoGostosoDivertido-2.pdf"},
+ guia:{s:"Guia Alimentar, via Idec, 2026",t:"Idec (set/2026): o Guia Alimentar para a População Brasileira, do Ministério da Saúde, recomenda que alimentos in natura ou minimamente processados, em grande variedade e predominantemente de origem vegetal, sejam a base da alimentação",u:"https://idec.org.br/ta-na-mesa/arquivo?edicao=2026-09-30"},
+ guia_af:{s:"Guia Alimentar, Ministério da Saúde, 2014",t:"Guia Alimentar para a População Brasileira (Ministério da Saúde, 2ª ed., 2014): recomenda preferir alimentos in natura ou minimamente processados; a mistura de arroz com feijão aparece em quase todos os almoços e na grande maioria dos jantares dos exemplos, que incluem carnes, com as vermelhas restritas a um terço das refeições apresentadas",u:"https://faolex.fao.org/docs/pdf/bra214639.pdf"},
+ usp_ultra:{s:"USP (Jama Network Open), via O Povo, 2025",t:"O Povo (8/fev/2025), sobre estudo da USP liderado por Hamilton Roschel e publicado no Jama Network Open, com 774 veganos: eles consumiam menos ultraprocessados que a média da população; os mais comuns eram proteína texturizada de soja e suplementos proteicos vegetais, que ajudavam a atingir a meta de proteína",u:"https://www.opovo.com.br/noticias/saude/2025/02/08/amp/veganismo-e-ultraprocessados-o-que-e-necessario-para-garantir-o-consumo-proteico.html"},
+ usp_custo:{s:"Jornal da USP, via eCycle, 2026",t:"eCycle (10/abr/2026), reproduzindo texto de Joyce Pezzato para o Jornal da USP: a nutricionista Ana Rita Nobre, doutoranda da USP de Ribeirão Preto, diz que o acompanhamento profissional é fundamental para evitar carências e que a dieta pode não ser viável para parte da população por causa do custo de alimentos fortificados, suplementos e acompanhamento",u:"https://www.ecycle.com.br/mudancas-no-habito-alimentar-avancam-no-brasil-com-menos-consumo-de-carne/amp/"},
+};
+
+/* PF: proteínas para o prato (kg CO2e por 100 g de proteína, médias globais) */
+const PROTS=[
+ {id:"boi",n:"Bife de boi",e:"🥩",v:49.9,c:"#A2492E"},
+ {id:"porco",n:"Bisteca de porco",e:"🍖",v:7.6,c:"#C9826B"},
+ {id:"frango",n:"Frango",e:"🍗",v:5.7,c:"#D9A066"},
+ {id:"ovo",n:"Ovo",e:"🍳",v:4.2,c:"#E9C46A"},
+ {id:"queijo",n:"Queijo",e:"🧀",v:10.8,c:"#E8C547"},
+ {id:"tofu",n:"Tofu",e:"⬜",v:2.0,c:"#E7DCC4"},
+ {id:"feijao",n:"Mais feijão",e:"🫘",v:0.84,c:"#5B3A26"}
+];
+
+const CAPS=[
+ {id:"pf",k:"Capítulo 1 · o PF de todo dia",t:"Arroz, feijão e… o quê?",tipo:"prato",
+  intro:"Escolha a mistura do seu PF. A barra mostra quanto gás de efeito estufa sai para produzir 100 g de proteína daquele alimento, na média do mundo. [[owid_mean]]",
+  unidade:"Gás carbônico equivalente soma todos os gases que esquentam o planeta, como o metano do arroto do boi, numa mesma medida. A conta é pela quantidade de comida que tem 100 g de proteína: no caso do boi, cerca de 330 g de carne cozida (cálculo do Pense Mais Uma com dados da Embrapa). [[embrapa_carne]]",
+  depois:"São médias mundiais de uma pesquisa com cerca de 38.700 fazendas em 119 países, com dados por volta de 2010. [[owid_mean]] Não são números do Brasil, e cada fazenda pode ficar bem acima ou bem abaixo da média.",
+  nota:"O arroz com feijão fica no prato de propósito: o Guia Alimentar do Ministério da Saúde valoriza essa combinação, presente em quase todos os almoços e jantares que ele dá como exemplo. [[guia_af]]"},
+ {id:"boi",k:"Capítulo 2 · mesmo boi, outra conta",t:"Todo boi emite igual?",tipo:"produtor",
+  intro:"Não. No mundo, metade da carne de boi emite mais de 25 e metade menos: esse é o valor do meio da fila, a mediana. Os 10% de produtores de menor impacto ficam abaixo de 9. [[owid_less]]",
+  barras:[["Boi, mediana mundial",25,"#A2492E"],["Boi, 10% de menor impacto (abaixo de)",9,"#C26A4B"],["Frango, 10% de menor impacto",2.4,"#D9A066"],["Tofu, 10% de maior impacto",3.5,"#BFB39A"],["Ervilha, 10% de maior impacto",0.8,"#7FA05A"]],
+  lados:[["Quem aposta na carne de baixo carbono","Cita a Embrapa: com boi abatido mais jovem, integração com lavoura e pasto bem manejado, a emissão por quilo cai e o solo guarda carbono. Uma fazenda com integração citada pela revista Pesquisa Fapesp emitia cerca de 40% abaixo da média mundial, e a Embrapa criou um protocolo voluntário para certificar essa carne. [[fapesp]] [[embrapa_cbc]]"],["Quem defende comer menos carne","Cita a conclusão do Our World in Data: até o boi dos 10% de menor impacto (abaixo de 9) emite mais que o tofu dos 10% de maior impacto (3,5) e muito mais que a ervilha (0,8). Para esse lado, comer menos carne é quase sempre melhor que buscar a carne mais sustentável. [[owid_less]]"]]},
+ {id:"pais",k:"Capítulo 3 · o prato do Brasil",t:"De onde vêm os gases de efeito estufa do Brasil?",tipo:"pizza",
+  intro:"Este prato é o Brasil inteiro em 2025: 2,06 bilhões de toneladas de gás carbônico equivalente. Toque em cada fatia. [[seeg25]]",
+  fatias:[["Desmatamento e uso da terra",814,"#7A4A2B","Caiu 15% em 2025, puxado pela queda do desmatamento. [[seeg25]]"],["Agropecuária",626,"#C4472B","O gado de corte sozinho respondeu por 410,7 milhões de toneladas, 65,6% do setor. [[forbes]]"],["Energia",427,"#3E4A2B","Transporte, indústria e eletricidade; subiu 1,2% em 2025. [[seeg25]]"],["Outros",190,"#B9A27E","Resíduos (96 milhões de toneladas) e processos industriais (94 milhões). [[seeg25]]"]],
+  depois:"Somando o desmatamento e as emissões diretas do campo, a atividade agropecuária respondeu por dois terços das emissões brutas do país em 2024, segundo o SEEG. [[seeg13]] Em 2025 e 2026 o desmatamento caiu: entre agosto de 2025 e julho de 2026, o desmatamento na Amazônia foi de 3.335 km², o menor desde 1988. [[prodes26]] E, em 2025, as emissões da pecuária caíram 1,68% num ano em que a produção de carne bovina cresceu 7,2%. [[forbes]]"},
+ {id:"agro",k:"Capítulo 4 · o tamanho do agro",t:"Quanto o agro pesa na economia?",tipo:"medida",
+  intro:"Depende da régua. Troque a medida e veja a fatia mudar.",
+  medidas:[["Cadeia inteira (Cepea)",25.13,"Soma insumos, fazenda, agroindústria e serviços: 25,13% do PIB em 2025. [[cepea_pib]]"],["Só dentro da porteira (IBGE)",6.1,"Conta só a produção na fazenda: cerca de 6,1% do PIB em 2025, segundo o IBGE. [[ibge61]]"]],
+  chips:[["28,4 milhões","de pessoas ocupadas no agronegócio em 2025, 26,3% dos empregos do país. [[emprego]]"],["US$ 169,2 bilhões","exportados pelo agro em 2025, 48,5% de tudo que o Brasil vendeu ao exterior. [[export]]"]],
+  nota:"Os dois números estão certos: medem coisas diferentes. Desconfie de quem usa um sem dizer qual é."},
+ {id:"quem",k:"Capítulo 5 · quem come o quê",t:"Quantos brasileiros são vegetarianos?",tipo:"pesquisas",
+  intro:"Três pesquisas, três respostas. Toque em cada cardápio.",
+  cards:[["Ibope para a SVB, 2018","14%","se reconheciam vegetarianos, cerca de 30 milhões de pessoas. [[ibope18]] [[ibope_svb]]"],["Datafolha para a SVB, 2025","7%","concordam, total ou em parte, que são veganos. A própria SVB diz que a pesquisa mediu identidade, não o que cada um come. [[svb25]]"],["Ipsos para o EscolhaVeg (Mercy For Animals), 2023","13%","não comem carne: 8% são veganos ou vegetarianos estritos e 5% ovolactovegetarianos; 55% comem de tudo e 22% são flexitarianos, que comem carne de vez em quando. [[ipsos_veg]]"]],
+  depois:"Na mesma pesquisa do Datafolha, 74% concordaram, em algum grau, que parariam de comer carne pela saúde, e 22% disseram que já tentaram parar. [[opovo_df]] No prato real, o frango é a carne mais consumida: 46,7 kg por pessoa em 2025, segundo a ABPA. [[abpa_fra]] Segundo a Conab, a carne de boi perdeu espaço nas famílias de menor renda, que trocaram por frango e porco. [[conab_bov]]",
+  nota:"As três pesquisas foram encomendadas por grupos que defendem o vegetarianismo ou os animais. Quando as pesquisas discordam, olhe a pergunta: “você se considera vegetariano?” não é o mesmo que “o que você comeu ontem?”."},
+ {id:"saude",k:"Capítulo 6 · e a saúde?",t:"Carne faz mal? Sem carne falta nutriente?",tipo:"saude",
+  lados:[["O que a carne oferece","Segundo a Embrapa, 100 g de coxão mole magro cozido têm cerca de 30 g de proteína, além de vitamina B12, ferro e zinco. [[embrapa_carne]]"],["O que pesa contra a carne","A OMS classificou carnes processadas (salsicha, linguiça, presunto) como causa de câncer colorretal: 50 g por dia aumentam esse risco em 18%. A carne vermelha ficou como causa provável. [[inca]] O Guia Alimentar brasileiro inclui carnes nas refeições de exemplo, com a vermelha em cerca de um terço delas. [[guia_af]] O risco para cada pessoa continua pequeno e cresce com a quantidade. [[iarc_ind]]"],["O que as dietas sem carne oferecem","A Academia de Nutrição e Dietética dos EUA diz que dietas vegetarianas e veganas bem planejadas são saudáveis em todas as fases da vida. [[ada]] O Guia Alimentar brasileiro recomenda uma base predominantemente de origem vegetal. [[guia]] Um estudo da USP com 774 veganos viu que eles comem menos ultraprocessados que a média; os mais comuns eram proteína de soja e suplementos, que ajudavam a bater a meta de proteína. [[usp_ultra]]"],["O que pesa contra as dietas sem carne","Veganos precisam de B12 em alimentos fortificados ou suplementos. [[ada]] E a nutricionista Ana Rita Nobre, da USP, diz que o custo de alimentos fortificados, suplementos e acompanhamento pode pesar para parte da população. [[usp_custo]]"]],
+  nota:"Repare nas palavras: “bem planejada”, “em excesso”, “processada”. Essas palavras mudam o sentido da conclusão."}
+];
+
+const VOTO=[
+ {t:"Carne todo dia",s:"o PF de sempre",pro:"A carne é fonte de proteína de alta qualidade, B12, ferro e zinco, segundo a Embrapa, e a pecuária de baixo carbono pode reduzir a emissão por quilo. [[embrapa_carne]] [[fapesp]]",con:"O boi tem a maior emissão média por proteína entre as comidas do curso, e a OMS liga carnes processadas ao câncer colorretal. [[owid_mean]] [[inca]]"},
+ {t:"Menos carne, mais feijão",s:"carne alguns dias por semana",pro:"O Guia Alimentar recomenda base vegetal e arroz com feijão, e trocar boi por frango ou porco já reduz as emissões, segundo o Our World in Data. [[guia]] [[owid_mean]]",con:"Reduzir ajuda menos o clima que cortar: mesmo o boi dos 10% de menor impacto (abaixo de 9) emite mais que o tofu dos 10% de maior impacto (3,5). [[owid_less]]"},
+ {t:"Vegetariano",s:"sem carne, com ovo e leite",pro:"Dietas vegetarianas bem planejadas são saudáveis em todas as fases da vida, segundo a Academia de Nutrição e Dietética dos EUA. [[ada]]",con:"Queijo também emite: 10,8 kg de CO2 equivalente por 100 g de proteína, mais que porco (7,6) e frango (5,7) na média mundial. [[owid_mean]]"},
+ {t:"Vegano",s:"nada de origem animal",pro:"Feijão, ervilha e tofu estão entre as menores emissões por proteína, e a dieta vegana bem planejada é considerada adequada. [[owid_mean]] [[ada]]",con:"Exige B12 em suplemento ou alimento fortificado, e o custo pode pesar. [[ada]] [[usp_custo]]"}
+];
+
+const KEY="pmu-agro";let S={i:0,mix:null,tried:[],bar:null,fat:0,med:0,cards:[],vote:null,fb:{}};
+try{const o=JSON.parse(localStorage.getItem(KEY)||"null");if(o)S={...S,...o,fb:{...(o.fb||{})}}}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const N={},ORD=[];const num=k=>{if(FONTES[k]&&!(k in N)){ORD.push(k);N[k]=ORD.length}};
+const scan=o=>JSON.stringify(o).replace(/\[\[([a-z0-9_]+)\]\]/g,(m,k)=>num(k));
+CAPS.forEach(scan);scan(VOTO);
+const sup=k=>FONTES[k]?`<sup><button type="button" class="fn" data-f="${k}" aria-label="Fonte ${N[k]}: ${esc(FONTES[k].s)}">${N[k]}</button></sup>`:"";
+const tx=h=>esc(h).replace(/\s*\[\[([a-z0-9_]+)\]\]/g,(m,k)=>sup(k));
+const br=v=>String(v).replace(".",",");
+const T=CAPS.length+2; /* capa + capítulos + final */
+const app=document.getElementById("app");
+
+function dots(){return `<div id="pratos" aria-label="Prato ${S.i} de ${T-1}">${Array.from({length:T-1},(_,j)=>`<i class="${j<S.i?"on":""}"></i>`).join("")}</div>`}
+const nav=(first)=>`<div class="nav"><button data-nav="-1">‹ voltar</button><button class="nx" data-nav="1">${S.i===T-2?"Montar meu prato ›":"Próximo prato ›"}</button></div>`;
+
+function capa(){return `<div class="k">Pense Mais Uma · monte seu prato</div>
+ <h1>Comer carne destrói o planeta? <em>O agro, o boi e o seu prato</em></h1>
+ <p class="p">Você monta pratos e vê a conta: quanto cada comida emite, quanto o agro pesa no Brasil e o que dizem os estudos de saúde. Sem julgar quem come o quê.</p>
+ <div class="chips"><span>6 pratos</span><span>cerca de 12 minutos</span><span>sem nota</span></div>
+ <p class="p m">Toque ou arraste as comidas até o prato. O número pequeno ao lado de um dado abre a fonte. Dados atualizados em novembro de 2026.</p>
+ <button class="go" data-go="1">Pôr a mesa</button>${S.i>1?`<button class="go alt" data-go="${S.i}">Continuar de onde parei</button>`:""}`}
+
+function prato(c){const m=PROTS.find(p=>p.id===S.mix);const tried=PROTS.filter(p=>S.tried.includes(p.id)).sort((a,b)=>b.v-a.v);
+ return `<div class="k">${esc(c.k)}</div><h2>${esc(c.t)}</h2><p class="p">${tx(c.intro)}</p>
+ <div class="plate" id="plate" role="img" aria-label="Prato com arroz, feijão${m?" e "+esc(m.n):""}"><div class="food f-arroz">arroz</div><div class="food f-feijao">feijão</div>
+  <div class="food f-mix ${m?"on":""}" style="background:${m?m.c:"#ccc"};color:${m&&["tofu","ovo","queijo"].includes(m.id)?"#4a3b2a":"#fff"}">${m?esc(m.n):""}</div></div>
+ <div class="tray" role="group" aria-label="Escolha a mistura">${PROTS.map(p=>`<button class="chip ${S.mix===p.id?"on":""}" data-mix="${p.id}">${p.e} ${esc(p.n)}</button>`).join("")}</div>
+ ${m?`<div class="big">${br(m.v)}</div><div class="unit">kg de gás carbônico equivalente para produzir 100 g de proteína de ${esc(m.n.toLowerCase())} (média mundial)</div><p class="p m" style="font-size:13px">${tx(c.unidade)}</p>`:`<p class="m">Arraste ou toque numa mistura para pôr no prato.</p>`}
+ ${tried.length>1?`<div class="bars" aria-label="Comparação">${tried.map(p=>`<div class="bar"><span>${p.e} ${esc(p.n)}</span><span class="tr"><i style="width:${Math.max(1.5,p.v/50*100)}%;background:${p.c}"></i></span><b>${br(p.v)}</b></div>`).join("")}</div>`:""}
+ ${S.tried.length>=2?`<p class="p m">${tx(c.depois)}</p><div class="nt">${tx(c.nota)}</div>`:""}${nav()}`}
+
+function produtor(c){return `<div class="k">${esc(c.k)}</div><h2>${esc(c.t)}</h2><p class="p">${tx(c.intro)}</p>
+ <div class="bars">${c.barras.map((b,j)=>`<button class="bar" data-bar="${j}" aria-pressed="${S.bar===j}"><span>${esc(b[0])}</span><span class="tr"><i style="width:${Math.max(1.5,b[1]/50*100)}%;background:${b[2]}"></i></span><b>${br(b[1])}</b></button>`).join("")}</div>
+ <p class="unit">kg de gás carbônico equivalente por 100 g de proteína</p>
+ ${c.lados.map((l,j)=>`<div class="lado" style="--c:${j?"var(--ol)":"var(--to)"}"><h3>${esc(l[0])}</h3><p>${tx(l[1])}</p></div>`).join("")}${nav()}`}
+
+function conic(parts){let a=0;const tot=parts.reduce((s,p)=>s+p[1],0);return "conic-gradient("+parts.map(p=>{const b=a+p[1]/tot*360;const s=`${p[2]} ${a}deg ${b}deg`;a=b;return s}).join(",")+")"}
+function pizza(c){const f=c.fatias[S.fat]||c.fatias[0];const tot=c.fatias.reduce((s,p)=>s+p[1],0);
+ return `<div class="k">${esc(c.k)}</div><h2>${esc(c.t)}</h2><p class="p">${tx(c.intro)}</p>
+ <div class="pie" style="background:${conic(c.fatias)}" data-c="${Math.round(f[1]/tot*100)}%\n${esc(f[0].split(" ")[0])}" role="img" aria-label="Gráfico das emissões do Brasil em 2025"></div>
+ <div class="leg">${c.fatias.map((p,j)=>`<button data-fat="${j}" class="${S.fat===j?"on":""}"><i style="background:${p[2]}"></i>${esc(p[0])}<small>${p[1]} mi t</small></button>`).join("")}</div>
+ <div class="det">${tx(f[3])}</div><p class="p m">${tx(c.depois)}</p>${nav()}`}
+
+function medida(c){const m=c.medidas[S.med]||c.medidas[0];
+ return `<div class="k">${esc(c.k)}</div><h2>${esc(c.t)}</h2><p class="p">${esc(c.intro)}</p>
+ <div class="seg" role="group">${c.medidas.map((x,j)=>`<button data-med="${j}" class="${S.med===j?"on":""}" aria-pressed="${S.med===j}">${esc(x[0])}</button>`).join("")}</div>
+ <div class="pie" style="background:conic-gradient(var(--ol) 0deg ${m[1]*3.6}deg,#EDE6D6 ${m[1]*3.6}deg 360deg)" data-c="${br(m[1])}%\ndo PIB"></div>
+ <div class="det">${tx(m[2])}</div>
+ <div class="ch">${c.chips.map(x=>`<div><b>${esc(x[0])}</b><p>${tx(x[1])}</p></div>`).join("")}</div>
+ <div class="nt">${esc(c.nota)}</div>${nav()}`}
+
+function pesquisas(c){const all=c.cards.every((_,j)=>S.cards.includes(j));
+ return `<div class="k">${esc(c.k)}</div><h2>${esc(c.t)}</h2><p class="p">${esc(c.intro)}</p>
+ ${c.cards.map((x,j)=>`<div class="menu ${S.cards.includes(j)?"on":""}" data-card="${j}" role="button" tabindex="0" aria-expanded="${S.cards.includes(j)}"><h3>${esc(x[0])}<span>${S.cards.includes(j)?"":"toque"}</span></h3><div class="in"><div class="pc">${esc(x[1])}</div><p>${tx(x[2])}</p></div></div>`).join("")}
+ ${all?`<p class="p m">${tx(c.depois)}</p><div class="nt">${esc(c.nota)}</div>`:""}${nav()}`}
+
+function saude(c){const C=["var(--ol)","var(--to)","var(--ol)","var(--to)"];
+ return `<div class="k">${esc(c.k)}</div><h2>${esc(c.t)}</h2>
+ ${c.lados.map((l,j)=>`<div class="lado" style="--c:${C[j]}"><h3>${esc(l[0])}</h3><p>${tx(l[1])}</p></div>`).join("")}<div class="nt">${esc(c.nota)}</div>${nav()}`}
+
+const MINI=[[["#EDE6D6",8,10,26],["#5B3A26",30,8,22],["#A2492E",14,32,30]],[["#EDE6D6",8,10,26],["#5B3A26",28,6,28],["#A2492E",24,36,14]],[["#EDE6D6",8,10,26],["#5B3A26",30,8,22],["#E9C46A",14,32,26]],[["#EDE6D6",8,10,26],["#5B3A26",30,8,22],["#7FA05A",14,32,26]]];
+const vcard=v=>{const o=VOTO[v];return `<div class="cd"><i>A favor</i>${tx(o.pro)}<i class="c">Contra</i>${tx(o.con)}</div>`};
+function fim(){return `<div class="k">O seu prato de amanhã</div><h2>E você, o que poria no prato?</h2>
+ <p class="p m">Não existe prato certo e não vale nota. Escolha e veja os dois lados.</p>
+ <div class="opts">${VOTO.map((o,k)=>`<button class="opt ${S.vote===k?"on":""}" data-k="${k}" aria-pressed="${S.vote===k}"><div class="mini">${MINI[k].map(x=>`<i style="background:${x[0]};left:${x[1]}px;top:${x[2]}px;width:${x[3]}px;height:${x[3]}px"></i>`).join("")}</div><b>${esc(o.t)}</b><small>${esc(o.s)}</small></button>`).join("")}</div>
+ <div id="vcd">${S.vote!=null?vcard(S.vote):""}</div>
+ <section class="box"><h3>Quer se aprofundar?</h3>
+ <p><b>Comer Animais</b>, de Jonathan Safran Foer: critica a pecuária industrial e defende comer menos carne ou nenhuma.</p>
+ <p><b>O Dilema do Onívoro</b>, de Michael Pollan: segue quatro refeições, do fast-food à caça, e se mostra mais simpático à carne criada a pasto, embora admita que é difícil produzi-la em grande escala.</p>
+ <p><a href="https://www.youtube.com/results?search_query=pecu%C3%A1ria+baixo+carbono+Embrapa" target="_blank" rel="noopener">Pecuária de baixo carbono (busca no YouTube)</a><br><a href="https://www.youtube.com/results?search_query=dieta+vegetariana+nutricionista+B12" target="_blank" rel="noopener">Dieta vegetariana e vitamina B12 (busca no YouTube)</a></p></section>
+ <section class="box" id="avaliar"><h3>Avalie o curso</h3><p>Que nota você dá?</p><div class="rate">${[1,2,3,4,5].map(x=>`<button data-n="${x}" class="${S.fb.nota===x?"on":""}" aria-label="Nota ${x}">${x}</button>`).join("")}</div>
+ <p>O que você aprendeu que não sabia?</p><textarea id="apr" rows="2">${esc(S.fb.apr||"")}</textarea>
+ <p>Sentiu que o curso favoreceu algum lado?</p><select id="lado"><option value="">Escolha</option>${["Não","Sim, a favor de comer carne","Sim, contra comer carne","Não sei"].map(o=>`<option ${S.fb.lado===o?"selected":""}>${o}</option>`).join("")}</select>
+ <p>Comentário</p><textarea id="com" rows="2">${esc(S.fb.com||"")}</textarea>
+ <p>Que tema você quer que vire curso?</p><textarea id="tema" rows="2">${esc(S.fb.tema||"")}</textarea>
+ <button class="go" id="env">${S.fb.sent?"Avaliação enviada ✓":"Enviar avaliação"}</button></section>
+ <section class="box"><h3>Fontes</h3><ol class="fontes">${ORD.map(k=>{const f=FONTES[k];return `<li>${esc(f.t)} · <a href="${f.u}" target="_blank" rel="noopener">abrir</a></li>`}).join("")}</ol>
+ <button class="go alt" data-go="0">Voltar ao início</button></section>
+ <div class="nav"><button data-nav="-1">‹ voltar</button></div>`}
+
+const R={prato,produtor,pizza,medida,pesquisas,saude};
+function render(){S.i=Math.max(0,Math.min(T-1,S.i));save();
+ if(S.i===0)app.innerHTML=capa();else if(S.i===T-1)app.innerHTML=dots()+fim();else{const c=CAPS[S.i-1];app.innerHTML=dots()+R[c.tipo](c)}
+ wire()}
+function go(d){S.i+=d;render();scrollTo(0,0)}
+function setMix(id){S.mix=id;if(!S.tried.includes(id))S.tried.push(id);save();render()}
+function wire(){
+ const en=document.getElementById("env");if(en)en.onclick=()=>{S.fb.sent=true;try{const q=JSON.parse(localStorage.getItem("pmu-fila")||"[]");q.push({curso:"agro-e-prato",quando:new Date().toISOString(),voto:S.vote,...S.fb});localStorage.setItem("pmu-fila",JSON.stringify(q))}catch(x){}save();en.textContent="Avaliação enviada ✓"};
+ ["apr","com","tema"].forEach(k=>{const e=document.getElementById(k);if(e)e.oninput=()=>{S.fb[k]=e.value;save()}});
+ const l=document.getElementById("lado");if(l)l.onchange=()=>{S.fb.lado=l.value;save()};
+ /* arrastar para o prato */
+ app.querySelectorAll(".chip").forEach(ch=>{ch.onpointerdown=e=>{const plate=document.getElementById("plate");let g=null,sx=e.clientX,sy=e.clientY,moved=false;
+  const mv=ev=>{if(!moved&&Math.hypot(ev.clientX-sx,ev.clientY-sy)>8){moved=true;g=document.createElement("div");g.className="ghost";g.textContent=ch.textContent;document.body.appendChild(g)}
+   if(g){g.style.left=ev.clientX-40+"px";g.style.top=ev.clientY-24+"px";const r=plate.getBoundingClientRect();plate.classList.toggle("drop",ev.clientX>r.left&&ev.clientX<r.right&&ev.clientY>r.top&&ev.clientY<r.bottom)}};
+  const up=ev=>{removeEventListener("pointermove",mv);removeEventListener("pointerup",up);if(g){g.remove();const r=plate.getBoundingClientRect();plate.classList.remove("drop");if(ev.clientX>r.left&&ev.clientX<r.right&&ev.clientY>r.top&&ev.clientY<r.bottom)setMix(ch.dataset.mix)}else setMix(ch.dataset.mix)};
+  addEventListener("pointermove",mv);addEventListener("pointerup",up)}});
+}
+const pop=document.getElementById("fnpop");
+document.addEventListener("click",e=>{const b=e.target.closest(".fn");
+ if(b){e.preventDefault();e.stopPropagation();const f=FONTES[b.dataset.f];document.getElementById("fnbody").innerHTML=`<b>Fonte ${N[b.dataset.f]}</b><br>${esc(f.t)}<br><a href="${f.u}" target="_blank" rel="noopener">Abrir a fonte ↗</a>`;pop.style.display="block";return}
+ if(pop.style.display==="block"&&(e.target.closest("#fnpop .x")||!e.target.closest("#fnpop"))){pop.style.display="none";if(!e.target.closest("button,a"))return}
+ const km=e.target.closest("[data-mix]");if(km&&e.detail===0){setMix(km.dataset.mix);return}
+ const t=e.target.closest("[data-go],[data-nav],[data-bar],[data-fat],[data-med],[data-card],[data-k],[data-n]");if(!t)return;const d=t.dataset;
+ if(d.go!=null){S.i=+d.go;render();scrollTo(0,0)}
+ else if(d.nav!=null)go(+d.nav);
+ else if(d.bar!=null){S.bar=+d.bar;save();render()}
+ else if(d.fat!=null){S.fat=+d.fat;save();render()}
+ else if(d.med!=null){S.med=+d.med;save();render()}
+ else if(d.card!=null){const j=+d.card;if(!S.cards.includes(j))S.cards.push(j);else S.cards=S.cards.filter(x=>x!==j);save();render()}
+ else if(d.k!=null){S.vote=+d.k;save();app.querySelectorAll(".opt").forEach(x=>{x.classList.toggle("on",x===t);x.setAttribute("aria-pressed",x===t)});document.getElementById("vcd").innerHTML=vcard(S.vote)}
+ else if(d.n!=null){S.fb.nota=+d.n;save();app.querySelectorAll("[data-n]").forEach(x=>x.classList.toggle("on",x===t))}
+},true);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")pop.style.display="none";const m=e.target.closest&&e.target.closest("[data-card]");if(m&&(e.key==="Enter"||e.key===" ")){e.preventDefault();m.click()}});
+render();
+</script>
+</body></html>

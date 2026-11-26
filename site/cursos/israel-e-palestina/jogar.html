@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#F7F7F4">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Israel e Palestina, sem lado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F7F4; --ink:#1E2A32; --muted:#5D6B73; --card:#FFFFFF; --line:#E1E3DE;
+  --is:#1F9E8F; --isbg:#E4F4F1; --isd:#16786C;   /* narrativa israelense: verde-água */
+  --pa:#E39B2D; --pabg:#FCF0DD; --pad:#B36F0C;   /* narrativa palestina: âmbar */
+  --ok:#2E8B57; --okbg:#E6F4EC; --bad:#C2453B; --badbg:#FBE9E7;
+  --head:"Space Grotesk",system-ui,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:17px;line-height:1.58}
+h1,h2,h3{font-family:var(--head);line-height:1.12;margin:0 0 .5em}
+button{font:inherit;cursor:pointer;border:0;color:inherit}
+#app{max-width:560px;margin:0 auto;padding:0 16px 48px}
+/* barra do topo */
+.top{position:sticky;top:0;z-index:20;background:rgba(247,247,244,.94);backdrop-filter:blur(8px);margin:0 -16px;padding:10px 16px;border-bottom:1px solid var(--line)}
+.toprow{display:flex;align-items:center;gap:10px}
+.lvl{font-family:var(--head);font-weight:700;font-size:.8rem;background:var(--ink);color:#fff;border-radius:99px;padding:4px 10px;white-space:nowrap}
+.xpbar{flex:1;height:9px;background:#E3E5E1;border-radius:9px;overflow:hidden}
+.xpbar i{display:block;height:100%;background:linear-gradient(90deg,var(--is),var(--pa));border-radius:9px;transition:width .6s}
+.mute{background:#fff;border:1.5px solid var(--line);border-radius:10px;width:34px;height:30px;font-size:.9rem;padding:0}
+.xptxt{font-size:.74rem;color:var(--muted);margin-top:5px;display:flex;justify-content:space-between;gap:8px;font-weight:500}
+/* início */
+.hero{padding:22px 0 4px}
+.hero .kick{font-family:var(--head);font-weight:700;font-size:.78rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.hero h1{font-size:2.15rem;letter-spacing:-.01em;margin-top:4px}
+.hero h1 .i{color:var(--is)} .hero h1 .p{color:var(--pa)}
+.hero p{color:var(--muted);margin:0}
+.how{margin-top:12px;font-size:.88rem;color:var(--muted);background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:10px 12px}
+.how b{color:var(--ink)}
+.upd{display:inline-block;margin-top:10px;font-weight:700;font-size:.78rem;color:var(--ok);background:var(--okbg);border-radius:99px;padding:3px 10px}
+.sec{font-family:var(--head);font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:26px 0 10px}
+/* linha do tempo das fases */
+.tl{position:relative;padding-left:26px}
+.tl::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:3px;border-radius:3px;background:linear-gradient(var(--is),var(--pa))}
+.tile{position:relative;display:flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:12px;margin-bottom:11px;text-align:left;width:100%;transition:transform .1s}
+.tile:active{transform:scale(.985)}
+.tl .tile::before{content:"";position:absolute;left:-23px;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:var(--bg);border:3px solid var(--muted)}
+.tl .tile.done::before{background:var(--ink);border-color:var(--ink)}
+.tl .tile.next::before{background:var(--pa);border-color:var(--pa);box-shadow:0 0 0 5px rgba(227,155,45,.22)}
+.tile .n{width:38px;height:38px;flex:none;border-radius:50%;display:grid;place-items:center;font-family:var(--head);font-weight:700;color:#fff;background:linear-gradient(90deg,var(--is) 50%,var(--pa) 50%)}
+.tile .tt{flex:1;min-width:0}
+.tile .tt .era{display:block;font-family:var(--head);font-weight:700;font-size:.72rem;letter-spacing:.06em;color:var(--muted)}
+.tile .tt b{display:block;font-size:1rem;line-height:1.25}
+.tile .tt small{color:var(--muted);font-size:.83rem}
+.tile .st{font-size:.85rem;white-space:nowrap;color:var(--pad)}
+.tile.locked{opacity:.45}
+.tile.next{border-color:var(--ink);box-shadow:0 3px 0 var(--ink)}
+.tile.special .n{background:var(--ink)}
+.badges{display:flex;flex-wrap:wrap;gap:8px}
+.bdg{background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:5px 11px;font-size:.82rem;font-weight:700}
+.bdg.off{opacity:.35;filter:grayscale(1)}
+/* lição */
+.head{display:flex;align-items:center;gap:10px;padding:16px 0 6px}
+.back{background:#fff;border:1.5px solid var(--line);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+.head .ht{flex:1;font-family:var(--head);font-weight:700;font-size:.95rem}
+.chip{font-family:var(--head);font-weight:700;font-size:.85rem;white-space:nowrap}
+.dots{display:flex;gap:5px;margin:6px 0 14px}
+.dots i{flex:1;height:6px;border-radius:9px;background:#E3E5E1}
+.dots i.on{background:var(--ink)}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:22px 20px;animation:pop .25s ease}
+.card h2{font-size:1.45rem}
+.card p{margin:.6em 0}
+.card ul,.card ol{padding-left:1.1em;margin:.5em 0}
+.card li{margin:.35em 0}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.split{display:flex;margin:14px 0;border-radius:16px;overflow:hidden;border:1.5px solid var(--line)}
+.split>div{flex:1;padding:12px 12px;font-size:.92rem;line-height:1.45}
+.split .l{background:var(--isbg)} .split .r{background:var(--pabg)}
+.split b{display:block;font-family:var(--head);font-size:.86rem;margin-bottom:4px}
+.split .l b{color:var(--isd)} .split .r b{color:var(--pad)}
+.deb{margin:12px 0;border-radius:14px;padding:11px 13px;font-size:.93rem;background:#F1F2EF;border-left:4px solid var(--ink)}
+.deb b{display:block;font-family:var(--head);font-size:.86rem;margin-bottom:2px}
+.tip,.warn{border-radius:14px;padding:11px 13px;margin:12px 0;font-size:.93rem}
+.tip{background:#FFF7E0}.tip b{display:block;font-family:var(--head)}
+.warn{background:#EEF0F2;font-size:.86rem;color:#3d4a52}
+.mid{text-align:center;font-family:var(--head);font-weight:700;font-size:.92rem;margin:4px 0 0}
+.nav{display:flex;gap:10px;margin-top:16px}
+.btn{flex:1;background:var(--ink);color:#fff;font-family:var(--head);font-weight:700;border-radius:14px;padding:15px;box-shadow:0 4px 0 #0c1418;font-size:1rem}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #0c1418}
+.btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line);box-shadow:0 3px 0 var(--line);flex:.5}
+.btn.ok{background:var(--ok);box-shadow:0 4px 0 #1d6440}
+/* perguntas */
+.qtag{font-family:var(--head);font-size:.76rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.qq{font-family:var(--head);font-weight:700;font-size:1.25rem;margin:6px 0 14px;line-height:1.25}
+.argbox{background:#F1F2EF;border-radius:14px;padding:12px 13px;margin:10px 0 4px;font-style:italic}
+.argbox .who{font-style:normal;font-family:var(--head);font-weight:700;font-size:.8rem;margin-bottom:3px}
+.argbox.is{background:var(--isbg)} .argbox.is .who{color:var(--isd)}
+.argbox.pa{background:var(--pabg)} .argbox.pa .who{color:var(--pad)}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:13px 14px;font-weight:500;box-shadow:0 2px 0 var(--line)}
+.opt.right{border-color:var(--ok);background:var(--okbg);box-shadow:0 2px 0 var(--ok)}
+.opt.wrong{border-color:var(--bad);background:var(--badbg);box-shadow:0 2px 0 var(--bad);animation:shake .3s}
+.opt.dim{opacity:.45}
+.opts.grid2{display:grid;grid-template-columns:1fr 1fr}
+.opts.grid3{display:grid;grid-template-columns:1fr 1fr 1fr}
+.opts.grid3 .opt,.opts.grid2 .opt{text-align:center;font-weight:700}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.fb{border-radius:14px;padding:12px 14px;margin-top:14px;font-size:.94rem;animation:pop .2s}
+.fb.good{background:var(--okbg)} .fb.badf{background:var(--badbg)}
+.fb b{display:block;font-family:var(--head)}
+/* resultado */
+.res{text-align:center}
+.big{font-size:3.2rem;margin:4px 0}
+.stars{font-size:2rem;letter-spacing:6px;color:var(--pa)}
+.reward{display:inline-block;background:#F1F2EF;font-family:var(--head);font-weight:700;border-radius:99px;padding:6px 14px;margin:6px 4px}
+.deep{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:16px;margin-top:14px}
+.deep .bk{margin:10px 0}.deep .bk b{display:block;font-family:var(--head)}.deep .bk span{color:var(--muted);font-size:.86rem}
+.deep .yt{display:block;margin-top:10px;color:var(--isd);font-weight:700;font-size:.9rem}
+/* aviso, toast e confete */
+.toast{position:fixed;left:50%;top:78px;transform:translateX(-50%);background:var(--ink);color:#fff;font-family:var(--head);font-weight:700;border-radius:99px;padding:8px 16px;z-index:50;animation:toast 1.4s forwards;pointer-events:none;white-space:nowrap}
+@keyframes toast{0%{opacity:0;transform:translate(-50%,10px)}15%{opacity:1;transform:translate(-50%,0)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-14px)}}
+.cf{position:fixed;top:-12px;width:9px;height:14px;z-index:60;pointer-events:none;animation:fall linear forwards;border-radius:2px}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg)}}
+.cert{background:#fff;border:3px solid var(--ink);border-radius:20px;padding:26px 18px;text-align:center;background-image:linear-gradient(90deg,var(--is) 0 50%,var(--pa) 50% 100%);background-size:100% 8px;background-repeat:no-repeat}
+.cert .nm{font-family:var(--head);font-size:1.6rem;font-weight:700;margin:8px 0;border-bottom:2px solid var(--line);padding-bottom:6px}
+input.txt,textarea.txt{width:100%;font:inherit;padding:13px;border:1.5px solid var(--line);border-radius:14px;background:#fff;margin:10px 0}
+.foot{color:var(--muted);font-size:.78rem;text-align:center;margin-top:30px}
+.reset{background:none;color:var(--muted);text-decoration:underline;font-size:.8rem;margin-top:6px}
+/* fontes: selo + toque */
+.fn{display:inline-flex;align-items:center;gap:3px;font:700 .72rem/1.3 "Space Grotesk",sans-serif;background:#1E2A32;color:#F7F7F4;border:0;border-radius:4px;padding:1px 7px;margin:0 2px;vertical-align:1px;cursor:pointer;white-space:nowrap}
+.fl{margin:10px 0 0;font:600 .74rem "Space Grotesk",sans-serif;letter-spacing:.04em;color:#5D6B73}
+#fnpop{position:fixed;left:12px;right:12px;bottom:14px;max-width:536px;margin:0 auto;background:#1E2A32;border-radius:14px;color:#F7F7F4;padding:14px 16px 12px;z-index:90;box-shadow:0 -8px 30px rgba(0,0,0,.25);font-size:.92rem;line-height:1.45}
+#fnpop b{display:block;font-family:"Space Grotesk",sans-serif;letter-spacing:.12em;color:#9AD9CF;font-size:.8rem;margin-bottom:4px}
+#fnpop a{color:#F5C77A;font-weight:700}
+#fnpop .x{position:absolute;top:8px;right:10px;background:none;border:0;color:#F7F7F4;font-size:1.1rem;cursor:pointer}
+#fnpop .nt{opacity:.7;font-size:.8rem;margin-top:4px}
+.fonteslist{background:#fff;border:1.5px solid #D8DDD8;border-radius:14px;padding:14px 16px;margin-top:14px;text-align:left}
+.fonteslist ol{margin:6px 0 0;padding-left:1.2em;font-size:.86rem}
+.fonteslist li{margin:5px 0}
+.fonteslist a{color:#1F9E8F;font-weight:700}
+.av-q{font-weight:700;margin:16px 0 6px}.av-row{display:flex;gap:8px;flex-wrap:wrap}.av-row label{flex:1;min-width:52px;text-align:center;border:2px solid currentColor;opacity:.75;border-radius:8px;padding:10px 6px;cursor:pointer}.av-row input{position:absolute;opacity:0;pointer-events:none}.av-row label:has(input:checked){opacity:1;outline:3px solid currentColor;outline-offset:1px;font-weight:700}.av-row input:focus-visible+span{text-decoration:underline}textarea.txt{min-height:74px;resize:vertical}
+.vo{display:block;width:100%;text-align:left;margin:10px 0;padding:14px;border:2px solid currentColor;border-radius:10px;background:transparent;color:inherit;font:inherit;opacity:.85;cursor:pointer}.vo b{display:block;font-size:1.05em}.vo small{opacity:.8}.vo.on{opacity:1;outline:3px solid currentColor;outline-offset:2px}.vside{margin:10px 0 0;padding-top:10px;border-top:1px dashed currentColor}.vside b{display:block;margin-bottom:2px}
+</style>
+<link rel="canonical" href="https://pensemaisuma.com.br/cursos/israel-e-palestina/">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+<div id="pmu-bar" style="font-family:Nunito,system-ui,sans-serif;background:#FAF7F0;color:#17150F;border-bottom:1.5px solid #17150F;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:14px;font-weight:800;position:relative;z-index:50">
+<a href="index.html" style="color:inherit;text-decoration:none">← Sobre o curso</a>
+<a href="../../index.html" style="display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none"><img src="../../assets/logo.svg" alt="" width="26" height="26"><span style="font-family:Fraunces,Georgia,serif">Pense Mais Uma</span></a>
+<a href="index.html#avaliar" style="color:inherit">Avaliar</a></div>
+<div id="app"></div>
+<script>
+/* =========================================================
+   CONTEÚDO
+   Regras de neutralidade: cada fase mostra as duas narrativas;
+   verde-água = narrativa israelense, âmbar = narrativa palestina;
+   números sempre com a fonte de quem afirma.
+   ========================================================= */
+const MODULES = [
+{
+  id:'raizes', era:'ATÉ 1947', title:'A terra e os dois povos', sub:'Sionismo, britânicos e a partilha da ONU', badge:'📜 Conhecedor das Origens',
+  cards:[
+    {t:'Um pedaço pequeno de terra', h:`<p>Entre o rio Jordão e o mar Mediterrâneo há uma faixa de terra mais ou menos do tamanho de Alagoas. Hoje ela inclui Israel, a Cisjordânia e a Faixa de Gaza.</p>
+      <p>Ali fica <b>Jerusalém</b>, cidade sagrada para três religiões: o Muro das Lamentações (judaísmo), a Mesquita de Al-Aqsa (islamismo) e a Igreja do Santo Sepulcro (cristianismo).</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="area" aria-label="Ver fonte: IBGE e CIA">🔎 IBGE e CIA</button></p>`},
+    {t:'Dois povos, duas ligações com a terra', h:`<div class="split"><div class="l"><b>Judeus</b>Ligação histórica e religiosa de cerca de 3 mil anos. Os reinos judaicos antigos ficavam ali. Depois de expulsões pelo Império Romano, a maioria se espalhou pelo mundo (a "diáspora"), mas sempre houve comunidades judaicas na região.</div><div class="r"><b>Árabes palestinos</b>Viviam na região havia muitos séculos, muçulmanos e cristãos. No início do século XX, eram a grande maioria da população da Palestina.</div></div>
+      <p class="mid">As duas ligações são reais. O conflito nasce justamente daí.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="britannica" aria-label="Ver fonte: Britannica">🔎 Britannica</button></p>`},
+    {t:'O sionismo', h:`<p>No fim do século XIX, os judeus sofriam perseguições e massacres em vários países da Europa.</p>
+      <p>Em 1897, o jornalista Theodor Herzl organizou o primeiro congresso <b>sionista</b>. A ideia era criar um Estado onde os judeus estivessem seguros, e o lugar escolhido foi a terra histórica de Israel.</p>
+      <p>Na mesma época, crescia o <b>nacionalismo árabe</b>, à medida que o Império Otomano, que governava a região, se enfraquecia.</p>
+      <div class="tip"><b>💡 Guarde isso</b>São dois movimentos nacionais querendo a mesma terra, e muitos, de cada lado, contestaram a legitimidade do outro. Hoje a palavra "sionismo" é usada de jeitos muito diferentes, e isso fica para a Fase 6.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="sionismo" aria-label="Ver fonte: Britannica">🔎 Britannica</button></p>`},
+    {t:'Os britânicos e as promessas cruzadas', h:`<p>Na Primeira Guerra Mundial, o Império Otomano perdeu, e o Reino Unido passou a governar a região (o chamado <b>Mandato Britânico</b>, de 1920 a 1948).</p>
+      <p>Em 1917, a <b>Declaração Balfour</b> apoiou a criação de um "lar nacional judeu" na Palestina, sem prejudicar os direitos das comunidades não judaicas. Ao mesmo tempo, os britânicos fizeram promessas de independência a líderes árabes.</p>
+      <p>A imigração judaica cresceu, sobretudo com a perseguição nazista, e com ela cresceram a tensão e as revoltas, como a Revolta Árabe de 1936 a 1939.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="balfour" aria-label="Ver fonte: Declaração Balfour">🔎 Declaração Balfour</button></p>`},
+    {t:'1947: a ONU divide a terra', h:`<p>Depois do Holocausto, que matou cerca de 6 milhões de judeus, cresceu a pressão internacional por um Estado judeu.</p>
+      <p>Em 29 de novembro de 1947, a ONU aprovou a <b>Resolução 181</b>: dividir a terra em um Estado judeu e um Estado árabe, com Jerusalém sob administração internacional.</p>
+      <div class="tip"><b>🇧🇷 O Brasil nessa história</b>Quem presidiu a sessão foi o diplomata brasileiro Oswaldo Aranha. Há ruas com o nome dele em Israel.</div>
+      <div class="split"><div class="l"><b>Lideranças judaicas</b>Aceitaram o plano, mesmo sem Jerusalém.</div><div class="r"><b>Lideranças árabes</b>Rejeitaram: consideravam injusto dar mais da metade da terra aos judeus, que eram cerca de um terço da população.</div></div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="partilha" aria-label="Ver fonte: Jewish Virtual Library">🔎 Jewish Virtual Library</button> <button type="button" class="fn" data-f="aranha" aria-label="Ver fonte: Agência Brasil">🔎 Agência Brasil</button></p>`}
+  ],
+  quiz:[
+    {q:'Quem presidiu a sessão da ONU que aprovou a partilha da Palestina em 1947?', o:['O brasileiro Oswaldo Aranha','O americano Harry Truman','O britânico Winston Churchill','O israelense David Ben-Gurion'], a:0, e:'Oswaldo Aranha presidiu a Assembleia Geral e é homenageado em Israel por isso.'},
+    {q:'O que foi a Declaração Balfour, de 1917?', o:['Um apoio britânico a um "lar nacional judeu" na Palestina','A criação oficial do Estado de Israel','Um tratado de paz entre árabes e judeus','A divisão da Palestina aprovada pela ONU'], a:0, e:'O Estado de Israel só seria criado em 1948, e a divisão da ONU é de 1947.'},
+    {q:'Por que as lideranças árabes rejeitaram o plano de partilha de 1947?', o:['Consideravam injusto dar mais da metade da terra a uma minoria da população','Porque o plano não criava nenhum Estado árabe','Porque o plano dava Jerusalém só aos judeus','Porque queriam que a região continuasse britânica'], a:0, e:'O plano criava sim um Estado árabe, e Jerusalém ficaria sob administração internacional.'},
+    {q:'O sionismo surgiu no fim do século XIX principalmente como...', o:['Um movimento nacional judeu por um Estado próprio, em reação às perseguições na Europa','Um partido político israelense','Uma nova religião','Um projeto criado pela ONU depois de 1945'], a:0, e:'O sionismo é anterior ao Estado de Israel e à própria ONU.'}
+  ],
+  flash:{title:'Sagrado para quem?', ch:['✡️ Judeus','☪️ Muçulmanos','✝️ Cristãos'], items:[
+    {t:'Muro das Lamentações', a:0, e:'É o que restou do muro que cercava o antigo Templo judaico.'},
+    {t:'Mesquita de Al-Aqsa', a:1, e:'É um dos lugares mais sagrados do islamismo.'},
+    {t:'Igreja do Santo Sepulcro', a:2, e:'Segundo a tradição cristã, é o local da crucificação e da ressurreição de Jesus.'},
+    {t:'Domo da Rocha', a:1, e:'É um santuário islâmico na mesma esplanada onde ficava o Templo judaico, o que torna o local sensível para os dois lados.'}
+  ]}
+},
+{
+  id:'1948', era:'1948', title:'Um Estado nasce, um povo é deslocado', sub:'A independência de Israel e a Nakba', badge:'🕰️ Leitor de 1948',
+  cards:[
+    {t:'A independência e a guerra', h:`<p>Em 14 de maio de 1948, David Ben-Gurion declarou a independência de Israel. No dia seguinte, exércitos de <b>Egito, Jordânia, Síria, Iraque e Líbano</b> atacaram. Os combates entre milícias já vinham desde o fim de 1947.</p>
+      <p>Israel venceu e terminou a guerra com cerca de <b>78%</b> do território, mais do que o plano da ONU previa. A Cisjordânia ficou com a Jordânia, e Gaza com o Egito.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="morris48" aria-label="Ver fonte: Morris, 2008">🔎 Morris, 2008</button></p>`},
+    {t:'Dois nomes para o mesmo ano', h:`<div class="split"><div class="l"><b>Narrativa israelense</b>"Guerra de Independência": um povo recém-saído do Holocausto sobrevive ao ataque de cinco países e cria o seu Estado.</div><div class="r"><b>Narrativa palestina</b>"Nakba" (catástrofe): cerca de 700 mil palestinos fugiram ou foram expulsos de suas casas, e centenas de vilas foram destruídas.</div></div>
+      <p class="mid">Os dois fatos são verdadeiros. O que muda é o ponto de vista.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="morrisref" aria-label="Ver fonte: Morris, 2004">🔎 Morris, 2004</button></p>`},
+    {t:'O que dizem os historiadores', h:`<p>Por décadas, a versão oficial israelense dizia que os palestinos tinham saído por ordem dos próprios líderes árabes.</p>
+      <p>A partir dos anos 1980, historiadores israelenses que pesquisaram os arquivos, como <b>Benny Morris</b>, mostraram que também houve expulsões. Massacres como o de Deir Yassin já eram conhecidos desde 1948.</p>
+      <p>O debate hoje é sobre <b>o quanto</b> foi planejado e o quanto foi efeito do caos da guerra.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="morrisref" aria-label="Ver fonte: Morris, 2004">🔎 Morris, 2004</button></p>`},
+    {t:'O outro êxodo', h:`<p>Entre 1948 e os anos 1970, segundo as estimativas mais citadas, cerca de <b>850 mil judeus</b> deixaram ou foram expulsos de países árabes e muçulmanos, como Iraque, Egito, Iêmen e Marrocos. Muitos foram para Israel.</p>
+      <p>Para muitos israelenses, essa é a parte "esquecida" da história de 1948. Os historiadores debatem quanto disso foi expulsão e perseguição e quanto foi migração por vontade própria.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="bpb" aria-label="Ver fonte: bpb (Alemanha)">🔎 bpb (Alemanha)</button></p>`},
+    {t:'Refugiados até hoje', h:`<p>Em 1948, a ONU aprovou a <b>Resolução 194</b>, que fala no direito de os refugiados voltarem para suas casas. Em 1949 nasceu a <b>UNRWA</b>, agência da ONU para os refugiados palestinos.</p>
+      <p>Como o status passa para os descendentes, hoje são cerca de <b>6 milhões</b> de refugiados registrados, muitos ainda em campos no Líbano, na Jordânia, na Síria, na Cisjordânia e em Gaza.</p>
+      <div class="split"><div class="l"><b>Visão israelense</b>O retorno de milhões acabaria com a maioria judaica do país. Os refugiados deveriam ser absorvidos onde vivem ou por um futuro Estado palestino.</div><div class="r"><b>Visão palestina</b>O direito de retorno é inegociável e foi reconhecido pela ONU. As famílias guardam até hoje as chaves das casas perdidas.</div></div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="unrwa" aria-label="Ver fonte: UNRWA">🔎 UNRWA</button></p>`}
+  ],
+  quiz:[
+    {q:'O que os palestinos chamam de "Nakba"?', o:['O deslocamento de cerca de 700 mil palestinos em 1948','A guerra de 1967','O acordo de paz de Oslo','A fundação do Hamas'], a:0, e:'Nakba significa "catástrofe" em árabe e é lembrada todo 15 de maio.'},
+    {q:'O que aconteceu logo depois da independência de Israel, em 1948?', o:['Exércitos de países árabes vizinhos atacaram, e Israel venceu a guerra','A ONU enviou tropas para separar os dois lados','A Palestina declarou independência e foi reconhecida','Israel e Egito assinaram a paz'], a:0, e:'Egito, Jordânia, Síria, Iraque e Líbano entraram na guerra em 15 de maio de 1948.'},
+    {q:'O que mudou com as pesquisas de historiadores israelenses a partir dos anos 1980?', o:['Mostraram, com arquivos, que além de fugas houve expulsões e massacres','Provaram que não existiram refugiados palestinos','Mostraram que Israel começou a guerra em 1947','Concluíram que a Nakba é um mito'], a:0, e:'Benny Morris e outros mudaram a visão sobre 1948 usando documentos do próprio governo israelense.'},
+    {q:'Por que o "direito de retorno" é um dos pontos mais difíceis do conflito?', o:['Para os palestinos é inegociável; para Israel, o retorno de milhões acabaria com a maioria judaica do país','Porque os refugiados não querem voltar','Porque a ONU proibiu o retorno','Porque ele só diz respeito aos judeus'], a:0, e:'Os dois lados veem o tema como existencial, o que dificulta qualquer acordo.'}
+  ],
+  flash:{title:'Que narrativa usa esse termo?', ch:['🟢 Israelense','🟠 Palestina'], items:[
+    {t:'"Guerra de Independência"', a:0, e:'É como Israel chama a guerra de 1948.'},
+    {t:'"Nakba"', a:1, e:'"Catástrofe": é como os palestinos chamam 1948.'},
+    {t:'"Direito de retorno"', a:1, e:'É a reivindicação dos refugiados palestinos e de seus descendentes.'},
+    {t:'"Refugiados esquecidos dos países árabes"', a:0, e:'É como muitos israelenses se referem aos judeus que saíram de países árabes.'}
+  ]}
+},
+{
+  id:'1967', era:'1967', title:'Seis dias que mudaram tudo', sub:'A guerra de 1967, a ocupação e os assentamentos', badge:'🗺️ Leitor de Mapas',
+  cards:[
+    {t:'A Guerra dos Seis Dias', h:`<p>Em junho de 1967, o Egito fechou a passagem de navios israelenses no Estreito de Tiran e concentrou tropas no Sinai. Israel atacou primeiro.</p>
+      <p>Em seis dias, Israel tomou a <b>Cisjordânia e Jerusalém Oriental</b> (da Jordânia), <b>Gaza e o Sinai</b> (do Egito) e as <b>Colinas de Golã</b> (da Síria).</p>
+      <div class="split"><div class="l"><b>Visão israelense</b>Foi uma guerra preventiva diante de uma ameaça real de destruição.</div><div class="r"><b>Visão palestina</b>Foi o início de uma ocupação militar que dura até hoje.</div></div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="oren" aria-label="Ver fonte: Oren, 2002">🔎 Oren, 2002</button></p>`},
+    {t:'Ocupado ou disputado?', h:`<p>Logo depois da guerra, a ONU aprovou a <b>Resolução 242</b>: Israel deveria se retirar de territórios ocupados, e os vizinhos deveriam reconhecer Israel e viver em paz.</p>
+      <div class="deb"><b>"Territórios ocupados"</b>É o termo da ONU, da Corte Internacional de Justiça (que em 2024 chamou a ocupação de ilegal) e da maioria dos países, Brasil incluído.</div>
+      <div class="deb"><b>"Territórios disputados"</b>É o termo preferido pelo governo israelense, que chama a Cisjordânia pelos nomes bíblicos de "Judeia e Samaria".</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="r242" aria-label="Ver fonte: ONU e CIJ">🔎 ONU e CIJ</button></p>`},
+    {t:'Os assentamentos', h:`<p>Depois de 1967, Israel começou a construir comunidades para israelenses judeus na Cisjordânia, os chamados assentamentos ou colônias.</p>
+      <p>Hoje são mais de <b>500 mil colonos</b> na Cisjordânia, ou cerca de 700 mil contando Jerusalém Oriental, vivendo entre mais de 3 milhões de palestinos. <button type="button" class="fn" data-f="colonos25" aria-label="Ver fonte: Arab News, 2026">🔎 Arab News, 2026</button> Em 2025, segundo a ONG israelense Peace Now, as aprovações de novas moradias bateram recorde. <button type="button" class="fn" data-f="peacenow" aria-label="Ver fonte: Peace Now, 2025">🔎 Peace Now, 2025</button></p>
+      <p>A ONU (Resolução 2334, de 2016) e a Corte Internacional de Justiça (2024) consideram os assentamentos ilegais pelo direito internacional; Israel contesta. <button type="button" class="fn" data-f="r242" aria-label="Ver fonte: ONU e CIJ">🔎 ONU e CIJ</button></p>
+      <div class="split"><div class="l"><b>Quem defende</b>Fala em direito histórico e religioso sobre a terra e em segurança para Israel.</div><div class="r"><b>Quem critica</b>Eles tornam inviável um Estado palestino contínuo.</div></div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="peacenow" aria-label="Ver fonte: Peace Now, 2025">🔎 Peace Now, 2025</button> <button type="button" class="fn" data-f="r242" aria-label="Ver fonte: ONU e CIJ">🔎 ONU e CIJ</button></p>`},
+    {t:'O que veio depois', h:`<ul><li><b>1973:</b> Egito e Síria atacam no feriado judaico do Yom Kippur. Israel resiste.</li>
+      <li><b>1978–79:</b> nos acordos de Camp David, Israel aceita devolver o Sinai ao Egito em troca de paz (a devolução terminou em 1982). O Egito é o primeiro país árabe a reconhecer Israel.</li>
+      <li><b>1980–81:</b> Israel anexa Jerusalém Oriental e as Colinas de Golã. A maioria dos países não reconhece essas anexações.</li>
+      <li><b>1994:</b> Israel faz a paz com a Jordânia.</li></ul>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="brit73" aria-label="Ver fonte: Britannica">🔎 Britannica</button></p>`}
+  ],
+  quiz:[
+    {q:'Quais territórios Israel passou a controlar em 1967?', o:['Cisjordânia, Jerusalém Oriental, Gaza, Sinai e Golã','Só a Faixa de Gaza','Só Jerusalém','Todo o Líbano e a Síria'], a:0, e:'Do Egito, da Jordânia e da Síria, em apenas seis dias.'},
+    {q:'O que dizia a Resolução 242 da ONU?', o:['Retirada de territórios ocupados em troca de paz e reconhecimento','A criação imediata de um Estado palestino','O fim do Estado de Israel','Que Jerusalém seria só palestina'], a:0, e:'A fórmula "terra em troca de paz" virou a base de quase todas as negociações seguintes.'},
+    {q:'Como o governo israelense costuma chamar a Cisjordânia?', o:['"Judeia e Samaria", tratando a área como território disputado','"Palestina livre"','"Território ocupado ilegalmente"','"Província da Jordânia"'], a:0, e:'O nome que cada lado usa já revela a sua visão do conflito.'},
+    {q:'Qual território Israel devolveu em troca de um acordo de paz?', o:['O Sinai, ao Egito','A Cisjordânia, à Jordânia','As Colinas de Golã, à Síria','A Faixa de Gaza, ao Egito'], a:0, e:'É o exemplo mais citado de "terra em troca de paz" que funcionou.'}
+  ],
+  flash:{title:'Verdadeiro ou falso?', ch:['✅ Verdadeiro','❌ Falso'], items:[
+    {t:'Em 1967, Israel atacou primeiro.', a:0, e:'Atacou, diante da mobilização egípcia. Se foi uma guerra preventiva legítima ou não é justamente o debate.'},
+    {t:'O Egito foi o primeiro país árabe a fazer a paz com Israel.', a:0, e:'Foi em 1979, depois de Camp David.'},
+    {t:'A maioria dos países reconhece a anexação de Jerusalém Oriental por Israel.', a:1, e:'A maioria não reconhece.'},
+    {t:'Os assentamentos pararam de crescer depois dos acordos de paz dos anos 90.', a:1, e:'Continuaram crescendo, e esse é um dos motivos da desconfiança palestina.'}
+  ]}
+},
+{
+  id:'paz', era:'1987 → 2007', title:'Intifadas e a tentativa de paz', sub:'Oslo, Camp David e a divisão palestina', badge:'🤝 Negociador',
+  cards:[
+    {t:'A Primeira Intifada', h:`<p>"Intifada" quer dizer "levante". De 1987 a 1993, palestinos dos territórios ocupados se rebelaram com protestos, greves e pedras contra soldados.</p>
+      <p>Em 1987 nasceu o <b>Hamas</b>, grupo islamista que rejeita reconhecer Israel. A OLP, de Yasser Arafat, a principal organização palestina, reconheceu Israel formalmente em 1993, nos Acordos de Oslo. <button type="button" class="fn" data-f="cartas" aria-label="Ver fonte: ONU, 1993">🔎 ONU, 1993</button></p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="hamas" aria-label="Ver fonte: Britannica">🔎 Britannica</button> <button type="button" class="fn" data-f="cartas" aria-label="Ver fonte: ONU, 1993">🔎 ONU, 1993</button></p>`},
+    {t:'Oslo: o aperto de mão', h:`<p>Em 1993, na Casa Branca, Shimon Peres e Mahmoud Abbas assinaram os <b>Acordos de Oslo</b>, e o premiê israelense <b>Yitzhak Rabin</b> e o líder palestino <b>Yasser Arafat</b> selaram o acordo com um aperto de mão. <button type="button" class="fn" data-f="oslo" aria-label="Ver fonte: History.com">🔎 History.com</button></p>
+      <ul><li>A OLP reconheceu Israel, e Israel reconheceu a OLP.</li><li>Criou-se a <b>Autoridade Palestina</b>, com governo próprio em partes da Cisjordânia e de Gaza.</li>
+      <li>Os temas mais difíceis (fronteiras, Jerusalém, refugiados e assentamentos) ficaram para depois.</li></ul>
+      <p>Rabin, Shimon Peres e Arafat ganharam o Nobel da Paz em 1994.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="oslo" aria-label="Ver fonte: History.com">🔎 History.com</button> <button type="button" class="fn" data-f="cartas" aria-label="Ver fonte: ONU, 1993">🔎 ONU, 1993</button></p>`},
+    {t:'Tiros contra a paz', h:`<p>Os extremistas dos dois lados atacaram o acordo:</p>
+      <ul><li>O Hamas fez atentados suicidas contra civis israelenses.</li>
+      <li>Em 1995, Rabin foi assassinado por um extremista judeu contrário a Oslo.</li></ul>
+      <p>Depois disso, a confiança dos dois lados só caiu.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="nobel" aria-label="Ver fonte: Nobel, 1994">🔎 Nobel, 1994</button></p>`},
+    {t:'Camp David 2000: por que não deu certo?', h:`<p>Em 2000, o presidente americano Bill Clinton reuniu o premiê israelense Ehud Barak e Arafat para um acordo final. Não houve acordo.</p>
+      <div class="split"><div class="l"><b>Explicação israelense e americana</b>Arafat recusou a melhor oferta já feita e não apresentou uma contraproposta. Logo depois veio uma onda de violência.</div><div class="r"><b>Explicação palestina</b>A oferta deixava o território picotado, sem controle de fronteiras e sem uma solução justa para Jerusalém e os refugiados. Além disso, os assentamentos cresceram durante as negociações: em 2000, já eram cerca de 365 mil colonos: 193 mil na Cisjordânia, segundo o Escritório Central de Estatísticas de Israel, e 172 mil em Jerusalém Oriental. <button type="button" class="fn" data-f="colonos" aria-label="Ver fonte: Wikipedia (dados do CBS)">🔎 Wikipedia (dados do CBS)</button></div></div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="ross" aria-label="Ver fonte: Ross, 2004">🔎 Ross, 2004</button> <button type="button" class="fn" data-f="colonos" aria-label="Ver fonte: Wikipedia (dados do CBS)">🔎 Wikipedia (dados do CBS)</button></p>`},
+    {t:'Segunda Intifada e a divisão palestina', h:`<ul><li><b>2000–2005:</b> a Segunda Intifada, muito mais violenta, com atentados suicidas em Israel e operações militares duras nos territórios.</li>
+      <li>Israel ergue uma barreira na Cisjordânia: "cerca de segurança" para Israel, "muro" para os palestinos.</li>
+      <li><b>2005:</b> Israel retira colonos e soldados de Gaza.</li>
+      <li><b>2006:</b> o Hamas vence as eleições legislativas palestinas, as últimas realizadas até hoje.</li>
+      <li><b>2007:</b> o Hamas toma Gaza à força do Fatah, o partido de Arafat. Israel e Egito impõem um bloqueio a Gaza.</li></ul>
+      <p>Desde então, os palestinos estão divididos: a Autoridade Palestina, dominada pelo Fatah, governa partes da Cisjordânia, e o Hamas governou Gaza a partir de 2007. Em julho de 2026, o Hamas anunciou que dissolveu seu governo em Gaza para passar o poder a um comitê técnico apoiado pela ONU; um funcionário israelense disse que os membros do Hamas continuam nos cargos e que o anúncio não muda nada. <button type="button" class="fn" data-f="hamasdis" aria-label="Ver fonte: PBS, jul/2026">🔎 PBS, jul/2026</button></p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="eleipal" aria-label="Ver fonte: Al Jazeera, out/2026">🔎 Al Jazeera, out/2026</button> <button type="button" class="fn" data-f="hamas" aria-label="Ver fonte: Britannica">🔎 Britannica</button></p>`}
+  ],
+  quiz:[
+    {q:'O que a OLP e Israel fizeram nos Acordos de Oslo?', o:['Reconheceram-se mutuamente e criaram a Autoridade Palestina','Assinaram a paz definitiva, com fronteiras fixas','Dividiram Jerusalém ao meio','Criaram o Estado da Palestina com assento pleno na ONU'], a:0, e:'Oslo era um acordo provisório. Os temas mais difíceis ficaram para depois e nunca foram resolvidos.'},
+    {q:'Quem assassinou o premiê israelense Yitzhak Rabin em 1995?', o:['Um extremista judeu contrário aos acordos de paz','Um militante do Hamas','Um agente iraniano','Um soldado egípcio'], a:0, e:'O assassinato mostrou que a oposição à paz também vinha de dentro de Israel.'},
+    {q:'Qual é a explicação israelense mais comum para o fracasso de Camp David, em 2000?', o:['Arafat recusou a melhor oferta já feita e não fez uma contraproposta','Israel exigiu que os palestinos deixassem a Cisjordânia','Os EUA abandonaram a negociação','O Egito vetou o acordo'], a:0, e:'Do lado palestino, a explicação é que a oferta era insuficiente e fragmentada.'},
+    {q:'O que aconteceu em Gaza entre 2005 e 2007?', o:['Israel retirou colonos e tropas, o Hamas venceu eleições e depois tomou Gaza à força','Israel anexou Gaza oficialmente','Gaza passou a fazer parte do Egito','O Fatah expulsou o Hamas de Gaza'], a:0, e:'Foi o contrário: o Hamas expulsou o Fatah de Gaza em 2007.'}
+  ],
+  flash:{title:'Quem costuma usar esse termo?', ch:['🟢 Governo israelense','🟠 Palestinos'], items:[
+    {t:'"Cerca de segurança"', a:0, e:'É como Israel chama a barreira na Cisjordânia.'},
+    {t:'"Muro do apartheid"', a:1, e:'É como muitos palestinos e críticos chamam a mesma barreira.'},
+    {t:'"Judeia e Samaria"', a:0, e:'São os nomes bíblicos usados pelo governo israelense para a Cisjordânia.'},
+    {t:'"Territórios disputados"', a:0, e:'É como o governo israelense costuma chamar a Cisjordânia; palestinos e a ONU falam em "territórios ocupados".'}
+  ]}
+},
+{
+  id:'hoje', era:'2023 → HOJE', title:'De 7 de outubro até hoje', sub:'O ataque, a guerra em Gaza e o momento atual', badge:'📰 Bem Informado',
+  cards:[
+    {t:'7 de outubro de 2023', h:`<p>O Hamas e outros grupos armados invadiram o sul de Israel. Cerca de <b>1.200 pessoas</b> foram mortas, a maioria civis, e <b>251 pessoas</b> foram levadas como reféns para Gaza, segundo o governo de Israel. <button type="button" class="fn" data-f="pbs" aria-label="Ver fonte: PBS">🔎 PBS</button></p>
+      <p>Foi o dia com mais judeus mortos desde o Holocausto. <button type="button" class="fn" data-f="jta" aria-label="Ver fonte: JTA">🔎 JTA</button> Israel declarou guerra com dois objetivos: destruir o Hamas e resgatar os reféns.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="pbs" aria-label="Ver fonte: PBS">🔎 PBS</button></p>`},
+    {t:'A guerra em Gaza', h:`<p>Seguiram-se dois anos de guerra em Gaza, um território de cerca de 2 milhões de pessoas. Em 2025, um painel ligado à ONU declarou situação de fome em parte de Gaza; Israel rejeitou a análise. <button type="button" class="fn" data-f="fome" aria-label="Ver fonte: Times of Israel">🔎 Times of Israel</button> Em dezembro de 2025, o mesmo painel disse que nenhuma área estava mais classificada como em fome após o cessar-fogo, mas que a crise alimentar continuava grave. <button type="button" class="fn" data-f="fome25" aria-label="Ver fonte: ONU News, dez/2025">🔎 ONU News, dez/2025</button></p>
+      <p>Segundo o Ministério da Saúde de Gaza, mais de <b>74,6 mil palestinos</b> morreram até 5 de novembro de 2026. <button type="button" class="fn" data-f="gaza" aria-label="Ver fonte: Al Jazeera, 5/nov/2026">🔎 Al Jazeera, 5/nov/2026</button></p>
+      <div class="warn">⚠️ Sobre esse número: o ministério é ligado ao Hamas e não separa civis de combatentes. Agências da ONU e especialistas independentes consideram seus registros geralmente confiáveis. Israel contesta e afirma que milhares dos mortos eram combatentes.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="gaza" aria-label="Ver fonte: Al Jazeera, 5/nov/2026">🔎 Al Jazeera, 5/nov/2026</button> <button type="button" class="fn" data-f="fome" aria-label="Ver fonte: Times of Israel">🔎 Times of Israel</button></p>`},
+    {t:'Genocídio? O grande debate', h:`<ul><li>A <b>África do Sul</b> acusou Israel de genocídio na Corte Internacional de Justiça. Em 2024, a corte mandou Israel tomar medidas para prevenir genocídio, sem julgar o mérito. Em março de 2026, Israel contestou a competência da corte, e as próximas etapas vão até 2029. <button type="button" class="fn" data-f="cij" aria-label="Ver fonte: gov.za, 2026">🔎 gov.za, 2026</button></li>
+      <li>Em 2025, uma <b>comissão independente criada pelo Conselho de Direitos Humanos da ONU</b> concluiu que houve genocídio. <button type="button" class="fn" data-f="coi" aria-label="Ver fonte: ONU, set/2025">🔎 ONU, set/2025</button></li>
+      <li>Em 2024, o <b>Tribunal Penal Internacional</b> emitiu mandados de prisão contra o premiê Benjamin Netanyahu, o ex-ministro da Defesa Yoav Gallant e o comandante militar do Hamas Mohammed Deif <button type="button" class="fn" data-f="tpi" aria-label="Ver fonte: ONU News, 2024">🔎 ONU News, 2024</button> (o mandado contra ele foi cancelado em 2025, após a confirmação de sua morte). <button type="button" class="fn" data-f="deif" aria-label="Ver fonte: TPI">🔎 TPI</button></li></ul>
+      <div class="deb"><b>Quem acusa diz</b>A escala de mortes de civis, a fome e a destruição, além de declarações de autoridades israelenses, mostram intenção de destruir um povo.</div>
+      <div class="deb"><b>Quem rejeita diz</b>Esse é o caso de Israel, dos EUA e de outros governos. Para eles, foi uma guerra de autodefesa contra um grupo que se esconde entre civis e em túneis, e genocídio exige uma intenção de exterminar que não existe.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="coi" aria-label="Ver fonte: ONU, set/2025">🔎 ONU, set/2025</button> <button type="button" class="fn" data-f="tpi" aria-label="Ver fonte: ONU News, 2024">🔎 ONU News, 2024</button> <button type="button" class="fn" data-f="cij" aria-label="Ver fonte: gov.za, 2026">🔎 gov.za, 2026</button></p>`},
+    {t:'O cessar-fogo de 2025', h:`<p>Em <b>10 de outubro de 2025</b> entrou em vigor um cessar-fogo mediado pelos EUA. Os reféns vivos foram libertados, e Israel soltou prisioneiros palestinos.</p>
+      <p>O plano previa também o desarmamento do Hamas, a retirada israelense e um governo de transição em Gaza. Essas etapas seguem travadas em novembro de 2026: segundo relatório do Conselho da Paz à ONU, o comitê que deve administrar Gaza ainda não entrou no território, a força internacional não foi enviada. Já o ministro da Defesa de Israel, Israel Katz, diz que o país não sai de Gaza enquanto o Hamas não for desmontado. <button type="button" class="fn" data-f="ynet" aria-label="Ver fonte: Ynet, nov/2026">🔎 Ynet, nov/2026</button> <button type="button" class="fn" data-f="national" aria-label="Ver fonte: The National, 18/nov/2026">🔎 The National, 18/nov/2026</button> Isso apesar de o Hamas ter anunciado, em julho de 2026, a dissolução do seu governo em Gaza. <button type="button" class="fn" data-f="hamasdis" aria-label="Ver fonte: PBS, jul/2026">🔎 PBS, jul/2026</button> Em 18 de novembro de 2026, Israel começou uma das maiores operações terrestres em Gaza desde o cessar-fogo, perto dos campos de refugiados de Bureij e Nuseirat; o exército disse mirar infraestrutura de grupos armados. <button type="button" class="fn" data-f="national" aria-label="Ver fonte: The National, 18/nov/2026">🔎 The National, 18/nov/2026</button></p>
+      <p>Os corpos dos 28 reféns mortos voltaram a Israel; o último, Ran Gvili, foi localizado pelo exército israelense em Gaza em 26 de janeiro de 2026. <button type="button" class="fn" data-f="gvili" aria-label="Ver fonte: Times of Israel">🔎 Times of Israel</button> <button type="button" class="fn" data-f="jstreet" aria-label="Ver fonte: J Street">🔎 J Street</button></p>
+      <div class="split"><div class="l"><b>Israel diz</b>O Hamas está se rearmando e violando a trégua.</div><div class="r"><b>Palestinos dizem</b>Mais de 1.600 palestinos foram mortos por ataques israelenses desde o cessar-fogo (até 5/nov/2026), segundo o Ministério da Saúde de Gaza, e a ajuda humanitária continua limitada.</div></div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="jstreet" aria-label="Ver fonte: J Street">🔎 J Street</button> <button type="button" class="fn" data-f="gaza" aria-label="Ver fonte: Al Jazeera, 5/nov/2026">🔎 Al Jazeera, 5/nov/2026</button></p>`},
+    {t:'Onde estamos (nov/2026)', h:`<ul><li><b>Israel:</b> nas eleições de 27 de outubro de 2026, o bloco de Netanyahu ficou em primeiro, com 53 das 120 cadeiras, mas sem maioria. A oposição de Gadi Eisenkot ficou com 48, e os partidos árabes, com 19. <button type="button" class="fn" data-f="eleisr" aria-label="Ver fonte: Times of Israel">🔎 Times of Israel</button> Em 7 de novembro, o presidente Isaac Herzog deu a Eisenkot (partido Yashar) a primeira chance de formar governo: 67 deputados o indicaram, incluindo os partidos árabes, e 46 indicaram Netanyahu. Ele tem 28 dias, que podem ser prorrogados por mais 14. <button type="button" class="fn" data-f="eisenkot" aria-label="Ver fonte: Al Jazeera, 7/nov/2026">🔎 Al Jazeera, 7/nov/2026</button></li>
+      <li><b>Palestinos:</b> a Autoridade Palestina, de Mahmoud Abbas, adiou as eleições legislativas, que serão junto com a presidencial em 11 de setembro de 2027. <button type="button" class="fn" data-f="eleipal" aria-label="Ver fonte: Al Jazeera, out/2026">🔎 Al Jazeera, out/2026</button></li>
+      <li><b>Gaza:</b> a trégua segue sem as etapas seguintes, e em 18 de novembro de 2026 Israel lançou uma nova operação terrestre no centro da Faixa. <button type="button" class="fn" data-f="national" aria-label="Ver fonte: The National, 18/nov/2026">🔎 The National, 18/nov/2026</button></li>
+      <li><b>Vizinhos árabes:</b> nos Acordos de Abraão (2020), com mediação dos EUA, Emirados Árabes Unidos e Bahrein estabeleceram relações com Israel, e depois Marrocos e Sudão; no caso do Sudão, a normalização não se completou. <button type="button" class="fn" data-f="abraao" aria-label="Ver fonte: Al Jazeera, 2023">🔎 Al Jazeera, 2023</button></li>
+      <li><b>Mundo:</b> em 2025, países como Reino Unido, França, Canadá e Portugal reconheceram o Estado da Palestina. 157 dos 193 países da ONU (cerca de 4 em cada 5) o reconheciam até setembro de 2025; o Brasil reconhece desde 2010. <button type="button" class="fn" data-f="itamaraty" aria-label="Ver fonte: Itamaraty">🔎 Itamaraty</button> <button type="button" class="fn" data-f="reconhec" aria-label="Ver fonte: Al Jazeera">🔎 Al Jazeera</button></li>
+      <li><b>Cisjordânia:</b> em 2025, segundo a ONG israelense Peace Now, a aprovação de novas moradias nos assentamentos bateu recorde. <button type="button" class="fn" data-f="peacenow" aria-label="Ver fonte: Peace Now, 2025">🔎 Peace Now, 2025</button></li></ul>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="eleisr" aria-label="Ver fonte: Times of Israel">🔎 Times of Israel</button> <button type="button" class="fn" data-f="eisenkot" aria-label="Ver fonte: Al Jazeera, 7/nov/2026">🔎 Al Jazeera, 7/nov/2026</button> <button type="button" class="fn" data-f="eleipal" aria-label="Ver fonte: Al Jazeera, out/2026">🔎 Al Jazeera, out/2026</button> <button type="button" class="fn" data-f="reconhec" aria-label="Ver fonte: Al Jazeera">🔎 Al Jazeera</button> <button type="button" class="fn" data-f="peacenow" aria-label="Ver fonte: Peace Now, 2025">🔎 Peace Now, 2025</button></p>`}
+  ],
+  quiz:[
+    {q:'O que aconteceu em 7 de outubro de 2023?', o:['O Hamas atacou o sul de Israel, matou cerca de 1.200 pessoas e levou 251 reféns','Israel anexou a Faixa de Gaza','Foi assinado um cessar-fogo','A Autoridade Palestina declarou guerra a Israel'], a:0, e:'O ataque deu início à guerra em Gaza.'},
+    {q:'O número de mortos em Gaza divulgado pelo Ministério da Saúde local...', o:['Não separa civis de combatentes; a ONU o considera geralmente confiável, e Israel o contesta','É calculado pelo exército israelense','Inclui só combatentes do Hamas','Foi declarado falso pela ONU'], a:0, e:'Saber de onde vem um número é tão importante quanto o número em si.'},
+    {q:'Em que pé está o processo por genocídio na Corte Internacional de Justiça?', o:['Em andamento: em 2024 a corte mandou prevenir genocídio, sem julgar o mérito','Israel foi condenado em 2024','O caso foi arquivado','A corte decidiu que não houve genocídio'], a:0, e:'Medidas provisórias não são uma condenação. O julgamento do mérito ainda não terminou.'},
+    {q:'Qual foi o resultado das eleições de Israel em outubro de 2026?', o:['O bloco de Netanyahu ficou em primeiro, mas sem maioria para governar','Netanyahu conquistou maioria absoluta','A oposição venceu com folga','As eleições foram canceladas por causa da guerra'], a:0, e:'São 53 de 120 cadeiras, e os partidos árabes podem ser decisivos.'}
+  ]
+},
+{
+  id:'mitos', era:'BÔNUS', title:'Mitos e debates', sub:'Fato, debate ou mito? E as soluções possíveis', badge:'🧭 Mediador',
+  cards:[
+    {t:'❌ Mito: "é uma briga religiosa de milênios"', h:`<p>A religião pesa, principalmente em Jerusalém, mas o conflito é <b>moderno</b>: tem cerca de um século.</p>
+      <p>No fundo, são <b>dois movimentos nacionais</b> disputando a mesma terra, o sionismo e o nacionalismo palestino. Por séculos, judeus, muçulmanos e cristãos conviveram na região sem esse conflito.</p>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="britannica" aria-label="Ver fonte: Britannica">🔎 Britannica</button> <button type="button" class="fn" data-f="khalidi" aria-label="Ver fonte: Khalidi, 2020">🔎 Khalidi, 2020</button></p>`},
+    {t:'❌ Mito: "todo palestino é Hamas" e "todo israelense apoia o governo"', h:`<ul><li>O Hamas venceu a eleição de 2006, mas não houve eleições legislativas desde então, e muitos palestinos criticam o grupo. A Autoridade Palestina, dominada pelo Fatah, rival do Hamas, governa partes da Cisjordânia.</li>
+      <li>Em Israel houve protestos gigantescos contra o governo, tanto contra a reforma do Judiciário (2023) quanto a favor de um acordo pelos reféns.</li>
+      <li>Cerca de <b>1 em cada 5 habitantes de Israel é árabe</b>, segundo o Escritório Central de Estatísticas. Os que têm cidadania votam e têm partidos no Parlamento. <button type="button" class="fn" data-f="arabes" aria-label="Ver fonte: CBS de Israel">🔎 CBS de Israel</button> Após a eleição de 2026, o apoio desses partidos ajudou a dar a Gadi Eisenkot a primeira chance de formar o governo. <button type="button" class="fn" data-f="eisenkot" aria-label="Ver fonte: Al Jazeera, 7/nov/2026">🔎 Al Jazeera, 7/nov/2026</button></li></ul>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="arabes" aria-label="Ver fonte: CBS de Israel">🔎 CBS de Israel</button></p>`},
+    {t:'💬 Debate: antissionismo é antissemitismo?', h:`<div class="deb"><b>Quem diz que muitas vezes é</b>Negar só aos judeus o direito a ter um Estado, entre todos os povos, é discriminação. E muitas críticas a Israel usam velhos estereótipos contra judeus.</div>
+      <div class="deb"><b>Quem diz que não é</b>Criticar um governo ou uma ideologia política não é ódio a um povo. Existem inclusive judeus antissionistas.</div>
+      <div class="tip"><b>O que é consenso</b>Agredir ou discriminar judeus por serem judeus é antissemitismo. Agredir ou discriminar muçulmanos e árabes por o serem é islamofobia. Nos EUA, por exemplo, a ADL registrou forte alta de incidentes antissemitas e o CAIR, de casos antimuçulmanos, depois de 7 de outubro. <button type="button" class="fn" data-f="odio" aria-label="Ver fonte: ADL e CAIR, 2023">🔎 ADL e CAIR, 2023</button></div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="ihra" aria-label="Ver fonte: IHRA e JDA">🔎 IHRA e JDA</button></p>`},
+    {t:'💬 Debate: é "apartheid"?', h:`<p>Desde 2021, organizações como a Anistia Internacional, a Human Rights Watch e a israelense B'Tselem passaram a usar o termo "apartheid", em referência ao antigo regime de segregação racial da África do Sul.</p>
+      <div class="deb"><b>Quem usa o termo diz</b>Na Cisjordânia, colonos israelenses e palestinos vivem sob leis diferentes, com direitos diferentes, no mesmo território.</div>
+      <div class="deb"><b>Quem rejeita diz</b>Os cidadãos árabes de Israel votam e têm deputados e juízes. Na Cisjordânia, o que existe é uma ocupação militar ligada a um conflito de segurança, e não um sistema racial.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="apartheid" aria-label="Ver fonte: AI, HRW, B'Tselem">🔎 AI, HRW, B'Tselem</button></p>`},
+    {t:'As soluções na mesa', h:`<ul><li><b>Dois Estados:</b> Israel e Palestina lado a lado. É a posição da ONU, do Brasil e da maioria dos países. Os obstáculos são os assentamentos, Jerusalém, os refugiados, a segurança e a divisão entre Fatah e Hamas.</li>
+      <li><b>Um Estado:</b> um só país para todos, com direitos iguais. É defendido por minorias dos dois lados, mas cada lado teme perder a sua identidade nacional.</li>
+      <li><b>Manter como está:</b> é o que acontece na prática. Para os críticos, é isso que garante a repetição das guerras.</li></ul>
+      <div class="tip"><b>💡 Para pensar</b>Para muitos mediadores, toda solução duradoura vai exigir que os dois lados abram mão de algo que consideram justo. Entender as duas narrativas é o primeiro passo.</div>
+      <p class="fl">Fontes: <button type="button" class="fn" data-f="doisest" aria-label="Ver fonte: ONU">🔎 ONU</button></p>`}
+  ],
+  quiz:[
+    {q:'O conflito é principalmente uma briga religiosa de milênios?', o:['Não: é sobretudo um conflito moderno entre dois movimentos nacionais pela mesma terra, com peso religioso','Sim, começou há 3 mil anos','Sim, é só sobre religião','Não, é só sobre petróleo'], a:0, e:'Tem cerca de um século. A religião pesa, mas não explica tudo.'},
+    {q:'Cerca de quantos habitantes de Israel são árabes?', o:['Cerca de 1 em cada 5','Nenhum','Cerca de metade','Cerca de 1 em cada 100'], a:0, e:'Eles votam e têm partidos no Parlamento.'},
+    {q:'Qual é a posição oficial da ONU e do Brasil para o conflito?', o:['Dois Estados, Israel e Palestina, lado a lado','Um único Estado israelense','Um único Estado palestino','Manter a situação como está'], a:0, e:'É a chamada "solução de dois Estados".'},
+    {q:'Criticar o governo de Israel é, por si só, antissemitismo?', o:['Não necessariamente: criticar um governo não é ódio a judeus, mas negar só aos judeus o direito a um Estado é visto por muitos como discriminação','Sim, sempre','Não, e o antissemitismo nunca aparece nesse debate','Só quando a crítica vem de fora de Israel'], a:0, e:'A linha entre crítica política e preconceito é justamente o centro do debate.'}
+  ],
+  flash:{title:'Fato, mito ou debate?', ch:['✅ Fato','❌ Mito','💬 Debate'], items:[
+    {t:'O Hamas venceu a eleição de 2006, e não houve eleições legislativas palestinas desde então.', a:0, e:'As eleições previstas para 2026 foram adiadas para 2027.'},
+    {t:'Todos os palestinos apoiam o Hamas.', a:1, e:'A Autoridade Palestina, dominada pelo Fatah, rival do Hamas, governa partes da Cisjordânia, e muitos palestinos criticam os dois.'},
+    {t:'Há cidadãos árabes no Parlamento de Israel.', a:0, e:'Há partidos árabes no Knesset, o Parlamento israelense.'},
+    {t:'O que aconteceu em Gaza é genocídio.', a:2, e:'Há uma conclusão de uma comissão da ONU e um processo na Corte Internacional de Justiça; Israel e aliados rejeitam a acusação.'},
+    {t:'O conflito existe desde os tempos bíblicos.', a:1, e:'O conflito atual tem cerca de um século.'},
+    {t:'Antissionismo é antissemitismo.', a:2, e:'É um dos debates mais acesos hoje.'}
+  ]}
+}
+];
+
+/* Jogo "Advogado do outro lado": a 1ª opção é a resposta forte (embaralhada na tela). 3 argumentos de cada narrativa. */
+const FONTES={"knesset24": {"s": "Al Jazeera, jul/2024", "t": "Al Jazeera (18/jul/2024): o Parlamento de Israel aprovou por 68 votos a 9 uma resolução contra a criação de um Estado palestino, que chama de perigo existencial para Israel e, segundo o Times of Israel, de recompensa ao terrorismo", "u": "https://www.aljazeera.com/news/2024/7/18/israels-knesset-votes-to-reject-palestinian-statehood"}, "palrej20": {"s": "Al Jazeera, ago/2020", "t": "Al Jazeera (14/ago/2020): a Autoridade Palestina e todas as facções rejeitaram o acordo entre Emirados e Israel; o dirigente Ahmed Majdalani disse que os palestinos não tinham conhecimento prévio do acordo, e ex-ministros falaram em abandono dos palestinos", "u": "https://www.aljazeera.com/news/2020/8/14/palestinians-unanimously-reject-uae-israel-deal"}, "area": {"s": "IBGE e CIA", "t": "IBGE (área de Alagoas) e CIA World Factbook (Israel, Cisjordânia e Gaza)", "u": null}, "partilha": {"s": "Jewish Virtual Library", "t": "Jewish Virtual Library: o plano de partilha da ONU (1947)", "u": "https://www.jewishvirtuallibrary.org/jsource/History/partition_plan.html"}, "sionismo": {"s": "Britannica", "t": "Encyclopaedia Britannica, verbete \"Zionism\"", "u": null}, "balfour": {"s": "Declaração Balfour", "t": "Texto da Declaração Balfour (1917), Avalon Project, Universidade Yale", "u": null}, "aranha": {"s": "Agência Brasil", "t": "Agência Brasil: quem foi Oswaldo Aranha", "u": "https://agenciabrasil.ebc.com.br/internacional/noticia/2023-10/saiba-quem-foi-oswaldo-aranha"}, "morris48": {"s": "Morris, 2008", "t": "Benny Morris, 1948: A History of the First Arab-Israeli War (2008)", "u": null}, "morrisref": {"s": "Morris, 2004", "t": "Benny Morris, The Birth of the Palestinian Refugee Problem Revisited (2004)", "u": null}, "bpb": {"s": "bpb (Alemanha)", "t": "Agência Federal de Educação Política da Alemanha (bpb): fuga e expulsão de judeus dos países árabes", "u": "https://www.bpb.de/themen/antisemitismus/dossier-antisemitismus/321671/flucht-und-vertreibung-von-juden-aus-den-arabischen-laendern/"}, "unrwa": {"s": "UNRWA", "t": "UNRWA (via ReliefWeb): cerca de 5,9 milhões de refugiados palestinos registrados", "u": "https://reliefweb.int/organization/unrwa"}, "oren": {"s": "Oren, 2002", "t": "Michael Oren, Six Days of War (2002)", "u": null}, "r242": {"s": "ONU e CIJ", "t": "Resolução 242 do Conselho de Segurança (1967); Resolução 2334 (2016); parecer da Corte Internacional de Justiça (19/jul/2024)", "u": null}, "peacenow": {"s": "Peace Now, 2025", "t": "Peace Now: balanço de 2025 nos assentamentos (recorde de 27.941 moradias)", "u": "https://peacenow.org.il/en/summary-of-2025-in-settlements"}, "colonos": {"s": "Wikipedia (dados do CBS)", "t": "Wikipedia: estatísticas da população dos assentamentos (Cisjordânia com dados do CBS de Israel)", "u": "https://en.wikipedia.org/wiki/Population_statistics_for_Israeli_settlements_in_the_West_Bank"}, "brit73": {"s": "Britannica", "t": "Encyclopaedia Britannica, verbetes \"Yom Kippur War\" e \"Camp David Accords\"", "u": null}, "hamas": {"s": "Britannica", "t": "Encyclopaedia Britannica, verbete \"Hamas\"", "u": null}, "cartas": {"s": "ONU, 1993", "t": "Cartas de reconhecimento mútuo Israel–OLP (1993), arquivo de acordos de paz da ONU", "u": "https://peacemaker.un.org/sites/default/files/document/files/2024/05/israel-plo20mutual20recognition.pdf"}, "oslo": {"s": "History.com", "t": "History.com: 13/set/1993, assinatura do acordo entre Israel e palestinos", "u": "https://www.history.com/this-day-in-history/september-13/israel-palestine-peace-accord-signed"}, "nobel": {"s": "Nobel, 1994", "t": "Prêmio Nobel da Paz de 1994 (Arafat, Peres e Rabin); Britannica, verbete \"Yitzhak Rabin\"", "u": null}, "ross": {"s": "Ross, 2004", "t": "Dennis Ross, The Missing Peace (2004)", "u": null}, "eleipal": {"s": "Al Jazeera, out/2026", "t": "Al Jazeera (10/out/2026): Abbas adia as eleições legislativas palestinas para setembro de 2027", "u": "https://www.aljazeera.com/news/2026/10/10/abbas-postpones-palestinian-legislative-elections-to-september-2027"}, "pbs": {"s": "PBS", "t": "PBS NewsHour: Israel marca dois anos do ataque de 7 de outubro", "u": "https://www.pbs.org/newshour/world/israel-marks-2-years-since-oct-7-attack-as-gaza-war-grinds-on"}, "gaza": {"s": "Al Jazeera, 5/nov/2026", "t": "Al Jazeera (5/nov/2026), com números do Ministério da Saúde de Gaza", "u": "https://www.aljazeera.com/news/2026/11/5/four-people-including-a-child-killed-in-israeli-attacks-on-gaza"}, "fome": {"s": "Times of Israel", "t": "Times of Israel: monitor global declara fome em Gaza; Israel rejeita o relatório", "u": "https://www.timesofisrael.com/liveblog_entry/global-hunger-monitor-declares-famine-in-gaza-for-first-time-israel-dismisses-biased-report/"}, "coi": {"s": "ONU, set/2025", "t": "ONU: comissão independente do Conselho de Direitos Humanos conclui que houve genocídio em Gaza (16/set/2025)", "u": "https://www.un.org/unispal/document/israel-has-committed-genocide-in-the-gaza-strip-un-commission-finds-16sep25/"}, "tpi": {"s": "ONU News, 2024", "t": "UN News: Tribunal Penal Internacional emite mandados contra Netanyahu, Gallant e Mohammed Deif (21/nov/2024)", "u": "https://news.un.org/en/story/2024/11/1157286"}, "cij": {"s": "gov.za, 2026", "t": "Presidência da África do Sul (comunicado de 2/jun/2026) sobre a decisão da CIJ de 21/mai/2026 no caso contra Israel", "u": "https://www.gov.za/news/media-statements/presidency-notes-icj-order-south-africa-and-israel-case-02-jun-2026"}, "jstreet": {"s": "J Street", "t": "J Street: um ano do cessar-fogo em Gaza", "u": "https://jstreet.org/resources/one-year-assessing-status-gaza-ceasefire"}, "eleisr": {"s": "Times of Israel", "t": "Times of Israel: resultado final das eleições israelenses de 27/out/2026", "u": "https://www.timesofisrael.com/with-all-votes-counted-netanyahus-bloc-at-53-seats-eisenkots-48-arab-parties-19/"}, "eisenkot": {"s": "Al Jazeera, 7/nov/2026", "t": "Al Jazeera (7/nov/2026): Herzog escolhe Eisenkot para formar o governo", "u": "https://www.aljazeera.com/news/2026/11/7/israels-president-picks-eisenkot-over-netanyahu-to-form-next-government"}, "reconhec": {"s": "Al Jazeera", "t": "Al Jazeera: países que reconhecem o Estado da Palestina", "u": "https://aljazeera.com/news/2025/9/23/which-are-the-150-countries-that-have-recognised-palestine-as-of-2025"}, "khalidi": {"s": "Khalidi, 2020", "t": "Rashid Khalidi, The Hundred Years' War on Palestine (2020)", "u": null}, "arabes": {"s": "CBS de Israel", "t": "Escritório Central de Estatísticas de Israel (via Times of Israel): 21,1% da população é árabe", "u": "https://www.timesofisrael.com/topic/central-bureau-of-statistics/"}, "ihra": {"s": "IHRA e JDA", "t": "Definição de antissemitismo da IHRA e Declaração de Jerusalém sobre Antissemitismo", "u": null}, "apartheid": {"s": "AI, HRW, B'Tselem", "t": "Relatórios da Anistia Internacional (2022), Human Rights Watch (2021) e B'Tselem (2021); posição do governo de Israel contra a acusação", "u": null}, "doisest": {"s": "ONU", "t": "Resoluções da Assembleia Geral da ONU sobre a solução de dois Estados", "u": null}, "colonos25": {"s": "Arab News, 2026", "t": "Arab News (dados de Peace Now, ICG e OCHA): mais de 500 mil colonos na Cisjordânia, 700 mil com Jerusalém Oriental, e mais de 3 milhões de palestinos", "u": "https://www.arabnews.pk/middle-east/israels-expanding-settlement-enterprise-in-the-west-bank-3005346"}, "britannica": {"s": "Britannica", "t": "Encyclopaedia Britannica, verbete \"Palestine\" (história da região)", "u": "https://www.britannica.com/place/Palestine"}, "odio": {"s": "ADL e CAIR, 2023", "t": "Scripps News: ADL registra alta de incidentes antissemitas e CAIR, de incidentes antimuçulmanos, nos EUA após 7/out", "u": "https://www.scrippsnews.com/world/israel-at-war/in-the-last-two-months-antisemitic-and-anti-muslim-incidents-surged"}, "jta": {"s": "JTA", "t": "JTA (8/out/2023): o ataque do Hamas foi o dia com mais judeus mortos desde o Holocausto", "u": "https://www.jta.org/2023/10/08/israel/was-hamas-attack-the-bloodiest-day-for-jews-since-the-holocaust"}, "gvili": {"s": "Times of Israel", "t": "Times of Israel (26/jan/2026): corpo do último refém, Ran Gvili, é localizado pelo exército em Gaza e volta a Israel", "u": "https://www.timesofisrael.com/all-of-them-home-now-body-of-last-hostage-ran-gvili-found-in-gaza-returned-to-israel/"}, "fome25": {"s": "ONU News, dez/2025", "t": "UN News (dez/2025): IPC diz que nenhuma área de Gaza está mais em fome, mas a crise alimentar segue crítica", "u": "https://news.un.org/en/story/2025/12/1166638"}, "deif": {"s": "TPI", "t": "Tribunal Penal Internacional: processo contra Mohammed Deif encerrado em 26/fev/2025, após notificação da morte dele", "u": "https://www.icc-cpi.int/defendant/deif"}, "itamaraty": {"s": "Itamaraty", "t": "Itamaraty: o Brasil reconheceu o Estado da Palestina em dezembro de 2010, nas fronteiras anteriores a 1967", "u": "https://www.gov.br/mre/en/subjects/bilateral-relations/all-countries/state-of-palestine"}, "hamasdis": {"s": "PBS, jul/2026", "t": "PBS (6/jul/2026): Hamas diz ter dissolvido seu governo em Gaza para passar o poder a um comitê apoiado pela ONU; Israel diz que nada muda na prática", "u": "https://www.pbs.org/newshour/world/hamas-says-it-has-dissolved-its-government-in-gaza-to-transfer-power-to-a-un-backed-committee"}, "abraao": {"s": "Al Jazeera, 2023", "t": "Al Jazeera (18/set/2023): os Acordos de Abraão e a situação de Marrocos e Sudão", "u": "https://www.aljazeera.com/news/2023/9/18/where-do-morocco-and-sudan-relations-stand-with-israel"}, "ynet": {"s": "Ynet, nov/2026", "t": "Ynet (2/nov/2026): o desarmamento do Hamas segue sem solução", "u": "https://www.ynetnews.com/article/hy3jsjlame"}, "national": {"s": "The National, 18/nov/2026", "t": "The National (18/nov/2026): relatório do Conselho da Paz à ONU diz que Israel e Hamas não cumprem compromissos; comitê de Gaza não entrou, força internacional não foi enviada; nova operação terrestre israelense no centro de Gaza", "u": "https://www.thenationalnews.com/news/us/2026/11/18/israel-and-hamas-failing-to-meet-gaza-ceasefire-commitments-board-of-peace-warns/"}};
+const STEEL = [
+  {side:'is', who:'Argumento pró-Israel', arg:'Israel tem o direito de se defender depois do 7 de outubro.',
+   o:['O direito de defesa existe, mas o direito internacional exige proporcionalidade e proteção de civis. A escala de mortes e a fome em Gaza levantam dúvidas sérias para a ONU e para organizações de direitos humanos.','Quem diz isso apoia massacre.','Então Israel pode fazer qualquer coisa que quiser?','Israel é um país rico, então não precisa se defender.'],
+   e:'A resposta forte aceita o ponto válido e discute os limites. As outras atacam a pessoa, exageram o argumento ou mudam de assunto.'},
+  {side:'pa', who:'Argumento pró-Palestina', arg:'A ocupação da Cisjordânia é a raiz de toda a violência.',
+   o:['Israel saiu de Gaza em 2005 e, mesmo assim, vieram foguetes e o 7 de outubro. Para muitos israelenses, isso mostra que retirada sem garantias de segurança não traz paz.','Isso é papo de quem odeia judeus.','Então você acha que terrorismo é justificado?','Ninguém em Israel concorda com isso.'],
+   e:'A resposta forte usa um fato histórico para testar o argumento. As outras rotulam, distorcem ou apelam à maioria.'},
+  {side:'is', who:'Argumento pró-Israel', arg:'Os palestinos recusaram todas as ofertas de paz.',
+   o:['Para os negociadores palestinos, as ofertas, como a de 2000, deixavam o território picotado e sem controle de fronteiras. E os assentamentos cresceram durante as negociações, minando a confiança.','Você só repete propaganda.','Então os palestinos são culpados de tudo?','Isso foi há muito tempo, não importa mais.'],
+   e:'A resposta forte explica o outro lado com dados. As outras desqualificam ou fogem do assunto.'},
+  {side:'pa', who:'Argumento pró-Palestina', arg:'Israel deveria aceitar o retorno de todos os refugiados de 1948 e de seus descendentes.',
+   o:['O retorno de cerca de 6 milhões mudaria a maioria judaica do país. Negociações anteriores discutiram compensação e retorno a um futuro Estado palestino como alternativa.','Isso é coisa de extremista.','Então você quer acabar com Israel?','A maioria dos países não liga para isso.'],
+   e:'A resposta forte aponta a consequência e propõe alternativas já discutidas. As outras rotulam ou exageram.'},
+  {side:'is', who:'Argumento pró-Israel', arg:'Os números de mortos em Gaza vêm do Hamas e não são confiáveis.',
+   o:['O ministério é ligado ao Hamas, mas agências da ONU e especialistas independentes consideram seus registros geralmente confiáveis. Israel contesta e diz que parte dos mortos eram combatentes.','Quem diz isso não tem coração.','Então você acha que não morreu ninguém?','Números não importam, o que importa é a dor.'],
+   e:'A resposta forte reconhece a origem do dado e mostra por que ele ainda é usado. As outras apelam à emoção ou distorcem.'},
+  {side:'pa', who:'Argumento pró-Palestina', arg:'Os países deveriam cortar todas as relações com Israel.',
+   o:['O isolamento total pode fortalecer os setores mais radicais e tirar dos outros países a influência para pressionar por cessar-fogo e negociação. Uma alternativa adotada por alguns governos são sanções direcionadas, como as aplicadas por Reino Unido e União Europeia a colonos violentos.','Quem defende isso é antissemita.','Então você quer que Israel desapareça do mapa?','Isso nunca vai acontecer mesmo.'],
+   e:'A resposta forte discute a eficácia da proposta. As outras rotulam, exageram ou desistem do debate.'}
+];
+
+const DEEP = {
+  raizes:{b:[['O Estado judeu','Theodor Herzl','o livro que lançou o sionismo'],['A questão da Palestina','Edward Said','a visão de um intelectual palestino']], yt:'origem do conflito Israel Palestina explicado'},
+  '1948':{b:[['A limpeza étnica da Palestina','Ilan Pappé','historiador israelense crítico do sionismo'],['1948: A History of the First Arab-Israeli War (em inglês)','Benny Morris','historiador israelense que pesquisou os arquivos']], yt:'Nakba 1948 explicação'},
+  '1967':{b:[['Seis dias de guerra','Michael Oren','visão de um historiador e ex-diplomata israelense'],['Palestina: um século de guerra e resistência','Rashid Khalidi','visão de um historiador palestino-americano']], yt:'Guerra dos Seis Dias 1967 explicação'},
+  paz:{b:[['The Missing Peace (em inglês)','Dennis Ross','a visão de um negociador americano'],['The End of the Peace Process (em inglês)','Edward Said','a crítica palestina a Oslo']], yt:'Acordos de Oslo explicação'},
+  hoje:{b:[['Como curar um fanático','Amós Oz','um escritor israelense defensor da paz'],['Palestinian Walks (em inglês)','Raja Shehadeh','um advogado palestino sobre a vida na Cisjordânia']], yt:'guerra em Gaza explicação 2026'},
+  mitos:{b:[], yt:'antissionismo e antissemitismo diferença'}
+};
+
+const LEVELS=[{xp:0,n:'Curioso'},{xp:150,n:'Informado'},{xp:400,n:'Atento'},{xp:700,n:'Analista'},{xp:1000,n:'Mediador'}];
+const EXTRA_BADGES=['🎭 Duas Vozes','🔁 Aprendiz Persistente','🎓 Concluiu o Minicurso'];
+const B_STEEL=0,B_REVIEW=1,B_FINAL=2;
+const UPDATED='nov/2026';
+
+/* =========================================================
+   ESTADO
+   ========================================================= */
+const KEY='israel-palestina-v1';
+let S=load();
+function blank(){return {xp:0,done:{},badges:[],streak:0,best:0,name:'',wrong:[],mute:false}}
+function load(){try{const r=localStorage.getItem(KEY); if(r) return Object.assign(blank(),JSON.parse(r));}catch(e){} return blank();}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+let V={screen:'home'};
+const app=document.getElementById('app');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const NF=MODULES.length;
+function level(){let L=LEVELS[0],N=null;for(let i=0;i<LEVELS.length;i++){if(S.xp>=LEVELS[i].xp){L=LEVELS[i];N=LEVELS[i+1]||null}}return {L,N}}
+function giveBadge(b){if(!S.badges.includes(b)){S.badges.push(b);save();return true}return false}
+function unlocked(i){return i===0||!!S.done[MODULES[i-1].id]||!!S.done[MODULES[i].id]}
+function allDone(){return MODULES.every(m=>S.done[m.id])}
+function addWrong(k){if(!S.wrong.includes(k)){S.wrong.push(k);save();}}
+function delWrong(k){const i=S.wrong.indexOf(k);if(i>=0){S.wrong.splice(i,1);save();}}
+
+/* =========================================================
+   SOM (sintetizado, suave)
+   ========================================================= */
+let AC=null;
+const SEQ={ok:[[587,.08],[784,.12]],bad:[[220,.14],[175,.2]],combo:[[523,.07],[659,.07],[784,.07],[988,.16]],win:[[523,.11],[659,.11],[784,.11],[1047,.3]]};
+function snd(t){ if(S.mute) return; try{ AC=AC||new (window.AudioContext||window.webkitAudioContext)(); if(AC.state==='suspended') AC.resume(); let at=AC.currentTime+.01;
+  SEQ[t].forEach(([f,d])=>{const o=AC.createOscillator(),g=AC.createGain();o.type='triangle';o.frequency.setValueAtTime(f,at);g.gain.setValueAtTime(.09,at);g.gain.exponentialRampToValueAtTime(.0008,at+d);o.connect(g);g.connect(AC.destination);o.start(at);o.stop(at+d+.02);at+=d;}); }catch(e){} }
+
+/* =========================================================
+   BANCO DE PERGUNTAS
+   ========================================================= */
+function mkModuleQ(m,q){return {key:q.q,tag:'Desafio',q:q.q,o:q.o,a:q.a,e:q.e,shuffle:true,from:m.title};}
+function mkFlashQ(m,it){return {key:it.t,tag:'⚡ Rodada relâmpago · '+m.flash.title,q:it.t,o:m.flash.ch,a:it.a,e:it.e,shuffle:false,grid:m.flash.ch.length,from:m.flash.title};}
+function mkSteelQ(r){return {key:r.arg,tag:'🎭 Advogado do outro lado',side:r.side,who:r.who,sub:r.arg,q:'Qual seria a resposta MAIS FORTE de quem discorda?',o:r.o,a:0,e:r.e,shuffle:true,from:'Advogado do outro lado'};}
+const ALLQ={};
+MODULES.forEach(m=>{m.quiz.forEach(q=>ALLQ[q.q]=mkModuleQ(m,q)); if(m.flash) m.flash.items.forEach(it=>ALLQ[it.t]=mkFlashQ(m,it));});
+STEEL.forEach(r=>ALLQ[r.arg]=mkSteelQ(r));
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function inst(base,tag){const q=Object.assign({},base); if(tag) q.tag=tag; if(base.shuffle){const idx=shuffle(base.o.map((_,k)=>k)); q.o=idx.map(k=>base.o[k]); q.a=idx.indexOf(base.a);} return q;}
+
+/* =========================================================
+   AJUDANTES DE TELA
+   ========================================================= */
+function topbar(){
+  const {L,N}=level(); const pct=N?Math.round((S.xp-L.xp)/(N.xp-L.xp)*100):100;
+  return `<div class="top"><div class="toprow"><span class="lvl">${L.n}</span><div class="xpbar"><i style="width:${pct}%"></i></div><button class="mute" id="mute" aria-label="Som">${S.mute?'🔇':'🔊'}</button></div>
+   <div class="xptxt"><span>⭐ ${S.xp} pontos · 🔥 ${S.streak} seguidos · 🏅 ${S.badges.length}</span><span>${N?'Próximo nível: '+N.xp:'Nível máximo!'}</span></div></div>`;
+}
+function toast(t){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1500)}
+function confetti(){const cols=['#1F9E8F','#E39B2D','#1E2A32','#9AD9CF','#F5C77A'];for(let i=0;i<60;i++){const c=document.createElement('i');c.className='cf';c.style.left=Math.random()*100+'vw';c.style.background=cols[i%cols.length];c.style.animationDuration=(1.6+Math.random()*1.6)+'s';c.style.animationDelay=(Math.random()*.4)+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),3800)}}
+function go(v){V=v;render();window.scrollTo(0,0)}
+app.addEventListener('click',e=>{ if(e.target.closest('#mute')){ S.mute=!S.mute; save(); render(); if(!S.mute) snd('ok'); } });
+function fontesHTML(id){
+  const m=MODULES.find(x=>x.id===id); if(!m) return '';
+  const ks=[...new Set([...m.cards.map(c=>c.h).join('').matchAll(/data-f="(\w+)"/g)].map(x=>x[1]))];
+  if(!ks.length) return '';
+  return `<div class="fonteslist"><div class="qtag">🔎 Fontes desta fase</div><ol>`+ks.map(k=>{const f=FONTES[k];return `<li>${esc(f.t)}${f.u?` · <a href="${f.u}" target="_blank" rel="noopener">abrir ↗</a>`:''}</li>`}).join('')+`</ol></div>`;
+}
+function showFonte(k){const f=FONTES[k]; if(!f) return; let p=document.getElementById('fnpop'); if(!p){p=document.createElement('div');p.id='fnpop';p.setAttribute('role','dialog');document.body.appendChild(p);}
+  p.innerHTML=`<button class="x" aria-label="Fechar">✕</button><b>🔎 FONTE</b>${esc(f.t)}${f.u?`<br><a href="${f.u}" target="_blank" rel="noopener">Abrir a fonte original ↗</a>`:''}<div class="nt">A lista completa aparece no fim da fase.</div>`;}
+document.addEventListener('click',e=>{const b=e.target.closest('.fn'); const p=document.getElementById('fnpop');
+  if(b){e.stopPropagation();showFonte(b.dataset.f);return;}
+  if(p&&(e.target.closest('#fnpop .x')||!e.target.closest('#fnpop'))) p.remove();},true);
+function deepHTML(id){
+  const d=DEEP[id]; if(!d) return '';
+  return `<div class="deep"><div class="qtag">📚 Quer se aprofundar?</div>`+d.b.map(b=>`<div class="bk"><b>${esc(b[0])}</b><span>${esc(b[1])} · ${esc(b[2])}</span></div>`).join('')+
+    `<a class="yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(d.yt)}" target="_blank" rel="noopener">🎥 Buscar vídeos no YouTube: "${esc(d.yt)}"</a>
+    <p style="color:var(--muted);font-size:.8rem;margin:8px 0 0">Dica: procure vídeos de canais com visões diferentes e compare.</p></div>`;
+}
+
+/* =========================================================
+   TELAS
+   ========================================================= */
+function render(){ const s=V.screen;
+  if(s==='home') return renderHome(); if(s==='cards') return renderCards(); if(s==='quiz') return renderQuiz();
+  if(s==='result') return renderResult(); if(s==='cert') return renderCert(); if(s==='aval') return renderAval(); if(s==='voto') return renderVoto(); }
+
+function renderHome(){
+  const nextIdx=MODULES.findIndex(m=>!S.done[m.id]);
+  let h=topbar()+`<div class="hero"><div class="kick">Minicurso · Temas Quentes</div><h1><span class="i">Israel</span> e <span class="p">Palestina</span>, sem lado</h1>
+    <p>Um século de história em ${NF} fases curtas. Em cada fase, as duas narrativas aparecem lado a lado.</p>
+    <div class="how"><b>⏱ Cerca de 25 minutos.</b> Seu progresso fica salvo neste aparelho: dá para parar e voltar depois.<br><b>Como funciona:</b> leia os cards e responda o desafio no fim de cada fase. Cada acerto vale <b>10 pontos</b>, ou 15 se você estiver numa sequência de 3 acertos seguidos 🔥. Os pontos sobem o seu nível. <span style="color:var(--isd);font-weight:700">Verde-água</span> é a narrativa israelense e <span style="color:var(--pad);font-weight:700">âmbar</span> é a palestina.</div>
+    <span class="upd">📅 Dados atualizados em ${UPDATED}</span></div>
+    <div class="sec">Linha do tempo</div><div class="tl">`;
+  MODULES.forEach((m,i)=>{ const d=S.done[m.id], lock=!unlocked(i), nx=i===nextIdx;
+    const stars=d?'★'.repeat(d.stars)+'☆'.repeat(3-d.stars):(lock?'🔒':'');
+    h+=`<button class="tile ${d?'done':''} ${lock?'locked':''} ${nx?'next':''}" data-m="${i}" ${lock?'disabled':''}><span class="n">${i+1}</span><span class="tt"><span class="era">${m.era}${nx?' · JOGAR AGORA →':''}</span><b>${m.title}</b><small>${m.sub}</small></span><span class="st">${stars}</span></button>`; });
+  const nW=S.wrong.filter(k=>ALLQ[k]).length;
+  h+=`</div><div class="sec">Bônus</div>
+    <button class="tile special" id="goSteel"><span class="n">🎭</span><span class="tt"><b>Advogado do outro lado</b><small>Escolha a melhor resposta para argumentos das duas narrativas</small></span><span class="st">${S.badges.includes(EXTRA_BADGES[B_STEEL])?'✅':''}</span></button>
+    <button class="tile special ${nW?'':'locked'}" id="goReview" ${nW?'':'disabled'}><span class="n">🔁</span><span class="tt"><b>Revisão dos erros</b><small>${nW?nW+' pergunta'+(nW>1?'s':'')+' para revisar':'Nenhum erro guardado ainda'}</small></span><span class="st">${nW||''}</span></button>
+    <button class="tile special ${allDone()?'':'locked'}" id="goFinal" ${allDone()?'':'disabled'}><span class="n">🗳️</span><span class="tt"><b>E você, o que acha?</b><small>${allDone()?'Sem nota: escolha um caminho e veja os dois lados':'Complete as '+NF+' fases para liberar'}</small></span><span class="st">${S.voto!=null?'✅':(allDone()?'':'🔒')}</span></button>
+    <button class="tile special" id="goAval"><span class="n">📝</span><span class="tt"><b>Avalie o curso</b><small>${S.aval?'Obrigado! Toque para mudar sua avaliação':'1 minuto: sua nota e o tema que você quer ver virar curso'}</small></span><span class="st">${S.aval?'✅':''}</span></button>`;
+  const all=[...MODULES.map(m=>m.badge),...EXTRA_BADGES];
+  h+=`<div class="sec">Conquistas (${S.badges.filter(b=>all.includes(b)).length}/${all.length})</div><div class="badges">`+all.map(b=>`<span class="bdg ${S.badges.includes(b)?'':'off'}">${b}</span>`).join('')+`</div>
+    <div class="foot">Este minicurso não toma partido: mostra as narrativas israelense e palestina e indica quem afirma cada número. A conclusão é sua.<br>Fontes: ONU, Corte Internacional de Justiça, Ministério da Saúde de Gaza, governo de Israel, agências de notícias e historiadores dos dois lados. Dados até ${UPDATED}.<br><button class="reset" id="reset">Recomeçar do zero</button></div>`;
+  app.innerHTML=h;
+  app.querySelectorAll('.tile[data-m]').forEach(b=>b.onclick=()=>go({screen:'cards',m:+b.dataset.m,i:0}));
+  document.getElementById('goSteel').onclick=startSteel;
+  if(nW) document.getElementById('goReview').onclick=startReview;
+  if(allDone()) document.getElementById('goFinal').onclick=startFinal;
+  document.getElementById('goAval').onclick=()=>go({screen:'aval'});
+  document.getElementById('reset').onclick=()=>{ if(V.confirmReset){S=blank();save();V={screen:'home'};render();} else {V.confirmReset=true;document.getElementById('reset').textContent='Toque de novo para confirmar (apaga seu progresso)';} };
+}
+
+function renderCards(){
+  const m=MODULES[V.m], c=m.cards[V.i], n=m.cards.length;
+  app.innerHTML=topbar()+`<div class="head"><button class="back" id="bk">←</button><span class="ht">Fase ${V.m+1} · ${m.era}</span></div>
+   <div class="dots">${m.cards.map((_,k)=>`<i class="${k<=V.i?'on':''}"></i>`).join('')}<i></i></div>
+   <div class="card"><h2>${c.t}</h2>${c.h}</div>
+   <div class="nav">${V.i>0?'<button class="btn ghost" id="prev">Voltar</button>':''}<button class="btn" id="next">${V.i<n-1?'Próximo →':'Hora do desafio ⚡'}</button></div>`;
+  document.getElementById('bk').onclick=()=>go({screen:'home'});
+  const p=document.getElementById('prev'); if(p) p.onclick=()=>go({screen:'cards',m:V.m,i:V.i-1});
+  document.getElementById('next').onclick=()=>{ if(V.i<n-1) go({screen:'cards',m:V.m,i:V.i+1}); else startQuiz(V.m); };
+}
+
+function startQuiz(mi){ const m=MODULES[mi]; let qs=m.quiz.map(q=>inst(mkModuleQ(m,q))); if(m.flash) qs=qs.concat(shuffle(m.flash.items).map(it=>inst(mkFlashQ(m,it)))); go({screen:'quiz',mode:'module',m:mi,qs,k:0,ok:0,picked:null,gained:0}); }
+function startFinal(){ return go({screen:'voto'}); const pool=[]; MODULES.forEach(m=>m.quiz.forEach(q=>pool.push(inst(mkModuleQ(m,q),'Prova final · '+m.title)))); go({screen:'quiz',mode:'final',qs:shuffle(pool).slice(0,10),k:0,ok:0,picked:null,gained:0}); }
+function startSteel(){ go({screen:'quiz',mode:'steel',qs:shuffle(STEEL).map(r=>inst(mkSteelQ(r))),k:0,ok:0,picked:null,gained:0}); }
+function startReview(){ const keys=shuffle(S.wrong.filter(k=>ALLQ[k])).slice(0,10); go({screen:'quiz',mode:'review',qs:keys.map(k=>inst(ALLQ[k],'🔁 Revisão · '+ALLQ[k].from)),k:0,ok:0,picked:null,gained:0}); }
+function quizTitle(){ if(V.mode==='module') return 'Desafio · Fase '+(V.m+1); return {final:'🎓 Prova final',steel:'🎭 Advogado do outro lado',review:'🔁 Revisão dos erros'}[V.mode]; }
+
+function renderQuiz(){
+  const q=V.qs[V.k], n=V.qs.length, ans=V.picked!==null;
+  let h=topbar()+`<div class="head"><button class="back" id="bk">✕</button><span class="ht">${quizTitle()}</span><span class="chip">${V.k+1}/${n}</span></div>
+   <div class="dots">${V.qs.map((_,k)=>`<i class="${k<V.k||(k===V.k&&ans)?'on':''}"></i>`).join('')}</div><div class="card"><div class="qtag">${esc(q.tag)}</div>`;
+  if(q.sub) h+=`<div class="argbox ${q.side||''}"><div class="who">💬 ${esc(q.who)}</div>"${esc(q.sub)}"</div>`;
+  const gcls=q.grid===3?'grid3':(q.grid===2?'grid2':'');
+  h+=`<div class="qq">${esc(q.q)}</div><div class="opts ${gcls}">`;
+  q.o.forEach((o,k)=>{let cl='opt'; if(ans){ if(k===q.a) cl+=' right'; else if(k===V.picked) cl+=' wrong'; else cl+=' dim'; } h+=`<button class="${cl}" data-k="${k}" ${ans?'disabled':''}>${esc(o)}</button>`;});
+  h+=`</div>`;
+  if(ans){const good=V.picked===q.a; h+=`<div class="fb ${good?'good':'badf'}"><b>${good?(S.streak>=3?'🔥 Acertou! '+S.streak+' seguidos':'✅ Acertou!'):'❌ Não foi dessa vez'}</b>${esc(q.e)}${good?'':'<br><small>Essa pergunta foi para a sua Revisão dos erros.</small>'}</div>`;}
+  h+=`</div>`;
+  if(ans) h+=`<div class="nav"><button class="btn ${V.picked===q.a?'ok':''}" id="cont">${V.k<n-1?'Continuar →':'Ver resultado'}</button></div>`;
+  app.innerHTML=h;
+  document.getElementById('bk').onclick=()=>go({screen:'home'});
+  if(!ans) app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));
+  else document.getElementById('cont').onclick=()=>{ if(V.k<n-1){V.k++;V.picked=null;render();window.scrollTo(0,0);} else finishQuiz(); };
+}
+function pick(k){
+  const q=V.qs[V.k]; V.picked=k;
+  if(k===q.a){ V.ok++; S.streak++; S.best=Math.max(S.best,S.streak); const pts=10+(S.streak>=3?5:0); V.gained+=pts; S.xp+=pts; delWrong(q.key); save();
+    toast('+'+pts+' pontos'+(S.streak>=3?' · '+S.streak+' seguidos!':'')); snd(S.streak>=3?'combo':'ok'); }
+  else { S.streak=0; addWrong(q.key); save(); snd('bad'); if(navigator.vibrate) try{navigator.vibrate(80)}catch(e){} }
+  render();
+}
+function finishQuiz(){
+  const n=V.qs.length, pct=V.ok/n;
+  if(V.mode==='final'){ const pass=V.ok>=7; let newB=false; if(pass){ newB=giveBadge(EXTRA_BADGES[B_FINAL]); if(newB){S.xp+=100;save();} snd('win'); confetti(); }
+    return go({screen:'result',mode:'final',ok:V.ok,n,pass,newB,gained:V.gained+(newB?100:0)}); }
+  if(V.mode==='steel'){ let newB=false; if(V.ok>=5){ newB=giveBadge(EXTRA_BADGES[B_STEEL]); if(newB){S.xp+=50;save();} snd('win'); confetti(); }
+    return go({screen:'result',mode:'steel',ok:V.ok,n,newB,gained:V.gained+(newB?50:0)}); }
+  if(V.mode==='review'){ let newB=false; if(V.ok===n){ newB=giveBadge(EXTRA_BADGES[B_REVIEW]); if(newB){S.xp+=40;save();} snd('win'); confetti(); }
+    return go({screen:'result',mode:'review',ok:V.ok,n,newB,gained:V.gained+(newB?40:0)}); }
+  const m=MODULES[V.m], stars=pct>=.9?3:pct>=.6?2:1, prev=S.done[m.id]; let bonus=0;
+  if(!prev) bonus=30+stars*10; else if(stars>prev.stars) bonus=(stars-prev.stars)*10;
+  S.done[m.id]={stars:Math.max(stars,prev?prev.stars:0)}; const newB=giveBadge(m.badge); S.xp+=bonus; save();
+  go({screen:'result',mode:'module',m:V.m,ok:V.ok,n,stars,newB,gained:V.gained+bonus});
+  if(stars>=2||newB){ snd('win'); confetti(); }
+}
+
+function renderResult(){
+  const nW=S.wrong.filter(k=>ALLQ[k]).length, rw=V.gained?`<span class="reward">+${V.gained} pontos</span>`:'';
+  if(V.mode==='final'){
+    app.innerHTML=topbar()+`<div class="card res" style="margin-top:18px"><div class="big">${V.pass?'🎓':'📚'}</div><h2>${V.pass?'Aprovado!':'Quase lá!'}</h2><p>Você acertou <b>${V.ok} de ${V.n}</b>.</p>${rw}${V.newB?`<span class="reward">${EXTRA_BADGES[B_FINAL]}</span>`:''}
+      <p style="color:var(--muted)">${V.pass?'Agora pegue o seu certificado.':'Use a Revisão dos erros e tente de novo: as perguntas mudam a cada vez.'}</p></div>
+      <div class="nav">${V.pass?'<button class="btn ok" id="cert">Pegar certificado</button>':'<button class="btn" id="again">Tentar de novo</button>'}<button class="btn ghost" id="home">Início</button></div>`;
+    const c=document.getElementById('cert'); if(c) c.onclick=()=>go({screen:'cert'}); const a=document.getElementById('again'); if(a) a.onclick=startFinal;
+    document.getElementById('home').onclick=()=>go({screen:'home'}); return; }
+  if(V.mode==='steel'||V.mode==='review'){ const isS=V.mode==='steel';
+    const msg=isS?(V.ok>=5?'Você sabe separar argumento de ataque, nos dois sentidos. É raro e valioso num tema como este.':'Dica: a resposta mais forte sempre reconhece algo do outro lado e traz um dado ou uma consequência.'):(nW?'Ainda restam '+nW+' para revisar.':'Revisão zerada! 🎉');
+    app.innerHTML=topbar()+`<div class="card res" style="margin-top:18px"><div class="big">${isS?'🎭':'🔁'}</div><h2>${isS?'Fim do julgamento':'Revisão feita'}</h2><p>${V.ok} de ${V.n} acertos</p>${rw}${V.newB?`<span class="reward">${EXTRA_BADGES[isS?B_STEEL:B_REVIEW]}</span>`:''}<p style="color:var(--muted)">${msg}</p></div>
+      <div class="nav">${isS||nW?'<button class="btn" id="again">'+(isS?'Jogar de novo':'Revisar o resto')+'</button>':''}<button class="btn ghost" id="home">Início</button></div>`;
+    const a=document.getElementById('again'); if(a) a.onclick=isS?startSteel:startReview; document.getElementById('home').onclick=()=>go({screen:'home'}); return; }
+  const m=MODULES[V.m], nxt=MODULES[V.m+1];
+  const msg=V.stars===3?'Excelente! 🤩':V.stars===2?'Bom trabalho! 👏':'Refaça para ganhar mais estrelas 💪';
+  app.innerHTML=topbar()+`<div class="card res" style="margin-top:18px"><div class="qtag">Fase ${V.m+1} · ${m.era}</div><h2 style="margin-top:6px">${m.title}</h2>
+    <div class="stars">${'★'.repeat(V.stars)}${'☆'.repeat(3-V.stars)}</div><p>${V.ok} de ${V.n} acertos · ${msg}</p>${rw}${V.newB?`<span class="reward">Nova conquista: ${m.badge}</span>`:''}</div>
+    ${fontesHTML(m.id)}${deepHTML(m.id)}
+    <div class="nav">${nxt?`<button class="btn" id="nx">Próxima fase →</button>`:(allDone()?'<button class="btn ok" id="fin">E você, o que acha? 🗳️</button>':'')}<button class="btn ghost" id="redo">Refazer</button></div>
+    <div class="nav"><button class="btn ghost" style="flex:1" id="home">Voltar ao início</button></div>`;
+  const nx=document.getElementById('nx'); if(nx) nx.onclick=()=>go({screen:'cards',m:V.m+1,i:0});
+  const fi=document.getElementById('fin'); if(fi) fi.onclick=startFinal;
+  document.getElementById('redo').onclick=()=>startQuiz(V.m); document.getElementById('home').onclick=()=>go({screen:'home'});
+}
+
+function renderCert(){
+  const d=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
+  app.innerHTML=topbar()+`<div class="head"><button class="back" id="bk">←</button><span class="ht">🎓 Certificado</span></div>
+    <input class="txt" id="nm" placeholder="Seu nome no certificado" value="${esc(S.name||'')}">
+    <div class="cert"><div style="font-size:2.2rem;margin-top:8px">🏆</div><div class="qtag">Certificado de conclusão</div><h2 style="margin-top:6px">Israel e Palestina, sem lado</h2><p>Certificamos que</p><div class="nm" id="cn">${esc(S.name||'Seu nome aqui')}</div>
+      <p>concluiu as ${NF} fases do minicurso, conhecendo as narrativas israelense e palestina.</p><p style="color:var(--muted);font-size:.85rem">${d} · ${S.xp} pontos · nível ${level().L.n}</p></div>
+    <div class="nav"><button class="btn" id="cp">Copiar conquista</button><button class="btn ghost" id="home">Início</button></div>
+    <a class="btn" href="index.html#avaliar" style="display:block;text-align:center;text-decoration:none;margin:10px 0">⭐ Avaliar o curso e sugerir um tema</a>
+    <p style="color:var(--muted);font-size:.8rem;text-align:center">Dica: tire um print da tela para guardar o certificado.</p>`;
+  const nm=document.getElementById('nm'); nm.oninput=()=>{S.name=nm.value.slice(0,40);save();document.getElementById('cn').textContent=S.name||'Seu nome aqui';};
+  document.getElementById('bk').onclick=()=>go({screen:'home'}); document.getElementById('home').onclick=()=>go({screen:'home'});
+  document.getElementById('cp').onclick=async()=>{ const t=`🎓 ${S.name||'Eu'} concluí o minicurso "Israel e Palestina, sem lado": ${NF} fases com as duas narrativas lado a lado, de 1917 até hoje.`; try{await navigator.clipboard.writeText(t);toast('Copiado!');}catch(e){toast('Não deu para copiar aqui');} };
+}
+
+function renderAval(){
+  const a=S.aval||{};const ck=(k,v)=>a[k]===v?'checked':'';
+  const radios=(name,opts)=>`<div class="av-row" role="radiogroup">${opts.map(o=>`<label><input type="radio" name="${name}" value="${o}" ${ck(name,o)}><span>${o}</span></label>`).join('')}</div>`;
+  app.innerHTML=topbar()+`<div class="head"><button class="back" id="bk">←</button><span class="ht">📝 Avalie o curso</span></div>
+   <form class="card" id="avf"><p>Leva 1 minuto. Por enquanto, sua avaliação fica guardada neste aparelho.</p>
+    <div class="av-q" id="lr">Que nota você dá ao curso? <small style="font-weight:400;opacity:.8">(1 = não gostei, 5 = gostei muito)</small></div>${radios('rating',['1','2','3','4','5'])}
+    <label class="av-q" for="learned" style="display:block">O que você aprendeu que não sabia?</label><textarea class="txt" id="learned" name="learned" maxlength="600">${esc(a.learned||'')}</textarea>
+    <div class="av-q">Sentiu que o curso favoreceu algum lado?</div>${radios('bias',['Não','Sim','Não sei'])}
+    <div id="bd" ${a.bias==='Sim'?'':'hidden'}><label class="av-q" for="biasDetail" style="display:block">Qual lado, e em que parte?</label><input class="txt" id="biasDetail" name="biasDetail" maxlength="300" value="${esc(a.biasDetail||'')}"></div>
+    <label class="av-q" for="comment" style="display:block">Comentário livre</label><textarea class="txt" id="comment" name="comment" maxlength="1000">${esc(a.comment||'')}</textarea>
+    <label class="av-q" for="nextTopic" style="display:block">Que tema você quer que vire curso?</label><input class="txt" id="nextTopic" name="nextTopic" maxlength="200" value="${esc(a.nextTopic||'')}">
+    <div class="nav"><button type="button" class="btn ghost" id="home">Voltar</button><button type="submit" class="btn">Salvar avaliação</button></div></form>`;
+  const f=document.getElementById('avf');
+  const sync=()=>{const sim=(new FormData(f).get('bias')==='Sim');document.getElementById('bd').hidden=!sim;};
+  f.addEventListener('change',sync);
+  document.getElementById('bk').onclick=()=>go({screen:'home'});
+  document.getElementById('home').onclick=()=>go({screen:'home'});
+  f.onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f).entries());if(d.bias!=='Sim')delete d.biasDetail;
+    if(!d.rating){toast('Escolha uma nota de 1 a 5');return;}
+    S.aval=d;save();
+    try{const q=JSON.parse(localStorage.getItem('pmu-fila')||'[]');q.push({curso:'israel-e-palestina',quando:new Date().toISOString(),...d});localStorage.setItem('pmu-fila',JSON.stringify(q));}catch(x){}
+    toast('Avaliação salva neste aparelho. Obrigado!');go({screen:'home'});};
+}
+
+const VOTO={"q": "Se a decisão fosse sua: que caminho você apoiaria para o conflito?", "o": [{"t": "Dois Estados", "s": "Israel e Palestina lado a lado", "pro": "Quem defende lembra que é a posição da ONU, do Brasil e da maioria dos países: 157 dos 193 países da ONU já reconheciam o Estado da Palestina até setembro de 2025. [[doisest]] [[reconhec]]", "con": "Quem duvida aponta os obstáculos: mais de 500 mil colonos na Cisjordânia, a disputa por Jerusalém, os refugiados, a segurança e a divisão entre Fatah e Hamas. [[colonos25]] [[doisest]]"}, {"t": "Um Estado para todos", "s": "um só país, com direitos iguais", "pro": "Quem defende, uma minoria dos dois lados, diz que um só país com direitos iguais resolveria a disputa pela terra. Na Cisjordânia, os dois povos já vivem misturados. [[colonos25]]", "con": "Quem critica diz que cada lado teme perder a sua identidade nacional. [[doisest]]"}, {"t": "Sem Estado palestino por enquanto", "s": "segurança de Israel e acordos com vizinhos árabes primeiro", "pro": "Quem defende, como a maioria do Parlamento de Israel em julho de 2024 (68 votos a 9), diz que um Estado palestino agora seria um perigo para Israel e um prêmio ao Hamas. [[knesset24]] Também cita os Acordos de Abraão (2020), que trouxeram cooperação em segurança com países árabes. [[abraao]]", "con": "Quem critica diz que esse caminho deixa os palestinos de fora: em 2020, lideranças palestinas disseram que nem foram avisadas do acordo com os Emirados e que ele abandonava seus direitos. No Sudão, a normalização ficou só no papel. [[palrej20]] [[abraao]]"}]};
+function vtxt(t){return esc(t).replace(/\[\[([a-zA-Z0-9_]+)\]\]/g,(m,k)=>FONTES[k]?`<button type="button" class="fn" data-f="${k}" aria-label="Ver fonte: ${esc(FONTES[k].s)}">🔎 ${esc(FONTES[k].s)}</button>`:'');}
+function renderVoto(){
+  const k=S.voto, o=(k!=null)?VOTO.o[k]:null;
+  app.innerHTML=topbar()+`<div class="head"><button class="back" id="bk">←</button><span class="ht">🗳️ E você, o que acha?</span></div>
+   <div class="card"><h2>${esc(VOTO.q)}</h2><p>Não existe resposta certa e não vale nota. Toque numa opção para ver os dois lados.</p>
+   ${VOTO.o.map((x,i)=>`<button type="button" class="vo ${k===i?'on':''}" data-v="${i}" aria-pressed="${k===i}"><b>${esc(x.t)}</b><small>${esc(x.s)}</small></button>`).join('')}
+   ${o?`<div class="vside" aria-live="polite"><b>👍 A favor</b><p>${vtxt(o.pro)}</p><b>👎 Contra</b><p>${vtxt(o.con)}</p></div>`:''}</div>
+   <div class="nav"><button class="btn ghost" id="home">Trilha</button>${k!=null?'<button class="btn" id="ct">Pegar certificado 🎓</button>':''}</div>`;
+  app.querySelectorAll('.vo').forEach(b=>b.onclick=()=>{const first=S.voto==null;S.voto=+b.dataset.v;if(first&&giveBadge(EXTRA_BADGES[B_FINAL])){snd('win');}save();renderVoto();});
+  document.getElementById('bk').onclick=()=>go({screen:'home'});
+  document.getElementById('home').onclick=()=>go({screen:'home'});
+  const ct=document.getElementById('ct');if(ct)ct.onclick=()=>go({screen:'cert'});
+}
+
+render();
+</script>
+</body>
+</html>
