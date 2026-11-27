@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sete e cinco, no ponto · Pense Mais Uma</title>
+<link rel="icon" href="../mural/artes/icone.png">
+<link rel="stylesheet" href="../../assets/portal.css">
+<style>
+* { box-sizing: border-box }
+body { margin: 0; background: #f8edd8 url(../mural/artes/papel.webp); color: #251e19; font: 1rem/1.5 system-ui,sans-serif }
+main { width: min(100% - 32px, 620px); margin: 20px auto 40px }
+header { position: relative; isolation: isolate; overflow: hidden; border: 1px solid #352b23; background: #222; color: white; padding: 18px 20px 23px; display: flex; min-height: 190px; flex-direction: column; justify-content: flex-end }
+header::before { content: ""; position: absolute; inset:0; z-index:-1; background: linear-gradient(90deg,rgba(14,19,20,.86),rgba(14,19,20,.64) 46%,transparent),url(../mural/artes/tarifa-zero.webp) 70% 78% /cover }
+header p { margin: 0 0 8px; font-weight: 650 }
+h1 { margin: 0; max-width: 9em; font: 400 clamp(38px,8vw,59px)/1.04 Cartaz,system-ui,sans-serif }
+h2 { margin: 0 0 8px; font: 650 1.27rem/1.25 Georgia,serif }
+section { margin: 20px 0 }
+audio { width: 100%; display: block; margin: 10px 0 }
+summary { width: fit-content; padding: 6px 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px }
+.buttons[hidden] { display: none }
+.buttons { display: flex; gap: 9px; flex-wrap: wrap }
+button { cursor:pointer; border: 1px solid #362820; border-radius: 3px; font: 650 .98rem/1.25 system-ui; padding: 12px; color: #251e19; background: #fff7e9 }
+button[aria-pressed=true] { background: #252c29; color: white }
+a { color: inherit; text-underline-offset: 3px }
+footer { margin-top: 24px; border-top: 1px solid #aa9580; padding-top: 10px; font-size:.88rem }
+:focus-visible { outline: 3px solid #095e93; outline-offset: 2px }
+</style>
+</head>
+<body>
+<div class="pmu-mast" role="banner"><div class="pmu-row"><a class="pmu-logo" href="../../"><img src="../mural/artes/marca.webp" alt="Pense Mais Uma"></a><nav class="pmu-nav"><a href="../../#catalogo">Cursos</a></nav></div></div>
+<main>
+<header><p>Tarifa Zero · Piloto em áudio</p><h1>Sete e cinco, no ponto</h1></header>
+<section aria-label="Ouvir a cena">
+<p>Ouça a cena e escolha como a sua manhã termina. Cerca de 1 minuto.</p>
+<audio id="intro" controls preload="metadata" src="no-ponto.mp3" aria-label="Ouvir a cena no ponto"></audio>
+<details><summary>Ler a cena</summary><p>São sete e cinco da manhã. Você chega ao ponto, põe a mão no bolso e conta cinco reais. Dá uma passagem certinha. O ônibus só passa às sete e vinte.</p><p>Agora imagina que você pode mudar essa manhã. A linha ganhou quinhentos reais. Dá pra pagar a passagem de cem pessoas ou colocar mais um ônibus na rua, às sete e dez. Neste exemplo, tem lugar pra todo mundo e os ônibus saem no horário.</p><p>O que faria mais diferença pra você hoje? Guardar os cinco reais ou chegar dez minutos mais cedo? Escolha um caminho pra ouvir como fica a sua manhã.</p></details></section>
+<section aria-labelledby="escolha"><h2 id="escolha">O que faria mais diferença hoje?</h2>
+<div class="buttons" hidden><button type="button" data-track="passagem" aria-controls="passagem" aria-pressed="false">Guardar os R$ 5</button><button type="button" data-track="horario" aria-controls="horario" aria-pressed="false">Chegar mais cedo</button></div>
+<section id="passagem" aria-label="A passagem grátis"><h2>A passagem grátis</h2><audio controls preload="none" src="passagem.mp3" aria-label="Ouvir o desfecho: A passagem grátis"></audio><details><summary>Ler o desfecho</summary><p>Você guardou os cinco reais. São sete e vinte. O ônibus chega, você sobe e o dinheiro continua no seu bolso. Na nossa história, os quinhentos reais cobrem as cem passagens. Agora pensa em quem já tinha o dinheiro da passagem, mas precisava chegar mais cedo pra abrir a loja. O que mudou na manhã dessa pessoa? Ela também economizou. Só que o primeiro ônibus continuou passando no mesmo horário.</p></details></section>
+<section id="horario" aria-label="O ônibus extra"><h2>O ônibus extra</h2><audio controls preload="none" src="horario.mp3" aria-label="Ouvir o desfecho: O ônibus extra"></audio><details><summary>Ler o desfecho</summary><p>Você preferiu chegar mais cedo. São sete e dez e o ônibus extra encosta. Você paga os cinco reais e embarca. Hoje, ganhou dez minutos. Agora imagina a pessoa ao seu lado. Ela chegou junto com você, mas só tem quatro reais no bolso. O ônibus veio mais cedo pra ela também. E a passagem? Continua custando cinco reais. Na hora de escolher onde pôr o dinheiro, qual dessas duas esperas a sua cidade deveria ouvir primeiro?</p></details></section>
+</section>
+<footer><a href="../../cursos/tarifa-zero/">Explorar o curso completo e suas fontes →</a><p>Cena fictícia, com valores e horários da simulação do curso. Narração por voz sintética.</p></footer>
+</main>
+<script>
+const players = [...document.querySelectorAll('audio')];
+for (const player of players) {
+  player.addEventListener('play', () => {
+    for (const other of players) if (other !== player) other.pause();
+  });
+}
+const buttons = document.querySelector('.buttons');
+for (const button of buttons.children) {
+  const section = document.getElementById(button.dataset.track);
+  section.hidden = true;
+  button.addEventListener('click', () => {
+    for (const option of buttons.children) {
+      const selected = option === button;
+      option.setAttribute('aria-pressed', String(selected));
+      document.getElementById(option.dataset.track).hidden = !selected;
+    }
+    const audio = section.querySelector('audio');
+    players.forEach(player => player.pause());
+    audio.currentTime = 0;
+    audio.play().catch(() => audio.focus());
+  });
+}
+buttons.hidden = false;
+</script>
+</body></html>
